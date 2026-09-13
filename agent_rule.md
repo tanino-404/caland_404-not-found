@@ -10,10 +10,11 @@
 ## 0. 毎セッションの開始時に必ずやること
 
 1. このファイル（`agent_rule.md`）を読む。
-2. `docs/human_idea/concept.md` を読み、テーマ・必須機能・デモシナリオを把握する。
-3. `docs/architecture/architecture.md` を読み、技術スタック・画面構成・`src/` 構造を把握する。
-4. `docs/agent_docs/` にある直前の作業メモを読む（あれば）。
-5. `concept.md` の「テーマ」が空欄のときは、実装に着手せず「concept.md が未記入です」と人間に伝えて止まる。
+2. `original_rule/original_rule.md` を読み、そこに書かれたルールにも従って開発する。
+3. `docs/human_idea/concept.md` を読み、テーマ・必須機能・デモシナリオを把握する。
+4. `docs/architecture/architecture.md` を読み、技術スタック・画面構成・`src/` 構造を把握する。
+5. `docs/agent_docs/` にある直前の作業メモを読む（あれば）。
+6. `concept.md` の「テーマ」が空欄のときは、実装に着手せず「concept.md が未記入です」と人間に伝えて止まる。
 
 ---
 
@@ -32,6 +33,8 @@
 ├─ .cursor/rules/agent-rule.mdc               ← Cursor 用ポインタ
 ├─ .kiro/steering/agent-rule.md               ← Kiro 用ポインタ
 ├─ .github/copilot-instructions.md            ← GitHub Copilot 用ポインタ
+├─ original_rule/
+│   └─ original_rule.md           ← 追加ルール。AI は毎セッション読み、従う
 ├─ docs/
 │   ├─ human_idea/                ← 人間だけが編集。AI は読み取り専用
 │   │   └─ concept.md             ←   テーマ・必須機能・デモシナリオ

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>予定の混み具合マップ — 発表スライド（1分）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1b2a41;
+    --paper: #fff8e7;
+    --paper-old: #f3e2b6;
+    --gold: #ffc83d;
+    --grass: #5fb63b;
+    --dirt: #8a5a2b;
+    --stone: #8d8d93;
+    --snow: #eef3f7;
+    --sky-top: #5cb0ff;
+    --sky-bottom: #cfeeff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'DotGothic16', 'Hiragino Kaku Gothic ProN', sans-serif;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+    color: var(--ink);
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 8vw;
+    text-align: center;
+  }
+  .slide.active { display: flex; }
+
+  /* ---- 共通パーツ ---- */
+  .panel {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 10px 10px 0 rgba(27, 42, 65, 0.55);
+    padding: 5vh 5vw;
+    max-width: 1100px;
+  }
+  .kicker {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--gold);
+    padding: 0.4em 1.2em;
+    font-size: clamp(14px, 1.8vw, 22px);
+    letter-spacing: 0.25em;
+    margin-bottom: 3vh;
+  }
+  h1 { font-size: clamp(38px, 6.5vw, 84px); line-height: 1.25; }
+  h2 { font-size: clamp(30px, 4.8vw, 62px); line-height: 1.3; margin-bottom: 3.5vh; }
+  .catch {
+    font-size: clamp(22px, 3.2vw, 42px);
+    line-height: 1.6;
+    background: linear-gradient(transparent 62%, var(--gold) 62%);
+    display: inline;
+    padding: 0 0.2em;
+  }
+  .sub { font-size: clamp(16px, 2vw, 26px); line-height: 1.9; margin-top: 3vh; }
+  .list {
+    list-style: none;
+    text-align: left;
+    font-size: clamp(18px, 2.3vw, 30px);
+    line-height: 2.1;
+  }
+  .list li::before {
+    content: '■';
+    color: var(--grass);
+    margin-right: 0.6em;
+  }
+  .tag {
+    display: inline-block;
+    border: 3px solid var(--ink);
+    background: var(--paper-old);
+    padding: 0.15em 0.7em;
+    margin: 0.15em 0.2em;
+    font-size: 0.85em;
+    box-shadow: 4px 4px 0 rgba(27, 42, 65, 0.4);
+  }
+
+  /* ---- ブロックタワー装飾 ---- */
+  .towers {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    margin-bottom: 4vh;
+  }
+  .tower { display: flex; flex-direction: column-reverse; }
+  .block {
+    width: clamp(26px, 3vw, 42px);
+    height: clamp(26px, 3vw, 42px);
+    border: 3px solid var(--ink);
+    margin-top: -3px;
+  }
+  .b-grass { background: var(--grass); }
+  .b-dirt  { background: var(--dirt); }
+  .b-stone { background: var(--stone); }
+  .b-snow  { background: var(--snow); }
+  .b-roof  { background: var(--gold); }
+
+  /* ---- 海（下端の帯） ---- */
+  .sea {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 7vh;
+    background: repeating-linear-gradient(
+      90deg,
+      #2f6fbe 0 32px,
+      #3a80d6 32px 64px
+    );
+    border-top: 4px solid var(--ink);
+    pointer-events: none;
+  }
+
+  /* ---- ページ表示・操作ヒント ---- */
+  .hud {
+    position: fixed;
+    right: 20px;
+    bottom: 9vh;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.3em 0.9em;
+    font-size: clamp(13px, 1.4vw, 18px);
+    letter-spacing: 0.15em;
+  }
+  .hint {
+    position: fixed;
+    left: 20px;
+    bottom: 9vh;
+    color: var(--ink);
+    font-size: clamp(11px, 1.2vw, 15px);
+    opacity: 0.65;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. タイトル -->
+<section class="slide active">
+  <div class="towers" aria-hidden="true">
+    <div class="tower"><div class="block b-grass"></div></div>
+    <div class="tower"><div class="block b-grass"></div><div class="block b-dirt"></div><div class="block b-roof"></div></div>
+    <div class="tower"><div class="block b-grass"></div><div class="block b-dirt"></div><div class="block b-dirt"></div><div class="block b-stone"></div><div class="block b-stone"></div><div class="block b-snow"></div><div class="block b-roof"></div></div>
+    <div class="tower"><div class="block b-grass"></div><div class="block b-dirt"></div><div class="block b-stone"></div><div class="block b-roof"></div></div>
+    <div class="tower"><div class="block b-grass"></div><div class="block b-dirt"></div></div>
+  </div>
+  <div class="panel">
+    <div class="kicker">テーマ</div>
+    <h1>予定の混み具合マップ</h1>
+    <p class="sub"><span class="catch">毎日が、村になる。人生が、地図になる。</span></p>
+  </div>
+</section>
+
+<!-- 2. コンセプト -->
+<section class="slide">
+  <div class="panel">
+    <div class="kicker">コンセプト</div>
+    <h2>予定の混み具合が分かる<br />マイクラ風 3D マップ</h2>
+    <p class="sub">カレンダーを、上から眺める世界に。</p>
+  </div>
+</section>
+
+<!-- 3. 驚きポイント -->
+<section class="slide">
+  <div class="panel">
+    <div class="kicker">驚きポイント</div>
+    <h2>地形から、予定の村ができる</h2>
+    <p class="sub"><span class="catch">あなたの人生、上から見るとこんな景色でした。</span></p>
+  </div>
+</section>
+
+<!-- 4. やりたかったこと -->
+<section class="slide">
+  <div class="panel">
+    <div class="kicker">やりたかったこと</div>
+    <h2>予定を入れたくなるツール</h2>
+    <ul class="list">
+      <li>ゲーム要素を絡めてエンタメっぽく<br />
+        <span class="tag">マイクラ</span><span class="tag">どうぶつの森</span><span class="tag">Cities: Skylines</span>
+      </li>
+      <li>自分自身の予定で、村や街をつくる</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. もうひとつ・締め -->
+<section class="slide">
+  <div class="panel">
+    <div class="kicker">さらに</div>
+    <h2>友人や恋人との予定も<br />ワクワクさせるツールへ</h2>
+    <ul class="list" style="display:inline-block;">
+      <li>カレンダーの同期機能</li>
+    </ul>
+    <p class="sub"><span class="catch">毎日が、村になる。人生が、地図になる。</span></p>
+  </div>
+</section>
+
+<div class="sea" aria-hidden="true"></div>
+<div class="hud"><span id="page">1</span> / <span id="total">5</span></div>
+<div class="hint">クリック / → で進む　← で戻る</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const pageEl = document.getElementById('page');
+  document.getElementById('total').textContent = slides.length;
+  let index = 0;
+
+  function show(next) {
+    index = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    pageEl.textContent = index + 1;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') show(index + 1);
+    if (e.key === 'ArrowLeft') show(index - 1);
+  });
+  document.addEventListener('click', () => show(index + 1));
+</script>
+</body>
+</html>

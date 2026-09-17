@@ -23,7 +23,7 @@ export const DayHud = ({ year, month, day, events, onBack }: DayHudProps) => {
           </div>
         </div>
         {events.length === 0 ? (
-          <p className="day-panel-empty">この日は予定なし。草原が広がっています。</p>
+          <p className="day-panel-empty">この日は予定なし。静かな海が広がっています。</p>
         ) : (
           <ol className="day-panel-list">
             {events.map((event) => (

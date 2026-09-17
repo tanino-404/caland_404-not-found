@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
-import { WEEKDAY_LABELS_JA, formatDateJa, toDateKey } from '../../lib/calendar';
+import { MONTH_NAMES_EN, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
 import { ELEVATION_COLORS, elevationColor } from '../models/blocks/blockKinds';
+import './YearIslands.css';
 
 export interface YearHeatmapProps {
   year: number;
@@ -9,121 +10,106 @@ export interface YearHeatmapProps {
   onSelectMonth: (month: number) => void;
 }
 
-interface HeatCell {
-  key: string;
-  month: number;
-  day: number;
+interface IslandCell {
+  /** その月の日。月外のマスは null（海） */
+  day: number | null;
   count: number;
 }
 
-interface YearLayout {
-  /** week-major。年の外側は null */
-  cells: (HeatCell | null)[];
-  weeks: number;
-  /** month(1-12) → その月の 1 日がある週（0-based） */
-  monthStartWeek: number[];
+interface Island {
+  month: number;
+  nameEn: string;
+  /** 7 列 × rows 行、row-major */
+  cells: IslandCell[];
+  rows: number;
+  total: number;
+  peak: number;
 }
 
-const DAY_MS = 86_400_000;
+const SEA_CELL: IslandCell = { day: null, count: 0 };
 
-const buildYearLayout = (year: number, byDate: Map<string, CalendarEvent[]>): YearLayout => {
-  const jan1 = new Date(year, 0, 1);
-  const dec31 = new Date(year, 11, 31);
-  const start = new Date(jan1);
-  start.setDate(jan1.getDate() - jan1.getDay());
-  const end = new Date(dec31);
-  end.setDate(dec31.getDate() + (6 - dec31.getDay()));
-  const totalDays = Math.round((end.getTime() - start.getTime()) / DAY_MS) + 1;
-  const weeks = totalDays / 7;
-
-  const cells: (HeatCell | null)[] = [];
-  const monthStartWeek: number[] = new Array<number>(13).fill(0);
-  for (let i = 0; i < totalDays; i++) {
-    const date = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
-    if (date.getFullYear() !== year) {
-      cells.push(null);
-      continue;
-    }
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    if (day === 1) {
-      monthStartWeek[month] = Math.floor(i / 7);
-    }
-    const key = toDateKey(year, month, day);
-    cells.push({ key, month, day, count: byDate.get(key)?.length ?? 0 });
+const buildIsland = (
+  year: number,
+  month: number,
+  byDate: Map<string, CalendarEvent[]>,
+): Island => {
+  const { cells: monthCells, rows } = buildMonthGrid(year, month);
+  const cells: IslandCell[] = new Array<IslandCell>(rows * 7).fill(SEA_CELL);
+  let total = 0;
+  let peak = 0;
+  for (const cell of monthCells) {
+    const count = byDate.get(cell.dateKey)?.length ?? 0;
+    total += count;
+    if (count > peak) peak = count;
+    cells[cell.row * 7 + cell.col] = { day: cell.day, count };
   }
-  return { cells, weeks, monthStartWeek };
+  return { month, nameEn: MONTH_NAMES_EN[month - 1], cells, rows, total, peak };
 };
 
 const ELEVATION_LABELS = ['0', '1', '2', '3', '4', '5', '6+'];
 
 export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) => {
-  const layout = useMemo(() => buildYearLayout(year, byDate), [year, byDate]);
-  const total = useMemo(() => {
-    let n = 0;
-    for (const list of byDate.values()) n += list.length;
-    return n;
-  }, [byDate]);
-
-  const gridColumns = { gridTemplateColumns: `repeat(${layout.weeks}, var(--heat-cell))` };
+  const islands = useMemo(
+    () => Array.from({ length: 12 }, (_, i) => buildIsland(year, i + 1, byDate)),
+    [year, byDate],
+  );
 
   return (
-    <section className="year">
-      <header className="year-head">
-        <div className="year-number">{year}</div>
+    <section className="yi">
+      <header className="yi-head">
+        <div className="yi-year">{year}</div>
         <div>
-          <h1 className="year-title">一年を、上から見る。</h1>
-          <p className="year-sub">
-            色は標高。草原は予定なし、雪山は 6 件以上。全 {total} 件。月をクリックで降りる。
+          <h1 className="yi-title">一年を、上から見る。</h1>
+          <p className="yi-sub">
+            12 の島。海は予定なし、雪山は 6 件以上。島をクリックで降りる。
           </p>
         </div>
       </header>
 
-      <div className="year-body">
-        <div className="year-weekdays" aria-hidden="true">
-          {WEEKDAY_LABELS_JA.map((label) => (
-            <span key={label}>{label}</span>
-          ))}
-        </div>
-        <div className="year-grid-wrap">
-          <div className="year-months" style={gridColumns}>
-            {layout.monthStartWeek.slice(1).map((week, i) => (
-              <button
-                key={i + 1}
-                type="button"
-                className="year-month-btn"
-                style={{ gridColumn: `${week + 1} / span 4` }}
-                onClick={() => onSelectMonth(i + 1)}
-              >
-                {i + 1}月
-              </button>
-            ))}
-          </div>
-          <div className="year-grid" style={gridColumns}>
-            {layout.cells.map((cell, i) =>
-              cell ? (
-                <button
-                  key={cell.key}
-                  type="button"
-                  className="heat-cell"
-                  style={{ background: elevationColor(cell.count) }}
-                  title={`${formatDateJa(year, cell.month, cell.day)} 予定 ${cell.count} 件`}
-                  aria-label={`${cell.month}月${cell.day}日 予定 ${cell.count} 件`}
-                  onClick={() => onSelectMonth(cell.month)}
-                />
-              ) : (
-                <span key={`empty-${i}`} className="heat-cell heat-cell-empty" />
-              ),
-            )}
-          </div>
-        </div>
+      <div className="yi-grid">
+        {islands.map((island) => (
+          <button
+            key={island.month}
+            type="button"
+            className="yi-card"
+            onClick={() => onSelectMonth(island.month)}
+            aria-label={`${island.month}月の島 予定 ${island.total} 件 最高峰 ${island.peak} 件`}
+          >
+            <div className="yi-card-head">
+              <span className="yi-month">
+                {island.month}
+                <small>月</small>
+              </span>
+              <span className="yi-card-meta">
+                <span className="yi-en">{island.nameEn}</span>
+                <span className="yi-count">{island.total} 件</span>
+                <span className="yi-peak">最高峰 {island.peak} 件</span>
+              </span>
+            </div>
+            <div className="yi-map">
+              <div className="yi-map-grid" aria-hidden="true">
+                {island.cells.map((cell, i) =>
+                  cell.day === null || cell.count === 0 ? (
+                    <span key={i} className="yi-cell yi-cell-sea" />
+                  ) : (
+                    <span
+                      key={i}
+                      className="yi-cell"
+                      style={{ background: elevationColor(cell.count) }}
+                    />
+                  ),
+                )}
+              </div>
+            </div>
+          </button>
+        ))}
       </div>
 
-      <footer className="year-legend">
+      <footer className="yi-legend">
         <span>低</span>
         {ELEVATION_COLORS.map((color, i) => (
-          <span key={color} className="year-legend-step">
-            <span className="heat-cell" style={{ background: color }} />
+          <span key={color} className="yi-legend-step">
+            <span className="yi-swatch" style={{ background: color }} />
             <small>{ELEVATION_LABELS[i]}</small>
           </span>
         ))}

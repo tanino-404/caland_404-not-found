@@ -19,7 +19,5 @@ export const Voxel = ({ x, y, z, w, h, d, color }: VoxelProps) => (
     material={materialFor(color)}
     position={[x, y + h / 2, z]}
     scale={[w, h, d]}
-    castShadow
-    receiveShadow
   />
 );

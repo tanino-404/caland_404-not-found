@@ -15,6 +15,7 @@ const sixFaces = (side: string, top: string, bottom: string): MeshStandardMateri
 
 const MATERIALS: Record<BlockKind, MeshStandardMaterial | MeshStandardMaterial[]> = {
   grass: sixFaces(BLOCK_COLORS.dirt, BLOCK_COLORS.grassTop, BLOCK_COLORS.dirtDark),
+  shore: sixFaces(BLOCK_COLORS.sand, BLOCK_COLORS.grassTop, BLOCK_COLORS.sandDark),
   dirt: standard(BLOCK_COLORS.dirt),
   stone: sixFaces(BLOCK_COLORS.stoneDark, BLOCK_COLORS.stone, BLOCK_COLORS.stoneDark),
   snow: sixFaces(BLOCK_COLORS.snowSide, BLOCK_COLORS.snow, BLOCK_COLORS.snowSide),
@@ -30,7 +31,5 @@ export const Block = ({ level, kind }: BlockProps) => (
     geometry={BLOCK_GEOMETRY}
     material={MATERIALS[kind]}
     position={[0, BLOCK_HEIGHT / 2 + BLOCK_HEIGHT * level, 0]}
-    castShadow
-    receiveShadow
   />
 );

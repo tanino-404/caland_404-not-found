@@ -88,6 +88,7 @@ const buildSampleEvents = (): CalendarEvent[] => {
       const weekday = weekdayOf(SAMPLE_YEAR, month, day);
       const isWeekend = weekday === 0 || weekday === 6;
       const pool = isWeekend ? WEEKEND_CATEGORIES : WEEKDAY_CATEGORIES;
+      if (rng() < 0.2) continue;
       const raw = rng() * 3.2 * MONTH_BUSYNESS[month] + (rng() < 0.15 ? 3 : 0);
       const count = Math.min(10, Math.floor(raw));
       for (let i = 0; i < count; i++) {

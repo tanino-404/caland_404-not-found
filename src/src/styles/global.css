@@ -148,6 +148,8 @@ button {
   position: absolute;
   top: 28px;
   right: 28px;
+  display: flex;
+  gap: 12px;
 }
 
 .hud-months {

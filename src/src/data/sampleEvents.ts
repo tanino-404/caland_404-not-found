@@ -8,7 +8,7 @@ import { daysInMonth, toDateKey, weekdayOf } from '../lib/calendar';
 
 export const SAMPLE_YEAR = 2026;
 
-const TITLES: Record<EventCategory, string[]> = {
+export const TITLES: Record<EventCategory, string[]> = {
   beauty: ['カット', 'カラー', 'パーマ', 'ヘッドスパ', 'ネイル', 'まつエク'],
   restaurant: ['ランチ会', '飲み会', 'カフェ', '同期会', '焼肉', 'ラーメン部'],
   work: ['定例MTG', '1on1', 'レビュー', '企画会議', '締め切り', '顧客訪問', '資料作成', '面談'],
@@ -58,7 +58,7 @@ const SIGNATURE_DAYS: { date: string; categories: EventCategory[] }[] = [
   },
 ];
 
-const mulberry32 = (seed: number) => (): number => {
+export const mulberry32 = (seed: number) => (): number => {
   seed = (seed + 0x6d2b79f5) | 0;
   let t = seed;
   t = Math.imul(t ^ (t >>> 15), t | 1);
@@ -66,7 +66,7 @@ const mulberry32 = (seed: number) => (): number => {
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 
-const pick = <T>(rng: () => number, list: T[]): T => list[Math.floor(rng() * list.length)];
+export const pick = <T>(rng: () => number, list: T[]): T => list[Math.floor(rng() * list.length)];
 
 const buildSampleEvents = (): CalendarEvent[] => {
   const rng = mulberry32(20260917);

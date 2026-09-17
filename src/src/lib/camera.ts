@@ -25,6 +25,18 @@ export const monthCameraPose = (rows: number): CameraPose => ({
   target: new Vector3(0, 0.3, -0.5),
 });
 
+/** ふたりの島モード：自分の島と相方の島の間の海の幅（セル数） */
+export const PARTNER_SEA_GAP = 2.6;
+
+/** 相方の島（グリッド全体）の z オフセット。自分の島の奥（-z）に海を挟んで置く */
+export const partnerZOffset = (rows: number): number => -(rows * CELL_SIZE + PARTNER_SEA_GAP);
+
+/** ふたりの島モードの月俯瞰。両方の島と間の海が見えるよう、高く引いて見下ろす */
+export const monthSharedCameraPose = (rows: number): CameraPose => ({
+  position: new Vector3(5.2, 17.5 + rows * 1.1, rows / 2 + 12.5),
+  target: new Vector3(0, -0.6, partnerZOffset(rows) / 2 + 0.6),
+});
+
 export const dayCameraPose = (
   col: number,
   row: number,

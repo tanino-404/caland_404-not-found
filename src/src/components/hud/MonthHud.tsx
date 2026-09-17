@@ -7,6 +7,9 @@ export interface MonthHudProps {
   monthTotal: number;
   hoveredKey: string | null;
   byDate: Map<string, CalendarEvent[]>;
+  /** ふたりの島モード */
+  shared: boolean;
+  onToggleShared: () => void;
   onPrevMonth: () => void;
   onNextMonth: () => void;
   onShowYear: () => void;
@@ -23,6 +26,8 @@ export const MonthHud = ({
   monthTotal,
   hoveredKey,
   byDate,
+  shared,
+  onToggleShared,
   onPrevMonth,
   onNextMonth,
   onShowYear,
@@ -45,6 +50,9 @@ export const MonthHud = ({
       </header>
 
       <nav className="hud-nav" aria-label="表示切り替え">
+        <button type="button" className="btn" onClick={onToggleShared}>
+          {shared ? 'ひとりの島に戻る' : 'ふたりの島'}
+        </button>
         <button type="button" className="btn" onClick={onShowYear}>
           一年を見る
         </button>
@@ -68,7 +76,11 @@ export const MonthHud = ({
             </li>
           ))}
         </ul>
-        <p className="hud-hint">ブロックの数 = 予定の数。日をクリックで町へ降りる</p>
+        <p className="hud-hint">
+          {shared
+            ? '奥の島は相方のカレンダー。同じ予定の日は、島と島を飛行機が行き来する'
+            : 'ブロックの数 = 予定の数。日をクリックで町へ降りる'}
+        </p>
       </aside>
 
       {hovered ? (

@@ -4,10 +4,12 @@ import { MonthHud } from './components/hud/MonthHud';
 import { MonthScene } from './components/month/MonthScene';
 import { YearHeatmap } from './components/year/YearHeatmap';
 import { SAMPLE_YEAR, sampleEvents } from './data/sampleEvents';
+import { partnerCommonDates, samplePartnerEvents } from './data/samplePartnerEvents';
 import { busiestMonth, countEventsInMonth, groupEventsByDate, toDateKey } from './lib/calendar';
 import type { ViewState } from './types/calendar';
 
 const BY_DATE = groupEventsByDate(sampleEvents);
+const PARTNER_BY_DATE = groupEventsByDate(samplePartnerEvents);
 const INITIAL_VIEW: ViewState = {
   kind: 'month',
   year: SAMPLE_YEAR,
@@ -17,6 +19,7 @@ const INITIAL_VIEW: ViewState = {
 export const App = () => {
   const [view, setView] = useState<ViewState>(INITIAL_VIEW);
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [shared, setShared] = useState(false);
 
   const monthTotal = useMemo(
     () => (view.kind === 'year' ? 0 : countEventsInMonth(BY_DATE, view.year, view.month)),
@@ -46,6 +49,9 @@ export const App = () => {
         <MonthScene
           view={view}
           byDate={BY_DATE}
+          partnerByDate={PARTNER_BY_DATE}
+          commonDates={partnerCommonDates}
+          shared={shared}
           hoveredKey={hoveredKey}
           onHover={setHoveredKey}
           onSelectDay={(day) => setView({ kind: 'day', year, month, day })}
@@ -58,6 +64,8 @@ export const App = () => {
           monthTotal={monthTotal}
           hoveredKey={hoveredKey}
           byDate={BY_DATE}
+          shared={shared}
+          onToggleShared={() => setShared((s) => !s)}
           onPrevMonth={() => shiftMonth(-1)}
           onNextMonth={() => shiftMonth(1)}
           onShowYear={() => setView({ kind: 'year', year })}

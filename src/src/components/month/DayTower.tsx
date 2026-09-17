@@ -31,8 +31,9 @@ export interface DayTowerProps {
   rows: number;
   events: CalendarEvent[];
   highlighted: boolean;
-  onHover: (dateKey: string | null) => void;
-  onSelect: (day: number) => void;
+  /** 省略すると操作できない飾りの塔になる（相方の島用） */
+  onHover?: (dateKey: string | null) => void;
+  onSelect?: (day: number) => void;
 }
 
 export const DayTower = ({ cell, rows, events, highlighted, onHover, onSelect }: DayTowerProps) => {
@@ -55,24 +56,24 @@ export const DayTower = ({ cell, rows, events, highlighted, onHover, onSelect }:
   const handleOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     document.body.style.cursor = 'pointer';
-    onHover(cell.dateKey);
+    onHover?.(cell.dateKey);
   };
   const handleOut = () => {
     document.body.style.cursor = 'auto';
-    onHover(null);
+    onHover?.(null);
   };
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-    onSelect(cell.day);
+    onSelect?.(cell.day);
   };
 
   return (
     <group
       ref={group}
       position={[colToX(cell.col), 0, rowToZ(cell.row, rows)]}
-      onPointerOver={handleOver}
-      onPointerOut={handleOut}
-      onClick={handleClick}
+      onPointerOver={onHover ? handleOver : undefined}
+      onPointerOut={onHover ? handleOut : undefined}
+      onClick={onSelect ? handleClick : undefined}
     >
       {levels.map((level) => (
         <Block key={level} level={level} kind={blockKindForLevel(level, level === count)} />

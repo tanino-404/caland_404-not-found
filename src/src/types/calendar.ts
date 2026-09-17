@@ -18,6 +18,13 @@ export interface CalendarEvent {
   owners: string[];
 }
 
+/**
+ * 月ビューの島の並べ方。
+ * - merged：メンバー全員の予定を 1 つの島に建てる（ホバーで持ち主の色）
+ * - split ：自分の島と相方の島を海を挟んで並べ、ふたりの予定の日は飛行機が行き来する
+ */
+export type IslandLayout = 'merged' | 'split';
+
 export type ViewState =
   | { kind: 'year'; year: number }
   | { kind: 'month'; year: number; month: number }

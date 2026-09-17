@@ -302,7 +302,11 @@ button {
   position: absolute;
   top: 28px;
   right: 28px;
+  /* 月タイトル（左上）と重ならない幅に収め、足りなければ折り返す */
+  max-width: calc(100vw - 420px);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: stretch;
   gap: 12px;
 }
@@ -517,6 +521,18 @@ button {
 .category-btn:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 2px;
+}
+
+.hud-partner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.hud-partner-label {
+  font-size: 13px;
 }
 
 .invite-row {

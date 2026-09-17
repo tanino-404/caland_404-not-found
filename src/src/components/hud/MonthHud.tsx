@@ -1,15 +1,26 @@
 import { MONTH_NAMES_EN, formatDateJa } from '../../lib/calendar';
 import { breakdownByOwner, memberColor, ownerChipBackground } from '../../lib/members';
-import { CATEGORIES, CATEGORY_INFO, type CalendarEvent } from '../../types/calendar';
+import {
+  CATEGORIES,
+  CATEGORY_INFO,
+  type CalendarEvent,
+  type IslandLayout,
+} from '../../types/calendar';
 
 export interface MonthHudProps {
   year: number;
   month: number;
   monthTotal: number;
   hoveredKey: string | null;
+  /** 全員の予定（ホバーの内訳用。島の並べ方に関係なく全員分） */
   byDate: Map<string, CalendarEvent[]>;
   members: string[];
   currentUser: string;
+  layout: IslandLayout;
+  /** ふたりの島モードで奥の島にするメンバー。自分以外がいなければ null */
+  partner: string | null;
+  onToggleLayout: () => void;
+  onSelectPartner: (name: string) => void;
   onPrevMonth: () => void;
   onNextMonth: () => void;
   onShowYear: () => void;
@@ -31,6 +42,10 @@ export const MonthHud = ({
   byDate,
   members,
   currentUser,
+  layout,
+  partner,
+  onToggleLayout,
+  onSelectPartner,
   onPrevMonth,
   onNextMonth,
   onShowYear,
@@ -42,6 +57,8 @@ export const MonthHud = ({
   const prev = month === 1 ? 12 : month - 1;
   const next = month === 12 ? 1 : month + 1;
   const allColors = members.map((m) => memberColor(members, m));
+  const others = members.filter((m) => m !== currentUser);
+  const split = layout === 'split' && partner !== null;
 
   return (
     <div className="hud">
@@ -63,6 +80,15 @@ export const MonthHud = ({
             ログアウト
           </button>
         </div>
+        <button
+          type="button"
+          className="btn"
+          disabled={partner === null}
+          title={partner === null ? 'メンバーが 2 人以上いるときに使えます' : undefined}
+          onClick={onToggleLayout}
+        >
+          {split ? 'ひとつの島で見る' : 'ふたりの島で見る'}
+        </button>
         <button type="button" className="btn" onClick={onShowYear}>
           一年を見る
         </button>
@@ -100,8 +126,28 @@ export const MonthHud = ({
             </li>
           ))}
         </ul>
+        {split && others.length >= 2 ? (
+          <div className="hud-partner" role="radiogroup" aria-label="奥の島にするメンバー">
+            <span className="hud-partner-label">奥の島：</span>
+            {others.map((name) => (
+              <button
+                key={name}
+                type="button"
+                role="radio"
+                aria-checked={name === partner}
+                className={name === partner ? 'category-btn is-selected' : 'category-btn'}
+                onClick={() => onSelectPartner(name)}
+              >
+                <span className="chip" style={{ background: memberColor(members, name) }} />
+                {name}
+              </button>
+            ))}
+          </div>
+        ) : null}
         <p className="hud-hint">
-          ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる
+          {split
+            ? `手前が ${currentUser}、奥が ${partner} の島。ふたりの予定の日は、島と島を飛行機が行き来する`
+            : 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる'}
         </p>
       </aside>
 

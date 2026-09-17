@@ -81,8 +81,9 @@ export interface DayTowerProps {
   members: string[];
   /** ホバー中または日ビューで選択中。建物が浮き、足元に所有者色の台座が出る */
   highlighted: boolean;
-  onHover: (dateKey: string | null) => void;
-  onSelect: (day: number) => void;
+  /** 省略すると操作できない飾りの塔になる（相方の島用） */
+  onHover?: (dateKey: string | null) => void;
+  onSelect?: (day: number) => void;
 }
 
 export const DayTower = ({
@@ -122,15 +123,15 @@ export const DayTower = ({
   const handleOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     document.body.style.cursor = 'pointer';
-    onHover(cell.dateKey);
+    onHover?.(cell.dateKey);
   };
   const handleOut = () => {
     document.body.style.cursor = 'auto';
-    onHover(null);
+    onHover?.(null);
   };
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-    onSelect(cell.day);
+    onSelect?.(cell.day);
   };
 
   const highlightHeight = isSea ? WATER_HEIGHT + 0.02 : top + BLOCK_HEIGHT + 0.02;
@@ -139,9 +140,9 @@ export const DayTower = ({
     <group
       ref={group}
       position={[colToX(cell.col), 0, rowToZ(cell.row, rows)]}
-      onPointerOver={handleOver}
-      onPointerOut={handleOut}
-      onClick={handleClick}
+      onPointerOver={onHover ? handleOver : undefined}
+      onPointerOut={onHover ? handleOut : undefined}
+      onClick={onSelect ? handleClick : undefined}
     >
       {isSea ? (
         <mesh ref={water} position={[0, WATER_CENTER_Y, 0]}>

@@ -48,6 +48,24 @@ export const monthCameraPose = (rows: number, tops: number[]): CameraPose => {
   return { position, target };
 };
 
+/** ふたりの島モード：自分の島と相方の島の間の海の幅（セル数） */
+export const PARTNER_SEA_GAP = 2.6;
+
+/** 相方の島（グリッド全体）の z オフセット。自分の島の奥（-z）に海を挟んで置く */
+export const partnerZOffset = (rows: number): number => -(rows * CELL_SIZE + PARTNER_SEA_GAP);
+
+/**
+ * ふたりの島モードの月俯瞰。両方の島と間の海が見えるよう、高く引いて見下ろす。
+ * tops は両島すべての塔の天面高さ。高い塔があるぶんだけ少し引く
+ */
+export const monthSplitCameraPose = (rows: number, tops: number[]): CameraPose => {
+  const maxTop = Math.max(...tops, 0.5);
+  return {
+    position: new Vector3(5.2, 17.5 + rows * 1.1 + maxTop * 0.5, rows / 2 + 12.5 + maxTop * 0.2),
+    target: new Vector3(0, -0.6 + maxTop * 0.2, partnerZOffset(rows) / 2 + 0.6),
+  };
+};
+
 export const dayCameraPose = (
   col: number,
   row: number,

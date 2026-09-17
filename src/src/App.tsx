@@ -7,7 +7,8 @@ import { YearHeatmap } from './components/year/YearHeatmap';
 import { SAMPLE_YEAR } from './data/sampleEvents';
 import { useSharedCalendar } from './hooks/useSharedCalendar';
 import { busiestMonth, countEventsInMonth, groupEventsByDate, toDateKey } from './lib/calendar';
-import type { ViewState } from './types/calendar';
+import { datesSharedBetween, eventsOwnedBy } from './lib/members';
+import type { IslandLayout, ViewState } from './types/calendar';
 
 export const App = () => {
   const calendar = useSharedCalendar();
@@ -18,6 +19,29 @@ export const App = () => {
     month: busiestMonth(byDate, SAMPLE_YEAR),
   }));
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [layout, setLayout] = useState<IslandLayout>('merged');
+  /** ふたりの島モードで奥に置くメンバー。未選択なら自分以外の先頭 */
+  const [partnerChoice, setPartnerChoice] = useState<string | null>(null);
+
+  const user = calendar.currentUser;
+  const partner = useMemo(() => {
+    const others = calendar.members.filter((m) => m !== user);
+    if (others.length === 0) return null;
+    return partnerChoice !== null && others.includes(partnerChoice) ? partnerChoice : others[0];
+  }, [calendar.members, user, partnerChoice]);
+
+  /** split のとき手前の島（自分）と奥の島（相方）に分けた予定 */
+  const islands = useMemo(() => {
+    if (layout !== 'split' || user === null || partner === null) return null;
+    return {
+      mine: groupEventsByDate(eventsOwnedBy(calendar.events, user)),
+      partner: {
+        name: partner,
+        byDate: groupEventsByDate(eventsOwnedBy(calendar.events, partner)),
+        commonDates: datesSharedBetween(calendar.events, user, partner),
+      },
+    };
+  }, [layout, user, partner, calendar.events]);
 
   const monthTotal = useMemo(
     () => (view.kind === 'year' ? 0 : countEventsInMonth(byDate, view.year, view.month)),
@@ -40,15 +64,16 @@ export const App = () => {
     setHoveredKey(null);
     setView({ kind: 'month', year, month: next });
   };
-  const user = calendar.currentUser;
 
   return (
     <div className="app">
       <div className="scene">
         <MonthScene
           view={view}
-          byDate={byDate}
+          byDate={islands ? islands.mine : byDate}
           members={calendar.members}
+          layout={islands ? 'split' : 'merged'}
+          partner={islands ? islands.partner : null}
           hoveredKey={hoveredKey}
           onHover={setHoveredKey}
           onSelectDay={(day) => setView({ kind: 'day', year, month, day })}
@@ -69,6 +94,10 @@ export const App = () => {
           byDate={byDate}
           members={calendar.members}
           currentUser={user}
+          layout={layout}
+          partner={partner}
+          onToggleLayout={() => setLayout((l) => (l === 'merged' ? 'split' : 'merged'))}
+          onSelectPartner={setPartnerChoice}
           onPrevMonth={() => shiftMonth(-1)}
           onNextMonth={() => shiftMonth(1)}
           onShowYear={() => setView({ kind: 'year', year })}

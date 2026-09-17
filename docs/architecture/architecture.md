@@ -112,12 +112,14 @@ export type ViewState =
 
 ## 3D 表現の規約
 
-- 単位：1 ブロック = 1 × 1 × 1。グリッド原点はカレンダー左上（Sun・第 1 週）で、x = 曜日、z = 週、y = 高さ
-- ブロックは `boxGeometry` + `meshStandardMaterial`（フラットな単色。テクスチャ画像は使わない）。同じ材質はコンポーネント外で `useMemo` せずモジュール定数として共有する
-- 建物モデルは **1 ファイル 1 建物**、`export const Salon = (props: ObjectProps) => …` 形式。中身は複数の `<mesh>` を `<group>` で束ねた 0.3 × 0.3 × 0.3 に収まるボクセル（3×3 配置に収めるため）
-- ライト：`ambientLight` + 影付き `directionalLight` 1 灯。背景は空色グラデーション、床の外側に薄い霧（`fog`）で「地図」感を出す
-- インタラクション：`onClick` / `onPointerOver` で日マスをハイライト（emissive を上げる）。ホバーでカーソルを pointer に
-- パフォーマンス：1 か月分の最大ブロック数はおよそ 31 日 × 10 段 + 建物 ≒ 数百 mesh で問題ない。年 3D 化（将来）の段階で `InstancedMesh` を検討する。今は入れない
+- 単位：1 マス = 1 × 1（`CELL_SIZE`）。タワーの幅は 0.92（`TOWER_WIDTH`。隙間が路地になる）、ブロックの高さは 0.5（`BLOCK_HEIGHT`）。グリッドは原点中心に置き、x = 曜日（`colToX`）、z = 週（`rowToZ`）、y = 高さ。変換は `lib/camera.ts` に集約
+- ブロックの質感は高さ（level）で決める：0 = 草の地面、1〜2 = 土（天面なら草）、3〜5 = 石、6 以上 = 雪（`blockKindForLevel`）
+- ブロックは `BoxGeometry` + `MeshStandardMaterial` の 6 面配列（フラットな単色。テクスチャ画像は使わない）。材質はモジュール定数として共有する
+- 建物モデルは **1 ファイル 1 建物**、`export const Salon = ({ position }: ObjectProps) => …` 形式。中身は `Voxel`（位置・サイズ・色）を `<group>` で束ねた、底面 0.26 × 0.26・高さ 0.45 以内のボクセル（3×3・ピッチ 0.29 に収めるため）。色→材質は `materialFor` でキャッシュして共有する
+- ライト：`ambientLight` + 影付き `directionalLight` 1 灯。背景は CSS の空色グラデーション（Canvas は透過）、地面の下に海面（青い平面）、遠景に `fog`（水平線色）で「島の地図」感を出す
+- インタラクション：`onPointerOver` / `onClick` はタワーの `group` で受け、`stopPropagation` で手前のタワーだけ反応させる。ハイライトは金色の半透明ボックスをタワーに重ねる（材質の複製は作らない）。ホバーでカーソルを pointer に
+- カメラ：`CameraRig` が `pose` の変化を検知して `camera.position` と `OrbitControls.target` を指数補間で寄せ、到着したら補間を止めてユーザー操作に任せる
+- パフォーマンス：1 か月分は 31 日 × 最大 11 段 + 建物 ≒ 数百〜千 mesh で問題ない。日付ラベルのピクセルだけは `InstancedMesh` 1 描画にまとめる。年 3D 化（将来）の段階でブロックの `InstancedMesh` 化を検討する
 
 ## 固定データ（デモ用）
 
@@ -191,8 +193,8 @@ src/                               ← Vite プロジェクトルート
 
 | 単位 | ファイル |
 | --- | --- |
-| A. シーンとカメラ | `MonthScene.tsx` / `DayTower.tsx` / `CameraRig.tsx` / `lib/camera.ts` |
+| A. シーンとカメラ | `components/month/**` / `lib/camera.ts` / `lib/pixelFont.ts` |
 | B. ブロック・建物モデル | `components/models/**` |
-| C. データと集計・年ビュー | `data/sampleEvents.ts` / `lib/calendar.ts` / `YearHeatmap.tsx` |
+| C. データと集計・年ビュー | `data/sampleEvents.ts` / `lib/calendar.ts` / `components/year/**` |
 | D. HUD とスタイル | `components/hud/**` / `styles/global.css` |
 | 共有（声をかけてから） | `App.tsx` / `main.tsx` / `types/calendar.ts` / `package.json` 等の設定ファイル |

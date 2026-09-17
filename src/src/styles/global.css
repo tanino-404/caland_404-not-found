@@ -1,0 +1,437 @@
+:root {
+  --ink: #1b2a41;
+  --paper: #fff8e7;
+  --paper-2: #f3e2b6;
+  --gold: #ffc83d;
+  --grass: #5fb63b;
+  --sky-top: #5cb0ff;
+  --sky-horizon: #cfeeff;
+  /* 53 週が横に収まるように画面幅へ追従（上限 16px） */
+  --heat-cell: clamp(8px, calc((100vw - 200px) / 53 - 3px), 16px);
+  --font: 'DotGothic16', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-horizon) 62%, #dff4ff 100%);
+  overflow: hidden;
+  -webkit-font-smoothing: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---------- 3D シーン ---------- */
+
+.app {
+  position: relative;
+  height: 100%;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+}
+
+.scene canvas {
+  display: block;
+}
+
+/* ---------- HUD 共通（ピクセルゲームの看板） ---------- */
+
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+.panel {
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.btn {
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 8px 14px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 80ms linear,
+    transform 80ms linear,
+    box-shadow 80ms linear;
+}
+
+.btn:hover {
+  background: var(--gold);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn:focus-visible,
+.heat-cell:focus-visible,
+.year-month-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.chip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink);
+  vertical-align: -1px;
+  margin-right: 8px;
+}
+
+/* ---------- 月ビュー HUD ---------- */
+
+.hud-title {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  text-shadow:
+    3px 3px 0 var(--paper),
+    -1px -1px 0 var(--paper),
+    1px -1px 0 var(--paper),
+    -1px 1px 0 var(--paper);
+}
+
+.hud-month-number {
+  font-size: 128px;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+}
+
+.hud-month-meta {
+  padding-bottom: 6px;
+}
+
+.hud-month-en {
+  font-size: 22px;
+  letter-spacing: 0.08em;
+}
+
+.hud-month-ja {
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.hud-nav {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+}
+
+.hud-months {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  display: flex;
+  gap: 12px;
+}
+
+.hud-legend {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  padding: 12px 14px;
+  font-size: 14px;
+  max-width: 260px;
+}
+
+.hud-legend ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 14px;
+}
+
+.hud-hint {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 2px dashed var(--ink);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.hud-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* ---------- 日ビュー HUD ---------- */
+
+.day-panel {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: min(360px, calc(100vw - 56px));
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 18px;
+  gap: 12px;
+}
+
+.day-panel-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.day-panel-number {
+  font-size: 64px;
+  line-height: 0.85;
+}
+
+.day-panel-date {
+  font-size: 15px;
+}
+
+.day-panel-count {
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.day-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0 0;
+  border-top: 3px solid var(--ink);
+  overflow-y: auto;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.day-panel-list li {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.day-panel-category {
+  min-width: 56px;
+  opacity: 0.75;
+  margin-right: 8px;
+}
+
+.day-panel-empty,
+.day-panel-overflow {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.day-panel .btn {
+  align-self: flex-start;
+}
+
+/* ---------- 年ビュー（2D ヒートマップ） ---------- */
+
+.year {
+  height: 100%;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: auto;
+}
+
+.year-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.year-number {
+  font-size: 96px;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+}
+
+.year-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.year-sub {
+  margin: 8px 0 0;
+  font-size: 14px;
+  max-width: 60ch;
+}
+
+.year-body {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 18px 20px 20px;
+  align-self: flex-start;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.year-weekdays {
+  display: grid;
+  grid-template-rows: repeat(7, var(--heat-cell));
+  gap: 3px;
+  margin-top: calc(24px + 8px);
+  font-size: 11px;
+  line-height: var(--heat-cell);
+  text-align: right;
+  padding-right: 4px;
+}
+
+.year-grid-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.year-months {
+  display: grid;
+  gap: 3px;
+  height: 24px;
+}
+
+.year-month-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  justify-self: start;
+}
+
+.year-month-btn:hover {
+  text-decoration: underline 2px;
+}
+
+.year-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, var(--heat-cell));
+  gap: 3px;
+}
+
+.heat-cell {
+  display: block;
+  width: var(--heat-cell);
+  height: var(--heat-cell);
+  border: 2px solid rgba(27, 42, 65, 0.55);
+  padding: 0;
+  cursor: pointer;
+}
+
+.heat-cell:hover {
+  border-color: var(--ink);
+  transform: scale(1.35);
+}
+
+.heat-cell-empty {
+  border-color: transparent;
+  background: transparent;
+  cursor: default;
+}
+
+.year-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.year-legend-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.year-legend-step .heat-cell {
+  cursor: default;
+}
+
+.year-legend-step small {
+  font-size: 10px;
+}
+
+/* ---------- レスポンシブ ---------- */
+
+@media (max-width: 720px) {
+  .hud-month-number {
+    font-size: 80px;
+  }
+
+  .hud-legend {
+    display: none;
+  }
+
+  .hud-tooltip {
+    left: 28px;
+    right: 28px;
+    transform: none;
+    bottom: 84px;
+    white-space: normal;
+  }
+
+  .year {
+    padding: 20px;
+  }
+
+  .year-number {
+    font-size: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .heat-cell {
+    transition: none;
+  }
+
+  .heat-cell:hover {
+    transform: none;
+  }
+}

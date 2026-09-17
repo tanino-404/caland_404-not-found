@@ -3,22 +3,196 @@
 技術スタック・画面構成・`src/` 配下の構造をここに集約する。
 「技術スタック」は開発開始前に `docs/human_idea/` をもとに AI が決定して記入する。それ以外は骨組みを作った後に記入する。
 
+対象アプリ：**予定の混み具合マップ** — カレンダーの予定を、マイクラ風ブロックの山と小さな町として 3D で俯瞰する（`docs/human_idea/concept.md`）。
+
 ## 技術スタック
 
-- 種別：（フロントのみ / フロント＋バックエンド / CLI / その他）
-- 言語・フレームワーク：
-- 初期化コマンド：
-- 起動コマンド：
-- 外部 API・秘密情報：（不要 / 使う場合はキーの受け渡し方法）
+- 種別：**フロントのみ**（バックエンドなし。状態はブラウザ内メモリで持つ）
+- 言語・フレームワーク：**Vite 8 + React 19 + TypeScript**（テンプレート `react-ts`）
+  - 3D 描画：**three.js 0.186** + **@react-three/fiber 9**（React 19 とペア）+ **@react-three/drei 10**（`OrbitControls`）
+  - 2D ヒートマップ：ライブラリなし。CSS Grid の `button` で描く
+  - スタイル：素の CSS（`src/src/styles/global.css`）。UI ライブラリは入れない。書体は Google Fonts の DotGothic16（日本語ドット体）を `index.html` で読み込む。オフライン時はシステムフォントで表示される
+  - 3D モデル：外部アセット（glb 等）は使わない。`boxGeometry` を組み合わせた **ボクセル（ドット風）モデルをコードで生成** する。ローダー不要・アセット管理不要・見た目がマイクラ風で揃う
+  - 3D 内の文字（日付・曜日）：フォントを使わず **3×5 ピクセルフォント**（`lib/pixelFont.ts`）を `InstancedMesh` 1 つで描く
+  - リンター：oxlint（Vite 8 の `react-ts` テンプレート既定）
+- 初期化コマンド（実施済み。`src/` が Vite プロジェクトルート）：
+
+  ```bash
+  npm create vite@latest src -- --template react-ts
+  cd src
+  npm install react@~19.2.8 react-dom@~19.2.8   # fiber 9.7 の peer 条件が react <19.3 のため 19.2 系に固定
+  npm install three @react-three/fiber @react-three/drei
+  npm install -D @types/three
+  ```
+
+- 起動コマンド：`cd src && npm run dev`（`http://localhost:5173`）
+- 型チェック・リンター・ビルド：`cd src && npx tsc --noEmit -p tsconfig.app.json && npm run lint && npm run build`
+- 外部 API・秘密情報：**不要**。予定データは `src/src/data/sampleEvents.ts` の固定サンプル（一年分。シード固定の決定的生成）を使う。Google カレンダー連携・ログイン共有は「あれば嬉しい機能」で、初期版では設計に含めない
+- 動作確認ブラウザ：Cursor 内蔵ブラウザ（WebGL 必須）
 - 迷ったときの既定：フロントのみ、Vite + React + TypeScript（`npm create vite@latest src -- --template react-ts`）。
   バックエンドが不要な構成を選び、状態はブラウザ内（メモリ / localStorage）で持つ。
 
-## 画面・構成の概要（1 画面ならその 1 画面の要素を列挙）
+### 採用理由（短く）
 
--
+- 「目を引く 3D」が評価軸の最優先。React Three Fiber は React の状態管理でシーンを組めるため、ビュー切替（年 → 月 → 日）とカメラ演出を React state だけで扱える
+- バックエンド・外部 API を持たないことで、デモ当日のネットワークや認証トラブルをゼロにする
+- ボクセルをコード生成にすることで、3D モデル担当と画面担当が **別ファイルで並列作業** できる（§3.2 コンフリクト回避）
 
-## src/ 配下の構造（骨組みを作った後に記入）
+## 画面・構成の概要
+
+単一ページ。`App` が `view` state を持ち、3 つのビューを切り替える。ブラウザのルーティングは使わない。
 
 ```
-src/
+year（2D ヒートマップ） ──月をクリック──▶ month（3D 月俯瞰） ──日をクリック──▶ day（3D 日ズーム）
+        ◀────────「年に戻る」────────────       ◀────────「月に戻る」────────────
 ```
+
+### 1. 月ビュー `month`（MVP の主役・デモの最初に見せる）
+
+- 3D シーン。カレンダーグリッドは **横 7 列（Sun〜Sat）× 縦 週数（4〜6 行）**。1 日 = 1 マス（幅 1 の正方形）
+- カメラは斜め上からの三人称俯瞰（初期位置：グリッド中心から見て手前・上方。`OrbitControls` で回転・ズーム可）
+- 各日の表現（`DayTower`）：
+  - 地面：常に草ブロック 1 個（予定 0 件の日も地面はある）
+  - 積み上げ：予定数 n の分だけブロックを積む（土 → 石 → 雪 のように高さで質感を変えると「山」に見える）
+  - 屋上：最上段ブロックの上に、その日の予定カテゴリに対応した **ボクセル建物** を 3×3 のグリッド（中央 → 十字 → 四隅の順）で並べる。最大 9 個。10 個以上は日ビューの HUD に「あと N 件」と出す
+  - 最上段ブロックの手前の面に日付数字（ピクセルフォント。雪頂上は濃紺、それ以外はクリーム色）
+  - 月を切り替えるとタワーが日付順に地面から伸び上がる（読み込み時の 1 演出）
+- 曜日ヘッダー（SUN〜SAT）はグリッド奥の木の看板として 3D 内に置く。月名・件数は HUD の左上（巨大な月数字がヒーロー）
+- HUD（2D オーバーレイ）：前月 / 次月ボタン（左下）、「一年を見る」（右上）、カテゴリ凡例（右下）、ホバー中の日付と件数（下中央）
+- 日マスをホバー → 金色の半透明ハイライト。クリック → `day` ビューへ
+
+### 2. 日ビュー `day`（ズームイン）
+
+- 同じ 3D シーンのまま、カメラだけをクリックした日の **最上段ブロックの真上付近** へ補間移動（`useFrame` で位置と注視点を lerp）。シーンを作り直さないので遷移が滑らか
+- `OrbitControls` の `target` をその日のタワー頂点にし、ユーザーは町を回して眺められる
+- HUD：日付・予定タイトル一覧（カテゴリアイコン付き）、「月に戻る」ボタン
+- 「月に戻る」→ カメラが月俯瞰位置へ補間で戻る
+
+### 3. 年ビュー `year`（2D ヒートマップ）
+
+- 12 か月 × 各月の日を CSS Grid で並べる（GitHub のコントリビューショングラフ風。横 = 週、縦 = 曜日）
+- 色は予定数 0〜6+ の 7 段階（`blockKinds.ts` の `ELEVATION_COLORS`）。配色は 3D 側のブロック色（草 → 土 → 石 → 雪）と揃えて世界観をつなげる
+- 月ラベル、または任意の日セルをクリック → その月の `month` ビューへ
+- セル幅は `--heat-cell` を画面幅に追従させ、53 週が横に収まるようにする
+- 初期版は 2D 固定（concept.md の指示どおり）
+
+### 初期表示
+
+`month` ビュー、サンプルデータの中で最も予定が多い月から開始する（デモの一言コンセプトを最初の 1 画面で伝えるため）。
+
+## データモデル
+
+```ts
+// src/src/types/calendar.ts
+export type EventCategory =
+  | 'beauty'      // 美容室
+  | 'restaurant'  // 飲食店
+  | 'work'        // 仕事・会議
+  | 'wedding'     // 結婚式
+  | 'hospital'    // 病院
+  | 'gym'         // ジム
+  | 'travel'      // 旅行
+  | 'school';     // 学校・習い事
+
+export interface CalendarEvent {
+  id: string;
+  date: string;          // 'YYYY-MM-DD'
+  title: string;
+  category: EventCategory;
+}
+
+export type ViewState =
+  | { kind: 'year'; year: number }
+  | { kind: 'month'; year: number; month: number }               // month: 1-12
+  | { kind: 'day'; year: number; month: number; day: number };
+```
+
+- カテゴリ → ボクセル建物コンポーネントの対応表を `components/models/objects/index.ts` に 1 か所で持つ（新カテゴリ追加は「型に 1 行 + 対応表に 1 行 + 建物ファイル 1 つ」）
+- 日別集計は `lib/calendar.ts` の純関数で行う（`groupEventsByDate`、`buildMonthGrid`）。React 側は計算しない
+
+## 3D 表現の規約
+
+- 単位：1 ブロック = 1 × 1 × 1。グリッド原点はカレンダー左上（Sun・第 1 週）で、x = 曜日、z = 週、y = 高さ
+- ブロックは `boxGeometry` + `meshStandardMaterial`（フラットな単色。テクスチャ画像は使わない）。同じ材質はコンポーネント外で `useMemo` せずモジュール定数として共有する
+- 建物モデルは **1 ファイル 1 建物**、`export const Salon = (props: ObjectProps) => …` 形式。中身は複数の `<mesh>` を `<group>` で束ねた 0.3 × 0.3 × 0.3 に収まるボクセル（3×3 配置に収めるため）
+- ライト：`ambientLight` + 影付き `directionalLight` 1 灯。背景は空色グラデーション、床の外側に薄い霧（`fog`）で「地図」感を出す
+- インタラクション：`onClick` / `onPointerOver` で日マスをハイライト（emissive を上げる）。ホバーでカーソルを pointer に
+- パフォーマンス：1 か月分の最大ブロック数はおよそ 31 日 × 10 段 + 建物 ≒ 数百 mesh で問題ない。年 3D 化（将来）の段階で `InstancedMesh` を検討する。今は入れない
+
+## 固定データ（デモ用）
+
+- `src/src/data/sampleEvents.ts`：対象年 1 年分の予定。月ごとに山谷がはっきり出るよう、**繁忙月（例：3 月・12 月）と閑散月（例：8 月）** を意図的に作る。デモで最初に見せる月には 1 日に 8〜10 件入る日を置き、「高い塔の上の小さな町」が成立するようにする
+- ファイル名・変数名で固定データと分かるようにする（`sampleEvents`）
+
+## src/ 配下の構造（骨組みを作った後に最新化する。以下は設計時の案）
+
+```
+src/                               ← Vite プロジェクトルート
+├─ index.html
+├─ package.json                    ← 共有ファイル（§3.2）
+├─ vite.config.ts                  ← 共有ファイル
+├─ tsconfig.json / tsconfig.app.json / tsconfig.node.json ← 共有ファイル
+├─ .oxlintrc.json                  ← 共有ファイル（リンター設定）
+├─ public/favicon.svg
+└─ src/
+   ├─ main.tsx                     ← エントリポイント（共有ファイル）
+   ├─ App.tsx                      ← ViewState を持ち、Year / Month シーンと HUD を切り替える（共有ファイル）
+   ├─ types/
+   │   └─ calendar.ts              ← CalendarEvent / EventCategory / ViewState / CATEGORY_INFO（色・表示名）
+   ├─ data/
+   │   └─ sampleEvents.ts          ← 固定データ：2026 年一年分のサンプル予定（シード固定生成）
+   ├─ lib/
+   │   ├─ calendar.ts              ← 月グリッド計算・日別集計・最繁忙月・日付表記（純関数）
+   │   ├─ camera.ts                ← グリッド座標 ⇄ ワールド座標、月俯瞰 / 日ズームのカメラ姿勢
+   │   └─ pixelFont.ts             ← 3×5 ピクセルフォント（数字と SUN〜SAT に必要な英字）
+   ├─ components/
+   │   ├─ year/
+   │   │   └─ YearHeatmap.tsx      ← 2D ヒートマップ（53 週 × 7 曜日の CSS Grid、月ラベル、標高凡例）
+   │   ├─ month/
+   │   │   ├─ MonthScene.tsx       ← <Canvas>、ライト、fog、海面、OrbitControls、DayTower と日付ラベルの配置
+   │   │   ├─ DayTower.tsx         ← 1 日分：地面 + 積みブロック + 屋上 3×3 の建物 + ハイライト + 出現アニメ
+   │   │   ├─ PixelLabels.tsx      ← ピクセル文字を 1 つの InstancedMesh で描く
+   │   │   ├─ WeekdayHeader.tsx    ← グリッド奥の木の看板（SUN〜SAT）
+   │   │   └─ CameraRig.tsx        ← pose が変わるたびにカメラを補間移動、到着後はユーザー操作に任せる
+   │   ├─ models/
+   │   │   ├─ materials.ts         ← 共有 BoxGeometry と色 → MeshStandardMaterial のキャッシュ
+   │   │   ├─ Voxel.tsx            ← 建物を組む最小単位（位置・サイズ・色）
+   │   │   ├─ blocks/
+   │   │   │   ├─ blockKinds.ts    ← ブロック種別・色・高さ→種別の規則・ヒートマップの標高色
+   │   │   │   └─ Block.tsx        ← 積む用ブロック 1 個（草 / 土 / 石 / 雪の 6 面マテリアル）
+   │   │   └─ objects/             ← 屋上に並べる建物（1 ファイル 1 種）
+   │   │       ├─ types.ts         ← ObjectProps
+   │   │       ├─ index.ts         ← EventCategory → コンポーネント対応表
+   │   │       ├─ Salon.tsx        ← 美容室
+   │   │       ├─ Restaurant.tsx   ← 飲食
+   │   │       ├─ Office.tsx       ← 仕事
+   │   │       ├─ Church.tsx       ← 結婚式
+   │   │       ├─ Hospital.tsx     ← 病院
+   │   │       ├─ Gym.tsx          ← ジム
+   │   │       ├─ Airplane.tsx     ← 旅行
+   │   │       └─ School.tsx       ← 学校
+   │   └─ hud/
+   │       ├─ MonthHud.tsx         ← 月名・前後月・年ビューへ・凡例・ホバーの日付ツールチップ
+   │       └─ DayHud.tsx           ← 日付・予定一覧・月に戻る
+   └─ styles/
+       └─ global.css               ← デザイントークン、HUD（看板風パネル）、ヒートマップ、レスポンシブ
+```
+
+### UI のデザイントークン（`global.css` の `:root`）
+
+- 色：インク `#1b2a41`、紙 `#fff8e7`、古紙 `#f3e2b6`、金 `#ffc83d`、草 `#5fb63b`、空 `#5cb0ff → #cfeeff`
+- 書体：DotGothic16 一系統。ヒーローは左上の巨大な月数字
+- パネル・ボタン：3px のインク枠 + 硬い落ち影（角丸なし）。ピクセルゲームの看板の語彙で、3D の町を邪魔しない
+- ヒートマップの色は 3D ブロックと同じ「標高」スケール（草 → 土 → 石 → 雪）
+
+### 並列作業の分担単位（コンフリクト回避）
+
+同時に触らないよう、次の単位で分けて着手する。
+
+| 単位 | ファイル |
+| --- | --- |
+| A. シーンとカメラ | `MonthScene.tsx` / `DayTower.tsx` / `CameraRig.tsx` / `lib/camera.ts` |
+| B. ブロック・建物モデル | `components/models/**` |
+| C. データと集計・年ビュー | `data/sampleEvents.ts` / `lib/calendar.ts` / `YearHeatmap.tsx` |
+| D. HUD とスタイル | `components/hud/**` / `styles/global.css` |
+| 共有（声をかけてから） | `App.tsx` / `main.tsx` / `types/calendar.ts` / `package.json` 等の設定ファイル |

@@ -58,6 +58,31 @@ button {
 
 .scene canvas {
   display: block;
+  /* ベタ塗り感を抑える */
+  filter: contrast(0.94) saturate(0.92);
+}
+
+/* チルトシフト風：画面の上下だけをぼかしてミニチュアに見せる */
+.scene-tilt {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: blur(1.6px);
+  -webkit-backdrop-filter: blur(1.6px);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    transparent 20%,
+    transparent 80%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    transparent 20%,
+    transparent 80%,
+    black 100%
+  );
 }
 
 /* ---------- HUD 共通（ピクセルゲームの看板） ---------- */

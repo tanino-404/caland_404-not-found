@@ -108,6 +108,46 @@ button {
   outline-offset: 2px;
 }
 
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn-small {
+  padding: 4px 8px;
+  font-size: 13px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 13px;
+  text-decoration: underline 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--brick);
+}
+
+.input {
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 3px solid var(--ink);
+  padding: 7px 10px;
+  min-width: 0;
+}
+
+.input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 1px;
+}
+
 .chip {
   display: inline-block;
   width: 12px;
@@ -115,6 +155,86 @@ button {
   border: 2px solid var(--ink);
   vertical-align: -1px;
   margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.chip-owner {
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+}
+
+/* ---------- ログイン ---------- */
+
+.login {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(27, 42, 65, 0.28);
+}
+
+.login-panel {
+  width: min(440px, calc(100vw - 48px));
+  padding: 24px 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 10px 10px 0 var(--ink);
+}
+
+.login-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.login-lead {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.login-members {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.login-member {
+  display: inline-flex;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 2px dashed var(--ink);
+}
+
+.login-label,
+.day-panel-form-label {
+  font-size: 13px;
+}
+
+.login-row {
+  display: flex;
+  gap: 10px;
+}
+
+.login-row .input {
+  flex: 1;
+}
+
+.login .link-btn {
+  align-self: flex-start;
+  opacity: 0.8;
 }
 
 /* ---------- 月ビュー HUD ---------- */
@@ -157,6 +277,26 @@ button {
   position: absolute;
   top: 28px;
   right: 28px;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.hud-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  font-size: 15px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.hud-user .chip {
+  margin-right: 0;
+}
+
+.hud-user-name {
+  margin-right: 4px;
 }
 
 .hud-months {
@@ -185,6 +325,18 @@ button {
   gap: 6px 14px;
 }
 
+.hud-legend .hud-legend-members {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 2px dashed var(--ink);
+}
+
+.hud-legend li {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
 .hud-hint {
   margin: 10px 0 0;
   padding-top: 8px;
@@ -201,6 +353,21 @@ button {
   padding: 8px 14px;
   font-size: 15px;
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.hud-tooltip-owners {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.hud-tooltip-owners > span {
+  display: inline-flex;
+  align-items: center;
 }
 
 /* ---------- 日ビュー HUD ---------- */
@@ -255,9 +422,41 @@ button {
 }
 
 .day-panel-category {
-  min-width: 56px;
+  min-width: 48px;
   opacity: 0.75;
-  margin-right: 8px;
+  margin-right: 6px;
+}
+
+.day-panel-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.day-panel-owners {
+  font-size: 12px;
+  opacity: 0.7;
+  margin: 0 8px;
+  white-space: nowrap;
+}
+
+.day-panel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--ink);
+}
+
+.day-panel-form-row {
+  display: flex;
+  gap: 8px;
+}
+
+.day-panel-form-row .input[type='text'] {
+  flex: 1;
 }
 
 .day-panel-empty,

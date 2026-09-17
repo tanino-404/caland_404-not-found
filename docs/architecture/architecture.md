@@ -7,7 +7,7 @@
 
 ## 技術スタック
 
-- 種別：**フロントのみ**（バックエンドなし。状態はブラウザ内メモリで持つ）
+- 種別：**フロントのみ**（バックエンドなし。共有カレンダーの状態は `localStorage` に保存し、同じブラウザ内でメンバーを切り替えて共同編集する）
 - 言語・フレームワーク：**Vite 8 + React 19 + TypeScript**（テンプレート `react-ts`）
   - 3D 描画：**three.js 0.186** + **@react-three/fiber 9**（React 19 とペア）+ **@react-three/drei 10**（`OrbitControls`）
   - 2D ヒートマップ：ライブラリなし。CSS Grid の `button` で描く
@@ -27,7 +27,8 @@
 
 - 起動コマンド：`cd src && npm run dev`（`http://localhost:5173`）
 - 型チェック・リンター・ビルド：`cd src && npx tsc --noEmit -p tsconfig.app.json && npm run lint && npm run build`
-- 外部 API・秘密情報：**不要**。予定データは `src/src/data/sampleEvents.ts` の固定サンプル（一年分。シード固定の決定的生成）を使う。Google カレンダー連携・ログイン共有は「あれば嬉しい機能」で、初期版では設計に含めない
+- 外部 API・秘密情報：**不要**。予定データは `src/src/data/sampleEvents.ts` の固定サンプル（一年分。シード固定の決定的生成）を初期値とし、以後は `localStorage` に保存した状態を使う。Google カレンダー連携は「あれば嬉しい機能」で未着手
+- ログイン：**ユーザー名だけ**（パスワードなし、サーバーなし）。メンバー一覧・現在のユーザー・予定はすべて `localStorage` の 1 キー（`schedule-terrain-map`、`version` 付き）に保存する。バージョンが違う保存データは捨ててサンプルから作り直す
 - 動作確認ブラウザ：Cursor 内蔵ブラウザ（WebGL 必須）
 - 迷ったときの既定：フロントのみ、Vite + React + TypeScript（`npm create vite@latest src -- --template react-ts`）。
   バックエンドが不要な構成を選び、状態はブラウザ内（メモリ / localStorage）で持つ。
@@ -76,9 +77,17 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - セル幅は `--heat-cell` を画面幅に追従させ、53 週が横に収まるようにする
 - 初期版は 2D 固定（concept.md の指示どおり）
 
+### 4. ログインと共有（あれば嬉しい機能 1）
+
+- 未ログイン時は `month` ビューの 3D を背景にしたまま `LoginScreen` を重ねる。既存メンバーはワンクリック、新しい名前は入力で参加。「保存したデータを消してサンプルに戻す」もここに置く
+- メンバーごとに識別色（`lib/members.ts` の `MEMBER_PALETTE`、登録順）。HUD 右上に現在のユーザーとログアウト、凡例にメンバー色と「みんなの予定」（全員の色の縦縞）
+- **ホバー / 選択中のタワーでは、屋上の各建物が少し浮き、足元に所有者色の台座（`OwnerPlate`）が出る**。2 人以上で共有する予定は台座を人数ぶんの縦縞に分割し、全員の色を見せる。ツールチップにも「たろう 3 · はなこ 4 · みんな 2」の内訳を出す
+- 日ビューの `DayHud`：各予定に所有者チップ（共有は 2 色）と所有者名。自分の予定でないものには「参加する」（自分を所有者に追加 → 共有の予定になる）。下部のフォームでタイトルと種類を入れて「建てる」と、自分の予定としてその日に追加され、タワーが 1 段伸びる
+- 状態管理は `hooks/useSharedCalendar.ts` の 1 か所。`login` / `logout` / `addEvent` / `joinEvent` / `resetToSample` の各アクション内で保存する（effect での保存はしない）
+
 ### 初期表示
 
-`month` ビュー、サンプルデータの中で最も予定が多い月から開始する（デモの一言コンセプトを最初の 1 画面で伝えるため）。
+`month` ビュー、データの中で最も予定が多い月から開始する（デモの一言コンセプトを最初の 1 画面で伝えるため）。未ログインならその上にログイン画面。
 
 ## データモデル
 
@@ -99,6 +108,7 @@ export interface CalendarEvent {
   date: string;          // 'YYYY-MM-DD'
   title: string;
   category: EventCategory;
+  owners: string[];      // 所有するメンバー名（1 人以上）。2 人以上なら共有の予定
 }
 
 export type ViewState =
@@ -148,7 +158,11 @@ src/                               ← Vite プロジェクトルート
    ├─ lib/
    │   ├─ calendar.ts              ← 月グリッド計算・日別集計・最繁忙月・日付表記（純関数）
    │   ├─ camera.ts                ← グリッド座標 ⇄ ワールド座標、月俯瞰 / 日ズームのカメラ姿勢
-   │   └─ pixelFont.ts             ← 3×5 ピクセルフォント（数字と SUN〜SAT に必要な英字）
+   │   ├─ pixelFont.ts             ← 3×5 ピクセルフォント（数字と SUN〜SAT に必要な英字）
+   │   ├─ members.ts               ← メンバー識別色、所有者チップの背景、所有者別の件数内訳
+   │   └─ storage.ts               ← localStorage の読み書き（version 付き 1 キー）
+   ├─ hooks/
+   │   └─ useSharedCalendar.ts     ← 共有カレンダーの状態とアクション（login / addEvent / joinEvent …）
    ├─ components/
    │   ├─ year/
    │   │   └─ YearHeatmap.tsx      ← 2D ヒートマップ（53 週 × 7 曜日の CSS Grid、月ラベル、標高凡例）
@@ -161,6 +175,7 @@ src/                               ← Vite プロジェクトルート
    │   ├─ models/
    │   │   ├─ materials.ts         ← 共有 BoxGeometry と色 → MeshStandardMaterial のキャッシュ
    │   │   ├─ Voxel.tsx            ← 建物を組む最小単位（位置・サイズ・色）
+   │   │   ├─ OwnerPlate.tsx       ← 建物の足元の「縁取り」台座。所有者色、共有なら縦縞
    │   │   ├─ blocks/
    │   │   │   ├─ blockKinds.ts    ← ブロック種別・色・高さ→種別の規則・ヒートマップの標高色
    │   │   │   └─ Block.tsx        ← 積む用ブロック 1 個（草 / 土 / 石 / 雪の 6 面マテリアル）
@@ -177,8 +192,9 @@ src/                               ← Vite プロジェクトルート
    │   │       ├─ Airplane.tsx     ← 旅行
    │   │       └─ School.tsx       ← 学校
    │   └─ hud/
-   │       ├─ MonthHud.tsx         ← 月名・前後月・年ビューへ・凡例・ホバーの日付ツールチップ
-   │       └─ DayHud.tsx           ← 日付・予定一覧・月に戻る
+   │       ├─ LoginScreen.tsx      ← ユーザー名だけのログイン、既存メンバーのワンクリック、サンプルに戻す
+   │       ├─ MonthHud.tsx         ← 月名・前後月・年ビューへ・現在のユーザー・凡例・ホバーの日付と所有者内訳
+   │       └─ DayHud.tsx           ← 日付・予定一覧（所有者チップ・参加する）・予定を建てるフォーム・月に戻る
    └─ styles/
        └─ global.css               ← デザイントークン、HUD（看板風パネル）、ヒートマップ、レスポンシブ
 ```
@@ -200,4 +216,5 @@ src/                               ← Vite プロジェクトルート
 | B. ブロック・建物モデル | `components/models/**` |
 | C. データと集計・年ビュー | `data/sampleEvents.ts` / `lib/calendar.ts` / `components/year/**` |
 | D. HUD とスタイル | `components/hud/**` / `styles/global.css` |
+| E. ログイン・共有の状態 | `hooks/useSharedCalendar.ts` / `lib/storage.ts` / `lib/members.ts` |
 | 共有（声をかけてから） | `App.tsx` / `main.tsx` / `types/calendar.ts` / `package.json` 等の設定ファイル |

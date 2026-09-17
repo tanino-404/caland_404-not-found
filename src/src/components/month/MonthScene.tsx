@@ -23,6 +23,7 @@ export const HORIZON_COLOR = '#cfeeff';
 export interface MonthSceneProps {
   view: Extract<ViewState, { kind: 'month' | 'day' }>;
   byDate: Map<string, CalendarEvent[]>;
+  members: string[];
   hoveredKey: string | null;
   onHover: (dateKey: string | null) => void;
   onSelectDay: (day: number) => void;
@@ -30,7 +31,14 @@ export interface MonthSceneProps {
 
 const NO_EVENTS: CalendarEvent[] = [];
 
-export const MonthScene = ({ view, byDate, hoveredKey, onHover, onSelectDay }: MonthSceneProps) => {
+export const MonthScene = ({
+  view,
+  byDate,
+  members,
+  hoveredKey,
+  onHover,
+  onSelectDay,
+}: MonthSceneProps) => {
   const { year, month } = view;
   const grid = useMemo(() => buildMonthGrid(year, month), [year, month]);
 
@@ -100,6 +108,7 @@ export const MonthScene = ({ view, byDate, hoveredKey, onHover, onSelectDay }: M
             cell={cell}
             rows={grid.rows}
             events={byDate.get(cell.dateKey) ?? NO_EVENTS}
+            members={members}
             highlighted={hoveredKey === cell.dateKey || selectedDay === cell.day}
             onHover={onHover}
             onSelect={onSelectDay}

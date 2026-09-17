@@ -7,6 +7,7 @@ import type { CalendarEvent } from '../../types/calendar';
 import { Block } from '../models/blocks/Block';
 import { blockKindForLevel } from '../models/blocks/blockKinds';
 import { OBJECT_BY_CATEGORY } from '../models/objects';
+import { OwnerPlate, PLATE_HEIGHT } from '../models/OwnerPlate';
 
 /** 屋上 3×3 の配置順：中央 → 十字 → 四隅 */
 const SLOTS: [number, number][] = [
@@ -30,12 +31,22 @@ export interface DayTowerProps {
   cell: MonthCell;
   rows: number;
   events: CalendarEvent[];
+  members: string[];
+  /** ホバー中または日ビューで選択中。建物が浮き、足元に所有者色の台座が出る */
   highlighted: boolean;
   onHover: (dateKey: string | null) => void;
   onSelect: (day: number) => void;
 }
 
-export const DayTower = ({ cell, rows, events, highlighted, onHover, onSelect }: DayTowerProps) => {
+export const DayTower = ({
+  cell,
+  rows,
+  events,
+  members,
+  highlighted,
+  onHover,
+  onSelect,
+}: DayTowerProps) => {
   const group = useRef<Group>(null);
   const elapsed = useRef(0);
   const count = events.length;
@@ -80,12 +91,21 @@ export const DayTower = ({ cell, rows, events, highlighted, onHover, onSelect }:
       {rooftop.map((event, i) => {
         const Building = OBJECT_BY_CATEGORY[event.category];
         const [sx, sz] = SLOTS[i];
-        return <Building key={event.id} position={[sx * SLOT_PITCH, top, sz * SLOT_PITCH]} />;
+        const x = sx * SLOT_PITCH;
+        const z = sz * SLOT_PITCH;
+        return (
+          <group key={event.id}>
+            {highlighted ? (
+              <OwnerPlate owners={event.owners} members={members} position={[x, top, z]} />
+            ) : null}
+            <Building position={[x, highlighted ? top + PLATE_HEIGHT : top, z]} />
+          </group>
+        );
       })}
       {highlighted ? (
         <mesh position={[0, (top + BLOCK_HEIGHT) / 2, 0]}>
           <boxGeometry args={[1.02, top + BLOCK_HEIGHT + 0.02, 1.02]} />
-          <meshBasicMaterial color="#ffc83d" transparent opacity={0.32} depthWrite={false} />
+          <meshBasicMaterial color="#ffc83d" transparent opacity={0.16} depthWrite={false} />
         </mesh>
       ) : null}
     </group>

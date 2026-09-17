@@ -14,6 +14,8 @@ export interface CalendarEvent {
   date: string;
   title: string;
   category: EventCategory;
+  /** この予定を持つメンバー名（1 人以上）。2 人以上なら共有の予定 */
+  owners: string[];
 }
 
 export type ViewState =

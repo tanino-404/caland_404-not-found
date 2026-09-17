@@ -8,6 +8,10 @@ import { daysInMonth, toDateKey, weekdayOf } from '../lib/calendar';
 
 export const SAMPLE_YEAR = 2026;
 
+/** デモ用の初期メンバー。サンプル予定はこの 2 人のもの（結婚式など一部は 2 人で共有） */
+export const SAMPLE_MEMBERS = ['たろう', 'はなこ'];
+const SHARED_RATIO = 0.12;
+
 const TITLES: Record<EventCategory, string[]> = {
   beauty: ['カット', 'カラー', 'パーマ', 'ヘッドスパ', 'ネイル', 'まつエク'],
   restaurant: ['ランチ会', '飲み会', 'カフェ', '同期会', '焼肉', 'ラーメン部'],
@@ -68,11 +72,28 @@ const mulberry32 = (seed: number) => (): number => {
 
 const pick = <T>(rng: () => number, list: T[]): T => list[Math.floor(rng() * list.length)];
 
+/** 結婚式は 2 人で共有。それ以外は一定割合で共有、残りはどちらか 1 人。 */
+const pickOwners = (rng: () => number, category: EventCategory): string[] => {
+  if (category === 'wedding' || rng() < SHARED_RATIO) {
+    return [...SAMPLE_MEMBERS];
+  }
+  return [pick(rng, SAMPLE_MEMBERS)];
+};
+
 const buildSampleEvents = (): CalendarEvent[] => {
   const rng = mulberry32(20260917);
   const events: CalendarEvent[] = [];
   const signature = new Map(SIGNATURE_DAYS.map((s) => [s.date, s.categories]));
   let id = 0;
+  const push = (date: string, category: EventCategory) => {
+    events.push({
+      id: `sample-${id++}`,
+      date,
+      title: pick(rng, TITLES[category]),
+      category,
+      owners: pickOwners(rng, category),
+    });
+  };
 
   for (let month = 1; month <= 12; month++) {
     const total = daysInMonth(SAMPLE_YEAR, month);
@@ -80,9 +101,7 @@ const buildSampleEvents = (): CalendarEvent[] => {
       const date = toDateKey(SAMPLE_YEAR, month, day);
       const fixed = signature.get(date);
       if (fixed) {
-        for (const category of fixed) {
-          events.push({ id: `ev-${id++}`, date, title: pick(rng, TITLES[category]), category });
-        }
+        for (const category of fixed) push(date, category);
         continue;
       }
       const weekday = weekdayOf(SAMPLE_YEAR, month, day);
@@ -90,10 +109,7 @@ const buildSampleEvents = (): CalendarEvent[] => {
       const pool = isWeekend ? WEEKEND_CATEGORIES : WEEKDAY_CATEGORIES;
       const raw = rng() * 3.2 * MONTH_BUSYNESS[month] + (rng() < 0.15 ? 3 : 0);
       const count = Math.min(10, Math.floor(raw));
-      for (let i = 0; i < count; i++) {
-        const category = pick(rng, pool);
-        events.push({ id: `ev-${id++}`, date, title: pick(rng, TITLES[category]), category });
-      }
+      for (let i = 0; i < count; i++) push(date, pick(rng, pool));
     }
   }
   return events;

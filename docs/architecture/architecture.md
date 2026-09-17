@@ -11,7 +11,7 @@
 - 言語・フレームワーク：**Vite 8 + React 19 + TypeScript**（テンプレート `react-ts`）
   - 3D 描画：**three.js 0.186** + **@react-three/fiber 9**（React 19 とペア）+ **@react-three/drei 10**（`OrbitControls`）
   - 2D ヒートマップ：ライブラリなし。CSS Grid の `button` で描く
-  - スタイル：素の CSS（`src/src/styles/global.css`）。UI ライブラリは入れない。書体は Google Fonts の DotGothic16（日本語ドット体）を `index.html` で読み込む。オフライン時はシステムフォントで表示される
+  - スタイル：素の CSS（`src/src/styles/global.css`）。UI ライブラリは入れない。書体は DotGothic16（日本語ドット体、OFL）を `src/public/fonts/` に同梱し `@font-face` で読む。ネットワーク不要
   - 3D モデル：外部アセット（glb 等）は使わない。`boxGeometry` を組み合わせた **ボクセル（ドット風）モデルをコードで生成** する。ローダー不要・アセット管理不要・見た目がマイクラ風で揃う
   - 3D 内の文字（日付・曜日）：フォントを使わず **3×5 ピクセルフォント**（`lib/pixelFont.ts`）を `InstancedMesh` 1 つで描く
   - リンター：oxlint（Vite 8 の `react-ts` テンプレート既定）
@@ -135,7 +135,9 @@ src/                               ← Vite プロジェクトルート
 ├─ vite.config.ts                  ← 共有ファイル
 ├─ tsconfig.json / tsconfig.app.json / tsconfig.node.json ← 共有ファイル
 ├─ .oxlintrc.json                  ← 共有ファイル（リンター設定）
-├─ public/favicon.svg
+├─ public/
+│   ├─ favicon.svg
+│   └─ fonts/DotGothic16-Regular.ttf, OFL.txt ← 同梱フォントとライセンス
 └─ src/
    ├─ main.tsx                     ← エントリポイント（共有ファイル）
    ├─ App.tsx                      ← ViewState を持ち、Year / Month シーンと HUD を切り替える（共有ファイル）
@@ -168,7 +170,8 @@ src/                               ← Vite プロジェクトルート
    │   │       ├─ Salon.tsx        ← 美容室
    │   │       ├─ Restaurant.tsx   ← 飲食
    │   │       ├─ Office.tsx       ← 仕事
-   │   │       ├─ Church.tsx       ← 結婚式
+   │   │       ├─ Church.tsx       ← 結婚式（Petals を含む）
+   │   │       ├─ Petals.tsx       ← 頂上から舞い落ちる花びら（useFrame で 12 粒を周回）
    │   │       ├─ Hospital.tsx     ← 病院
    │   │       ├─ Gym.tsx          ← ジム
    │   │       ├─ Airplane.tsx     ← 旅行

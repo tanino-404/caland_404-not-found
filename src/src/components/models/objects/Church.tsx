@@ -1,8 +1,10 @@
 import { Voxel } from '../Voxel';
+import { Petals } from './Petals';
 import type { ObjectProps } from './types';
 
 export const Church = ({ position }: ObjectProps) => (
   <group position={position}>
+    <Petals top={0.2} />
     <Voxel x={0} y={0} z={0.02} w={0.2} h={0.16} d={0.14} color="#fbfbfb" />
     <Voxel x={0} y={0.16} z={0.02} w={0.22} h={0.05} d={0.16} color="#c94c4c" />
     <Voxel x={0} y={0} z={-0.06} w={0.08} h={0.3} d={0.08} color="#fbfbfb" />

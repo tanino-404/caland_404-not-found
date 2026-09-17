@@ -1,18 +1,8 @@
 import { type FormEvent, useState } from 'react';
 import { formatDateJa } from '../../lib/calendar';
-import { ownerChipBackground, ownerColors } from '../../lib/members';
+import { memberColor, ownerChipBackground, ownerColors } from '../../lib/members';
 import { CATEGORIES, CATEGORY_INFO, type CalendarEvent, type EventCategory } from '../../types/calendar';
 import { MAX_ROOFTOP_OBJECTS } from '../month/DayTower';
-
-const isEventCategory = (value: string): value is EventCategory =>
-  (CATEGORIES as string[]).includes(value);
-
-const toCategory = (value: string): EventCategory => {
-  if (!isEventCategory(value)) {
-    throw new Error(`DayHud: 未知のカテゴリ "${value}"`);
-  }
-  return value;
-};
 
 export interface DayHudProps {
   year: number;
@@ -22,8 +12,9 @@ export interface DayHudProps {
   members: string[];
   currentUser: string;
   onBack: () => void;
-  onAddEvent: (title: string, category: EventCategory) => void;
+  onAddEvent: (title: string, category: EventCategory, invited: string[]) => void;
   onJoinEvent: (eventId: string) => void;
+  onRemoveEvent: (eventId: string) => void;
 }
 
 export const DayHud = ({
@@ -36,17 +27,24 @@ export const DayHud = ({
   onBack,
   onAddEvent,
   onJoinEvent,
+  onRemoveEvent,
 }: DayHudProps) => {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState<EventCategory>('restaurant');
+  const [invited, setInvited] = useState<string[]>([]);
   const trimmed = title.trim();
   const overflow = events.length - MAX_ROOFTOP_OBJECTS;
+  const others = members.filter((m) => m !== currentUser);
+
+  const toggleInvite = (name: string) =>
+    setInvited((prev) => (prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]));
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
     if (trimmed.length === 0) return;
-    onAddEvent(trimmed, category);
+    onAddEvent(trimmed, category, invited);
     setTitle('');
+    setInvited([]);
   };
 
   return (
@@ -66,6 +64,7 @@ export const DayHud = ({
           <ol className="day-panel-list">
             {events.map((event) => {
               const mine = event.owners.includes(currentUser);
+              const shared = event.owners.length >= 2;
               return (
                 <li key={event.id}>
                   <span
@@ -77,7 +76,16 @@ export const DayHud = ({
                   <span className="day-panel-category">{CATEGORY_INFO[event.category].label}</span>
                   <span className="day-panel-title">{event.title}</span>
                   <span className="day-panel-owners">{event.owners.join('・')}</span>
-                  {mine ? null : (
+                  {mine ? (
+                    <button
+                      type="button"
+                      className="btn btn-small btn-danger"
+                      title={shared ? 'この予定から自分だけ抜ける' : 'この予定を消す'}
+                      onClick={() => onRemoveEvent(event.id)}
+                    >
+                      {shared ? '抜ける' : '削除'}
+                    </button>
+                  ) : (
                     <button
                       type="button"
                       className="btn btn-small"
@@ -101,31 +109,50 @@ export const DayHud = ({
           <label className="day-panel-form-label" htmlFor="new-event-title">
             {currentUser} の予定を建てる
           </label>
-          <div className="day-panel-form-row">
-            <input
-              id="new-event-title"
-              className="input"
-              type="text"
-              value={title}
-              maxLength={20}
-              placeholder="例：ランチ会"
-              autoComplete="off"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <select
-              className="input"
-              aria-label="種類"
-              value={category}
-              onChange={(e) => setCategory(toCategory(e.target.value))}
-            >
-              {CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {CATEGORY_INFO[c].label}
-                </option>
+          <input
+            id="new-event-title"
+            className="input"
+            type="text"
+            value={title}
+            maxLength={20}
+            placeholder="予定名（例：ランチ会）"
+            autoComplete="off"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <div className="category-picker" role="radiogroup" aria-label="建物の種類">
+            {CATEGORIES.map((c) => (
+              <button
+                key={c}
+                type="button"
+                role="radio"
+                aria-checked={c === category}
+                className={c === category ? 'category-btn is-selected' : 'category-btn'}
+                onClick={() => setCategory(c)}
+              >
+                <span className="chip" style={{ background: CATEGORY_INFO[c].color }} />
+                {CATEGORY_INFO[c].label}
+              </button>
+            ))}
+          </div>
+          {others.length > 0 ? (
+            <div className="invite-row">
+              <span className="invite-label">誘う：</span>
+              {others.map((name) => (
+                <label key={name} className="invite-option">
+                  <input
+                    type="checkbox"
+                    checked={invited.includes(name)}
+                    onChange={() => toggleInvite(name)}
+                  />
+                  <span className="chip" style={{ background: memberColor(members, name) }} />
+                  {name}
+                </label>
               ))}
-            </select>
+            </div>
+          ) : null}
+          <div className="day-panel-form-row">
             <button type="submit" className="btn" disabled={trimmed.length === 0}>
-              建てる
+              {invited.length > 0 ? `${[currentUser, ...invited].join('・')} の予定を建てる` : '建てる'}
             </button>
           </div>
         </form>

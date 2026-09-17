@@ -83,10 +83,11 @@ export const App = () => {
           members={calendar.members}
           currentUser={user}
           onBack={() => setView({ kind: 'month', year, month })}
-          onAddEvent={(title, category) =>
-            calendar.addEvent({ date: toDateKey(year, month, view.day), title, category })
+          onAddEvent={(title, category, invited) =>
+            calendar.addEvent({ date: toDateKey(year, month, view.day), title, category, invited })
           }
           onJoinEvent={calendar.joinEvent}
+          onRemoveEvent={calendar.removeEvent}
         />
       )}
     </div>

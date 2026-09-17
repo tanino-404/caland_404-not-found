@@ -1,7 +1,8 @@
 import { ownerColors } from '../../lib/members';
 import { Voxel } from './Voxel';
 
-export const PLATE_HEIGHT = 0.05;
+/** 台座の厚み。薄い板にして立体感を抑える（元は 0.05、その 1/3） */
+export const PLATE_HEIGHT = 0.05 / 3;
 const PLATE_WIDTH = 0.285;
 
 export interface OwnerPlateProps {

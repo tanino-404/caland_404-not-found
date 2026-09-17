@@ -455,8 +455,73 @@ button {
   gap: 8px;
 }
 
-.day-panel-form-row .input[type='text'] {
-  flex: 1;
+.btn-danger:hover {
+  background: #ff8a80;
+}
+
+.category-picker {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 6px;
+  font-size: 13px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.category-btn .chip {
+  margin-right: 6px;
+}
+
+.category-btn:hover {
+  background: var(--paper-2);
+}
+
+.category-btn.is-selected {
+  background: var(--gold);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.category-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.invite-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 14px;
+}
+
+.invite-label {
+  font-size: 13px;
+}
+
+.invite-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.invite-option input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--ink);
+}
+
+.invite-option .chip {
+  margin-right: 0;
 }
 
 .day-panel-empty,

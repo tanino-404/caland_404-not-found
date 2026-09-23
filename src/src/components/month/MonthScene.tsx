@@ -1,6 +1,7 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { type ReactNode, useMemo, useRef } from 'react';
+import { monthSeason } from '../../lib/season';
 import type { Group } from 'three';
 import {
   BLOCK_HEIGHT,
@@ -22,10 +23,10 @@ import { DayTower } from './DayTower';
 import { Flight } from './Flight';
 import { type PixelLabel, PixelLabels } from './PixelLabels';
 import { Sea } from './Sea';
+import { SeasonAmbience } from './SeasonAmbience';
+import { SeasonContext } from './SeasonContext';
 import { Villagers } from './Villagers';
 import { WeekdayHeader } from './WeekdayHeader';
-
-export const HORIZON_COLOR = '#cfeeff';
 
 /** DayTower のせり上がり（RISE 0.55s + 31 日 × 0.025s）が終わるまでの待ち時間 */
 const RISE_TOTAL_SECONDS = 1.6;
@@ -127,6 +128,7 @@ export const MonthScene = ({
   onSelectDay,
 }: MonthSceneProps) => {
   const { year, month } = view;
+  const season = useMemo(() => monthSeason(month), [month]);
   const grid = useMemo(() => buildMonthGrid(year, month), [year, month]);
   const split = layout === 'split' && partner !== null;
   const partnerByDate = split ? partner.byDate : null;
@@ -187,18 +189,20 @@ export const MonthScene = ({
         camera={{ position: [3.2, 11, 11.5], fov: 40, near: 0.1, far: 120 }}
         onPointerMissed={() => onHover(null)}
       >
-        <fog
-          key={split ? 'fog-wide' : 'fog-near'}
-          attach="fog"
-          args={[HORIZON_COLOR, split ? 26 : 18, split ? 62 : 48]}
-        />
-        <ambientLight intensity={0.55} color="#fff4e0" />
-        <hemisphereLight args={['#dff3ff', '#c9b48a', 0.9]} />
-        <directionalLight position={[6, 10, 4]} intensity={1.1} color="#fff1d6" />
+        <SeasonContext.Provider value={season}>
+          <fog
+            key={split ? 'fog-wide' : 'fog-near'}
+            attach="fog"
+            args={[season.fog, split ? 26 : 18, split ? 62 : 48]}
+          />
+          <ambientLight intensity={0.55} color={season.ambient} />
+          <hemisphereLight args={[season.hemisphereTop, season.hemisphereGround, 0.9]} />
+          <directionalLight position={[6, 10, 4]} intensity={1.1} color={season.sun} />
 
-        <Sea />
+          <Sea color={season.sea} />
+          <SeasonAmbience rows={grid.rows} effect={season.effect} split={split} />
 
-        <group key={`${year}-${month}-${layout}`}>
+          <group key={`${year}-${month}-${layout}`}>
           <WeekdayHeader rows={grid.rows} />
           {grid.cells.map((cell) => (
             <DayTower
@@ -247,17 +251,18 @@ export const MonthScene = ({
               phase={flight.phase}
             />
           ))}
-        </group>
+          </group>
 
-        <CameraRig pose={pose} />
-        <OrbitControls
-          makeDefault
-          enableDamping
-          dampingFactor={0.08}
-          maxPolarAngle={Math.PI / 2.08}
-          minDistance={1.2}
-          maxDistance={38}
-        />
+          <CameraRig pose={pose} />
+          <OrbitControls
+            makeDefault
+            enableDamping
+            dampingFactor={0.08}
+            maxPolarAngle={Math.PI / 2.08}
+            minDistance={1.2}
+            maxDistance={38}
+          />
+        </SeasonContext.Provider>
       </Canvas>
       <div className="scene-tilt" aria-hidden="true" />
     </>

@@ -16,6 +16,8 @@ import { Block } from '../models/blocks/Block';
 import { BLOCK_COLORS, blockKindForLevel } from '../models/blocks/blockKinds';
 import { OBJECT_BY_CATEGORY } from '../models/objects';
 import { OwnerPlate, PLATE_HEIGHT } from '../models/OwnerPlate';
+import { SeasonTree } from './IslandSeasonDressing';
+import { useSeason } from './SeasonContext';
 
 /** 屋上 3×3 のスロット座標（配置順は日付ごとにシャッフルする） */
 const SLOTS: [number, number][] = [
@@ -98,12 +100,15 @@ export const DayTower = ({
   const group = useRef<Group>(null);
   const water = useRef<Mesh>(null);
   const elapsed = useRef(0);
+  const season = useSeason();
   const count = events.length;
   const isSea = count === 0;
   const top = towerTopY(count);
   const levels = isSea ? [] : Array.from({ length: count + 1 }, (_, level) => level);
   const rooftop = events.slice(0, MAX_ROOFTOP_OBJECTS);
   const rooftopLayout = buildRooftopLayout(cell.dateKey);
+  const treeSpot =
+    !isSea && rooftop.length < rooftopLayout.length ? rooftopLayout[rooftop.length] : null;
   const wavePhase = (cell.col * 1.7 + cell.row * 2.3) % (Math.PI * 2);
 
   useFrame((_, delta) => {
@@ -158,7 +163,12 @@ export const DayTower = ({
         </mesh>
       ) : null}
       {levels.map((level) => (
-        <Block key={level} level={level} kind={blockKindForLevel(level, level === count)} />
+        <Block
+          key={level}
+          level={level}
+          kind={blockKindForLevel(level, level === count)}
+          topColor={level === count ? season.landTop : undefined}
+        />
       ))}
       {rooftop.map((event, i) => {
         const Building = OBJECT_BY_CATEGORY[event.category];
@@ -176,6 +186,11 @@ export const DayTower = ({
           </group>
         );
       })}
+      {treeSpot ? (
+        <group position={[treeSpot.slot[0] * SLOT_PITCH, top, treeSpot.slot[1] * SLOT_PITCH]}>
+          <SeasonTree effect={season.effect} />
+        </group>
+      ) : null}
       {highlighted ? (
         <mesh position={[0, highlightHeight / 2, 0]}>
           <boxGeometry args={[1.02, highlightHeight, 1.02]} />

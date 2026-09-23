@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { monthSeason } from './lib/season';
 import { DayHud } from './components/hud/DayHud';
 import { LoginScreen } from './components/hud/LoginScreen';
 import { MonthHud } from './components/hud/MonthHud';
@@ -47,6 +48,17 @@ export const App = () => {
     () => (view.kind === 'year' ? 0 : countEventsInMonth(byDate, view.year, view.month)),
     [view, byDate],
   );
+
+  useEffect(() => {
+    if (view.kind === 'year') {
+      document.documentElement.style.removeProperty('--sky-top');
+      document.documentElement.style.removeProperty('--sky-horizon');
+      return;
+    }
+    const season = monthSeason(view.month);
+    document.documentElement.style.setProperty('--sky-top', season.skyTop);
+    document.documentElement.style.setProperty('--sky-horizon', season.skyHorizon);
+  }, [view]);
 
   if (view.kind === 'year') {
     return (

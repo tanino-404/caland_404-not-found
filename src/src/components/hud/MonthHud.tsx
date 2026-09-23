@@ -1,4 +1,5 @@
 import { MONTH_NAMES_EN, formatDateJa } from '../../lib/calendar';
+import { monthSeason } from '../../lib/season';
 import { breakdownByOwner, memberColor, ownerChipBackground } from '../../lib/members';
 import {
   CATEGORIES,
@@ -59,6 +60,7 @@ export const MonthHud = ({
   const allColors = members.map((m) => memberColor(members, m));
   const others = members.filter((m) => m !== currentUser);
   const split = layout === 'split' && partner !== null;
+  const seasonLabel = monthSeason(month).label;
 
   return (
     <div className="hud">
@@ -67,7 +69,7 @@ export const MonthHud = ({
         <div className="hud-month-meta">
           <div className="hud-month-en">{MONTH_NAMES_EN[month - 1]}</div>
           <div className="hud-month-ja">
-            {year}年{month}月 · 予定 {monthTotal} 件
+            {year}年{month}月 · {seasonLabel} · 予定 {monthTotal} 件
           </div>
         </div>
       </header>

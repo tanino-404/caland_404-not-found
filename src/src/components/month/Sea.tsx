@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 import type { BufferAttribute, PlaneGeometry } from 'three';
 import { SEA_Y } from '../../lib/camera';
 import { BLOCK_COLORS } from '../models/blocks/blockKinds';
@@ -15,12 +15,16 @@ const FAR_SIZE = 160;
  * 島の周りの海。内側は頂点を毎フレーム動かすサイン波、外側は平らな遠景板。
  * 振幅の合計は ±0.1 に収め、予定 0 の日の水ブロック（高さ 0.12）を突き抜けないようにする。
  */
-export const Sea = () => {
+export interface SeaProps {
+  color?: string;
+}
+
+export const Sea = ({ color: colorProp }: SeaProps) => {
   const geometryRef = useRef<PlaneGeometry>(null);
   // 初期 x / y（回転前）を保持して、毎フレームここから高さを作り直す
   const base = useRef<{ x: Float32Array; y: Float32Array } | null>(null);
 
-  const color = useMemo(() => BLOCK_COLORS.sea, []);
+  const color = colorProp ?? BLOCK_COLORS.sea;
 
   useFrame(({ clock }) => {
     const geometry = geometryRef.current;

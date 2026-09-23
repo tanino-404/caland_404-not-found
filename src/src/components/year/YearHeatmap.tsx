@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { MONTH_NAMES_EN, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
+import { monthSeason } from '../../lib/season';
 import { ELEVATION_COLORS, elevationColor } from '../models/blocks/blockKinds';
 import './YearIslands.css';
 
@@ -67,13 +68,15 @@ export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) =
       </header>
 
       <div className="yi-grid">
-        {islands.map((island) => (
+        {islands.map((island) => {
+          const season = monthSeason(island.month);
+          return (
           <button
             key={island.month}
             type="button"
-            className="yi-card"
+            className={`yi-card yi-season-${season.effect}`}
             onClick={() => onSelectMonth(island.month)}
-            aria-label={`${island.month}月の島 予定 ${island.total} 件 最高峰 ${island.peak} 件`}
+            aria-label={`${island.month}月の島 ${season.label} 予定 ${island.total} 件 最高峰 ${island.peak} 件`}
           >
             <div className="yi-card-head">
               <span className="yi-month">
@@ -82,6 +85,7 @@ export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) =
               </span>
               <span className="yi-card-meta">
                 <span className="yi-en">{island.nameEn}</span>
+                <span className="yi-season-tag">{season.label}</span>
                 <span className="yi-count">{island.total} 件</span>
                 <span className="yi-peak">最高峰 {island.peak} 件</span>
               </span>
@@ -102,7 +106,8 @@ export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) =
               </div>
             </div>
           </button>
-        ))}
+          );
+        })}
       </div>
 
       <footer className="yi-legend">

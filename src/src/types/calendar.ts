@@ -16,6 +16,8 @@ export interface CalendarEvent {
   category: EventCategory;
   /** この予定を持つメンバー名（1 人以上）。2 人以上なら共有の予定 */
   owners: string[];
+  /** 行き先。持ち物提案（/api/suggest）に使う。'' または未設定は場所なし */
+  place?: string;
 }
 
 /**

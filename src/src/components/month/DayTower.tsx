@@ -12,10 +12,12 @@ import {
 } from '../../lib/camera';
 import type { MonthCell } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
+import type { IslandTheme } from '../../types/ledger';
 import { Block } from '../models/blocks/Block';
 import { BLOCK_COLORS, blockKindForLevel } from '../models/blocks/blockKinds';
 import { OBJECT_BY_CATEGORY } from '../models/objects';
 import { OwnerPlate, PLATE_HEIGHT } from '../models/OwnerPlate';
+import { LuxuryRooftop } from './LuxuryRooftop';
 
 /** 屋上 3×3 のスロット座標（配置順は日付ごとにシャッフルする） */
 const SLOTS: [number, number][] = [
@@ -84,6 +86,7 @@ export interface DayTowerProps {
   /** 省略すると操作できない飾りの塔になる（相方の島用） */
   onHover?: (dateKey: string | null) => void;
   onSelect?: (day: number) => void;
+  theme: IslandTheme;
 }
 
 export const DayTower = ({
@@ -94,6 +97,7 @@ export const DayTower = ({
   highlighted,
   onHover,
   onSelect,
+  theme,
 }: DayTowerProps) => {
   const group = useRef<Group>(null);
   const water = useRef<Mesh>(null);
@@ -148,18 +152,23 @@ export const DayTower = ({
         <mesh ref={water} position={[0, WATER_CENTER_Y, 0]}>
           <boxGeometry args={[TOWER_WIDTH, WATER_HEIGHT, TOWER_WIDTH]} />
           <meshStandardMaterial
-            color={BLOCK_COLORS.water}
-            roughness={0.25}
-            metalness={0.1}
+            color={theme === 'luxury' ? BLOCK_COLORS.luxuryWater : BLOCK_COLORS.water}
+            roughness={theme === 'luxury' ? 0.18 : 0.25}
+            metalness={theme === 'luxury' ? 0.25 : 0.1}
             transparent
-            opacity={0.55}
+            opacity={theme === 'luxury' ? 0.62 : 0.55}
             depthWrite={false}
           />
         </mesh>
       ) : null}
       {levels.map((level) => (
-        <Block key={level} level={level} kind={blockKindForLevel(level, level === count)} />
+        <Block
+          key={level}
+          level={level}
+          kind={blockKindForLevel(level, level === count, theme)}
+        />
       ))}
+      {theme === 'luxury' && !isSea ? <LuxuryRooftop dateKey={cell.dateKey} count={count} y={top} /> : null}
       {rooftop.map((event, i) => {
         const Building = OBJECT_BY_CATEGORY[event.category];
         const { slot, jitter } = rooftopLayout[i];

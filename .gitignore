@@ -1,1 +1,23 @@
+# 秘密情報（サンプル secret/.env.template は残す）
 secret/.env
+
+# この PC だけの作業メモと会話ログ
+docs/agent_docs/
+docs/conversation_log/
+
+# sync 時の退避先
+.local_backup/
+
+# 家計・予定サーバー（Python のソースは残す）
+server/.venv/
+__pycache__/
+*.py[cod]
+
+# この PC の家計 DB
+server/data/*.sqlite
+server/data/*.sqlite-journal
+server/data/*.sqlite-wal
+server/data/*.sqlite-shm
+
+# macOS
+.DS_Store

@@ -110,6 +110,39 @@
   box-shadow: 4px 4px 0 var(--ink);
 }
 
+.yi-card.is-luxury {
+  background: #fff1b8;
+  box-shadow: 6px 6px 0 #7a3d00;
+  border-color: #7a3d00;
+}
+
+.yi-card.is-luxury:hover,
+.yi-card.is-luxury:focus-visible {
+  background: #ffe57a;
+  box-shadow: 6px 10px 0 #7a3d00;
+}
+
+.yi-map.is-luxury {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.14) 0 2px,
+      rgba(255, 255, 255, 0) 2px 9px
+    ),
+    linear-gradient(180deg, #7ee0ff 0%, #2eb8e8 55%, #1a8fc4 100%);
+}
+
+.yi-legend-gold {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 2px solid var(--ink);
+}
+
+.yi-swatch-gold {
+  width: 12px;
+  height: 12px;
+}
+
 /* ---------- カード上部 ---------- */
 
 .yi-card-head {

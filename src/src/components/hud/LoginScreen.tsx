@@ -3,19 +3,30 @@ import { memberColor } from '../../lib/members';
 
 export interface LoginScreenProps {
   members: string[];
-  onLogin: (name: string) => void;
-  onReset: () => void;
+  onLogin: (name: string) => Promise<void>;
+  onReset: () => Promise<void>;
 }
 
 /** ユーザー名だけのログイン。既存メンバーはワンクリック、新しい名前は入力で参加する。 */
 export const LoginScreen = ({ members, onLogin, onReset }: LoginScreenProps) => {
   const [name, setName] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const trimmed = name.trim();
+
+  const run = async (action: () => Promise<void>) => {
+    try {
+      await action();
+      setError(null);
+    } catch (err) {
+      console.error(err);
+      setError(err instanceof Error ? err.message : String(err));
+    }
+  };
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
     if (trimmed.length === 0) return;
-    onLogin(trimmed);
+    void run(() => onLogin(trimmed));
   };
 
   return (
@@ -25,14 +36,14 @@ export const LoginScreen = ({ members, onLogin, onReset }: LoginScreenProps) => 
           誰の地図に降りる？
         </h1>
         <p className="login-lead">
-          同じ地図をみんなで作ります。名前を選ぶと、あなたの予定がこの島に建ちます。
+          同じ地図をみんなで作ります。名前を選ぶと、あなたの予定がこの島に建ちます。月の貯金目標を達成すると、島は黄金郷になります。
         </p>
 
         {members.length > 0 ? (
           <ul className="login-members">
             {members.map((member) => (
               <li key={member}>
-                <button type="button" className="btn login-member" onClick={() => onLogin(member)}>
+                <button type="button" className="btn login-member" onClick={() => void run(() => onLogin(member))}>
                   <span className="chip" style={{ background: memberColor(members, member) }} />
                   {member} として入る
                 </button>
@@ -62,7 +73,13 @@ export const LoginScreen = ({ members, onLogin, onReset }: LoginScreenProps) => 
           </div>
         </form>
 
-        <button type="button" className="link-btn" onClick={onReset}>
+        {error !== null ? (
+          <p className="ledger-status" role="alert">
+            {error}
+          </p>
+        ) : null}
+
+        <button type="button" className="link-btn" onClick={() => void run(onReset)}>
           保存したデータを消してサンプルに戻す
         </button>
       </section>

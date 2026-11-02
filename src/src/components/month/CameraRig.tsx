@@ -25,16 +25,25 @@ export const CameraRig = ({ pose }: CameraRigProps) => {
   }, [pose]);
 
   useFrame(({ camera }, delta) => {
-    if (!animating.current) return;
-    if (!isOrbitLike(controls)) return;
+    if (!animating.current) {
+      return;
+    }
     const k = 1 - Math.exp(-delta * 3.8);
     camera.position.lerp(pose.position, k);
-    controls.target.lerp(pose.target, k);
-    controls.update();
+    if (isOrbitLike(controls)) {
+      controls.target.lerp(pose.target, k);
+      controls.update();
+    } else {
+      camera.lookAt(pose.target);
+    }
     if (camera.position.distanceTo(pose.position) < 0.01) {
       camera.position.copy(pose.position);
-      controls.target.copy(pose.target);
-      controls.update();
+      if (isOrbitLike(controls)) {
+        controls.target.copy(pose.target);
+        controls.update();
+      } else {
+        camera.lookAt(pose.target);
+      }
       animating.current = false;
     }
   });

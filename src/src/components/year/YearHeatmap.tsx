@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import { MONTH_NAMES_EN, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import { ELEVATION_COLORS, elevationColor } from '../models/blocks/blockKinds';
+import { ELEVATION_COLORS, LUXURY_ELEVATION_COLORS, elevationColor } from '../models/blocks/blockKinds';
 import './YearIslands.css';
 
 export interface YearHeatmapProps {
   year: number;
   byDate: Map<string, CalendarEvent[]>;
+  luxuriousMonths: ReadonlySet<number>;
   onSelectMonth: (month: number) => void;
 }
 
@@ -48,7 +49,7 @@ const buildIsland = (
 
 const ELEVATION_LABELS = ['0', '1', '2', '3', '4', '5', '6+'];
 
-export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) => {
+export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: YearHeatmapProps) => {
   const islands = useMemo(
     () => Array.from({ length: 12 }, (_, i) => buildIsland(year, i + 1, byDate)),
     [year, byDate],
@@ -61,48 +62,59 @@ export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) =
         <div>
           <h1 className="yi-title">一年を、上から見る。</h1>
           <p className="yi-sub">
-            12 の島。海は予定なし、雪山は 6 件以上。島をクリックで降りる。
+            12 の島。海は予定なし、雪山は 6 件以上。貯金を達成した月は黄金郷。島をクリックで降りる。
           </p>
         </div>
       </header>
 
       <div className="yi-grid">
-        {islands.map((island) => (
-          <button
-            key={island.month}
-            type="button"
-            className="yi-card"
-            onClick={() => onSelectMonth(island.month)}
-            aria-label={`${island.month}月の島 予定 ${island.total} 件 最高峰 ${island.peak} 件`}
-          >
-            <div className="yi-card-head">
-              <span className="yi-month">
-                {island.month}
-                <small>月</small>
-              </span>
-              <span className="yi-card-meta">
-                <span className="yi-en">{island.nameEn}</span>
-                <span className="yi-count">{island.total} 件</span>
-                <span className="yi-peak">最高峰 {island.peak} 件</span>
-              </span>
-            </div>
-            <div className="yi-map">
-              <div className="yi-map-grid" aria-hidden="true">
-                {island.cells.map((cell, i) =>
-                  cell.day === null || cell.count === 0 ? (
-                    <span key={i} className="yi-cell yi-cell-sea" />
-                  ) : (
-                    <span
-                      key={i}
-                      className="yi-cell"
-                      style={{ background: elevationColor(cell.count) }}
-                    />
-                  ),
-                )}
+        {islands.map((island) => {
+          const luxury = luxuriousMonths.has(island.month);
+          return (
+            <button
+              key={island.month}
+              type="button"
+              className={luxury ? 'yi-card is-luxury' : 'yi-card'}
+              onClick={() => onSelectMonth(island.month)}
+              aria-label={
+                luxury
+                  ? `${island.month}月の黄金郷 予定 ${island.total} 件 最高峰 ${island.peak} 件`
+                  : `${island.month}月の島 予定 ${island.total} 件 最高峰 ${island.peak} 件`
+              }
+            >
+              <div className="yi-card-head">
+                <span className="yi-month">
+                  {island.month}
+                  <small>月</small>
+                </span>
+                <span className="yi-card-meta">
+                  <span className="yi-en">{island.nameEn}</span>
+                  <span className="yi-count">{island.total} 件</span>
+                  <span className="yi-peak">
+                    {luxury ? '黄金郷' : `最高峰 ${island.peak} 件`}
+                  </span>
+                </span>
               </div>
-            </div>
-          </button>
-        ))}
+              <div className={luxury ? 'yi-map is-luxury' : 'yi-map'}>
+                <div className="yi-map-grid" aria-hidden="true">
+                  {island.cells.map((cell, i) =>
+                    cell.day === null || cell.count === 0 ? (
+                      <span key={i} className="yi-cell yi-cell-sea" />
+                    ) : (
+                      <span
+                        key={i}
+                        className="yi-cell"
+                        style={{
+                          background: elevationColor(cell.count, luxury ? 'luxury' : 'plain'),
+                        }}
+                      />
+                    ),
+                  )}
+                </div>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
       <footer className="yi-legend">
@@ -114,6 +126,10 @@ export const YearHeatmap = ({ year, byDate, onSelectMonth }: YearHeatmapProps) =
           </span>
         ))}
         <span>高</span>
+        <span className="yi-legend-gold">黄金郷</span>
+        {LUXURY_ELEVATION_COLORS.slice(1).map((color) => (
+          <span key={color} className="yi-swatch yi-swatch-gold" style={{ background: color }} />
+        ))}
       </footer>
     </section>
   );

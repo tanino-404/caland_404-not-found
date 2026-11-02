@@ -39,6 +39,10 @@ body {
   -webkit-font-smoothing: none;
 }
 
+body.is-luxury {
+  background: linear-gradient(180deg, #4aa8ff 0%, #8ed4ff 48%, #dff6ff 100%);
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -60,6 +64,66 @@ button {
   display: block;
   /* ベタ塗り感を抑える */
   filter: contrast(0.94) saturate(0.92);
+}
+
+.app.is-luxury .scene canvas {
+  filter: contrast(1.08) saturate(1.35) brightness(1.04);
+}
+
+.app.is-luxury::before,
+.app.is-luxury::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.app.is-luxury::before {
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 14%, #fffce8 55%, transparent 56%),
+    radial-gradient(2px 2px at 18% 38%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 27% 8%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 36% 72%, #fff6c8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 44% 22%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2.5px 2.5px at 53% 48%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 62% 12%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 71% 64%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 79% 28%, #fff6c8 55%, transparent 56%),
+    radial-gradient(2px 2px at 88% 8%, #fff 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 92% 52%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2px 2px at 12% 82%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 48% 88%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 84% 86%, #fff6c8 55%, transparent 56%);
+  animation: luxury-twinkle 2.4s ease-in-out infinite;
+}
+
+.app.is-luxury::after {
+  background-image:
+    radial-gradient(2px 2px at 14% 58%, #fff 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 22% 18%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2.5px 2.5px at 33% 44%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 41% 6%, #fff6c8 55%, transparent 56%),
+    radial-gradient(2px 2px at 58% 76%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 67% 32%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 76% 54%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 85% 16%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2px 2px at 6% 46%, #fff6c8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 96% 70%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 29% 92%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 73% 90%, #fffce8 55%, transparent 56%);
+  animation: luxury-twinkle 2.8s ease-in-out infinite;
+  animation-delay: -1.3s;
+}
+
+@keyframes luxury-twinkle {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.92;
+  }
 }
 
 /* チルトシフト風：画面の上下だけをぼかしてミニチュアに見せる */
@@ -91,6 +155,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 7;
 }
 
 .hud > * {
@@ -101,6 +166,17 @@ button {
   background: var(--paper);
   border: 3px solid var(--ink);
   box-shadow: 6px 6px 0 var(--ink);
+}
+
+.boot-panel {
+  position: absolute;
+  left: 50%;
+  top: 28%;
+  transform: translateX(-50%);
+  max-width: min(720px, calc(100vw - 48px));
+  padding: 18px 22px;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .btn {
@@ -194,6 +270,7 @@ button {
 .login {
   position: absolute;
   inset: 0;
+  z-index: 7;
   display: grid;
   place-items: center;
   background: rgba(27, 42, 65, 0.28);
@@ -296,6 +373,26 @@ button {
 .hud-month-ja {
   font-size: 16px;
   margin-top: 6px;
+}
+
+.hud-savings {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.hud-savings.is-gold,
+.ledger-status.is-gold,
+.ledger-sums dd.is-gold {
+  color: #7a3d00;
+}
+
+.app.is-luxury .hud-month-number {
+  color: #6b3200;
+  text-shadow:
+    3px 3px 0 #ffd24a,
+    -1px -1px 0 #ffe9a8,
+    1px -1px 0 #ffe9a8,
+    -1px 1px 0 #ffe9a8;
 }
 
 .hud-nav {
@@ -405,12 +502,13 @@ button {
   position: absolute;
   top: 24px;
   right: 28px;
-  width: min(360px, calc(100vw - 56px));
+  width: min(400px, calc(100vw - 56px));
   max-height: calc(100vh - 48px);
   display: flex;
   flex-direction: column;
   padding: 16px 18px 18px;
   gap: 12px;
+  overflow: auto;
 }
 
 .day-panel-head {
@@ -443,11 +541,27 @@ button {
   line-height: 1.4;
 }
 
-.day-panel-list li {
-  padding: 5px 0;
+.day-panel-event {
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 2px dotted var(--paper-2);
+}
+
+.day-panel-event-row {
   display: flex;
   align-items: center;
   gap: 2px;
+}
+
+.day-panel-event-place {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-left: 34px;
+  font-size: 12px;
 }
 
 .day-panel-category {
@@ -574,6 +688,224 @@ button {
 
 .day-panel .btn {
   align-self: flex-start;
+}
+
+.suggest-status {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.suggest-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0 0;
+  border-top: 3px solid var(--ink);
+}
+
+.suggest-kicker {
+  margin: 0;
+  font-size: 14px;
+}
+
+.suggest-weather {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.suggest-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.suggest-items li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.suggest-item-name {
+  font-size: 14px;
+}
+
+.suggest-item-reason {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.suggest-message {
+  margin: 0;
+  padding: 8px 10px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 家計簿 ---------- */
+
+.ledger-panel {
+  position: absolute;
+  top: 168px;
+  left: 28px;
+  bottom: 88px;
+  width: min(360px, calc(100vw - 56px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  overflow: auto;
+  z-index: 2;
+}
+
+.ledger-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ledger-kicker {
+  font-size: 12px;
+}
+
+.ledger-title {
+  margin: 2px 0 0;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.ledger-sums {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+}
+
+.ledger-sums div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ledger-sums dt {
+  font-size: 11px;
+}
+
+.ledger-sums dd {
+  margin: 0;
+  font-size: 13px;
+}
+
+.ledger-goal-line,
+.ledger-status,
+.ledger-empty {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ledger-status[role='alert'] {
+  color: #8b1a1a;
+}
+
+.ledger-coins {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+}
+
+.ledger-coins span {
+  display: block;
+  height: 14px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.ledger-coins span.is-filled {
+  background: var(--gold);
+}
+
+.ledger-goal-form,
+.ledger-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 2px dashed var(--ink);
+}
+
+.ledger-kinds {
+  display: flex;
+  gap: 8px;
+}
+
+.ledger-entry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.ledger-entry-form label,
+.ledger-goal-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.ledger-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 0;
+  border-top: 2px dashed var(--ink);
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.ledger-list li {
+  display: grid;
+  grid-template-columns: 36px 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.ledger-list-day {
+  opacity: 0.75;
+}
+
+.ledger-list-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ledger-list-in {
+  color: #1f6b3a;
+}
+
+.ledger-list-out {
+  color: #a12323;
+}
+
+.ledger-list-owner {
+  font-size: 11px;
+  opacity: 0.7;
 }
 
 /* ---------- 年ビュー（2D ヒートマップ） ---------- */
@@ -720,6 +1052,11 @@ button {
 
   .hud-legend {
     display: none;
+  }
+
+  .ledger-panel {
+    top: 120px;
+    bottom: 88px;
   }
 
   .hud-tooltip {

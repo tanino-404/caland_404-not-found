@@ -14,3 +14,19 @@ export const materialFor = (color: string): MeshStandardMaterial => {
   materialCache.set(color, material);
   return material;
 };
+
+/** 黄金郷の金・宝石用。色と金属感の組でキャッシュする */
+export const materialForMetal = (
+  color: string,
+  metalness: number,
+  roughness: number,
+): MeshStandardMaterial => {
+  const key = `${color}|${metalness}|${roughness}`;
+  const cached = materialCache.get(key);
+  if (cached) {
+    return cached;
+  }
+  const material = new MeshStandardMaterial({ color, metalness, roughness });
+  materialCache.set(key, material);
+  return material;
+};

@@ -17,15 +17,19 @@ import {
 } from '../../lib/camera';
 import { type MonthGrid, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent, IslandLayout, ViewState } from '../../types/calendar';
+import type { IslandTheme } from '../../types/ledger';
 import { CameraRig } from './CameraRig';
 import { DayTower } from './DayTower';
 import { Flight } from './Flight';
+import { LuxuryFx } from './LuxuryFx';
+import { LuxuryMarina } from './LuxuryMarina';
 import { type PixelLabel, PixelLabels } from './PixelLabels';
 import { Sea } from './Sea';
 import { Villagers } from './Villagers';
 import { WeekdayHeader } from './WeekdayHeader';
 
 export const HORIZON_COLOR = '#cfeeff';
+export const LUXURY_HORIZON_COLOR = '#b8e8ff';
 
 /** DayTower のせり上がり（RISE 0.55s + 31 日 × 0.025s）が終わるまでの待ち時間 */
 const RISE_TOTAL_SECONDS = 1.6;
@@ -72,11 +76,16 @@ export interface MonthSceneProps {
   hoveredKey: string | null;
   onHover: (dateKey: string | null) => void;
   onSelectDay: (day: number) => void;
+  theme: IslandTheme;
 }
 
 const NO_EVENTS: CalendarEvent[] = [];
 
-const buildDayLabels = (grid: MonthGrid, byDate: Map<string, CalendarEvent[]>): PixelLabel[] =>
+const buildDayLabels = (
+  grid: MonthGrid,
+  byDate: Map<string, CalendarEvent[]>,
+  theme: IslandTheme,
+): PixelLabel[] =>
   grid.cells.map((cell) => {
     const count = byDate.get(cell.dateKey)?.length ?? 0;
     if (count === 0) {
@@ -97,7 +106,7 @@ const buildDayLabels = (grid: MonthGrid, byDate: Map<string, CalendarEvent[]>): 
         rowToZ(cell.row, grid.rows) + TOWER_WIDTH / 2 + 0.012,
       ],
       rotation: [0, 0, 0],
-      color: count >= 6 ? '#1b2a41' : '#fff6dc',
+      color: theme === 'luxury' ? '#3a2208' : count >= 6 ? '#1b2a41' : '#fff6dc',
       pitch: 0.055,
     };
   });
@@ -125,6 +134,7 @@ export const MonthScene = ({
   hoveredKey,
   onHover,
   onSelectDay,
+  theme,
 }: MonthSceneProps) => {
   const { year, month } = view;
   const grid = useMemo(() => buildMonthGrid(year, month), [year, month]);
@@ -146,11 +156,12 @@ export const MonthScene = ({
     return monthCameraPose(grid.rows, tops);
   }, [view, grid, byDate, partnerByDate]);
 
-  const dayLabels = useMemo(() => buildDayLabels(grid, byDate), [grid, byDate]);
+  const dayLabels = useMemo(() => buildDayLabels(grid, byDate, theme), [grid, byDate, theme]);
   const partnerDayLabels = useMemo(
-    () => (partnerByDate ? buildDayLabels(grid, partnerByDate) : []),
-    [grid, partnerByDate],
+    () => (partnerByDate ? buildDayLabels(grid, partnerByDate, theme) : []),
+    [grid, partnerByDate, theme],
   );
+  const horizon = theme === 'luxury' ? LUXURY_HORIZON_COLOR : HORIZON_COLOR;
 
   const flights: FlightSpec[] = useMemo(() => {
     if (!split) return [];
@@ -183,22 +194,37 @@ export const MonthScene = ({
     <>
       <Canvas
         dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true, toneMappingExposure: 0.95 }}
+        gl={{ antialias: true, alpha: true, toneMappingExposure: theme === 'luxury' ? 1.12 : 0.95 }}
         camera={{ position: [3.2, 11, 11.5], fov: 40, near: 0.1, far: 120 }}
+        onCreated={({ camera }) => {
+          camera.lookAt(0, 1.2, 0);
+        }}
         onPointerMissed={() => onHover(null)}
       >
         <fog
-          key={split ? 'fog-wide' : 'fog-near'}
+          key={`${theme}-${split ? 'wide' : 'near'}`}
           attach="fog"
-          args={[HORIZON_COLOR, split ? 26 : 18, split ? 62 : 48]}
+          args={[horizon, split ? 26 : 18, split ? 62 : 48]}
         />
-        <ambientLight intensity={0.55} color="#fff4e0" />
-        <hemisphereLight args={['#dff3ff', '#c9b48a', 0.9]} />
-        <directionalLight position={[6, 10, 4]} intensity={1.1} color="#fff1d6" />
+        <ambientLight intensity={theme === 'luxury' ? 0.78 : 0.55} color="#fff8ee" />
+        <hemisphereLight
+          args={theme === 'luxury' ? ['#c8f0ff', '#f0d9a0', 1.15] : ['#dff3ff', '#c9b48a', 0.9]}
+        />
+        <directionalLight
+          position={[6, 12, 4]}
+          intensity={theme === 'luxury' ? 1.55 : 1.1}
+          color={theme === 'luxury' ? '#fff5d6' : '#fff1d6'}
+        />
+        {theme === 'luxury' ? (
+          <>
+            <pointLight position={[0, 8, 0]} intensity={1.6} color="#ffd36a" distance={28} />
+            <pointLight position={[4, 2.5, 5]} intensity={0.7} color="#7ee0ff" distance={16} />
+          </>
+        ) : null}
 
-        <Sea />
+        <Sea theme={theme} />
 
-        <group key={`${year}-${month}-${layout}`}>
+        <group key={`${year}-${month}-${layout}-${theme}`}>
           <WeekdayHeader rows={grid.rows} />
           {grid.cells.map((cell) => (
             <DayTower
@@ -210,10 +236,17 @@ export const MonthScene = ({
               highlighted={hoveredKey === cell.dateKey || selectedDay === cell.day}
               onHover={onHover}
               onSelect={onSelectDay}
+              theme={theme}
             />
           ))}
+          {theme === 'luxury' ? (
+            <>
+              <LuxuryFx />
+              <LuxuryMarina />
+            </>
+          ) : null}
           <AfterRise>
-            <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} />
+            <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} theme={theme} />
             <PixelLabels labels={dayLabels} />
           </AfterRise>
 
@@ -227,10 +260,11 @@ export const MonthScene = ({
                   events={partner.byDate.get(cell.dateKey) ?? NO_EVENTS}
                   members={members}
                   highlighted={false}
+                  theme={theme}
                 />
               ))}
               <AfterRise>
-                <Villagers cells={grid.cells} rows={grid.rows} byDate={partner.byDate} />
+                <Villagers cells={grid.cells} rows={grid.rows} byDate={partner.byDate} theme={theme} />
                 <PixelLabels labels={partnerDayLabels} />
               </AfterRise>
             </group>

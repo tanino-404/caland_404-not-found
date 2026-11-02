@@ -1,7 +1,8 @@
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 import type { BufferAttribute, PlaneGeometry } from 'three';
 import { SEA_Y } from '../../lib/camera';
+import type { IslandTheme } from '../../types/ledger';
 import { BLOCK_COLORS } from '../models/blocks/blockKinds';
 
 /** 波立つ海面の一辺（島を囲む範囲） */
@@ -15,12 +16,16 @@ const FAR_SIZE = 160;
  * 島の周りの海。内側は頂点を毎フレーム動かすサイン波、外側は平らな遠景板。
  * 振幅の合計は ±0.1 に収め、予定 0 の日の水ブロック（高さ 0.12）を突き抜けないようにする。
  */
-export const Sea = () => {
+export interface SeaProps {
+  theme: IslandTheme;
+}
+
+export const Sea = ({ theme }: SeaProps) => {
   const geometryRef = useRef<PlaneGeometry>(null);
   // 初期 x / y（回転前）を保持して、毎フレームここから高さを作り直す
   const base = useRef<{ x: Float32Array; y: Float32Array } | null>(null);
 
-  const color = useMemo(() => BLOCK_COLORS.sea, []);
+  const color = theme === 'luxury' ? BLOCK_COLORS.luxurySea : BLOCK_COLORS.sea;
 
   useFrame(({ clock }) => {
     const geometry = geometryRef.current;
@@ -59,11 +64,20 @@ export const Sea = () => {
     <group>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, SEA_Y - 0.01, 0]}>
         <planeGeometry args={[FAR_SIZE, FAR_SIZE]} />
-        <meshStandardMaterial color={color} roughness={0.7} />
+        <meshStandardMaterial
+          color={color}
+          roughness={theme === 'luxury' ? 0.28 : 0.7}
+          metalness={theme === 'luxury' ? 0.22 : 0}
+        />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, SEA_Y, 0]}>
         <planeGeometry ref={geometryRef} args={[WAVE_SIZE, WAVE_SIZE, WAVE_SEGMENTS, WAVE_SEGMENTS]} />
-        <meshStandardMaterial color={color} roughness={0.7} flatShading />
+        <meshStandardMaterial
+          color={color}
+          roughness={theme === 'luxury' ? 0.28 : 0.7}
+          metalness={theme === 'luxury' ? 0.22 : 0}
+          flatShading
+        />
       </mesh>
     </group>
   );

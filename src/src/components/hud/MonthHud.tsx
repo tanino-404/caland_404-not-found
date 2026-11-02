@@ -1,5 +1,6 @@
 import { MONTH_NAMES_EN, formatDateJa } from '../../lib/calendar';
 import { breakdownByOwner, memberColor, ownerChipBackground } from '../../lib/members';
+import { formatYen } from '../../lib/ledger';
 import {
   CATEGORIES,
   CATEGORY_INFO,
@@ -25,6 +26,10 @@ export interface MonthHudProps {
   onNextMonth: () => void;
   onShowYear: () => void;
   onLogout: () => void;
+  savings: number;
+  goal: number | null;
+  achieved: boolean;
+  onOpenLedger: () => void;
 }
 
 const parseKey = (key: string): [number, number, number] => {
@@ -50,6 +55,10 @@ export const MonthHud = ({
   onNextMonth,
   onShowYear,
   onLogout,
+  savings,
+  goal,
+  achieved,
+  onOpenLedger,
 }: MonthHudProps) => {
   const hovered = hoveredKey ? parseKey(hoveredKey) : null;
   const hoveredEvents = hoveredKey ? (byDate.get(hoveredKey) ?? NO_EVENTS) : NO_EVENTS;
@@ -68,6 +77,12 @@ export const MonthHud = ({
           <div className="hud-month-en">{MONTH_NAMES_EN[month - 1]}</div>
           <div className="hud-month-ja">
             {year}年{month}月 · 予定 {monthTotal} 件
+          </div>
+          <div className={achieved ? 'hud-savings is-gold' : 'hud-savings'}>
+            {goal === null
+              ? '貯金目標なし'
+              : `貯金 ${formatYen(savings)} / ${formatYen(goal)}`}
+            {achieved ? ' · 黄金郷' : null}
           </div>
         </div>
       </header>
@@ -88,6 +103,9 @@ export const MonthHud = ({
           onClick={onToggleLayout}
         >
           {split ? 'ひとつの島で見る' : 'ふたりの島で見る'}
+        </button>
+        <button type="button" className="btn" onClick={onOpenLedger}>
+          家計簿
         </button>
         <button type="button" className="btn" onClick={onShowYear}>
           一年を見る
@@ -147,7 +165,7 @@ export const MonthHud = ({
         <p className="hud-hint">
           {split
             ? `手前が ${currentUser}、奥が ${partner} の島。ふたりの予定の日は、島と島を飛行機が行き来する`
-            : 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる'}
+            : 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。貯金目標を達成すると島が黄金郷になる'}
         </p>
       </aside>
 

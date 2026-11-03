@@ -179,74 +179,9 @@
     {
       "id": "library",
       "minProgress": 1,
-      "theme": "plain",
+      "theme": "library",
       "scene": {
-        "horizon": "#ffe8c4",
-        "ambient": "#fff0d0",
         "sprites": [
-          {
-            "model": {
-              "palette": {
-                "r": "#8b3a2e",
-                "c": "#f2ead8",
-                "s": "#c8bca0"
-              },
-              "layers": [
-                [
-                  "sssssss",
-                  "sssssss",
-                  "sssssss",
-                  "sssssss"
-                ],
-                [
-                  "c.c.c.c",
-                  "c.c.c.c",
-                  "c.c.c.c",
-                  "c.c.c.c"
-                ],
-                [
-                  "c.c.c.c",
-                  "c.c.c.c",
-                  "c.c.c.c",
-                  "c.c.c.c"
-                ],
-                [
-                  "c.c.c.c",
-                  "c.c.c.c",
-                  "c.c.c.c",
-                  "c.c.c.c"
-                ],
-                [
-                  "rrrrrrr",
-                  "rrrrrrr",
-                  "rrrrrrr",
-                  "rrrrrrr"
-                ],
-                [
-                  ".rrrrr.",
-                  ".rrrrr.",
-                  ".rrrrr.",
-                  ".rrrrr."
-                ],
-                [
-                  "..rrr..",
-                  "..rrr..",
-                  "..rrr..",
-                  "..rrr.."
-                ],
-                [
-                  "...r...",
-                  "...r...",
-                  "...r...",
-                  "...r..."
-                ]
-              ]
-            },
-            "count": 3,
-            "zone": "shore",
-            "motion": "bob",
-            "size": 0.1
-          },
           {
             "model": {
               "palette": {
@@ -310,6 +245,88 @@
             "motion": "orbit",
             "size": 0.08,
             "speed": 0.5
+          },
+          {
+            "model": {
+              "palette": {
+                "t": "#7a4e24",
+                "l": "#3e8a2a",
+                "m": "#4caf3a",
+                "h": "#5fb63b"
+              },
+              "layers": [
+                [
+                  "...",
+                  ".t.",
+                  "..."
+                ],
+                [
+                  "...",
+                  ".t.",
+                  "..."
+                ],
+                [
+                  "lll",
+                  "lml",
+                  "lll"
+                ],
+                [
+                  "lhl",
+                  "hml",
+                  "lmh"
+                ],
+                [
+                  ".m.",
+                  "mhm",
+                  ".m."
+                ]
+              ]
+            },
+            "count": 16,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.06
+          },
+          {
+            "model": {
+              "palette": {
+                "w": "#fffaf0",
+                "s": "#e6dfcc",
+                "b": "#2e5aa8"
+              },
+              "layers": [
+                [
+                  "......",
+                  ".wwww.",
+                  "......"
+                ],
+                [
+                  "w....w",
+                  "wsssss",
+                  "w....w"
+                ],
+                [
+                  "......",
+                  "..ww..",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..wb..",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..w...",
+                  "......"
+                ]
+              ]
+            },
+            "count": 7,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.08,
+            "speed": 0.25
           }
         ]
       }

@@ -133,7 +133,7 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - 記録と目標はグループ id に属する。1 プラグインに複数グループ、グループに複数メンバー
 - 目標の期間は任意（`start`〜`end`）。島に見せるのは、その月の最終日の時点で期間中か直前に終わった目標
 - 画面は 1 つのプラグインだけを表示する。月の HUD 右上の「管理」で切り替える（最初は `lib/pluginApi.ts` の `DEFAULT_PLUGIN_ID` = 家計簿）。入力パネル `PluginHud` は fields から自動で作り、目標は指標・期間・目標値を選ぶ
-- 島の土台は `plain` / `luxury`（黄金郷）/ `muscle`（マッチョの島。フィットネスの最高段階）。黄金郷とマッチョの島は海を礁湖にして青空と雲海を見せ、光を明るくする
+- 島の土台は `plain` / `luxury`（黄金郷）/ `muscle`（マッチョの島。フィットネスの最高段階）/ `library`（知識の島。自主勉強の最高段階）。plain 以外は海を礁湖にして青空と雲海を見せ、光を明るくする。空の演出（降るもの・きらめき・レンズフレア）は `SkyFx.tsx` を共用し、知識の島には付けない
 - エフェクトは `effects[]` の `theme`（島の土台。`lib/effects.ts` の `EFFECT_THEMES`）と `scene`（空・霧・光の色とボクセルの絵。`components/month/EffectSprites.tsx` が描く）。達成率の段階ごとに変えられる
 - 同梱の例は釣り・NISA・フィットネス・ペット・自炊・自主勉強・ゲームの練習。各フォルダの `sample.json` が、空のときに起動とリセットで入る。どれも 3 月（最初に開く月）が最高段階
 - 雛形は `cd server && python new_plugin.py <id> <名前>`。連携の URL とトークンは `secret/.env`
@@ -263,6 +263,9 @@ src/                               ← Vite プロジェクトルート
    │   │   ├─ LuxuryFx.tsx         ← 黄金郷のドット絵の金貨と札の雨（手前の大きなものは画面の左右だけ）、きらめき、レンズフレア（three の Lensflare。ライトには付けない）
    │   │   ├─ LuxurySky.tsx        ← 黄金郷の空：礁湖の外の雲海（InstancedMesh 2 つ）と浮島
    │   │   ├─ LuxuryLandmark.tsx   ← いちばん高い塔の上に浮かぶ巨大な金の $
+   │   │   ├─ SkyFx.tsx / fallers.ts ← 降るドット絵（PixelRain）・きらめき・レンズフレア（黄金郷とマッチョの島で共用）
+   │   │   ├─ MuscleFx.tsx / MuscleSea.tsx ← マッチョの島の空（ボトルとバナナの雨・ジムの浮島）と海（競泳レーン・ボクシングリング・監視塔）
+   │   │   ├─ LibraryScene.tsx     ← 知識の島（theme library）：島の奥の大図書館・LIBRARY の塔・西棟（月ビューだけ）、巨大な本・読書の広場・滝の崖・木と天文台の浮島
    │   │   ├─ MuscleScene.tsx      ← マッチョの島（theme muscle）：島の奥の 3 人の巨大なボディビルダー（ポーズ・ダンベル・バーベル）、後光、PROTEIN 看板、シェイカー。日ビューでは出さない
    │   │   ├─ LuxuryMarina.tsx     ← 海のヨットと周回ヘリ
    │   │   ├─ LuxuryRooftop.tsx    ← 屋上のヤシ・プール・車・噴水・金塊
@@ -273,7 +276,7 @@ src/                               ← Vite プロジェクトルート
    │   │   ├─ WeekdayHeader.tsx    ← グリッド奥の木の看板（SUN〜SAT）
    │   │   └─ CameraRig.tsx        ← pose が変わるたびにカメラを補間移動、到着後はユーザー操作に任せる
    │   ├─ models/
-   │   │   ├─ blocks/pixelTexture.ts, luxuryTextures.ts, gymTextures.ts ← 塔の面のドット絵テクスチャ（黄金郷・マッチョの島）
+   │   │   ├─ blocks/pixelTexture.ts, luxuryTextures.ts, gymTextures.ts, libraryTextures.ts ← 塔の面のドット絵テクスチャ（黄金郷・マッチョの島）
    │   │   ├─ pixelArt.ts          ← ドット絵 → 厚みのあるボクセル板のジオメトリ（同じ色の横の並びは 1 枚にまとめる）
    │   │   ├─ materials.ts         ← 共有 BoxGeometry と色 → MeshStandardMaterial のキャッシュ
    │   │   ├─ Voxel.tsx            ← 建物を組む最小単位（位置・サイズ・色）

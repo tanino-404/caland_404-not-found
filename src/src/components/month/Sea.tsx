@@ -49,8 +49,8 @@ export interface SeaProps {
 
 export const Sea = ({ theme }: SeaProps) => {
   const geometryRef = useRef<BufferGeometry>(null);
-  // 黄金郷とマッチョの島は、縁が透ける礁湖にして外の空と雲海を見せる
-  const lagoon = useMemo(() => (theme === 'luxury' || theme === 'muscle' ? buildLagoon() : null), [theme]);
+  // 達成した島（黄金郷・マッチョ・知識の島）は、縁が透ける礁湖にして外の空と雲海を見せる
+  const lagoon = useMemo(() => (theme === 'plain' ? null : buildLagoon()), [theme]);
   // 初期 x / y（回転前）を保持して、毎フレームここから高さを作り直す
   const base = useRef<{ x: Float32Array; y: Float32Array } | null>(null);
 

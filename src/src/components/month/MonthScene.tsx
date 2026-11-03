@@ -27,6 +27,7 @@ import { LuxuryFx } from './LuxuryFx';
 import { LuxuryLandmark } from './LuxuryLandmark';
 import { LuxuryMarina } from './LuxuryMarina';
 import { Clouds, LuxurySky } from './LuxurySky';
+import { LibraryGrounds, LibraryScene } from './LibraryScene';
 import { MuscleFx } from './MuscleFx';
 import { MuscleScene } from './MuscleScene';
 import { MuscleSea } from './MuscleSea';
@@ -117,7 +118,7 @@ const buildDayLabels = (
         rowToZ(cell.row, grid.rows) + TOWER_WIDTH / 2 + 0.012,
       ],
       rotation: [0, 0, 0],
-      color: theme === 'luxury' || theme === 'muscle' ? '#ffffff' : count >= 6 ? '#1b2a41' : '#fff6dc',
+      color: theme === 'plain' ? (count >= 6 ? '#1b2a41' : '#fff6dc') : '#ffffff',
       pitch: 0.055,
     };
   });
@@ -295,6 +296,13 @@ export const MonthScene = ({
             </>
           ) : null}
           {theme === 'muscle' && view.kind === 'month' ? <MuscleScene rows={grid.rows} /> : null}
+          {theme === 'library' ? (
+            <>
+              <Clouds />
+              <LibraryGrounds rows={grid.rows} />
+            </>
+          ) : null}
+          {theme === 'library' && view.kind === 'month' ? <LibraryScene rows={grid.rows} /> : null}
           <AfterRise>
             <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} theme={theme} />
             <PixelLabels labels={dayLabels} />

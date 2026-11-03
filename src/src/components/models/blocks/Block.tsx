@@ -8,6 +8,7 @@ import {
   LUXURY_TOP,
 } from './luxuryTextures';
 import { GYM_GRASS_TOP, GYM_SLATE_SIDE, GYM_STONE_SIDE } from './gymTextures';
+import { LIB_GRAY_SIDE, LIB_LIME_SIDE } from './libraryTextures';
 
 const BLOCK_GEOMETRY = new BoxGeometry(TOWER_WIDTH, BLOCK_HEIGHT, TOWER_WIDTH);
 
@@ -74,6 +75,8 @@ const MATERIALS: Record<BlockKind, MeshStandardMaterial | MeshStandardMaterial[]
   luxuryGlass: pixelFaces(pixel(LUXURY_GLASS_SIDE, 0.55, 0.15, 0.4), LUXURY_TOP_MAT, LUXURY_BOTTOM_MAT),
   gymStone: pixelFaces(pixel(GYM_STONE_SIDE, 0.05, 0.85, 0.35), GYM_TOP_MAT, GYM_BOTTOM_MAT),
   gymSlate: pixelFaces(pixel(GYM_SLATE_SIDE, 0.05, 0.8, 0.35), GYM_TOP_MAT, GYM_BOTTOM_MAT),
+  libLime: pixelFaces(pixel(LIB_LIME_SIDE, 0, 0.9, 0), GYM_TOP_MAT, GYM_BOTTOM_MAT),
+  libGray: pixelFaces(pixel(LIB_GRAY_SIDE, 0, 0.9, 0), GYM_TOP_MAT, GYM_BOTTOM_MAT),
 };
 
 export interface BlockProps {

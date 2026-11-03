@@ -10,6 +10,7 @@ export const EFFECT_THEMES: Record<string, IslandTheme> = {
   plain: 'plain',
   luxury: 'luxury',
   muscle: 'muscle',
+  library: 'library',
 };
 
 export const islandThemeFor = (effect: string): IslandTheme => {

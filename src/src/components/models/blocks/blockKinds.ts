@@ -10,7 +10,9 @@ export type BlockKind =
   | 'luxuryStone'
   | 'luxuryGlass'
   | 'gymStone'
-  | 'gymSlate';
+  | 'gymSlate'
+  | 'libLime'
+  | 'libGray';
 
 export const BLOCK_COLORS = {
   grassTop: '#5fb63b',
@@ -56,6 +58,12 @@ export const blockKindForLevel = (
     if (level === 0) return 'shore';
     if (isTop) return 'gymSlate';
     return level % 3 === 0 ? 'gymSlate' : 'gymStone';
+  }
+  if (theme === 'library') {
+    // 知識の島：明るい石灰岩とグレーの石。最上段は白い数字が読めるようグレー
+    if (level === 0) return 'shore';
+    if (isTop) return 'libGray';
+    return level % 2 === 0 ? 'libGray' : 'libLime';
   }
   if (level === 0) return 'shore';
   if (level <= 2) return isTop ? 'grass' : 'dirt';

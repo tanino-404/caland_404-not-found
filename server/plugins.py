@@ -39,7 +39,7 @@ GOAL_OPS = (">=", "<=")
 HOOK_EVENTS = ("entry.created", "goal.achieved")
 COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
 # 画面（src/src/lib/effects.ts の EFFECT_THEMES）が描ける島の土台
-BUILTIN_THEMES = ("plain", "luxury", "muscle")
+BUILTIN_THEMES = ("plain", "luxury", "muscle", "library")
 # 画面（src/src/components/month/EffectSprites.tsx）が描ける置き場所と動き
 SPRITE_ZONES = ("sea", "sky", "shore", "rooftop")
 SPRITE_MOTIONS = ("orbit", "jump", "bob", "hop", "pump")

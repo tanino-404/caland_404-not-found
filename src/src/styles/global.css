@@ -15,8 +15,6 @@
   --grass: #5fb63b;
   --sky-top: #5cb0ff;
   --sky-horizon: #cfeeff;
-  /* 53 週が横に収まるように画面幅へ追従（上限 16px） */
-  --heat-cell: clamp(8px, calc((100vw - 200px) / 53 - 3px), 16px);
   --font: 'DotGothic16', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
 }
 
@@ -41,6 +39,45 @@ body {
 
 body.is-luxury {
   background: linear-gradient(180deg, #4aa8ff 0%, #8ed4ff 48%, #dff6ff 100%);
+}
+
+/* ---------- 空：時刻帯と天気（App が body にクラスを付ける。地平の色は WorldCanvas の fog と合わせる） ---------- */
+
+body.sky-evening,
+body.sky-evening.is-luxury {
+  background: linear-gradient(180deg, #6a7fc8 0%, #e39a74 48%, #ffb070 72%, #ffc4a0 100%);
+}
+
+body.sky-night,
+body.sky-night.is-luxury {
+  background: linear-gradient(180deg, #0b1430 0%, #1d2f5e 55%, #2a3f6a 100%);
+}
+
+body.weather-cloudy {
+  background: linear-gradient(180deg, #9aa6b4 0%, #b9c9d6 60%, #c3d8e5 100%);
+}
+
+body.weather-snow {
+  background: linear-gradient(180deg, #c9d4df 0%, #dfe6ee 60%, #dff1fc 100%);
+}
+
+body.weather-rain,
+body.weather-thunder {
+  background: linear-gradient(180deg, #5e6874 0%, #8a98a6 60%, #9dafb9 100%);
+}
+
+body.sky-evening.weather-cloudy,
+body.sky-evening.weather-snow,
+body.sky-evening.weather-rain,
+body.sky-evening.weather-thunder {
+  background: linear-gradient(180deg, #4a4f6e 0%, #9a7d84 55%, #c9b3b3 100%);
+}
+
+body.sky-night.weather-cloudy,
+body.sky-night.weather-snow,
+body.sky-night.weather-rain,
+body.sky-night.weather-thunder {
+  background: linear-gradient(180deg, #0a1020 0%, #1a2238 60%, #262f44 100%);
 }
 
 button {
@@ -202,9 +239,7 @@ button {
   box-shadow: 2px 2px 0 var(--ink);
 }
 
-.btn:focus-visible,
-.heat-cell:focus-visible,
-.year-month-btn:focus-visible {
+.btn:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 2px;
 }
@@ -380,9 +415,7 @@ button {
   margin-top: 8px;
 }
 
-.hud-savings.is-gold,
-.ledger-status.is-gold,
-.ledger-sums dd.is-gold {
+.hud-savings.is-gold {
   color: #7a3d00;
 }
 
@@ -425,13 +458,6 @@ button {
   margin-right: 4px;
 }
 
-.hud-months {
-  position: absolute;
-  left: 28px;
-  bottom: 28px;
-  display: flex;
-  gap: 12px;
-}
 
 .hud-legend {
   position: absolute;
@@ -474,7 +500,8 @@ button {
 .hud-tooltip {
   position: absolute;
   left: 50%;
-  bottom: 28px;
+  /* 下部バー（BottomBar、bottom 20px・高さ約 64px）の上に出す */
+  bottom: 96px;
   transform: translateX(-50%);
   padding: 8px 14px;
   font-size: 15px;
@@ -637,17 +664,7 @@ button {
   outline-offset: 2px;
 }
 
-.hud-partner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-}
 
-.hud-partner-label {
-  font-size: 13px;
-}
 
 .invite-row {
   display: flex;
@@ -754,295 +771,6 @@ button {
   overflow-wrap: anywhere;
 }
 
-/* ---------- 家計簿 ---------- */
-
-.ledger-panel {
-  position: absolute;
-  top: 168px;
-  left: 28px;
-  bottom: 88px;
-  width: min(360px, calc(100vw - 56px));
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px 16px;
-  overflow: auto;
-  z-index: 2;
-}
-
-.ledger-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.ledger-kicker {
-  font-size: 12px;
-}
-
-.ledger-title {
-  margin: 2px 0 0;
-  font-size: 22px;
-  font-weight: normal;
-}
-
-.ledger-sums {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin: 0;
-}
-
-.ledger-sums div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.ledger-sums dt {
-  font-size: 11px;
-}
-
-.ledger-sums dd {
-  margin: 0;
-  font-size: 13px;
-}
-
-.ledger-goal-line,
-.ledger-status,
-.ledger-empty {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.ledger-status[role='alert'] {
-  color: #8b1a1a;
-}
-
-.ledger-coins {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 4px;
-}
-
-.ledger-coins span {
-  display: block;
-  height: 14px;
-  border: 2px solid var(--ink);
-  background: #fff;
-  box-shadow: 1px 1px 0 var(--ink);
-}
-
-.ledger-coins span.is-filled {
-  background: var(--gold);
-}
-
-.ledger-goal-form,
-.ledger-entry-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 8px;
-  border-top: 2px dashed var(--ink);
-}
-
-.ledger-kinds {
-  display: flex;
-  gap: 8px;
-}
-
-.ledger-entry-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.ledger-entry-form label,
-.ledger-goal-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 12px;
-}
-
-.ledger-list {
-  list-style: none;
-  margin: 0;
-  padding: 8px 0 0;
-  border-top: 2px dashed var(--ink);
-  overflow-y: auto;
-  font-size: 13px;
-}
-
-.ledger-list li {
-  display: grid;
-  grid-template-columns: 36px 1fr auto auto;
-  gap: 6px;
-  align-items: center;
-  padding: 4px 0;
-}
-
-.ledger-list-day {
-  opacity: 0.75;
-}
-
-.ledger-list-title {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.ledger-list-in {
-  color: #1f6b3a;
-}
-
-.ledger-list-out {
-  color: #a12323;
-}
-
-.ledger-list-owner {
-  font-size: 11px;
-  opacity: 0.7;
-}
-
-/* ---------- 年ビュー（2D ヒートマップ） ---------- */
-
-.year {
-  height: 100%;
-  padding: 32px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  overflow: auto;
-}
-
-.year-head {
-  display: flex;
-  align-items: flex-end;
-  gap: 18px;
-}
-
-.year-number {
-  font-size: 96px;
-  line-height: 0.85;
-  letter-spacing: -0.03em;
-}
-
-.year-title {
-  margin: 0;
-  font-size: 28px;
-  font-weight: normal;
-}
-
-.year-sub {
-  margin: 8px 0 0;
-  font-size: 14px;
-  max-width: 60ch;
-}
-
-.year-body {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  background: var(--paper);
-  border: 3px solid var(--ink);
-  box-shadow: 8px 8px 0 var(--ink);
-  padding: 18px 20px 20px;
-  align-self: flex-start;
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-.year-weekdays {
-  display: grid;
-  grid-template-rows: repeat(7, var(--heat-cell));
-  gap: 3px;
-  margin-top: calc(24px + 8px);
-  font-size: 11px;
-  line-height: var(--heat-cell);
-  text-align: right;
-  padding-right: 4px;
-}
-
-.year-grid-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.year-months {
-  display: grid;
-  gap: 3px;
-  height: 24px;
-}
-
-.year-month-btn {
-  background: none;
-  border: 0;
-  padding: 0;
-  text-align: left;
-  font-size: 13px;
-  cursor: pointer;
-  white-space: nowrap;
-  justify-self: start;
-}
-
-.year-month-btn:hover {
-  text-decoration: underline 2px;
-}
-
-.year-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, var(--heat-cell));
-  gap: 3px;
-}
-
-.heat-cell {
-  display: block;
-  width: var(--heat-cell);
-  height: var(--heat-cell);
-  border: 2px solid rgba(27, 42, 65, 0.55);
-  padding: 0;
-  cursor: pointer;
-}
-
-.heat-cell:hover {
-  border-color: var(--ink);
-  transform: scale(1.35);
-}
-
-.heat-cell-empty {
-  border-color: transparent;
-  background: transparent;
-  cursor: default;
-}
-
-.year-legend {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-}
-
-.year-legend-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.year-legend-step .heat-cell {
-  cursor: default;
-}
-
-.year-legend-step small {
-  font-size: 10px;
-}
-
 /* ---------- レスポンシブ ---------- */
 
 @media (max-width: 720px) {
@@ -1054,35 +782,17 @@ button {
     display: none;
   }
 
-  .ledger-panel {
-    top: 120px;
-    bottom: 88px;
-  }
-
   .hud-tooltip {
     left: 28px;
     right: 28px;
     transform: none;
-    bottom: 84px;
+    bottom: 96px;
     white-space: normal;
-  }
-
-  .year {
-    padding: 20px;
-  }
-
-  .year-number {
-    font-size: 64px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn,
-  .heat-cell {
+  .btn {
     transition: none;
-  }
-
-  .heat-cell:hover {
-    transform: none;
   }
 }

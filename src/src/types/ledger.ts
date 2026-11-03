@@ -15,6 +15,9 @@ export interface LedgerEntry {
 /** 月キー 'YYYY-MM' → その月の貯金目標（円） */
 export type MonthlyGoals = Record<string, number>;
 
+/** メンバー名 → そのメンバーの月ごとの貯金目標。目標を書いていないメンバーはキーが無い */
+export type GoalsByMember = Record<string, MonthlyGoals>;
+
 /**
  * 島の見た目。
  * - plain：いつもの草・土・石・雪

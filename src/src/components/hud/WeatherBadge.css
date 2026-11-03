@@ -1,0 +1,43 @@
+/* ---------- 現在の天気（右上、ログイン中の名前の下） ---------- */
+
+.weather-badge {
+  position: absolute;
+  top: 76px;
+  right: 28px;
+  max-width: 320px;
+  padding: 6px 12px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 4px 4px 0 var(--ink);
+  pointer-events: auto;
+}
+
+.weather-badge-main {
+  white-space: nowrap;
+}
+
+.weather-badge.is-debug {
+  border-style: dashed;
+}
+
+.weather-badge-debug {
+  font-size: 11px;
+  color: #7a3d00;
+}
+
+.weather-badge-error {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #b3261e;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .weather-badge {
+    top: 64px;
+    right: 16px;
+    max-width: calc(100vw - 32px);
+  }
+}

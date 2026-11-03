@@ -1,9 +1,19 @@
-import type { LedgerEntry, MonthlyGoals } from '../types/ledger';
+import type { GoalsByMember, LedgerEntry, MonthlyGoals } from '../types/ledger';
 
 const pad2 = (n: number): string => String(n).padStart(2, '0');
 
 export const toYearMonth = (year: number, month: number): string =>
   `${year}-${pad2(month)}`;
+
+/** そのメンバーの家計。owners に member を含む記帳（金額はそのまま計上） */
+export const entriesOf = (entries: LedgerEntry[], member: string): LedgerEntry[] =>
+  entries.filter((entry) => entry.owners.includes(member));
+
+const NO_GOALS: MonthlyGoals = Object.freeze({});
+
+/** そのメンバーの月目標。まだ 1 つも書いていなければ空 */
+export const goalsOf = (goals: GoalsByMember, member: string): MonthlyGoals =>
+  Object.hasOwn(goals, member) ? goals[member] : NO_GOALS;
 
 export interface MonthLedger {
   entries: LedgerEntry[];

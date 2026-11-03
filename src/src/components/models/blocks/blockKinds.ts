@@ -31,8 +31,8 @@ export const BLOCK_COLORS = {
   marbleSide: '#e6d7b8',
   goldGlass: '#ffd24a',
   goldGlassSide: '#1c2a44',
-  luxuryWater: '#4fd0f0',
-  luxurySea: '#2eb8e8',
+  luxuryWater: '#4fc2f0',
+  luxurySea: '#34ace7',
 } as const;
 
 /**

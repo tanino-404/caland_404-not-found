@@ -1,0 +1,69 @@
+/* ---------- 画面左右の月送り矢印 ---------- */
+
+.side-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 7;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.side-arrow-prev {
+  left: 28px;
+}
+
+.side-arrow-next {
+  right: 28px;
+}
+
+/* 看板の語彙（.btn）のまま、大きな正方形にする */
+.side-arrow-btn {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+}
+
+.side-arrow-btn svg {
+  width: 32px;
+  height: 28px;
+  fill: currentColor;
+  image-rendering: pixelated;
+}
+
+.side-arrow-label {
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+@media (max-width: 720px) {
+  .side-arrow-prev {
+    left: 12px;
+  }
+
+  .side-arrow-next {
+    right: 12px;
+  }
+
+  .side-arrow-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .side-arrow-btn svg {
+    width: 24px;
+    height: 21px;
+  }
+
+  .side-arrow-label {
+    font-size: 12px;
+  }
+}

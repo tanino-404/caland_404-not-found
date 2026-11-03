@@ -1,0 +1,374 @@
+/* ---------- 設定画面：暗い土ブロックのタイル（マイクラのオプション画面）+ 看板 ---------- */
+
+.settings {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  overflow: auto;
+}
+
+/* 16×16 の土テクスチャを 4 倍（64px）で敷き詰める。色は TSX 側で暗くしてある */
+.settings-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #3e2914;
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+}
+
+.settings-body {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 32px 16px;
+}
+
+/* マイクラのメニュー見出し：白文字に黒の硬い影 */
+.settings-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 4px 4px 0 #000000;
+}
+
+.settings-title svg {
+  image-rendering: pixelated;
+  filter: drop-shadow(3px 3px 0 #000000);
+}
+
+.settings-panel {
+  width: min(460px, calc(100vw - 32px));
+  padding: 22px 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 10px 10px 0 #000000;
+}
+
+.settings-user {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--paper-2);
+  border: 2px dashed var(--ink);
+}
+
+.settings-user dt {
+  font-size: 13px;
+}
+
+.settings-user dd {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 20px;
+}
+
+.settings-user .chip {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- 音量：マイクラのオプション画面のスライダー（灰色のレール + べベル付きのつまみ） ---------- */
+
+.settings-audio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-slider {
+  display: grid;
+  grid-template-columns: 76px 1fr 52px;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings-slider-label {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.settings-slider-value {
+  font-size: 16px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.mc-slider {
+  --mc-rail: #5a5a5a;
+  --mc-rail-light: #8a8a8a;
+  --mc-rail-dark: #2a2a2a;
+  --mc-bg: #8b8b8b;
+  --mc-light: #c6c6c6;
+  --mc-dark: #373737;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 26px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.mc-slider:hover,
+.mc-slider:focus-visible {
+  --mc-bg: #7a8fbd;
+  --mc-light: #b4c3e8;
+  --mc-dark: #2c3a5e;
+}
+
+.mc-slider:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* レール：沈んだべベル（暗い側が上・左） */
+.mc-slider::-webkit-slider-runnable-track {
+  height: 20px;
+  background: var(--mc-rail);
+  border: 3px solid;
+  border-color: var(--mc-rail-dark) var(--mc-rail-light) var(--mc-rail-light) var(--mc-rail-dark);
+  outline: 2px solid #000000;
+  box-sizing: border-box;
+}
+
+.mc-slider::-moz-range-track {
+  height: 20px;
+  background: var(--mc-rail);
+  border: 3px solid;
+  border-color: var(--mc-rail-dark) var(--mc-rail-light) var(--mc-rail-light) var(--mc-rail-dark);
+  outline: 2px solid #000000;
+  box-sizing: border-box;
+}
+
+/* つまみ：ボタンと同じ浮いたべベル */
+.mc-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 20px;
+  margin-top: -3px;
+  background: var(--mc-bg);
+  border: 3px solid;
+  border-color: var(--mc-light) var(--mc-dark) var(--mc-dark) var(--mc-light);
+  outline: 2px solid #000000;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.mc-slider::-moz-range-thumb {
+  width: 18px;
+  height: 20px;
+  background: var(--mc-bg);
+  border: 3px solid;
+  border-color: var(--mc-light) var(--mc-dark) var(--mc-dark) var(--mc-light);
+  outline: 2px solid #000000;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.settings-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 2px dashed var(--ink);
+}
+
+.settings-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.settings-error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #8b1a1a;
+}
+
+.settings-back {
+  align-self: flex-end;
+}
+
+/* ---------- マイクラのボタン：灰色のべベル、白文字に黒影 ---------- */
+
+.mc-btn {
+  --mc-bg: #8b8b8b;
+  --mc-light: #c6c6c6;
+  --mc-dark: #373737;
+  display: inline-block;
+  padding: 10px 16px;
+  background: var(--mc-bg);
+  border: 3px solid;
+  border-color: var(--mc-light) var(--mc-dark) var(--mc-dark) var(--mc-light);
+  outline: 2px solid #000000;
+  font-size: 16px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 #3f3f3f;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mc-btn:hover {
+  --mc-bg: #7a8fbd;
+  --mc-light: #b4c3e8;
+  --mc-dark: #2c3a5e;
+  color: #ffffa0;
+}
+
+.mc-btn:active {
+  border-color: var(--mc-dark) var(--mc-light) var(--mc-light) var(--mc-dark);
+}
+
+.mc-btn:focus-visible {
+  outline-color: var(--gold);
+}
+
+.mc-btn:disabled {
+  --mc-bg: #5a5a5a;
+  --mc-light: #8a8a8a;
+  --mc-dark: #2a2a2a;
+  color: #a0a0a0;
+  text-shadow: none;
+  cursor: not-allowed;
+}
+
+.mc-btn-danger:hover {
+  --mc-bg: #b04a3a;
+  --mc-light: #e09080;
+  --mc-dark: #5a1f14;
+}
+
+/* ---------- レスポンシブ ---------- */
+
+@media (max-width: 720px) {
+  .settings-title {
+    font-size: 32px;
+  }
+
+  .settings-panel {
+    padding: 16px 18px 14px;
+  }
+
+  .mc-btn {
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+
+/* ---------- デバッグモード（天気と時刻帯の手動切り替え） ---------- */
+
+.settings-debug {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--ink);
+}
+
+.settings-debug-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.settings-debug-row .settings-slider-label {
+  margin-right: auto;
+}
+
+.settings-debug-key {
+  min-width: 48px;
+  font-size: 13px;
+}
+
+/* マイクラのボタン風のトグル */
+.mc-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 92px;
+  height: 30px;
+  padding: 0 8px 0 34px;
+  border: 2px solid #1b1b1b;
+  background: #6f6f6f;
+  box-shadow: inset 2px 2px 0 #a8a8a8, inset -2px -2px 0 #3f3f3f;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #2b2b2b;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mc-toggle-knob {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 22px;
+  height: 18px;
+  background: #c6c6c6;
+  box-shadow: inset 2px 2px 0 #ffffff, inset -2px -2px 0 #5a5a5a;
+  transition: left 120ms steps(3);
+}
+
+.mc-toggle.is-on {
+  background: #4f8f2f;
+  box-shadow: inset 2px 2px 0 #8ed05a, inset -2px -2px 0 #2c5a19;
+  padding: 0 34px 0 10px;
+}
+
+.mc-toggle.is-on .mc-toggle-knob {
+  left: 62px;
+}
+
+.mc-toggle:focus-visible,
+.mc-chip:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.mc-chip {
+  padding: 4px 10px;
+  border: 2px solid #1b1b1b;
+  background: #8b8b8b;
+  box-shadow: inset 2px 2px 0 #b5b5b5, inset -2px -2px 0 #555555;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #2b2b2b;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mc-chip:hover {
+  background: #9a9ac8;
+}
+
+.mc-chip.is-selected {
+  background: #ffc83d;
+  box-shadow: inset 2px 2px 0 #ffe7a0, inset -2px -2px 0 #b8861a;
+  color: var(--ink);
+  text-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-toggle-knob {
+    transition: none;
+  }
+}

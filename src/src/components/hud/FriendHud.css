@@ -1,0 +1,10 @@
+/* ---------- 友達の島 HUD（global.css の .hud 系に足す分だけ） ---------- */
+
+/* 下中央のツールチップ。下部バー（bottom 20px・高さ 60px 程度）の上に出す */
+.hud-tooltip.friend-tooltip {
+  bottom: 96px;
+}
+
+.friend-tooltip .link-btn {
+  font-size: 12px;
+}

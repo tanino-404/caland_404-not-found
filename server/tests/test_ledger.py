@@ -20,15 +20,20 @@ import app
 import db
 import seed
 
-JS_SAMPLE_SHA256 = "5fb31f489f318adb85c32e800bfb6bf08b0a1a0f78a0c98efb91184db86bf8b3"
+JS_SAMPLE_SHA256 = "d54bf63d3adca37a8835e946f51b92bf99b4110213bd89b9347903498307e62d"
+# サンプル家計を DB に入れるときの「今日」。これより後の記帳は DB に入らない。
+TODAY = "2026-11-03"
+TARO = "たろう"
+HANA = "はなこ"
 
 
-def savings(entries: list[dict], year_month: str) -> int:
+def savings(entries: list[dict], member: str, year_month: str) -> int:
+    """そのメンバーの月の貯金。owners に member を含む記帳を金額そのままで数える。"""
     income = 0
     expense = 0
     prefix = f"{year_month}-"
     for entry in entries:
-        if not str(entry["date"]).startswith(prefix):
+        if member not in entry["owners"] or not str(entry["date"]).startswith(prefix):
             continue
         if entry["kind"] == "income":
             income += entry["amount"]
@@ -42,11 +47,19 @@ def canonical_sample_hash(entries: list[dict]) -> str:
     return hashlib.sha256(blob).hexdigest()
 
 
+def seeded_entries() -> list[dict]:
+    """DB に入るサンプル記帳。TODAY より後は除く。"""
+    entries, _ = seed.build_sample()
+    return [entry for entry in entries if entry["date"] <= TODAY]
+
+
 class LedgerApiTest(unittest.TestCase):
     def setUp(self) -> None:
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.db_path = Path(self.tmp.name) / "ledger.sqlite"
+        db.TODAY_OVERRIDE = TODAY
+        self.addCleanup(setattr, db, "TODAY_OVERRIDE", None)
         self.httpd: app.LedgerHTTPServer | None = None
         self.thread: threading.Thread | None = None
         self.base = ""
@@ -115,16 +128,29 @@ class LedgerApiTest(unittest.TestCase):
     def test_sample_matches_javascript_seed(self) -> None:
         entries, goals = seed.build_sample()
         self.assertEqual(JS_SAMPLE_SHA256, canonical_sample_hash(entries))
-        self.assertEqual(158, len(entries))
-        self.assertEqual({f"2026-{month:02d}": 50_000 for month in range(1, 13)}, goals)
-        self.assertGreaterEqual(savings(entries, "2026-03"), 50_000)
-        self.assertLess(savings(entries, "2026-08"), 50_000)
-        self.assertEqual(129_000, savings(entries, "2026-03"))
-        self.assertEqual(-51_600, savings(entries, "2026-08"))
+        self.assertEqual(870, len(entries))
+        every_month = {
+            f"{year}-{month:02d}": 30_000 for year in (2025, 2026, 2027) for month in range(1, 13)
+        }
+        self.assertEqual({TARO: every_month, HANA: every_month}, goals)
+        self.assertEqual({1}, {len(entry["owners"]) for entry in entries})
+        self.assertGreaterEqual(savings(entries, TARO, "2026-03"), 30_000)
+        self.assertLess(savings(entries, TARO, "2026-08"), 30_000)
+        self.assertEqual(66_000, savings(entries, TARO, "2026-03"))
+        self.assertEqual(-26_400, savings(entries, TARO, "2026-08"))
+        self.assertEqual(63_000, savings(entries, HANA, "2026-03"))
+        self.assertEqual(-25_200, savings(entries, HANA, "2026-08"))
+        for member in (TARO, HANA):
+            luxurious = [
+                month
+                for month in range(1, 13)
+                if savings(entries, member, f"2026-{month:02d}") >= 30_000
+            ]
+            self.assertEqual([1, 3, 4, 7, 11, 12], luxurious)
         self.assertEqual(
             {
-                "id": "ledger-sample-0",
-                "date": "2026-01-25",
+                "id": "ledger-sample-2025-0",
+                "date": "2025-01-25",
                 "kind": "income",
                 "amount": 220_000,
                 "title": "給与",
@@ -132,8 +158,15 @@ class LedgerApiTest(unittest.TestCase):
             },
             entries[0],
         )
-        self.assertEqual(["たろう", "はなこ"], entries[2]["owners"])
-        self.assertEqual("家賃", entries[2]["title"])
+        self.assertEqual([TARO], entries[1]["owners"])
+        self.assertEqual("家賃", entries[1]["title"])
+        self.assertEqual(42_500, entries[1]["amount"])
+        self.assertEqual([HANA], entries[12]["owners"])
+        self.assertEqual("給与", entries[12]["title"])
+        self.assertEqual(210_000, entries[12]["amount"])
+        self.assertEqual("ledger-sample-2026-0", entries[290]["id"])
+        self.assertEqual("2026-01-25", entries[290]["date"])
+        self.assertEqual("ledger-sample-2027-0", entries[580]["id"])
 
     def test_empty_db_is_seeded_on_startup(self) -> None:
         self.assertFalse(self.db_path.exists())
@@ -141,11 +174,26 @@ class LedgerApiTest(unittest.TestCase):
         status, payload = self.request("GET", "/api/ledger")
         self.assertEqual(200, status)
         assert isinstance(payload, dict)
-        entries, goals = seed.build_sample()
+        entries = seeded_entries()
+        _, goals = seed.build_sample()
         self.assertEqual(entries, payload["entries"])
         self.assertEqual(goals, payload["goals"])
-        self.assertGreaterEqual(savings(payload["entries"], "2026-03"), 50_000)
-        self.assertLess(savings(payload["entries"], "2026-08"), 50_000)
+        self.assertTrue(all(entry["date"] <= TODAY for entry in payload["entries"]))
+        for member in (TARO, HANA):
+            luxurious = [
+                f"{year}-{month:02d}"
+                for year in (2025, 2026, 2027)
+                for month in range(1, 13)
+                if savings(payload["entries"], member, f"{year}-{month:02d}")
+                >= payload["goals"][member][f"{year}-{month:02d}"]
+            ]
+            self.assertEqual(
+                [
+                    "2025-01", "2025-03", "2025-04", "2025-07", "2025-11", "2025-12",
+                    "2026-01", "2026-03", "2026-04", "2026-07",
+                ],
+                luxurious,
+            )
 
         self.stop()
         db.ensure_ready(self.db_path)
@@ -164,8 +212,8 @@ class LedgerApiTest(unittest.TestCase):
         status, payload = self.request("GET", "/api/ledger")
         self.assertEqual(200, status)
         assert isinstance(payload, dict)
-        entries, goals = seed.build_sample()
-        self.assertEqual(entries, payload["entries"])
+        _, goals = seed.build_sample()
+        self.assertEqual(seeded_entries(), payload["entries"])
         self.assertEqual(goals, payload["goals"])
 
     def test_add_forbid_other_user_update_goal_and_reset(self) -> None:
@@ -234,25 +282,44 @@ class LedgerApiTest(unittest.TestCase):
         status, goal = self.request(
             "PUT",
             "/api/goals",
-            {"year": 2026, "month": 8, "amount": 99999},
+            {"owner": HANA, "year": 2026, "month": 8, "amount": 99999},
         )
         self.assertEqual(200, status)
-        self.assertEqual({"yearMonth": "2026-08", "amount": 99999}, goal)
+        self.assertEqual({"owner": HANA, "yearMonth": "2026-08", "amount": 99999}, goal)
+
+        status, stranger = self.request(
+            "PUT",
+            "/api/goals",
+            {"owner": "ななし", "year": 2026, "month": 8, "amount": 1000},
+        )
+        self.assertEqual(400, status)
+        self.assertEqual({"error": '"ななし" はメンバーではありません'}, stranger)
+
+        status, no_owner = self.request(
+            "PUT",
+            "/api/goals",
+            {"year": 2026, "month": 8, "amount": 1000},
+        )
+        self.assertEqual(400, status)
+        self.assertEqual({"error": "owner がありません"}, no_owner)
 
         status, listed = self.request("GET", "/api/ledger")
         assert isinstance(listed, dict)
-        self.assertEqual(99999, listed["goals"]["2026-08"])
+        self.assertEqual(99999, listed["goals"][HANA]["2026-08"])
+        self.assertEqual(30_000, listed["goals"][TARO]["2026-08"])
+        self.assertNotIn("ななし", listed["goals"])
         self.assertIn(created["id"], [entry["id"] for entry in listed["entries"]])
 
         status, reset = self.request("POST", "/api/ledger/reset")
         self.assertEqual(200, status)
-        entries, goals = seed.build_sample()
-        self.assertEqual({"entries": entries, "goals": goals}, reset)
+        _, goals = seed.build_sample()
+        self.assertEqual({"entries": seeded_entries(), "goals": goals}, reset)
         assert isinstance(reset, dict)
         self.assertNotIn(created["id"], [entry["id"] for entry in reset["entries"]])
-        self.assertEqual(50_000, reset["goals"]["2026-08"])
-        self.assertGreaterEqual(savings(reset["entries"], "2026-03"), 50_000)
-        self.assertLess(savings(reset["entries"], "2026-08"), 50_000)
+        self.assertEqual(30_000, reset["goals"][HANA]["2026-08"])
+        self.assertGreaterEqual(savings(reset["entries"], TARO, "2026-03"), 30_000)
+        self.assertLess(savings(reset["entries"], TARO, "2026-08"), 30_000)
+        self.assertLess(savings(reset["entries"], TARO, "2026-11"), 30_000)
 
     def test_restart_keeps_rows(self) -> None:
         self.start()
@@ -274,7 +341,7 @@ class LedgerApiTest(unittest.TestCase):
         status, payload = self.request("GET", "/api/ledger")
         self.assertEqual(200, status)
         assert isinstance(payload, dict)
-        self.assertEqual(159, len(payload["entries"]))
+        self.assertEqual(len(seeded_entries()) + 1, len(payload["entries"]))
         self.assertIn(created["id"], [entry["id"] for entry in payload["entries"]])
 
     def test_invalid_json_returns_parser_message(self) -> None:

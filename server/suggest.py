@@ -84,7 +84,7 @@ HEAT_WORDS = ("うちわ", "扇子", "冷感", "塩飴", "塩タブレット", "
 WET_MARKS = ("雨", "雪", "雷", "あられ", "みぞれ")
 
 
-def _load_env() -> dict[str, str]:
+def load_env() -> dict[str, str]:
     if not ENV_PATH.exists():
         raise LedgerError(500, f"{ENV_PATH} がありません。secret/.env.template を基に作成してください")
     values: dict[str, str] = {}
@@ -180,7 +180,7 @@ def _search_place(place: str) -> dict:
     return candidates[0]
 
 
-def _fetch_feels_like(lat: float, lon: float, api_key: str) -> dict:
+def fetch_feels_like(lat: float, lon: float, api_key: str) -> dict:
     params = urllib.parse.urlencode({"lat": lat, "lon": lon, "key": api_key, "format": "json"})
     req = urllib.request.Request(f"{YUMAKE_URL}?{params}", headers={"User-Agent": USER_AGENT})
     body = _http_json(req, 30.0, "YuMake 体感温度予報 API")
@@ -460,7 +460,7 @@ def run(body: object) -> dict:
     place = db._require_text(payload, "place")
 
     # 外部 API を呼ぶ前に、必要なキーがすべて揃っているかを先に確かめる
-    env = _load_env()
+    env = load_env()
     claude_key = _require_env(env, "CLAUDE_API_KEY")
     yumake_key = _require_env(env, "YUMAKE_API_KEY")
     line_token = _require_env(env, "LINE_CHANNEL_ACCESS_TOKEN")
@@ -468,7 +468,7 @@ def run(body: object) -> dict:
     model = env.get("CLAUDE_MODEL", "").strip() or DEFAULT_CLAUDE_MODEL
 
     spot = _search_place(place)
-    forecast = _fetch_feels_like(spot["lat"], spot["lon"], yumake_key)
+    forecast = fetch_feels_like(spot["lat"], spot["lon"], yumake_key)
     hours = _extract_hours(forecast, date)
     facts = _weather_facts(hours)
     context = _context(date, title, CATEGORY_LABELS[category], spot, hours, facts)

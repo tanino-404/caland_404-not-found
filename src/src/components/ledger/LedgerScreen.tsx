@@ -1,23 +1,23 @@
 import { type FormEvent, useState } from 'react';
 import { daysInMonth } from '../../lib/calendar';
-import { formatYen, type MonthLedger } from '../../lib/ledger';
+import { formatYen, toYearMonth, type MonthLedger } from '../../lib/ledger';
 import type { LedgerKind } from '../../types/ledger';
+import './LedgerScreen.css';
 
-export interface LedgerHudProps {
+export interface LedgerScreenProps {
   year: number;
   month: number;
   currentUser: string;
+  /** lib/ledger.ts の monthLedger() の戻り */
   ledger: MonthLedger;
   goal: number | null;
   achieved: boolean;
-  onAdd: (
-    day: number,
-    kind: LedgerKind,
-    amount: number,
-    title: string,
-  ) => void | Promise<void>;
-  onRemove: (entryId: string) => void;
-  onSetGoal: (amount: number) => void;
+  onAdd: (day: number, kind: LedgerKind, amount: number, title: string) => Promise<void>;
+  onRemove: (entryId: string) => Promise<void>;
+  onSetGoal: (amount: number) => Promise<void>;
+  onPrevMonth: () => void;
+  onNextMonth: () => void;
+  /** 「✕ 閉じる」で呼ぶ。親が家計簿を閉じて元の表示に戻す */
   onClose: () => void;
 }
 
@@ -26,7 +26,12 @@ const KIND_LABEL: Record<LedgerKind, string> = {
   expense: '支出',
 };
 
-export const LedgerHud = ({
+const errorMessage = (err: unknown): string => (err instanceof Error ? err.message : String(err));
+
+const wrapMonth = (month: number, delta: number): number => ((month - 1 + delta + 12) % 12) + 1;
+
+/** 管理機能「家計簿」。下部バーで開く独立した表示で、月送りを持つ */
+export const LedgerScreen = ({
   year,
   month,
   currentUser,
@@ -36,15 +41,31 @@ export const LedgerHud = ({
   onAdd,
   onRemove,
   onSetGoal,
+  onPrevMonth,
+  onNextMonth,
   onClose,
-}: LedgerHudProps) => {
+}: LedgerScreenProps) => {
   const days = daysInMonth(year, month);
+  const monthKey = toYearMonth(year, month);
+  const [shownMonth, setShownMonth] = useState(monthKey);
   const [kind, setKind] = useState<LedgerKind>('expense');
   const [day, setDay] = useState(String(Math.min(25, days)));
   const [amount, setAmount] = useState('');
   const [title, setTitle] = useState('');
   const [goalInput, setGoalInput] = useState(goal === null ? '' : String(goal));
   const [entryError, setEntryError] = useState<string | null>(null);
+  const [goalError, setGoalError] = useState<string | null>(null);
+  const [removeError, setRemoveError] = useState<string | null>(null);
+
+  // 月送りで表示月が変わったら、入力欄をその月の値に合わせる
+  if (shownMonth !== monthKey) {
+    setShownMonth(monthKey);
+    setDay(String(Math.min(25, days)));
+    setGoalInput(goal === null ? '' : String(goal));
+    setEntryError(null);
+    setGoalError(null);
+    setRemoveError(null);
+  }
 
   const remain = goal === null ? 0 : goal - ledger.savings;
   const ratio = goal === null ? 0 : Math.min(1, Math.max(0, ledger.savings / goal));
@@ -57,13 +78,13 @@ export const LedgerHud = ({
     const trimmed = title.trim();
     try {
       if (!Number.isInteger(dayN) || dayN < 1 || dayN > days) {
-        throw new Error(`LedgerHud: 日が不正です: ${day}`);
+        throw new Error(`LedgerScreen: 日が不正です: ${day}`);
       }
       if (!Number.isInteger(amountN) || amountN < 1) {
-        throw new Error(`LedgerHud: 金額は 1 円以上の整数にしてください: ${amount}`);
+        throw new Error(`LedgerScreen: 金額は 1 円以上の整数にしてください: ${amount}`);
       }
       if (trimmed.length === 0) {
-        throw new Error('LedgerHud: タイトルが空です');
+        throw new Error('LedgerScreen: タイトルが空です');
       }
       await onAdd(dayN, kind, amountN, trimmed);
       setAmount('');
@@ -71,17 +92,33 @@ export const LedgerHud = ({
       setEntryError(null);
     } catch (err) {
       console.error(err);
-      setEntryError(err instanceof Error ? err.message : String(err));
+      setEntryError(errorMessage(err));
     }
   };
 
-  const submitGoal = (e: FormEvent) => {
+  const submitGoal = async (e: FormEvent) => {
     e.preventDefault();
     const amountN = Number(goalInput);
-    if (!Number.isInteger(amountN) || amountN < 1) {
-      throw new Error(`LedgerHud: 目標は 1 円以上の整数にしてください: ${goalInput}`);
+    try {
+      if (!Number.isInteger(amountN) || amountN < 1) {
+        throw new Error(`LedgerScreen: 目標は 1 円以上の整数にしてください: ${goalInput}`);
+      }
+      await onSetGoal(amountN);
+      setGoalError(null);
+    } catch (err) {
+      console.error(err);
+      setGoalError(errorMessage(err));
     }
-    onSetGoal(amountN);
+  };
+
+  const removeEntry = async (entryId: string) => {
+    try {
+      await onRemove(entryId);
+      setRemoveError(null);
+    } catch (err) {
+      console.error(err);
+      setRemoveError(errorMessage(err));
+    }
   };
 
   return (
@@ -91,9 +128,34 @@ export const LedgerHud = ({
           <div className="ledger-kicker">{year}年{month}月</div>
           <h2 className="ledger-title">家計簿</h2>
         </div>
-        <button type="button" className="link-btn" onClick={onClose}>
-          閉じる
-        </button>
+        <div className="ledger-month-nav">
+          <button
+            type="button"
+            className="btn btn-small"
+            aria-label={`${wrapMonth(month, -1)}月へ`}
+            title={`${wrapMonth(month, -1)}月へ`}
+            onClick={onPrevMonth}
+          >
+            ◀
+          </button>
+          <button
+            type="button"
+            className="btn btn-small"
+            aria-label={`${wrapMonth(month, 1)}月へ`}
+            title={`${wrapMonth(month, 1)}月へ`}
+            onClick={onNextMonth}
+          >
+            ▶
+          </button>
+          <button
+            type="button"
+            className="btn btn-small ledger-close"
+            aria-label="家計簿を閉じる"
+            onClick={onClose}
+          >
+            ✕ 閉じる
+          </button>
+        </div>
       </header>
 
       <dl className="ledger-sums">
@@ -148,6 +210,11 @@ export const LedgerHud = ({
             目標にする
           </button>
         </div>
+        {goalError !== null ? (
+          <p className="ledger-status" role="alert">
+            {goalError}
+          </p>
+        ) : null}
       </form>
 
       <form className="ledger-entry-form" onSubmit={submitEntry}>
@@ -205,6 +272,11 @@ export const LedgerHud = ({
         ) : null}
       </form>
 
+      {removeError !== null ? (
+        <p className="ledger-status" role="alert">
+          {removeError}
+        </p>
+      ) : null}
       {ledger.entries.length === 0 ? (
         <p className="ledger-empty">この月の記帳はまだありません。</p>
       ) : (
@@ -222,7 +294,7 @@ export const LedgerHud = ({
                   {formatYen(entry.amount)}
                 </span>
                 {mine ? (
-                  <button type="button" className="link-btn" onClick={() => onRemove(entry.id)}>
+                  <button type="button" className="link-btn" onClick={() => removeEntry(entry.id)}>
                     消す
                   </button>
                 ) : (

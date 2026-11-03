@@ -10,6 +10,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 import db
 import suggest
+import weather
 
 HOST = "127.0.0.1"
 PORT = 8787
@@ -119,6 +120,9 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
             if self.command == "GET" and path == "/api/calendar":
                 self._write_json(200, db.fetch_calendar(db_path))
                 return
+            if self.command == "GET" and path == "/api/weather":
+                self._write_json(200, weather.get_weather_now())
+                return
             if self.command == "POST" and path == "/api/ledger":
                 self._write_json(201, db.add_entry(db_path, _read_body(self)))
                 return
@@ -128,8 +132,11 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
             if self.command == "POST" and path == "/api/reset":
                 self._write_json(200, db.reset_demo(db_path))
                 return
-            if self.command == "POST" and path == "/api/members":
-                self._write_json(200, db.add_member(db_path, _read_body(self)))
+            if self.command == "POST" and path == "/api/login":
+                self._write_json(200, db.login_member(db_path, _read_body(self)))
+                return
+            if self.command == "POST" and path == "/api/register":
+                self._write_json(201, db.register_member(db_path, _read_body(self)))
                 return
             if self.command == "POST" and path == "/api/events":
                 self._write_json(201, db.add_event(db_path, _read_body(self)))
@@ -161,8 +168,10 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
                 "/api/ledger",
                 "/api/ledger/reset",
                 "/api/calendar",
+                "/api/weather",
                 "/api/reset",
-                "/api/members",
+                "/api/login",
+                "/api/register",
                 "/api/events",
                 "/api/suggest",
                 "/api/goals",

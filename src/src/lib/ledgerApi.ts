@@ -1,8 +1,9 @@
-import type { LedgerEntry, LedgerKind, MonthlyGoals } from '../types/ledger';
+import type { GoalsByMember, LedgerEntry, LedgerKind, MonthlyGoals } from '../types/ledger';
 
 export interface LedgerSnapshot {
   entries: LedgerEntry[];
-  goals: MonthlyGoals;
+  /** メンバー名 → 'YYYY-MM' → 目標（円） */
+  goals: GoalsByMember;
 }
 
 export interface NewLedgerRequest {
@@ -15,8 +16,17 @@ export interface NewLedgerRequest {
 }
 
 export interface MonthlyGoalRequest {
+  /** 目標を持つメンバー名。サーバーに登録済みであること */
+  owner: string;
   year: number;
   month: number;
+  amount: number;
+}
+
+export interface MonthlyGoalResult {
+  owner: string;
+  /** 'YYYY-MM' */
+  yearMonth: string;
   amount: number;
 }
 
@@ -72,18 +82,42 @@ const asLedgerEntry = (body: unknown): LedgerEntry => {
   };
 };
 
+const asMonthlyGoals = (member: string, body: unknown): MonthlyGoals => {
+  if (!isRecord(body)) {
+    throw new Error(`ledgerApi: ${member} の目標がオブジェクトではありません: ${JSON.stringify(body)}`);
+  }
+  return Object.fromEntries(
+    Object.entries(body).map(([yearMonth, value]) => {
+      if (typeof value !== 'number') {
+        throw new Error(
+          `ledgerApi: 目標が数値ではありません: ${member} ${yearMonth}=${JSON.stringify(value)}`,
+        );
+      }
+      return [yearMonth, value];
+    }),
+  );
+};
+
 export const asLedgerSnapshot = (body: unknown): LedgerSnapshot => {
   if (!isRecord(body) || !Array.isArray(body.entries) || !isRecord(body.goals)) {
     throw new Error(`ledgerApi: 家計の応答形式が不正です: ${JSON.stringify(body)}`);
   }
-  const goals: MonthlyGoals = {};
-  for (const [key, value] of Object.entries(body.goals)) {
-    if (typeof value !== 'number') {
-      throw new Error(`ledgerApi: 目標が数値ではありません: ${key}=${JSON.stringify(value)}`);
-    }
-    goals[key] = value;
-  }
+  const goals: GoalsByMember = Object.fromEntries(
+    Object.entries(body.goals).map(([member, value]) => [member, asMonthlyGoals(member, value)]),
+  );
   return { entries: body.entries.map((entry) => asLedgerEntry(entry)), goals };
+};
+
+const asMonthlyGoalResult = (body: unknown): MonthlyGoalResult => {
+  if (
+    !isRecord(body) ||
+    typeof body.owner !== 'string' ||
+    typeof body.yearMonth !== 'string' ||
+    typeof body.amount !== 'number'
+  ) {
+    throw new Error(`ledgerApi: 目標の応答形式が不正です: ${JSON.stringify(body)}`);
+  }
+  return { owner: body.owner, yearMonth: body.yearMonth, amount: body.amount };
 };
 
 export const fetchLedger = async (): Promise<LedgerSnapshot> =>
@@ -96,9 +130,8 @@ export const deleteLedgerEntry = async (id: string, user: string): Promise<void>
   await request(`/api/ledger/${id}?user=${encodeURIComponent(user)}`, { method: 'DELETE' });
 };
 
-export const putMonthlyGoal = async (body: MonthlyGoalRequest): Promise<void> => {
-  await request('/api/goals', jsonInit('PUT', body));
-};
+export const putMonthlyGoal = async (body: MonthlyGoalRequest): Promise<MonthlyGoalResult> =>
+  asMonthlyGoalResult(await request('/api/goals', jsonInit('PUT', body)));
 
 export const resetLedger = async (): Promise<LedgerSnapshot> =>
   asLedgerSnapshot(await request('/api/ledger/reset', { method: 'POST' }));

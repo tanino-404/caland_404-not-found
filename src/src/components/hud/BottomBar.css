@@ -1,0 +1,219 @@
+/* ---------- 下部バー：マイクラのホットバー ---------- */
+
+.hotbar {
+  --hotbar-slot: 60px;
+  --hotbar-icon: 40px;
+  --hotbar-slot-bg: #8b8b8b;
+  --hotbar-bevel-light: #c6c6c6;
+  --hotbar-bevel-dark: #373737;
+  --hotbar-frame: #2b2b2b;
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 8;
+  pointer-events: auto;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--hotbar-frame);
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.hotbar-slot {
+  position: relative;
+}
+
+.hotbar-slot.is-disabled {
+  cursor: not-allowed;
+}
+
+.hotbar-btn {
+  display: grid;
+  place-items: center;
+  width: var(--hotbar-slot);
+  height: var(--hotbar-slot);
+  padding: 0;
+  background: var(--hotbar-slot-bg);
+  border: 3px solid;
+  border-color: var(--hotbar-bevel-light) var(--hotbar-bevel-dark) var(--hotbar-bevel-dark)
+    var(--hotbar-bevel-light);
+  cursor: pointer;
+}
+
+.hotbar-btn svg {
+  width: var(--hotbar-icon);
+  height: var(--hotbar-icon);
+  image-rendering: pixelated;
+}
+
+.hotbar-btn:hover {
+  background: #a3a3a3;
+}
+
+.hotbar-btn:active {
+  border-color: var(--hotbar-bevel-dark) var(--hotbar-bevel-light) var(--hotbar-bevel-light)
+    var(--hotbar-bevel-dark);
+}
+
+.hotbar-btn:active svg {
+  transform: translate(1px, 1px);
+}
+
+.hotbar-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* 選択中のスロット：マイクラの白い太枠 */
+.hotbar-slot.is-active .hotbar-btn {
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 0 0 4px var(--hotbar-frame);
+  z-index: 1;
+}
+
+/* disabled はポインターを親へ通し、ツールチップを出せるようにする */
+.hotbar-btn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ---------- ツールチップ（スロットの真上に看板） ---------- */
+
+.hotbar-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0 var(--ink);
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 2;
+}
+
+.hotbar-tip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: var(--ink);
+}
+
+.hotbar-slot:hover > .hotbar-tip,
+.hotbar-btn:focus-visible + .hotbar-tip {
+  visibility: visible;
+}
+
+.hotbar-slot.is-open > .hotbar-tip {
+  visibility: hidden;
+}
+
+/* ---------- 管理機能のリスト（上方向に開く） ---------- */
+
+.hotbar-menu {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translateX(-50%);
+  min-width: 180px;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  z-index: 3;
+}
+
+.hotbar-menu::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: var(--ink);
+}
+
+.hotbar-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 14px;
+  background: none;
+  border: 0;
+  font-size: 15px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.hotbar-menu-item svg {
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.hotbar-menu-label {
+  flex: 1;
+}
+
+.hotbar-menu-soon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.hotbar-menu-item:hover,
+.hotbar-menu-item:focus-visible {
+  background: var(--gold);
+  outline: none;
+}
+
+.hotbar-menu-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.hotbar-menu-item:disabled:hover {
+  background: none;
+}
+
+/* ---------- レスポンシブ ---------- */
+
+/* 月送りボタン（左下）と凡例（右下 260px）に挟まれるので、狭い画面ではスロットを縮める */
+@media (max-width: 960px) {
+  .hotbar {
+    --hotbar-slot: 50px;
+    --hotbar-icon: 34px;
+  }
+}
+
+/* 720px 以下は凡例が消える（global.css）ので、月送りボタンを避けて右下に寄せる */
+@media (max-width: 720px) {
+  .hotbar {
+    --hotbar-slot: 46px;
+    --hotbar-icon: 30px;
+    left: auto;
+    right: 16px;
+    bottom: 16px;
+    transform: none;
+  }
+
+  .hotbar-tip {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotbar-btn:active svg {
+    transform: none;
+  }
+}

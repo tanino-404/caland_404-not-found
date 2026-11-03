@@ -1,27 +1,21 @@
-import { useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
-  BufferGeometry,
   CanvasTexture,
   CircleGeometry,
-  Color,
   CylinderGeometry,
   DoubleSide,
-  Float32BufferAttribute,
-  InstancedMesh,
-  Matrix4,
   MeshBasicMaterial,
   MeshStandardMaterial,
-  Object3D,
   PlaneGeometry,
   SRGBColorSpace,
   TorusGeometry,
 } from 'three';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
+import { CelebrationRain, type RainObjectSpec } from '../effects/CelebrationRain';
 import { UNIT_BOX } from '../models/materials';
 
 const COIN_COUNT = 18;
 const BILL_COUNT = 12;
-const SPARK_COUNT = 28;
 
 const paint = (width: number, height: number, draw: (ctx: CanvasRenderingContext2D) => void): CanvasTexture => {
   const canvas = document.createElement('canvas');
@@ -177,10 +171,37 @@ const paintBillFace = (): CanvasTexture => paint(1024, 480, (ctx) => {
   ctx.fillText('DOLLARS', 530, 432);
 });
 
-const COIN_BODY = new CylinderGeometry(0.5, 0.5, 0.28, 40);
-const COIN_RIM = new TorusGeometry(0.5, 0.075, 12, 40);
-const COIN_FACE = new CircleGeometry(0.455, 40);
-const BILL_FACE = new PlaneGeometry(1.35, 0.63);
+/**
+ * 金貨：胴（円柱）＋縁（トーラス）＋表裏の面（円）を 1 つの geometry に結合し、材質はグループ順の配列。
+ * 札：紙の厚みの箱＋表裏の面。
+ */
+const buildCoinGeometry = () => {
+  const body = new CylinderGeometry(0.5, 0.5, 0.28, 40);
+  const rim = new TorusGeometry(0.5, 0.075, 12, 40).rotateX(Math.PI / 2);
+  const front = new CircleGeometry(0.455, 40).rotateX(-Math.PI / 2).translate(0, 0.142, 0);
+  const back = new CircleGeometry(0.455, 40).rotateX(Math.PI / 2).translate(0, -0.142, 0);
+  const merged = mergeGeometries([body, rim, front, back], true);
+  if (merged === null) {
+    throw new Error('LuxuryFx: 金貨の geometry の結合に失敗しました');
+  }
+  [body, rim, front, back].forEach((g) => g.dispose());
+  return merged;
+};
+
+const buildBillGeometry = () => {
+  const edge = UNIT_BOX.clone().scale(1.35, 0.63, 0.04);
+  const front = new PlaneGeometry(1.35, 0.63).translate(0, 0, 0.022);
+  const back = new PlaneGeometry(1.35, 0.63).rotateY(Math.PI).translate(0, 0, -0.022);
+  const merged = mergeGeometries([edge, front, back], true);
+  if (merged === null) {
+    throw new Error('LuxuryFx: 札の geometry の結合に失敗しました');
+  }
+  [edge, front, back].forEach((g) => g.dispose());
+  return merged;
+};
+
+const COIN_GEOMETRY = buildCoinGeometry();
+const BILL_GEOMETRY = buildBillGeometry();
 
 const COIN_BODY_MAT = new MeshStandardMaterial({
   color: '#f0b423',
@@ -192,207 +213,91 @@ const COIN_RIM_MAT = new MeshStandardMaterial({
   roughness: 0.34,
   metalness: 0.38,
 });
-const COIN_FACE_MAT = new MeshBasicMaterial({
-  side: DoubleSide,
-  polygonOffset: true,
-  polygonOffsetFactor: -2,
-  polygonOffsetUnits: -2,
-});
 const BILL_EDGE_MAT = new MeshStandardMaterial({ color: '#8fb56e', roughness: 0.86, metalness: 0 });
-const BILL_FACE_MAT = new MeshBasicMaterial({
-  side: DoubleSide,
-  polygonOffset: true,
-  polygonOffsetFactor: -2,
-  polygonOffsetUnits: -2,
-});
 
-/** 縦棒と横棒を1枚の十字にする。インスタンスのスケールで点滅させる。 */
-const SPARK_CROSS = new BufferGeometry();
-SPARK_CROSS.setAttribute(
-  'position',
-  new Float32BufferAttribute(
-    [
-      -0.07, -0.5, 0, 0.07, -0.5, 0, 0.07, 0.5, 0,
-      -0.07, -0.5, 0, 0.07, 0.5, 0, -0.07, 0.5, 0,
-      -0.5, -0.07, 0, 0.5, -0.07, 0, 0.5, 0.07, 0,
-      -0.5, -0.07, 0, 0.5, 0.07, 0, -0.5, 0.07, 0,
-    ],
-    3,
-  ),
-);
-const SPARK_MAT = new MeshBasicMaterial({
-  color: '#ffffff',
-  side: DoubleSide,
-  transparent: true,
-  opacity: 0.95,
-  depthWrite: false,
-  toneMapped: false,
-});
-const SPARK_WHITE = new Color('#fff6c8');
-const SPARK_GOLD = new Color('#ffe27a');
-const sparkTint = new Color();
+/** 面（表裏）用。map は書体が載ってから差す */
+const faceMaterial = (map: CanvasTexture | null): MeshBasicMaterial =>
+  new MeshBasicMaterial({
+    map,
+    side: DoubleSide,
+    polygonOffset: true,
+    polygonOffsetFactor: -2,
+    polygonOffsetUnits: -2,
+  });
+
+interface CurrencyFaces {
+  coin: CanvasTexture;
+  bill: CanvasTexture;
+}
 
 const CURRENCY_FONT = '400px "DotGothic16"';
 
-/** 書体が載ってから面を描き、既存マテリアルの map を差し替える。使えなければ投げる。 */
-const applyCurrencyFaces = (): Promise<void> =>
+/** 書体が載ってから面を描く。使えなければ投げる（握りつぶさない）。 */
+const paintCurrencyFaces = (): Promise<CurrencyFaces> =>
   document.fonts.ready.then(() => document.fonts.load(CURRENCY_FONT)).then((loaded) => {
     if (!document.fonts.check(CURRENCY_FONT)) {
       throw new Error(
         `LuxuryFx: DotGothic16 が使えません (loaded=${String(loaded.length)}, status=${loaded.map((face) => `${face.family}:${face.status}`).join(',') || 'none'})`,
       );
     }
-    const previousCoin = COIN_FACE_MAT.map;
-    const previousBill = BILL_FACE_MAT.map;
-    COIN_FACE_MAT.map = paintCoinFace();
-    BILL_FACE_MAT.map = paintBillFace();
-    COIN_FACE_MAT.needsUpdate = true;
-    BILL_FACE_MAT.needsUpdate = true;
-    previousCoin?.dispose();
-    previousBill?.dispose();
+    return { coin: paintCoinFace(), bill: paintBillFace() };
   });
 
-void applyCurrencyFaces();
+/** 1 回だけ描く。失敗はそのまま unhandled rejection としてコンソールに出る */
+const currencyFacesReady = paintCurrencyFaces();
 
-const root = new Object3D();
-const part = new Object3D();
-const composed = new Matrix4();
-
-const place = (mesh: InstancedMesh, index: number) => {
-  part.updateMatrix();
-  composed.multiplyMatrices(root.matrix, part.matrix);
-  mesh.setMatrixAt(index, composed);
+const buildObjects = (faces: CurrencyFaces | null): RainObjectSpec[] => {
+  const coinFace = faceMaterial(faces?.coin ?? null);
+  const billFace = faceMaterial(faces?.bill ?? null);
+  return [
+    {
+      geometry: COIN_GEOMETRY,
+      material: [COIN_BODY_MAT, COIN_RIM_MAT, coinFace, coinFace],
+      count: COIN_COUNT,
+      scale: { min: 0.36, max: 0.6 },
+      spin: { min: 0.5, max: 1.8 },
+      fall: { min: 1.4, max: 2.4 },
+    },
+    {
+      geometry: BILL_GEOMETRY,
+      material: [BILL_EDGE_MAT, billFace, billFace],
+      count: BILL_COUNT,
+      scale: { min: 0.55, max: 0.78 },
+      spin: { min: 0.4, max: 1.2 },
+      fall: { min: 0.8, max: 1.5 },
+    },
+  ];
 };
 
-/** 厚みのある金貨と、紙の厚みがある札。文字は DotGothic16。 */
-export const LuxuryFx = () => {
-  const coins = useRef<InstancedMesh>(null);
-  const rims = useRef<InstancedMesh>(null);
-  const faces = useRef<InstancedMesh>(null);
-  const backs = useRef<InstancedMesh>(null);
-  const bills = useRef<InstancedMesh>(null);
-  const billFront = useRef<InstancedMesh>(null);
-  const billBack = useRef<InstancedMesh>(null);
-  const sparks = useRef<InstancedMesh>(null);
+export interface LuxuryFxProps {
+  /** false でフェードアウト。省略時は降り続ける */
+  active?: boolean;
+}
 
-  useFrame(({ clock, camera }) => {
-    const t = clock.elapsedTime;
-    const coinMesh = coins.current;
-    const rimMesh = rims.current;
-    const faceMesh = faces.current;
-    const backMesh = backs.current;
-    const billMesh = bills.current;
-    const frontMesh = billFront.current;
-    const rearMesh = billBack.current;
-    const sparkMesh = sparks.current;
-    if (!coinMesh || !rimMesh || !faceMesh || !backMesh || !billMesh || !frontMesh || !rearMesh || !sparkMesh) {
-      return;
-    }
-
-    for (let i = 0; i < COIN_COUNT; i++) {
-      const column = i % 6;
-      const row = Math.floor(i / 6);
-      const x = ((column + 0.5) / 6) * 10 - 5;
-      const z = ((row + 0.5) / 3) * 8 - 4;
-      const fall = (t * 0.35 + i * 0.17) % 1;
-      const y = 6.2 - fall * 5.4;
-      const size = 0.39 + (i % 4) * 0.06;
-      root.position.set(x, y, z);
-      root.rotation.set(0.62 + Math.sin(t * 0.7 + i) * 0.22, t * 0.35 + i, Math.sin(t + i) * 0.2);
-      root.scale.setScalar(size);
-      root.updateMatrix();
-
-      part.position.set(0, 0, 0);
-      part.rotation.set(0, 0, 0);
-      part.scale.set(1, 1, 1);
-      place(coinMesh, i);
-
-      part.rotation.set(Math.PI / 2, 0, 0);
-      place(rimMesh, i);
-
-      part.position.set(0, 0.142, 0);
-      part.rotation.set(-Math.PI / 2, 0, 0);
-      part.scale.set(1, 1, 1);
-      place(faceMesh, i);
-
-      part.position.set(0, -0.142, 0);
-      part.rotation.set(Math.PI / 2, 0, 0);
-      place(backMesh, i);
-    }
-
-    for (let i = 0; i < BILL_COUNT; i++) {
-      const column = i % 4;
-      const row = Math.floor(i / 4);
-      const x = ((column + 0.5) / 4) * 9 - 4.2;
-      const z = ((row + 0.5) / 3) * 7 - 3.2;
-      const fall = (t * 0.22 + i * 0.21) % 1;
-      const y = 5.6 - fall * 4.6;
-      const size = 0.58 + (i % 3) * 0.06;
-      root.position.set(x, y, z);
-      root.rotation.set(0.35 + Math.sin(t * 0.8 + i) * 0.2, 0.4 + Math.sin(t * 0.35 + i) * 0.7, Math.sin(t * 1.1 + i) * 0.18);
-      root.scale.setScalar(size);
-      root.updateMatrix();
-
-      part.position.set(0, 0, 0);
-      part.rotation.set(0, 0, 0);
-      part.scale.set(1.35, 0.63, 0.04);
-      place(billMesh, i);
-
-      part.position.set(0, 0, 0.022);
-      part.rotation.set(0, 0, 0);
-      part.scale.set(1, 1, 1);
-      place(frontMesh, i);
-
-      part.position.set(0, 0, -0.022);
-      part.rotation.set(0, Math.PI, 0);
-      place(rearMesh, i);
-    }
-
-    part.position.set(0, 0, 0);
-    part.rotation.set(0, 0, 0);
-    part.scale.set(1, 1, 1);
-    if (sparkMesh.instanceColor === null) {
-      for (let i = 0; i < SPARK_COUNT; i += 1) {
-        sparkTint.copy(SPARK_GOLD).lerp(SPARK_WHITE, (i % 7) / 6);
-        sparkMesh.setColorAt(i, sparkTint);
-      }
-    }
-    for (let i = 0; i < SPARK_COUNT; i += 1) {
-      const angle = (i / SPARK_COUNT) * Math.PI * 2 + (i % 3) * 0.41;
-      const x = Math.cos(angle) * (2.1 + (i % 5) * 0.92);
-      const z = Math.sin(angle) * (1.4 + (i % 4) * 1.05);
-      const yBase = 1.85 + ((i * 11) % SPARK_COUNT) / (SPARK_COUNT - 1) * 4.9;
-      const y = yBase + Math.sin(t * 0.42 + i * 0.8) * 0.2;
-      const twinkle = 0.5 + 0.5 * Math.sin(t * (0.7 + (i % 5) * 0.12) + i * 1.7);
-      const size = (0.22 + (i % 5) * 0.045) * (0.18 + twinkle * 0.82);
-      root.position.set(x, y, z);
-      root.quaternion.copy(camera.quaternion);
-      root.rotateZ(i * 0.55 + t * 0.12);
-      root.scale.setScalar(size);
-      root.updateMatrix();
-      place(sparkMesh, i);
-    }
-
-    coinMesh.instanceMatrix.needsUpdate = true;
-    rimMesh.instanceMatrix.needsUpdate = true;
-    faceMesh.instanceMatrix.needsUpdate = true;
-    backMesh.instanceMatrix.needsUpdate = true;
-    billMesh.instanceMatrix.needsUpdate = true;
-    frontMesh.instanceMatrix.needsUpdate = true;
-    rearMesh.instanceMatrix.needsUpdate = true;
-    sparkMesh.instanceMatrix.needsUpdate = true;
-  });
-
-  return (
-    <group>
-      <instancedMesh ref={coins} args={[COIN_BODY, COIN_BODY_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={rims} args={[COIN_RIM, COIN_RIM_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={faces} args={[COIN_FACE, COIN_FACE_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={backs} args={[COIN_FACE, COIN_FACE_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={bills} args={[UNIT_BOX, BILL_EDGE_MAT, BILL_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={billFront} args={[BILL_FACE, BILL_FACE_MAT, BILL_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={billBack} args={[BILL_FACE, BILL_FACE_MAT, BILL_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={sparks} args={[SPARK_CROSS, SPARK_MAT, SPARK_COUNT]} frustumCulled={false} />
-    </group>
+/** 黄金郷の達成エフェクト：厚みのある金貨と、紙の厚みがある札が降る。文字は DotGothic16。 */
+export const LuxuryFx = ({ active = true }: LuxuryFxProps) => {
+  // CelebrationRain は材質を複製して使うので、面のテクスチャが載ったら spec を作り直して渡す
+  const [faces, setFaces] = useState<CurrencyFaces | null>(null);
+  useEffect(() => {
+    let mounted = true;
+    void currencyFacesReady.then((painted) => {
+      if (mounted) setFaces(painted);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  const objects = useMemo(() => buildObjects(faces), [faces]);
+  useEffect(
+    () => () => {
+      objects.forEach((spec) => {
+        (Array.isArray(spec.material) ? spec.material : [spec.material]).forEach((m) => {
+          if (m !== COIN_BODY_MAT && m !== COIN_RIM_MAT && m !== BILL_EDGE_MAT) m.dispose();
+        });
+      });
+    },
+    [objects],
   );
+
+  return <CelebrationRain objects={objects} active={active} />;
 };

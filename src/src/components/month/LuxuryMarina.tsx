@@ -14,10 +14,12 @@ const YACHTS: { position: [number, number, number]; yaw: number; scale: number }
   { position: [-4.2, SEA_Y + 0.02, -3.2], yaw: 2.2, scale: 1.6 },
 ];
 
+/** 島の底（金ボクセルの底面 = group の y）が海面のすぐ下に来る高さ */
+const ISLET_Y = SEA_Y - 0.02;
 const ISLETS: [number, number, number][] = [
-  [6.4, 2.4, -2.2],
-  [-6.6, 3.1, 1.4],
-  [5.8, 3.6, 4.2],
+  [6.4, ISLET_Y, -2.2],
+  [-6.6, ISLET_Y, 1.4],
+  [5.8, ISLET_Y, 4.2],
 ];
 
 const FlyingHeli = () => {

@@ -1,35 +1,18 @@
 import { MONTH_NAMES_EN, formatDateJa } from '../../lib/calendar';
 import { breakdownByOwner, memberColor, ownerChipBackground } from '../../lib/members';
-import { formatYen } from '../../lib/ledger';
-import {
-  CATEGORIES,
-  CATEGORY_INFO,
-  type CalendarEvent,
-  type IslandLayout,
-} from '../../types/calendar';
+import { CATEGORIES, CATEGORY_INFO, type CalendarEvent } from '../../types/calendar';
 
 export interface MonthHudProps {
   year: number;
   month: number;
   monthTotal: number;
   hoveredKey: string | null;
-  /** 全員の予定（ホバーの内訳用。島の並べ方に関係なく全員分） */
+  /** 全員の予定（ホバーの内訳用） */
   byDate: Map<string, CalendarEvent[]>;
   members: string[];
   currentUser: string;
-  layout: IslandLayout;
-  /** ふたりの島モードで奥の島にするメンバー。自分以外がいなければ null */
-  partner: string | null;
-  onToggleLayout: () => void;
-  onSelectPartner: (name: string) => void;
-  onPrevMonth: () => void;
-  onNextMonth: () => void;
-  onShowYear: () => void;
-  onLogout: () => void;
-  savings: number;
-  goal: number | null;
+  /** その月の貯金目標を達成していて島が黄金郷のとき true（家計簿の中身は管理機能側で見る） */
   achieved: boolean;
-  onOpenLedger: () => void;
 }
 
 const parseKey = (key: string): [number, number, number] => {
@@ -39,6 +22,7 @@ const parseKey = (key: string): [number, number, number] => {
 
 const NO_EVENTS: CalendarEvent[] = [];
 
+/** 月ビューの HUD。表示の切り替えは画面下部の BottomBar、月送りは画面左右の SideArrows が持つので、ここはカレンダーの情報だけ出す */
 export const MonthHud = ({
   year,
   month,
@@ -47,27 +31,12 @@ export const MonthHud = ({
   byDate,
   members,
   currentUser,
-  layout,
-  partner,
-  onToggleLayout,
-  onSelectPartner,
-  onPrevMonth,
-  onNextMonth,
-  onShowYear,
-  onLogout,
-  savings,
-  goal,
   achieved,
-  onOpenLedger,
 }: MonthHudProps) => {
   const hovered = hoveredKey ? parseKey(hoveredKey) : null;
   const hoveredEvents = hoveredKey ? (byDate.get(hoveredKey) ?? NO_EVENTS) : NO_EVENTS;
   const breakdown = breakdownByOwner(hoveredEvents);
-  const prev = month === 1 ? 12 : month - 1;
-  const next = month === 12 ? 1 : month + 1;
   const allColors = members.map((m) => memberColor(members, m));
-  const others = members.filter((m) => m !== currentUser);
-  const split = layout === 'split' && partner !== null;
 
   return (
     <div className="hud">
@@ -78,47 +47,15 @@ export const MonthHud = ({
           <div className="hud-month-ja">
             {year}年{month}月 · 予定 {monthTotal} 件
           </div>
-          <div className={achieved ? 'hud-savings is-gold' : 'hud-savings'}>
-            {goal === null
-              ? '貯金目標なし'
-              : `貯金 ${formatYen(savings)} / ${formatYen(goal)}`}
-            {achieved ? ' · 黄金郷' : null}
-          </div>
+          {achieved ? <div className="hud-savings is-gold">貯金目標を達成 · 黄金郷</div> : null}
         </div>
       </header>
 
-      <nav className="hud-nav" aria-label="表示切り替え">
+      <nav className="hud-nav" aria-label="ログイン中のメンバー">
         <div className="hud-user panel">
           <span className="chip" style={{ background: memberColor(members, currentUser) }} />
           <span className="hud-user-name">{currentUser}</span>
-          <button type="button" className="link-btn" onClick={onLogout}>
-            ログアウト
-          </button>
         </div>
-        <button
-          type="button"
-          className="btn"
-          disabled={partner === null}
-          title={partner === null ? 'メンバーが 2 人以上いるときに使えます' : undefined}
-          onClick={onToggleLayout}
-        >
-          {split ? 'ひとつの島で見る' : 'ふたりの島で見る'}
-        </button>
-        <button type="button" className="btn" onClick={onOpenLedger}>
-          家計簿
-        </button>
-        <button type="button" className="btn" onClick={onShowYear}>
-          一年を見る
-        </button>
-      </nav>
-
-      <nav className="hud-months" aria-label="月の移動">
-        <button type="button" className="btn" onClick={onPrevMonth}>
-          ◀ {prev}月
-        </button>
-        <button type="button" className="btn" onClick={onNextMonth}>
-          {next}月 ▶
-        </button>
       </nav>
 
       <aside className="hud-legend panel">
@@ -144,28 +81,8 @@ export const MonthHud = ({
             </li>
           ))}
         </ul>
-        {split && others.length >= 2 ? (
-          <div className="hud-partner" role="radiogroup" aria-label="奥の島にするメンバー">
-            <span className="hud-partner-label">奥の島：</span>
-            {others.map((name) => (
-              <button
-                key={name}
-                type="button"
-                role="radio"
-                aria-checked={name === partner}
-                className={name === partner ? 'category-btn is-selected' : 'category-btn'}
-                onClick={() => onSelectPartner(name)}
-              >
-                <span className="chip" style={{ background: memberColor(members, name) }} />
-                {name}
-              </button>
-            ))}
-          </div>
-        ) : null}
         <p className="hud-hint">
-          {split
-            ? `手前が ${currentUser}、奥が ${partner} の島。ふたりの予定の日は、島と島を飛行機が行き来する`
-            : 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。貯金目標を達成すると島が黄金郷になる'}
+          ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。貯金目標を達成すると島が黄金郷になる
         </p>
       </aside>
 

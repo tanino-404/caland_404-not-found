@@ -1,12 +1,13 @@
 /**
- * 固定データ（デモ用）：2026 年 1 年分の家計簿。
- * シード固定で毎回同じ。繁忙月の 12 月・3 月は貯金達成、旅行月や結婚式月は未達にして、
+ * 固定データ（デモ用）：2025・2026・2027 年の 3 年分の家計簿。メンバーごとに記帳と月目標を持つ。
+ * 年ごとにシード固定で毎回同じ。繁忙月の 12 月・3 月は貯金達成、旅行月や結婚式月は未達にして、
  * 黄金郷の島と普通の島が一年の地図で並ぶようにする。
+ * server/seed.py の build_sample と同じ出力（サーバーは今日より後の記帳を DB に入れない）。
  */
 import { daysInMonth, toDateKey } from '../lib/calendar';
 import { toYearMonth } from '../lib/ledger';
-import type { LedgerEntry, LedgerKind, MonthlyGoals } from '../types/ledger';
-import { SAMPLE_MEMBERS, SAMPLE_YEAR } from './sampleEvents';
+import type { GoalsByMember, LedgerEntry, LedgerKind } from '../types/ledger';
+import { SAMPLE_MEMBERS, SAMPLE_YEARS } from './sampleEvents';
 
 const EXPENSE_TITLES = [
   '食費',
@@ -37,12 +38,18 @@ const SPEND_RATIO: Record<number, number> = {
   12: 0.65,
 };
 
-const SALARY_TARO = 220_000;
-const SALARY_HANA = 210_000;
-const RENT = 85_000;
-const BONUS_TARO = 150_000;
-const BONUS_HANA = 120_000;
-const GOAL = 50_000;
+/** メンバーごとの給与と冬の賞与。SAMPLE_MEMBERS と同じ順に乱数を使う */
+const SAMPLE_INCOME: { member: string; salary: number; bonus: number }[] = [
+  { member: SAMPLE_MEMBERS[0], salary: 220_000, bonus: 150_000 },
+  { member: SAMPLE_MEMBERS[1], salary: 210_000, bonus: 120_000 },
+];
+/** 家賃 85,000 円をふたりで半分ずつ。各自の記帳にする */
+const RENT_SHARE = 42_500;
+/** メンバーごとの月の貯金目標 */
+const GOAL = 30_000;
+
+/** 年ごとの乱数シード。2026 年は 20261014 */
+export const sampleLedgerSeed = (year: number): number => 20261014 + (year - 2026) * 10000;
 
 const mulberry32 = (seed: number) => (): number => {
   seed = (seed + 0x6d2b79f5) | 0;
@@ -54,119 +61,67 @@ const mulberry32 = (seed: number) => (): number => {
 
 const pick = <T>(rng: () => number, list: T[]): T => list[Math.floor(rng() * list.length)];
 
-const pushEntry = (
+const buildSampleLedgerForYear = (
+  year: number,
   entries: LedgerEntry[],
-  id: { n: number },
-  date: string,
-  kind: LedgerKind,
-  amount: number,
-  title: string,
-  owners: string[],
-) => {
-  entries.push({
-    id: `ledger-sample-${id.n++}`,
-    date,
-    kind,
-    amount,
-    title,
-    owners,
-  });
-};
-
-const buildSampleLedger = (): { entries: LedgerEntry[]; goals: MonthlyGoals } => {
-  const rng = mulberry32(20261014);
-  const entries: LedgerEntry[] = [];
-  const goals: MonthlyGoals = {};
-  const id = { n: 0 };
+  goals: GoalsByMember,
+): void => {
+  const rng = mulberry32(sampleLedgerSeed(year));
+  let seq = 0;
+  const push = (date: string, kind: LedgerKind, amount: number, title: string, member: string) => {
+    entries.push({
+      id: `ledger-sample-${year}-${seq++}`,
+      date,
+      kind,
+      amount,
+      title,
+      owners: [member],
+    });
+  };
 
   for (let month = 1; month <= 12; month++) {
-    goals[toYearMonth(SAMPLE_YEAR, month)] = GOAL;
-    const days = daysInMonth(SAMPLE_YEAR, month);
-    let income = 0;
+    const days = daysInMonth(year, month);
+    for (const { member, salary, bonus } of SAMPLE_INCOME) {
+      goals[member][toYearMonth(year, month)] = GOAL;
+      let income = salary;
+      push(toDateKey(year, month, Math.min(25, days)), 'income', salary, '給与', member);
+      if (month === 12) {
+        push(toDateKey(year, 12, 10), 'income', bonus, '冬の賞与', member);
+        income += bonus;
+      }
 
-    pushEntry(
-      entries,
-      id,
-      toDateKey(SAMPLE_YEAR, month, Math.min(25, days)),
-      'income',
-      SALARY_TARO,
-      '給与',
-      [SAMPLE_MEMBERS[0]],
-    );
-    income += SALARY_TARO;
-    pushEntry(
-      entries,
-      id,
-      toDateKey(SAMPLE_YEAR, month, Math.min(25, days)),
-      'income',
-      SALARY_HANA,
-      '給与',
-      [SAMPLE_MEMBERS[1]],
-    );
-    income += SALARY_HANA;
+      const targetSpend = Math.round((income * SPEND_RATIO[month]) / 100) * 100;
+      push(toDateKey(year, month, 1), 'expense', RENT_SHARE, '家賃', member);
 
-    if (month === 12) {
-      pushEntry(
-        entries,
-        id,
-        toDateKey(SAMPLE_YEAR, 12, 10),
-        'income',
-        BONUS_TARO,
-        '冬の賞与',
-        [SAMPLE_MEMBERS[0]],
-      );
-      income += BONUS_TARO;
-      pushEntry(
-        entries,
-        id,
-        toDateKey(SAMPLE_YEAR, 12, 10),
-        'income',
-        BONUS_HANA,
-        '冬の賞与',
-        [SAMPLE_MEMBERS[1]],
-      );
-      income += BONUS_HANA;
-    }
-
-    const targetSpend = Math.round((income * SPEND_RATIO[month]) / 100) * 100;
-    pushEntry(
-      entries,
-      id,
-      toDateKey(SAMPLE_YEAR, month, 1),
-      'expense',
-      RENT,
-      '家賃',
-      [...SAMPLE_MEMBERS],
-    );
-
-    const remaining = targetSpend - RENT;
-    const n = 10;
-    const weights = Array.from({ length: n }, () => 0.45 + rng());
-    const sumW = weights.reduce((a, b) => a + b, 0);
-    let allocated = 0;
-    for (let i = 0; i < n; i++) {
-      const raw =
-        i === n - 1
-          ? remaining - allocated
-          : Math.round(((remaining * weights[i]) / sumW) / 100) * 100;
-      const amount = Math.max(500, raw);
-      allocated += amount;
-      const day = 2 + Math.floor(rng() * (days - 1));
-      pushEntry(
-        entries,
-        id,
-        toDateKey(SAMPLE_YEAR, month, day),
-        'expense',
-        amount,
-        pick(rng, EXPENSE_TITLES),
-        [pick(rng, SAMPLE_MEMBERS)],
-      );
+      const remaining = targetSpend - RENT_SHARE;
+      const n = 10;
+      const weights = Array.from({ length: n }, () => 0.45 + rng());
+      const sumW = weights.reduce((a, b) => a + b, 0);
+      let allocated = 0;
+      for (let i = 0; i < n; i++) {
+        const raw =
+          i === n - 1
+            ? remaining - allocated
+            : Math.round(((remaining * weights[i]) / sumW) / 100) * 100;
+        const amount = Math.max(500, raw);
+        allocated += amount;
+        const day = 2 + Math.floor(rng() * (days - 1));
+        push(toDateKey(year, month, day), 'expense', amount, pick(rng, EXPENSE_TITLES), member);
+      }
     }
   }
+};
 
+const buildSampleLedger = (): { entries: LedgerEntry[]; goals: GoalsByMember } => {
+  const entries: LedgerEntry[] = [];
+  const goals: GoalsByMember = {};
+  for (const member of SAMPLE_MEMBERS) goals[member] = {};
+  for (const year of SAMPLE_YEARS) {
+    buildSampleLedgerForYear(year, entries, goals);
+  }
   return { entries, goals };
 };
 
 const SAMPLE = buildSampleLedger();
 export const sampleLedger: LedgerEntry[] = SAMPLE.entries;
-export const sampleGoals: MonthlyGoals = SAMPLE.goals;
+export const sampleGoals: GoalsByMember = SAMPLE.goals;

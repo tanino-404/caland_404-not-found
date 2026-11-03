@@ -4,7 +4,7 @@
  * 黄金郷の島と普通の島が一年の地図で並ぶようにする。
  */
 import { daysInMonth, toDateKey } from '../lib/calendar';
-import { toYearMonth } from '../lib/ledger';
+import { toYearMonth } from '../lib/plugins';
 import type { LedgerEntry, LedgerKind, MonthlyGoals } from '../types/ledger';
 import { SAMPLE_MEMBERS, SAMPLE_YEAR } from './sampleEvents';
 

@@ -1,0 +1,42 @@
+{
+  "id": "ledger",
+  "title": "家計簿",
+  "fields": [
+    {
+      "id": "kind",
+      "label": "収支",
+      "type": "choice",
+      "role": "progress",
+      "options": [
+        { "value": "income", "label": "収入" },
+        { "value": "expense", "label": "支出" }
+      ]
+    },
+    {
+      "id": "amount",
+      "label": "金額",
+      "type": "number",
+      "role": "progress",
+      "integer": true,
+      "min": 1,
+      "unit": "円",
+      "placeholder": "円"
+    },
+    {
+      "id": "title",
+      "label": "内容",
+      "type": "text",
+      "role": "memo",
+      "placeholder": "食費"
+    }
+  ],
+  "progress": {
+    "label": "貯金",
+    "formula": "sum_if:kind:income:amount - sum_if:kind:expense:amount",
+    "compare": "gte",
+    "goal": "per_period",
+    "unit": "円"
+  },
+  "effect": "luxury",
+  "achievedLabel": "黄金郷"
+}

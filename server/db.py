@@ -1,4 +1,7 @@
-"""SQLite のスキーマと家計簿の読み書き。例外は握りつぶさない。"""
+"""SQLite のスキーマと、予定・メンバーの読み書き。例外は握りつぶさない。
+
+管理プラグイン（記帳・月目標）の読み書きは plugin_store.py。
+"""
 
 from __future__ import annotations
 
@@ -13,17 +16,18 @@ from pathlib import Path
 import seed
 
 SCHEMA = """
-CREATE TABLE IF NOT EXISTS ledger_entries (
+CREATE TABLE IF NOT EXISTS plugin_entries (
   id TEXT PRIMARY KEY,
+  plugin_id TEXT NOT NULL,
   date TEXT NOT NULL,
-  kind TEXT NOT NULL CHECK(kind IN ('income','expense')),
-  amount INTEGER NOT NULL CHECK(amount >= 1),
-  title TEXT NOT NULL,
-  owners_json TEXT NOT NULL
+  owners_json TEXT NOT NULL,
+  values_json TEXT NOT NULL
 );
-CREATE TABLE IF NOT EXISTS monthly_goals (
-  year_month TEXT PRIMARY KEY,
-  amount INTEGER NOT NULL CHECK(amount >= 1)
+CREATE TABLE IF NOT EXISTS plugin_goals (
+  plugin_id TEXT NOT NULL,
+  period_key TEXT NOT NULL,
+  amount INTEGER NOT NULL CHECK(amount >= 1),
+  PRIMARY KEY (plugin_id, period_key)
 );
 CREATE TABLE IF NOT EXISTS members (
   name TEXT PRIMARY KEY
@@ -76,41 +80,10 @@ def _immediate(conn: sqlite3.Connection):
         conn.commit()
 
 
-def _counts_empty(conn: sqlite3.Connection) -> bool:
-    entries = conn.execute("SELECT COUNT(*) AS n FROM ledger_entries").fetchone()["n"]
-    goals = conn.execute("SELECT COUNT(*) AS n FROM monthly_goals").fetchone()["n"]
-    return entries == 0 and goals == 0
-
-
 def _calendar_empty(conn: sqlite3.Connection) -> bool:
     members = conn.execute("SELECT COUNT(*) AS n FROM members").fetchone()["n"]
     events = conn.execute("SELECT COUNT(*) AS n FROM events").fetchone()["n"]
     return members == 0 and events == 0
-
-
-def _insert_sample(conn: sqlite3.Connection) -> None:
-    entries, goals = seed.build_sample()
-    conn.executemany(
-        """
-        INSERT INTO ledger_entries (id, date, kind, amount, title, owners_json)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        [
-            (
-                entry["id"],
-                entry["date"],
-                entry["kind"],
-                entry["amount"],
-                entry["title"],
-                json.dumps(entry["owners"], ensure_ascii=False),
-            )
-            for entry in entries
-        ],
-    )
-    conn.executemany(
-        "INSERT INTO monthly_goals (year_month, amount) VALUES (?, ?)",
-        list(goals.items()),
-    )
 
 
 def _insert_calendar(conn: sqlite3.Connection) -> None:
@@ -141,34 +114,6 @@ def _owners(entry_id: str, raw: str) -> list:
     return owners
 
 
-def _row_to_entry(row: sqlite3.Row) -> dict:
-    return {
-        "id": row["id"],
-        "date": row["date"],
-        "kind": row["kind"],
-        "amount": row["amount"],
-        "title": row["title"],
-        "owners": _owners(row["id"], row["owners_json"]),
-    }
-
-
-def _snapshot(conn: sqlite3.Connection) -> dict:
-    entry_rows = conn.execute(
-        """
-        SELECT id, date, kind, amount, title, owners_json
-        FROM ledger_entries
-        ORDER BY rowid
-        """
-    ).fetchall()
-    goal_rows = conn.execute(
-        "SELECT year_month, amount FROM monthly_goals ORDER BY year_month"
-    ).fetchall()
-    return {
-        "entries": [_row_to_entry(row) for row in entry_rows],
-        "goals": {row["year_month"]: row["amount"] for row in goal_rows},
-    }
-
-
 def _ensure_events_place(conn: sqlite3.Connection) -> None:
     """既存 DB の events に place 列が無ければ足す（作成済み DB の移行）。"""
     columns = [row["name"] for row in conn.execute("PRAGMA table_info(events)")]
@@ -183,18 +128,8 @@ def ensure_ready(path: Path) -> None:
         conn.executescript(SCHEMA)
         with _immediate(conn):
             _ensure_events_place(conn)
-            if _counts_empty(conn):
-                _insert_sample(conn)
             if _calendar_empty(conn):
                 _insert_calendar(conn)
-    finally:
-        conn.close()
-
-
-def fetch_ledger(path: Path) -> dict:
-    conn = connect(path)
-    try:
-        return _snapshot(conn)
     finally:
         conn.close()
 
@@ -246,109 +181,6 @@ def _require_date(body: dict) -> str:
     if parsed.strftime("%Y-%m-%d") != value:
         raise LedgerError(400, "date は YYYY-MM-DD である必要があります")
     return value
-
-
-def _require_kind(body: dict) -> str:
-    value = _require_present(body, "kind")
-    if value not in ("income", "expense"):
-        raise LedgerError(400, "kind は income または expense である必要があります")
-    return value
-
-
-def new_entry_id() -> str:
-    unix_ms = int(time.time() * 1000)
-    rand = random.randrange(1_000_000)
-    return f"ledger-{unix_ms}-{rand}"
-
-
-def add_entry(path: Path, body: object) -> dict:
-    payload = _require_object(body)
-    entry = {
-        "id": new_entry_id(),
-        "date": _require_date(payload),
-        "kind": _require_kind(payload),
-        "amount": _require_positive_int(payload, "amount"),
-        "title": _require_text(payload, "title"),
-        "owners": [_require_text(payload, "owner")],
-    }
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute(
-                """
-                INSERT INTO ledger_entries (id, date, kind, amount, title, owners_json)
-                VALUES (?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    entry["id"],
-                    entry["date"],
-                    entry["kind"],
-                    entry["amount"],
-                    entry["title"],
-                    json.dumps(entry["owners"], ensure_ascii=False),
-                ),
-            )
-        return entry
-    finally:
-        conn.close()
-
-
-def delete_entry(path: Path, entry_id: str, user: str) -> None:
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            row = conn.execute(
-                "SELECT id, title, owners_json FROM ledger_entries WHERE id = ?",
-                (entry_id,),
-            ).fetchone()
-            if row is None:
-                raise LedgerError(404, f"記帳が見つかりません: {entry_id}")
-            owners = _owners(row["id"], row["owners_json"])
-            if user not in owners:
-                raise LedgerError(403, f'"{user}" の記帳ではありません: {row["title"]}')
-            cursor = conn.execute("DELETE FROM ledger_entries WHERE id = ?", (entry_id,))
-            if cursor.rowcount != 1:
-                raise LedgerError(404, f"記帳が見つかりません: {entry_id}")
-    finally:
-        conn.close()
-
-
-def set_goal(path: Path, body: object) -> dict:
-    payload = _require_object(body)
-    year = _require_int(payload, "year")
-    month = _require_int(payload, "month")
-    amount = _require_positive_int(payload, "amount")
-    if month < 1 or month > 12:
-        raise LedgerError(400, "month は 1 から 12 である必要があります")
-    if year < 0 or year > 9999:
-        raise LedgerError(400, "year は 0 から 9999 である必要があります")
-    year_month = f"{year:04d}-{month:02d}"
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute(
-                """
-                INSERT INTO monthly_goals (year_month, amount)
-                VALUES (?, ?)
-                ON CONFLICT(year_month) DO UPDATE SET amount = excluded.amount
-                """,
-                (year_month, amount),
-            )
-        return {"yearMonth": year_month, "amount": amount}
-    finally:
-        conn.close()
-
-
-def reset_ledger(path: Path) -> dict:
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute("DELETE FROM ledger_entries")
-            conn.execute("DELETE FROM monthly_goals")
-            _insert_sample(conn)
-        return _snapshot(conn)
-    finally:
-        conn.close()
 
 
 def _member_names(conn: sqlite3.Connection) -> list[str]:
@@ -535,22 +367,5 @@ def leave_event(path: Path, event_id: str, body: object) -> dict:
             )
             updated = _row_to_event(_event_row(conn, event_id))
         return {"event": updated}
-    finally:
-        conn.close()
-
-
-def reset_demo(path: Path) -> dict:
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute("DELETE FROM ledger_entries")
-            conn.execute("DELETE FROM monthly_goals")
-            conn.execute("DELETE FROM events")
-            conn.execute("DELETE FROM members")
-            _insert_sample(conn)
-            _insert_calendar(conn)
-        snapshot = _snapshot(conn)
-        snapshot.update(_calendar_snapshot(conn))
-        return snapshot
     finally:
         conn.close()

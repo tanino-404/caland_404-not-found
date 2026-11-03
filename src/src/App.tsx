@@ -1,30 +1,38 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DayHud } from './components/hud/DayHud';
-import { LedgerHud } from './components/hud/LedgerHud';
 import { LoginScreen } from './components/hud/LoginScreen';
-import { MonthHud } from './components/hud/MonthHud';
+import { MonthHud, type MonthPluginSummary } from './components/hud/MonthHud';
+import { PluginHud } from './components/hud/PluginHud';
 import { MonthScene } from './components/month/MonthScene';
 import { YearHeatmap } from './components/year/YearHeatmap';
 import { SAMPLE_YEAR } from './data/sampleEvents';
 import { useSharedCalendar, type SharedCalendar } from './hooks/useSharedCalendar';
 import { busiestMonth, countEventsInMonth, groupEventsByDate, toDateKey } from './lib/calendar';
-import { isMonthLuxurious, monthGoal, monthLedger } from './lib/ledger';
 import { datesSharedBetween, eventsOwnedBy } from './lib/members';
+import {
+  formatProgressValue,
+  isAchieved,
+  periodGoal,
+  periodProgress,
+  toYearMonth,
+} from './lib/plugins';
+import { ISLAND_EFFECTS } from './plugins/effects';
 import type { IslandLayout, ViewState } from './types/calendar';
 import type { IslandTheme } from './types/ledger';
+import type { PluginData } from './types/plugins';
 
 export const App = () => {
   const calendar = useSharedCalendar();
-  if (calendar.ledgerError !== null) {
+  if (calendar.calendarError !== null) {
     return (
       <div className="app">
         <pre className="boot-panel panel" role="alert">
-          {calendar.ledgerError}
+          {calendar.calendarError}
         </pre>
       </div>
     );
   }
-  if (!calendar.ledgerReady || !calendar.calendarReady) {
+  if (!calendar.calendarReady || (!calendar.pluginsReady && calendar.pluginsError === null)) {
     return (
       <div className="app">
         <p className="boot-panel panel">地図を読み込んでいます</p>
@@ -33,6 +41,14 @@ export const App = () => {
   }
   return <MapScreen calendar={calendar} />;
 };
+
+/** 管理プラグイン 1 つぶんの、表示中の月の状態 */
+interface MonthPluginState {
+  data: PluginData;
+  progress: number;
+  goal: number | null;
+  achieved: boolean;
+}
 
 const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
   const byDate = useMemo(() => groupEventsByDate(calendar.events), [calendar.events]);
@@ -45,7 +61,8 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
   const [layout, setLayout] = useState<IslandLayout>('merged');
   /** ふたりの島モードで奥に置くメンバー。未選択なら自分以外の先頭 */
   const [partnerChoice, setPartnerChoice] = useState<string | null>(null);
-  const [ledgerOpen, setLedgerOpen] = useState(false);
+  /** 開いている管理プラグインの id。閉じているときは null */
+  const [openPluginId, setOpenPluginId] = useState<string | null>(null);
 
   const user = calendar.currentUser;
   const partner = useMemo(() => {
@@ -72,24 +89,59 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
     [view, byDate],
   );
 
-  const ledgerMonth = useMemo(() => {
-    if (view.kind === 'year') return null;
-    return monthLedger(calendar.ledger, view.year, view.month);
-  }, [calendar.ledger, view]);
-  const goal = view.kind === 'year' ? null : monthGoal(calendar.goals, view.year, view.month);
-  const achieved = ledgerMonth !== null && isMonthLuxurious(ledgerMonth.savings, goal);
-  const theme: IslandTheme = achieved ? 'luxury' : 'plain';
+  /** 表示中の月の、全プラグインの進捗と達成（並びはサーバーの順） */
+  const pluginStates: MonthPluginState[] = useMemo(() => {
+    if (view.kind === 'year') return [];
+    const monthKey = toYearMonth(view.year, view.month);
+    return calendar.plugins.map((data) => {
+      const progress = periodProgress(data.manifest, data.entries, monthKey);
+      const goal = periodGoal(data.manifest, data.goals, monthKey);
+      return { data, progress, goal, achieved: isAchieved(data.manifest, progress, goal) };
+    });
+  }, [calendar.plugins, view]);
 
-  const luxuriousMonths = useMemo(() => {
+  const opened = useMemo(
+    () => pluginStates.find((state) => state.data.manifest.id === openPluginId) ?? null,
+    [pluginStates, openPluginId],
+  );
+
+  /**
+   * 達成した月の島の見た目。
+   * パネルを開いているプラグインが達成していればその effect。
+   * 開いていなければ、一覧の並び順で最初に達成しているプラグインの effect。
+   */
+  const effect = useMemo(() => {
+    const candidates = opened !== null ? [opened, ...pluginStates] : pluginStates;
+    for (const state of candidates) {
+      if (!state.achieved) continue;
+      const found = ISLAND_EFFECTS[state.data.manifest.effect];
+      if (found !== undefined) return found;
+    }
+    return null;
+  }, [opened, pluginStates]);
+  const theme: IslandTheme = effect === null ? 'plain' : effect.theme;
+  const EffectScene = effect?.Scene ?? null;
+
+  const effectMismatch =
+    opened !== null && ISLAND_EFFECTS[opened.data.manifest.effect] === undefined
+      ? `effect "${opened.data.manifest.effect}" が src/src/plugins/effects/index.ts の部品表にありません`
+      : null;
+
+  /** 目標を達成したプラグインが 1 つ以上ある月（年ビューの金枠） */
+  const achievedMonths = useMemo(() => {
     const set = new Set<number>();
     for (let month = 1; month <= 12; month++) {
-      const summary = monthLedger(calendar.ledger, view.year, month);
-      if (isMonthLuxurious(summary.savings, monthGoal(calendar.goals, view.year, month))) {
-        set.add(month);
+      const monthKey = toYearMonth(view.year, month);
+      for (const data of calendar.plugins) {
+        const progress = periodProgress(data.manifest, data.entries, monthKey);
+        if (isAchieved(data.manifest, progress, periodGoal(data.manifest, data.goals, monthKey))) {
+          set.add(month);
+          break;
+        }
       }
     }
     return set;
-  }, [calendar.ledger, calendar.goals, view.year]);
+  }, [calendar.plugins, view.year]);
 
   useEffect(() => {
     document.body.classList.toggle('is-luxury', theme === 'luxury');
@@ -101,7 +153,7 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
       <YearHeatmap
         year={view.year}
         byDate={byDate}
-        luxuriousMonths={luxuriousMonths}
+        achievedMonths={achievedMonths}
         onSelectMonth={(month) => setView({ kind: 'month', year: view.year, month })}
       />
     );
@@ -111,9 +163,20 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
   const shiftMonth = (delta: number) => {
     const next = ((month - 1 + delta + 12) % 12) + 1;
     setHoveredKey(null);
-    setLedgerOpen(false);
+    setOpenPluginId(null);
     setView({ kind: 'month', year, month: next });
   };
+
+  const hudPlugins: MonthPluginSummary[] = pluginStates.map(({ data, progress, goal, achieved }) => ({
+    id: data.manifest.id,
+    title: data.manifest.title,
+    summary:
+      goal === null
+        ? `${data.manifest.progress.label} ${formatProgressValue(data.manifest, progress)} / 目標なし`
+        : `${data.manifest.progress.label} ${formatProgressValue(data.manifest, progress)} / ${formatProgressValue(data.manifest, goal)}`,
+    achieved,
+    achievedLabel: data.manifest.achievedLabel,
+  }));
 
   return (
     <div className={theme === 'luxury' ? 'app is-luxury' : 'app'}>
@@ -127,10 +190,11 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
           hoveredKey={hoveredKey}
           onHover={setHoveredKey}
           onSelectDay={(day) => {
-            setLedgerOpen(false);
+            setOpenPluginId(null);
             setView({ kind: 'day', year, month, day });
           }}
           theme={theme}
+          EffectScene={EffectScene}
         />
       </div>
       {user === null ? (
@@ -155,36 +219,46 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
             onSelectPartner={setPartnerChoice}
             onPrevMonth={() => shiftMonth(-1)}
             onNextMonth={() => shiftMonth(1)}
-            onShowYear={() => setView({ kind: 'year', year })}
+            onShowYear={() => {
+              setOpenPluginId(null);
+              setView({ kind: 'year', year });
+            }}
             onLogout={() => {
-              setLedgerOpen(false);
+              setOpenPluginId(null);
               calendar.logout();
             }}
-            savings={ledgerMonth?.savings ?? 0}
-            goal={goal}
-            achieved={achieved}
-            onOpenLedger={() => setLedgerOpen(true)}
+            plugins={hudPlugins}
+            onOpenPlugin={setOpenPluginId}
           />
-          {ledgerOpen && ledgerMonth !== null ? (
+          {calendar.pluginsError !== null && opened === null ? (
             <div className="hud">
-              <LedgerHud
+              <pre className="boot-panel panel" role="alert">
+                {calendar.pluginsError}
+              </pre>
+            </div>
+          ) : null}
+          {opened !== null ? (
+            <div className="hud">
+              <PluginHud
                 year={year}
                 month={month}
                 currentUser={user}
-                ledger={ledgerMonth}
-                goal={goal}
-                achieved={achieved}
-                onAdd={(day, kind, amount, title) =>
-                  calendar.addLedgerEntry({
-                    date: toDateKey(year, month, day),
-                    kind,
-                    amount,
-                    title,
-                  })
+                data={opened.data}
+                progress={opened.progress}
+                goal={opened.goal}
+                achieved={opened.achieved}
+                effectMismatch={effectMismatch}
+                loadError={calendar.pluginsError}
+                onAdd={(date, values) =>
+                  calendar.addPluginEntry(opened.data.manifest.id, { date, values })
                 }
-                onRemove={calendar.removeLedgerEntry}
-                onSetGoal={(amount) => calendar.setMonthlyGoal(year, month, amount)}
-                onClose={() => setLedgerOpen(false)}
+                onRemove={(entryId) => calendar.removePluginEntry(opened.data.manifest.id, entryId)}
+                onSetGoal={
+                  opened.data.manifest.progress.goal === 'per_period'
+                    ? (amount) => calendar.setPluginGoal(opened.data.manifest.id, year, month, amount)
+                    : null
+                }
+                onClose={() => setOpenPluginId(null)}
               />
             </div>
           ) : null}

@@ -7,7 +7,8 @@ import './YearIslands.css';
 export interface YearHeatmapProps {
   year: number;
   byDate: Map<string, CalendarEvent[]>;
-  luxuriousMonths: ReadonlySet<number>;
+  /** 管理の目標を達成したプラグインが 1 つ以上ある月。金枠で示す */
+  achievedMonths: ReadonlySet<number>;
   onSelectMonth: (month: number) => void;
 }
 
@@ -49,7 +50,7 @@ const buildIsland = (
 
 const ELEVATION_LABELS = ['0', '1', '2', '3', '4', '5', '6+'];
 
-export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: YearHeatmapProps) => {
+export const YearHeatmap = ({ year, byDate, achievedMonths, onSelectMonth }: YearHeatmapProps) => {
   const islands = useMemo(
     () => Array.from({ length: 12 }, (_, i) => buildIsland(year, i + 1, byDate)),
     [year, byDate],
@@ -62,14 +63,14 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
         <div>
           <h1 className="yi-title">一年を、上から見る。</h1>
           <p className="yi-sub">
-            12 の島。海は予定なし、雪山は 6 件以上。貯金を達成した月は黄金郷。島をクリックで降りる。
+            12 の島。海は予定なし、雪山は 6 件以上。管理の目標を達成した月は金の島。島をクリックで降りる。
           </p>
         </div>
       </header>
 
       <div className="yi-grid">
         {islands.map((island) => {
-          const luxury = luxuriousMonths.has(island.month);
+          const luxury = achievedMonths.has(island.month);
           return (
             <button
               key={island.month}
@@ -78,7 +79,7 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
               onClick={() => onSelectMonth(island.month)}
               aria-label={
                 luxury
-                  ? `${island.month}月の黄金郷 予定 ${island.total} 件 最高峰 ${island.peak} 件`
+                  ? `${island.month}月の達成した島 予定 ${island.total} 件 最高峰 ${island.peak} 件`
                   : `${island.month}月の島 予定 ${island.total} 件 最高峰 ${island.peak} 件`
               }
             >
@@ -91,7 +92,7 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
                   <span className="yi-en">{island.nameEn}</span>
                   <span className="yi-count">{island.total} 件</span>
                   <span className="yi-peak">
-                    {luxury ? '黄金郷' : `最高峰 ${island.peak} 件`}
+                    {luxury ? '達成' : `最高峰 ${island.peak} 件`}
                   </span>
                 </span>
               </div>
@@ -126,7 +127,7 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
           </span>
         ))}
         <span>高</span>
-        <span className="yi-legend-gold">黄金郷</span>
+        <span className="yi-legend-gold">達成月</span>
         {LUXURY_ELEVATION_COLORS.slice(1).map((color) => (
           <span key={color} className="yi-swatch yi-swatch-gold" style={{ background: color }} />
         ))}

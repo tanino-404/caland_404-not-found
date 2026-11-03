@@ -1,6 +1,6 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { type ReactNode, useMemo, useRef } from 'react';
+import { type ComponentType, type ReactNode, useMemo, useRef } from 'react';
 import type { Group } from 'three';
 import {
   BLOCK_HEIGHT,
@@ -21,8 +21,6 @@ import type { IslandTheme } from '../../types/ledger';
 import { CameraRig } from './CameraRig';
 import { DayTower } from './DayTower';
 import { Flight } from './Flight';
-import { LuxuryFx } from './LuxuryFx';
-import { LuxuryMarina } from './LuxuryMarina';
 import { type PixelLabel, PixelLabels } from './PixelLabels';
 import { Sea } from './Sea';
 import { Villagers } from './Villagers';
@@ -77,6 +75,8 @@ export interface MonthSceneProps {
   onHover: (dateKey: string | null) => void;
   onSelectDay: (day: number) => void;
   theme: IslandTheme;
+  /** 達成したプラグインのエフェクトが追加で置く 3D 部品（plugins/effects の部品表から） */
+  EffectScene: ComponentType | null;
 }
 
 const NO_EVENTS: CalendarEvent[] = [];
@@ -135,6 +135,7 @@ export const MonthScene = ({
   onHover,
   onSelectDay,
   theme,
+  EffectScene,
 }: MonthSceneProps) => {
   const { year, month } = view;
   const grid = useMemo(() => buildMonthGrid(year, month), [year, month]);
@@ -239,12 +240,7 @@ export const MonthScene = ({
               theme={theme}
             />
           ))}
-          {theme === 'luxury' ? (
-            <>
-              <LuxuryFx />
-              <LuxuryMarina />
-            </>
-          ) : null}
+          {EffectScene !== null ? <EffectScene /> : null}
           <AfterRise>
             <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} theme={theme} />
             <PixelLabels labels={dayLabels} />

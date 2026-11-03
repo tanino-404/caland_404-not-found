@@ -290,10 +290,10 @@ export const LuxuryFx = () => {
     }
 
     for (let i = 0; i < COIN_COUNT; i++) {
-      const column = i % 6;
-      const row = Math.floor(i / 6);
-      const x = ((column + 0.5) / 6) * 10 - 5;
-      const z = ((row + 0.5) / 3) * 8 - 4;
+      const angle = (i / COIN_COUNT) * Math.PI * 2 + 0.18;
+      const radius = 4.85 + (i % 4) * 0.55;
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
       const fall = (t * 0.35 + i * 0.17) % 1;
       const y = 6.2 - fall * 5.4;
       const size = 0.39 + (i % 4) * 0.06;
@@ -321,10 +321,10 @@ export const LuxuryFx = () => {
     }
 
     for (let i = 0; i < BILL_COUNT; i++) {
-      const column = i % 4;
-      const row = Math.floor(i / 4);
-      const x = ((column + 0.5) / 4) * 9 - 4.2;
-      const z = ((row + 0.5) / 3) * 7 - 3.2;
+      const angle = (i / BILL_COUNT) * Math.PI * 2 - 0.4;
+      const radius = 5.15 + (i % 3) * 0.5;
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
       const fall = (t * 0.22 + i * 0.21) % 1;
       const y = 5.6 - fall * 4.6;
       const size = 0.58 + (i % 3) * 0.06;
@@ -359,8 +359,8 @@ export const LuxuryFx = () => {
     }
     for (let i = 0; i < SPARK_COUNT; i += 1) {
       const angle = (i / SPARK_COUNT) * Math.PI * 2 + (i % 3) * 0.41;
-      const x = Math.cos(angle) * (2.1 + (i % 5) * 0.92);
-      const z = Math.sin(angle) * (1.4 + (i % 4) * 1.05);
+      const x = Math.cos(angle) * (4.5 + (i % 5) * 0.48);
+      const z = Math.sin(angle) * (4.2 + (i % 4) * 0.42);
       const yBase = 1.85 + ((i * 11) % SPARK_COUNT) / (SPARK_COUNT - 1) * 4.9;
       const y = yBase + Math.sin(t * 0.42 + i * 0.8) * 0.2;
       const twinkle = 0.5 + 0.5 * Math.sin(t * (0.7 + (i % 5) * 0.12) + i * 1.7);
@@ -385,14 +385,14 @@ export const LuxuryFx = () => {
 
   return (
     <group>
-      <instancedMesh ref={coins} args={[COIN_BODY, COIN_BODY_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={rims} args={[COIN_RIM, COIN_RIM_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={faces} args={[COIN_FACE, COIN_FACE_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={backs} args={[COIN_FACE, COIN_FACE_MAT, COIN_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={bills} args={[UNIT_BOX, BILL_EDGE_MAT, BILL_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={billFront} args={[BILL_FACE, BILL_FACE_MAT, BILL_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={billBack} args={[BILL_FACE, BILL_FACE_MAT, BILL_COUNT]} frustumCulled={false} />
-      <instancedMesh ref={sparks} args={[SPARK_CROSS, SPARK_MAT, SPARK_COUNT]} frustumCulled={false} />
+      <instancedMesh ref={coins} args={[COIN_BODY, COIN_BODY_MAT, COIN_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={rims} args={[COIN_RIM, COIN_RIM_MAT, COIN_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={faces} args={[COIN_FACE, COIN_FACE_MAT, COIN_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={backs} args={[COIN_FACE, COIN_FACE_MAT, COIN_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={bills} args={[UNIT_BOX, BILL_EDGE_MAT, BILL_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={billFront} args={[BILL_FACE, BILL_FACE_MAT, BILL_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={billBack} args={[BILL_FACE, BILL_FACE_MAT, BILL_COUNT]} frustumCulled={false} raycast={() => {}} />
+      <instancedMesh ref={sparks} args={[SPARK_CROSS, SPARK_MAT, SPARK_COUNT]} frustumCulled={false} raycast={() => {}} />
     </group>
   );
 };

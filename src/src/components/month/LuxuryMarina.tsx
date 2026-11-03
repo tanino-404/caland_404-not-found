@@ -26,7 +26,7 @@ const FlyingHeli = () => {
     const g = group.current;
     if (!g) return;
     const t = clock.elapsedTime * 0.22;
-    g.position.set(Math.cos(t) * 4.8, 5.4, Math.sin(t) * 4.2);
+    g.position.set(Math.cos(t) * 6.4, 5.6, Math.sin(t) * 5.8);
     g.rotation.y = -t - Math.PI / 2;
   });
   return (

@@ -1,4 +1,4 @@
-"""家計簿 HTTP サーバー。127.0.0.1:8787 だけを受け付ける。"""
+"""予定と管理プラグインの HTTP サーバー。127.0.0.1:8787 だけを受け付ける。"""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
 import db
+import plugin_store
 import suggest
 
 HOST = "127.0.0.1"
@@ -70,6 +71,27 @@ def _event_action(path: str) -> tuple[str, str] | None:
     return event_id, action
 
 
+def _plugin_route(path: str) -> tuple[str, ...] | None:
+    """/api/plugins 配下を (種別, ...) に分解する。該当しなければ None。"""
+    if path == "/api/plugins":
+        return ("list",)
+    prefix = "/api/plugins/"
+    if not path.startswith(prefix):
+        return None
+    parts = [unquote(part) for part in path[len(prefix) :].split("/")]
+    if any(part == "" for part in parts):
+        return None
+    if len(parts) == 2 and parts[1] == "entries":
+        return ("entries", parts[0])
+    if len(parts) == 3 and parts[1] == "entries":
+        return ("entry", parts[0], parts[2])
+    if len(parts) == 2 and parts[1] == "goals":
+        return ("goals", parts[0])
+    if len(parts) == 2 and parts[1] == "inbound":
+        return ("inbound", parts[0])
+    return None
+
+
 def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self) -> None:
@@ -110,23 +132,32 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
             parsed = urlparse(self.path)
             path = parsed.path
             action = _event_action(path)
+            plugin = _plugin_route(path)
             if self.command == "GET" and path == "/api/health":
                 self._write_json(200, {"ok": True})
-                return
-            if self.command == "GET" and path == "/api/ledger":
-                self._write_json(200, db.fetch_ledger(db_path))
                 return
             if self.command == "GET" and path == "/api/calendar":
                 self._write_json(200, db.fetch_calendar(db_path))
                 return
-            if self.command == "POST" and path == "/api/ledger":
-                self._write_json(201, db.add_entry(db_path, _read_body(self)))
+            if self.command == "GET" and plugin == ("list",):
+                self._write_json(200, plugin_store.fetch_plugins(db_path))
                 return
-            if self.command == "POST" and path == "/api/ledger/reset":
-                self._write_json(200, db.reset_ledger(db_path))
+            if self.command == "POST" and plugin is not None and plugin[0] == "entries":
+                self._write_json(201, plugin_store.add_entry(db_path, plugin[1], _read_body(self)))
+                return
+            if self.command == "DELETE" and plugin is not None and plugin[0] == "entry":
+                plugin_store.delete_entry(db_path, plugin[1], plugin[2], _query_user(parsed.query))
+                self._write_empty(204)
+                return
+            if self.command == "PUT" and plugin is not None and plugin[0] == "goals":
+                self._write_json(200, plugin_store.set_goal(db_path, plugin[1], _read_body(self)))
+                return
+            if self.command == "POST" and plugin is not None and plugin[0] == "inbound":
+                token = self.headers.get("X-Plugin-Token")
+                self._write_json(201, plugin_store.inbound(db_path, plugin[1], token, _read_body(self)))
                 return
             if self.command == "POST" and path == "/api/reset":
-                self._write_json(200, db.reset_demo(db_path))
+                self._write_json(200, plugin_store.reset_demo(db_path))
                 return
             if self.command == "POST" and path == "/api/members":
                 self._write_json(200, db.add_member(db_path, _read_body(self)))
@@ -145,28 +176,14 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
                     return
                 self._write_json(200, db.leave_event(db_path, event_id, body))
                 return
-            if self.command == "PUT" and path == "/api/goals":
-                self._write_json(200, db.set_goal(db_path, _read_body(self)))
-                return
-            if self.command == "DELETE" and path.startswith("/api/ledger/"):
-                entry_id = unquote(path[len("/api/ledger/") :])
-                if entry_id == "" or "/" in entry_id:
-                    raise db.LedgerError(404, f"not found: {path}")
-                db.delete_entry(db_path, entry_id, _query_user(parsed.query))
-                self._write_empty(204)
-                return
-            ledger_id = path.startswith("/api/ledger/") and "/" not in unquote(path[len("/api/ledger/") :])
             if path in {
                 "/api/health",
-                "/api/ledger",
-                "/api/ledger/reset",
                 "/api/calendar",
                 "/api/reset",
                 "/api/members",
                 "/api/events",
                 "/api/suggest",
-                "/api/goals",
-            } or ledger_id or action is not None:
+            } or plugin is not None or action is not None:
                 raise db.LedgerError(405, f"method not allowed: {self.command} {path}")
             raise db.LedgerError(404, f"not found: {path}")
 
@@ -190,6 +207,7 @@ def serve(db_path: Path, host: str = HOST, port: int = PORT) -> LedgerHTTPServer
     if host != HOST:
         raise RuntimeError("listen host は 127.0.0.1 だけです")
     db.ensure_ready(db_path)
+    plugin_store.ensure_ready(db_path)
     return LedgerHTTPServer((host, port), make_handler(db_path))
 
 

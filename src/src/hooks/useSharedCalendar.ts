@@ -10,16 +10,15 @@ import {
   type CalendarSnapshot,
 } from '../lib/calendarApi';
 import {
-  asLedgerSnapshot,
-  createLedgerEntry,
-  deleteLedgerEntry,
-  fetchLedger,
-  putMonthlyGoal,
-  type LedgerSnapshot,
-} from '../lib/ledgerApi';
+  asPluginsList,
+  createPluginEntry,
+  deletePluginEntry,
+  fetchPlugins,
+  putPluginGoal,
+} from '../lib/pluginsApi';
 import { loadCurrentUser, saveCurrentUser } from '../lib/storage';
 import type { CalendarEvent, EventCategory } from '../types/calendar';
-import type { LedgerEntry, LedgerKind, MonthlyGoals } from '../types/ledger';
+import type { PluginData, PluginEntryValues } from '../types/plugins';
 
 export interface NewEventInput {
   date: string;
@@ -31,24 +30,25 @@ export interface NewEventInput {
   place: string;
 }
 
-export interface NewLedgerInput {
+export interface NewPluginEntryInput {
   date: string;
-  kind: LedgerKind;
-  amount: number;
-  title: string;
+  values: PluginEntryValues;
 }
 
 export interface SharedCalendar {
   members: string[];
   currentUser: string | null;
   events: CalendarEvent[];
-  ledger: LedgerEntry[];
-  goals: MonthlyGoals;
-  /** 予定と家計の初回読み込みが成功するまで false */
+  /** 管理プラグイン。並びはサーバー（/api/plugins）の順 */
+  plugins: PluginData[];
+  /** 予定の初回読み込みが成功するまで false */
   calendarReady: boolean;
-  ledgerReady: boolean;
-  /** 読み込みに失敗したときのメッセージ。成功時は null */
-  ledgerError: string | null;
+  /** プラグイン一覧の初回読み込みが成功するまで false */
+  pluginsReady: boolean;
+  /** 予定の読み込みに失敗したときのメッセージ。地図ごと止める */
+  calendarError: string | null;
+  /** プラグインの読み込みに失敗したときのメッセージ。地図は残す */
+  pluginsError: string | null;
   login: (name: string) => Promise<void>;
   logout: () => void;
   addEvent: (input: NewEventInput) => Promise<void>;
@@ -56,10 +56,10 @@ export interface SharedCalendar {
   joinEvent: (eventId: string) => Promise<void>;
   /** 自分の予定を消す。共有の予定なら自分だけ抜け、他のメンバーの予定として残る */
   removeEvent: (eventId: string) => Promise<void>;
-  addLedgerEntry: (input: NewLedgerInput) => Promise<void>;
-  removeLedgerEntry: (entryId: string) => Promise<void>;
-  setMonthlyGoal: (year: number, month: number, amount: number) => Promise<void>;
-  /** 予定と家計をサーバーのサンプルに戻す */
+  addPluginEntry: (pluginId: string, input: NewPluginEntryInput) => Promise<void>;
+  removePluginEntry: (pluginId: string, entryId: string) => Promise<void>;
+  setPluginGoal: (pluginId: string, year: number, month: number, amount: number) => Promise<void>;
+  /** 予定と全プラグインをサーバーのサンプルに戻す */
   resetToSample: () => Promise<void>;
 }
 
@@ -69,25 +69,26 @@ const POLL_MS = 2000;
 const errorMessage = (err: unknown): string => (err instanceof Error ? err.message : String(err));
 
 /**
- * 同じサーバーを開いたブラウザで共有するカレンダーと家計簿。
- * 予定・メンバー・家計は /api。ログイン中の名前だけこのブラウザに残す。
+ * 同じサーバーを開いたブラウザで共有するカレンダーと管理プラグイン。
+ * 予定・メンバー・プラグインは /api。ログイン中の名前だけこのブラウザに残す。
  * 2 秒ごとに読み直し、内容が変わったときだけ画面を更新する。
  */
 export const useSharedCalendar = (): SharedCalendar => {
   const [members, setMembers] = useState<string[]>([]);
   const [currentUser, setCurrentUser] = useState<string | null>(() => loadCurrentUser());
   const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [ledger, setLedger] = useState<LedgerEntry[]>([]);
-  const [goals, setGoals] = useState<MonthlyGoals>({});
+  const [plugins, setPlugins] = useState<PluginData[]>([]);
   const [calendarReady, setCalendarReady] = useState(false);
-  const [ledgerReady, setLedgerReady] = useState(false);
-  const [ledgerError, setLedgerError] = useState<string | null>(null);
+  const [pluginsReady, setPluginsReady] = useState(false);
+  const [calendarError, setCalendarError] = useState<string | null>(null);
+  const [pluginsError, setPluginsError] = useState<string | null>(null);
   const revision = useRef(0);
   const alive = useRef(true);
   const calendarJson = useRef('');
-  const ledgerJson = useRef('');
+  const pluginsJson = useRef('');
   const membersRef = useRef<string[]>([]);
   const userRef = useRef<string | null>(currentUser);
+  const pluginsReadyRef = useRef(false);
 
   useEffect(() => {
     membersRef.current = members;
@@ -110,34 +111,34 @@ export const useSharedCalendar = (): SharedCalendar => {
     }
   };
 
-  const applyLedger = (snapshot: LedgerSnapshot) => {
-    const next = JSON.stringify(snapshot);
-    if (next === ledgerJson.current) return;
-    ledgerJson.current = next;
-    setLedger(snapshot.entries);
-    setGoals(snapshot.goals);
+  const applyPlugins = (list: PluginData[]) => {
+    const next = JSON.stringify(list);
+    if (next === pluginsJson.current) return;
+    pluginsJson.current = next;
+    setPlugins(list);
   };
 
   const refresh = async (seen: number) => {
-    const [calendarResult, ledgerResult] = await Promise.allSettled([fetchCalendar(), fetchLedger()]);
+    const [calendarResult, pluginsResult] = await Promise.allSettled([
+      fetchCalendar(),
+      fetchPlugins(),
+    ]);
     if (!alive.current || revision.current !== seen) return;
-    const messages: string[] = [];
+    if (pluginsResult.status === 'rejected') {
+      console.error(pluginsResult.reason);
+      setPluginsError(errorMessage(pluginsResult.reason));
+    } else {
+      applyPlugins(pluginsResult.value);
+      setPluginsError(null);
+      setPluginsReady(true);
+      pluginsReadyRef.current = true;
+    }
     if (calendarResult.status === 'rejected') {
       console.error(calendarResult.reason);
-      messages.push(errorMessage(calendarResult.reason));
+      throw new Error(errorMessage(calendarResult.reason));
     }
-    if (ledgerResult.status === 'rejected') {
-      console.error(ledgerResult.reason);
-      messages.push(errorMessage(ledgerResult.reason));
-    }
-    if (messages.length > 0) {
-      throw new Error(messages.join('\n'));
-    }
-    if (calendarResult.status === 'fulfilled') applyCalendar(calendarResult.value);
-    if (ledgerResult.status === 'fulfilled') applyLedger(ledgerResult.value);
-    setLedgerError(null);
+    applyCalendar(calendarResult.value);
     setCalendarReady(true);
-    setLedgerReady(true);
   };
 
   useEffect(() => {
@@ -150,7 +151,7 @@ export const useSharedCalendar = (): SharedCalendar => {
         if (!active || revision.current !== seen) return;
         console.error(err);
         window.clearInterval(timer);
-        setLedgerError(errorMessage(err));
+        setCalendarError(errorMessage(err));
       });
     };
     tick();
@@ -227,61 +228,56 @@ export const useSharedCalendar = (): SharedCalendar => {
     });
   };
 
-  const requireLedger = (action: string): void => {
-    if (ledgerReady) return;
-    if (ledgerError !== null) throw new Error(ledgerError);
-    throw new Error(`${action}: 家計簿の読み込みが終わっていません`);
+  const requirePlugins = (action: string): void => {
+    if (pluginsReadyRef.current) return;
+    if (pluginsError !== null) throw new Error(pluginsError);
+    throw new Error(`${action}: 管理データの読み込みが終わっていません`);
   };
 
-  const addLedgerEntry = ({ date, kind, amount, title }: NewLedgerInput): Promise<void> => {
+  const addPluginEntry = (pluginId: string, { date, values }: NewPluginEntryInput): Promise<void> => {
     const user = userRef.current;
     if (user === null) {
-      throw new Error('addLedgerEntry: ログインしていません');
+      throw new Error('addPluginEntry: ログインしていません');
     }
-    requireLedger('addLedgerEntry');
+    requirePlugins('addPluginEntry');
     if (!DATE_KEY.test(date)) {
-      throw new Error(`addLedgerEntry: 日付の形式が不正です: ${date}`);
-    }
-    if (kind !== 'income' && kind !== 'expense') {
-      throw new Error(`addLedgerEntry: 収支の種類が不正です: ${String(kind)}`);
-    }
-    if (!Number.isInteger(amount) || amount < 1) {
-      throw new Error(`addLedgerEntry: 金額は 1 円以上の整数にしてください: ${amount}`);
-    }
-    const trimmed = title.trim();
-    if (trimmed.length === 0) {
-      throw new Error('addLedgerEntry: タイトルが空です');
+      throw new Error(`addPluginEntry: 日付の形式が不正です: ${date}`);
     }
     return afterWrite(async () => {
-      await createLedgerEntry({ date, kind, amount, title: trimmed, owner: user });
+      await createPluginEntry(pluginId, { date, owner: user, values });
     });
   };
 
-  const removeLedgerEntry = (entryId: string): Promise<void> => {
+  const removePluginEntry = (pluginId: string, entryId: string): Promise<void> => {
     const user = userRef.current;
     if (user === null) {
-      throw new Error('removeLedgerEntry: ログインしていません');
+      throw new Error('removePluginEntry: ログインしていません');
     }
-    requireLedger('removeLedgerEntry');
+    requirePlugins('removePluginEntry');
     return afterWrite(async () => {
-      await deleteLedgerEntry(entryId, user);
+      await deletePluginEntry(pluginId, entryId, user);
     });
   };
 
-  const setMonthlyGoal = (year: number, month: number, amount: number): Promise<void> => {
+  const setPluginGoal = (
+    pluginId: string,
+    year: number,
+    month: number,
+    amount: number,
+  ): Promise<void> => {
     const user = userRef.current;
     if (user === null) {
-      throw new Error('setMonthlyGoal: ログインしていません');
+      throw new Error('setPluginGoal: ログインしていません');
     }
-    requireLedger('setMonthlyGoal');
+    requirePlugins('setPluginGoal');
     if (month < 1 || month > 12) {
-      throw new Error(`setMonthlyGoal: 月が不正です: ${month}`);
+      throw new Error(`setPluginGoal: 月が不正です: ${month}`);
     }
     if (!Number.isInteger(amount) || amount < 1) {
-      throw new Error(`setMonthlyGoal: 目標は 1 円以上の整数にしてください: ${amount}`);
+      throw new Error(`setPluginGoal: 目標は 1 以上の整数にしてください: ${amount}`);
     }
     return afterWrite(async () => {
-      await putMonthlyGoal({ year, month, amount });
+      await putPluginGoal(pluginId, { year, month, amount });
     });
   };
 
@@ -289,7 +285,7 @@ export const useSharedCalendar = (): SharedCalendar => {
     afterWrite(async () => {
       const body = await resetDemo();
       asCalendarSnapshot(body);
-      asLedgerSnapshot(body);
+      asPluginsList(body);
     }).then(() => {
       saveCurrentUser(null);
       setCurrentUser(null);
@@ -299,19 +295,19 @@ export const useSharedCalendar = (): SharedCalendar => {
     members,
     currentUser,
     events,
-    ledger,
-    goals,
+    plugins,
     calendarReady,
-    ledgerReady,
-    ledgerError,
+    pluginsReady,
+    calendarError,
+    pluginsError,
     login,
     logout,
     addEvent,
     joinEvent,
     removeEvent,
-    addLedgerEntry,
-    removeLedgerEntry,
-    setMonthlyGoal,
+    addPluginEntry,
+    removePluginEntry,
+    setPluginGoal,
     resetToSample,
   };
 };

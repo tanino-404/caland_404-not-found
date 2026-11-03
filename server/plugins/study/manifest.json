@@ -1,0 +1,32 @@
+{
+  "id": "study",
+  "title": "勉強時間",
+  "fields": [
+    {
+      "id": "hours",
+      "label": "時間",
+      "type": "number",
+      "role": "progress",
+      "integer": true,
+      "min": 1,
+      "unit": "時間",
+      "placeholder": "時間"
+    },
+    {
+      "id": "subject",
+      "label": "教科",
+      "type": "text",
+      "role": "memo",
+      "placeholder": "数学"
+    }
+  ],
+  "progress": {
+    "label": "勉強時間",
+    "formula": "sum:hours",
+    "compare": "gte",
+    "goal": { "fixed": 100 },
+    "unit": "時間"
+  },
+  "effect": "study",
+  "achievedLabel": "図書館"
+}

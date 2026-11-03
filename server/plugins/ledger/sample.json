@@ -1,0 +1,1926 @@
+{
+  "entries": [
+    {
+      "id": "ledger-sample-0",
+      "date": "2026-01-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-1",
+      "date": "2026-01-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-2",
+      "date": "2026-01-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-3",
+      "date": "2026-01-08",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 17300,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-4",
+      "date": "2026-01-18",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 36100,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-5",
+      "date": "2026-01-11",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 14100,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-6",
+      "date": "2026-01-10",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 16700,
+        "title": "通信費"
+      }
+    },
+    {
+      "id": "ledger-sample-7",
+      "date": "2026-01-11",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 35100,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-8",
+      "date": "2026-01-17",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 20100,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-9",
+      "date": "2026-01-23",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 16900,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-10",
+      "date": "2026-01-12",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 19800,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-11",
+      "date": "2026-01-13",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 20500,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-12",
+      "date": "2026-01-26",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 28000,
+        "title": "サブスク"
+      }
+    },
+    {
+      "id": "ledger-sample-13",
+      "date": "2026-02-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-14",
+      "date": "2026-02-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-15",
+      "date": "2026-02-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-16",
+      "date": "2026-02-28",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 36900,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-17",
+      "date": "2026-02-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31400,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-18",
+      "date": "2026-02-23",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 19400,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-19",
+      "date": "2026-02-13",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 41200,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-20",
+      "date": "2026-02-12",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 26800,
+        "title": "通信費"
+      }
+    },
+    {
+      "id": "ledger-sample-21",
+      "date": "2026-02-08",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 39100,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-22",
+      "date": "2026-02-18",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 39500,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-23",
+      "date": "2026-02-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 17700,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-24",
+      "date": "2026-02-23",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31900,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-25",
+      "date": "2026-02-17",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 39600,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-26",
+      "date": "2026-03-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-27",
+      "date": "2026-03-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-28",
+      "date": "2026-03-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-29",
+      "date": "2026-03-19",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 33700,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-30",
+      "date": "2026-03-16",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 20800,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-31",
+      "date": "2026-03-05",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 15300,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-32",
+      "date": "2026-03-17",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 27600,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-33",
+      "date": "2026-03-06",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31100,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-34",
+      "date": "2026-03-31",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 19200,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-35",
+      "date": "2026-03-22",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 14800,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-36",
+      "date": "2026-03-20",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 18200,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-37",
+      "date": "2026-03-26",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 19400,
+        "title": "サブスク"
+      }
+    },
+    {
+      "id": "ledger-sample-38",
+      "date": "2026-03-20",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 15900,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-39",
+      "date": "2026-04-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-40",
+      "date": "2026-04-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-41",
+      "date": "2026-04-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-42",
+      "date": "2026-04-22",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 17600,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-43",
+      "date": "2026-04-14",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31200,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-44",
+      "date": "2026-04-11",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 32300,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-45",
+      "date": "2026-04-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 15300,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-46",
+      "date": "2026-04-21",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 26800,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-47",
+      "date": "2026-04-22",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 24500,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-48",
+      "date": "2026-04-05",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 14900,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-49",
+      "date": "2026-04-07",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 22200,
+        "title": "通信費"
+      }
+    },
+    {
+      "id": "ledger-sample-50",
+      "date": "2026-04-13",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 27200,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-51",
+      "date": "2026-04-05",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 25500,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-52",
+      "date": "2026-05-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-53",
+      "date": "2026-05-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-54",
+      "date": "2026-05-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-55",
+      "date": "2026-05-09",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 29400,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-56",
+      "date": "2026-05-04",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31200,
+        "title": "サブスク"
+      }
+    },
+    {
+      "id": "ledger-sample-57",
+      "date": "2026-05-11",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 40900,
+        "title": "通信費"
+      }
+    },
+    {
+      "id": "ledger-sample-58",
+      "date": "2026-05-05",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 18100,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-59",
+      "date": "2026-05-23",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 32000,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-60",
+      "date": "2026-05-02",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 47200,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-61",
+      "date": "2026-05-10",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 28700,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-62",
+      "date": "2026-05-26",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 36000,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-63",
+      "date": "2026-05-30",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31200,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-64",
+      "date": "2026-05-16",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 41700,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-65",
+      "date": "2026-06-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-66",
+      "date": "2026-06-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-67",
+      "date": "2026-06-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-68",
+      "date": "2026-06-09",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 29200,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-69",
+      "date": "2026-06-13",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 20800,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-70",
+      "date": "2026-06-17",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 32100,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-71",
+      "date": "2026-06-24",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 35200,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-72",
+      "date": "2026-06-04",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 29800,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-73",
+      "date": "2026-06-12",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 35800,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-74",
+      "date": "2026-06-18",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 54700,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-75",
+      "date": "2026-06-14",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 42200,
+        "title": "サブスク"
+      }
+    },
+    {
+      "id": "ledger-sample-76",
+      "date": "2026-06-23",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 43700,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-77",
+      "date": "2026-06-21",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 43000,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-78",
+      "date": "2026-07-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-79",
+      "date": "2026-07-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-80",
+      "date": "2026-07-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-81",
+      "date": "2026-07-12",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 14600,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-82",
+      "date": "2026-07-14",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 39800,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-83",
+      "date": "2026-07-12",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 18000,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-84",
+      "date": "2026-07-04",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 24700,
+        "title": "通信費"
+      }
+    },
+    {
+      "id": "ledger-sample-85",
+      "date": "2026-07-19",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 29300,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-86",
+      "date": "2026-07-16",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 27900,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-87",
+      "date": "2026-07-09",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 27200,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-88",
+      "date": "2026-07-02",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 16300,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-89",
+      "date": "2026-07-28",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 13600,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-90",
+      "date": "2026-07-18",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 39000,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-91",
+      "date": "2026-08-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-92",
+      "date": "2026-08-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-93",
+      "date": "2026-08-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-94",
+      "date": "2026-08-21",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 53500,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-95",
+      "date": "2026-08-10",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 36700,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-96",
+      "date": "2026-08-03",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 51600,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-97",
+      "date": "2026-08-07",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 40600,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-98",
+      "date": "2026-08-06",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 37600,
+        "title": "サブスク"
+      }
+    },
+    {
+      "id": "ledger-sample-99",
+      "date": "2026-08-13",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 46300,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-100",
+      "date": "2026-08-22",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 36900,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-101",
+      "date": "2026-08-31",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 47100,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-102",
+      "date": "2026-08-24",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 21200,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-103",
+      "date": "2026-08-27",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 25100,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-104",
+      "date": "2026-09-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-105",
+      "date": "2026-09-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-106",
+      "date": "2026-09-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-107",
+      "date": "2026-09-15",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 20000,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-108",
+      "date": "2026-09-02",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 30700,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-109",
+      "date": "2026-09-02",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 43000,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-110",
+      "date": "2026-09-07",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 45100,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-111",
+      "date": "2026-09-24",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 35700,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-112",
+      "date": "2026-09-03",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 26500,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-113",
+      "date": "2026-09-05",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 42300,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-114",
+      "date": "2026-09-18",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 22900,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-115",
+      "date": "2026-09-03",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 17900,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-116",
+      "date": "2026-09-08",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 43700,
+        "title": "趣味"
+      }
+    },
+    {
+      "id": "ledger-sample-117",
+      "date": "2026-10-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-118",
+      "date": "2026-10-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-119",
+      "date": "2026-10-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-120",
+      "date": "2026-10-15",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31800,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-121",
+      "date": "2026-10-11",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 39000,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-122",
+      "date": "2026-10-13",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 48500,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-123",
+      "date": "2026-10-10",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 25400,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-124",
+      "date": "2026-10-12",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 54500,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-125",
+      "date": "2026-10-08",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 46800,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-126",
+      "date": "2026-10-27",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 42400,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-127",
+      "date": "2026-10-11",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 25900,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-128",
+      "date": "2026-10-08",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 22500,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-129",
+      "date": "2026-10-26",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 42600,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-130",
+      "date": "2026-11-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-131",
+      "date": "2026-11-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-132",
+      "date": "2026-11-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-133",
+      "date": "2026-11-22",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 20200,
+        "title": "交通"
+      }
+    },
+    {
+      "id": "ledger-sample-134",
+      "date": "2026-11-29",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 26900,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-135",
+      "date": "2026-11-12",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 19400,
+        "title": "光熱費"
+      }
+    },
+    {
+      "id": "ledger-sample-136",
+      "date": "2026-11-15",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 13900,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-137",
+      "date": "2026-11-29",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 24000,
+        "title": "サブスク"
+      }
+    },
+    {
+      "id": "ledger-sample-138",
+      "date": "2026-11-19",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 12800,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-139",
+      "date": "2026-11-22",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 28500,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-140",
+      "date": "2026-11-22",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 28500,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-141",
+      "date": "2026-11-13",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 30300,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-142",
+      "date": "2026-11-18",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 28700,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-143",
+      "date": "2026-12-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 220000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-144",
+      "date": "2026-12-25",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 210000,
+        "title": "給与"
+      }
+    },
+    {
+      "id": "ledger-sample-145",
+      "date": "2026-12-10",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 150000,
+        "title": "冬の賞与"
+      }
+    },
+    {
+      "id": "ledger-sample-146",
+      "date": "2026-12-10",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "income",
+        "amount": 120000,
+        "title": "冬の賞与"
+      }
+    },
+    {
+      "id": "ledger-sample-147",
+      "date": "2026-12-01",
+      "owners": [
+        "たろう",
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 85000,
+        "title": "家賃"
+      }
+    },
+    {
+      "id": "ledger-sample-148",
+      "date": "2026-12-13",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 43700,
+        "title": "医療"
+      }
+    },
+    {
+      "id": "ledger-sample-149",
+      "date": "2026-12-25",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 28500,
+        "title": "日用品"
+      }
+    },
+    {
+      "id": "ledger-sample-150",
+      "date": "2026-12-08",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 34600,
+        "title": "通信費"
+      }
+    },
+    {
+      "id": "ledger-sample-151",
+      "date": "2026-12-11",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 31700,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-152",
+      "date": "2026-12-27",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 34500,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-153",
+      "date": "2026-12-13",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 50800,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-154",
+      "date": "2026-12-21",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 44500,
+        "title": "食費"
+      }
+    },
+    {
+      "id": "ledger-sample-155",
+      "date": "2026-12-19",
+      "owners": [
+        "はなこ"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 32600,
+        "title": "交際"
+      }
+    },
+    {
+      "id": "ledger-sample-156",
+      "date": "2026-12-19",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 35300,
+        "title": "買い物"
+      }
+    },
+    {
+      "id": "ledger-sample-157",
+      "date": "2026-12-02",
+      "owners": [
+        "たろう"
+      ],
+      "values": {
+        "kind": "expense",
+        "amount": 33800,
+        "title": "日用品"
+      }
+    }
+  ],
+  "goals": {
+    "2026-01": 50000,
+    "2026-02": 50000,
+    "2026-03": 50000,
+    "2026-04": 50000,
+    "2026-05": 50000,
+    "2026-06": 50000,
+    "2026-07": 50000,
+    "2026-08": 50000,
+    "2026-09": 50000,
+    "2026-10": 50000,
+    "2026-11": 50000,
+    "2026-12": 50000
+  }
+}

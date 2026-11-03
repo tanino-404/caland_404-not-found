@@ -16,8 +16,8 @@ export interface LedgerEntry {
 export type MonthlyGoals = Record<string, number>;
 
 /**
- * 島の見た目。
+ * 島の見た目。effect 部品表の theme。
  * - plain：いつもの草・土・石・雪
- * - luxury：その月の貯金目標を達成した黄金郷
+ * - luxury：金と大理石の島（黄金郷）
  */
 export type IslandTheme = 'plain' | 'luxury';

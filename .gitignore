@@ -8,6 +8,9 @@ docs/conversation_log/
 # sync 時の退避先
 .local_backup/
 
+# 手元のサーバー一式アーカイブ
+server.zip
+
 # 家計・予定サーバー（Python のソースは残す）
 server/.venv/
 __pycache__/

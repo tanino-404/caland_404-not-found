@@ -62,7 +62,7 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
   - 積み上げ：予定数 n の分だけブロックを積む（土 → 石 → 雪 のように高さで質感を変えると「山」に見える）
   - 屋上：最上段ブロックの上に、その日の予定カテゴリに対応した **ボクセル建物** を 3×3 のグリッドに並べる。配置順は日付をシードに決定的にシャッフルし、微小なずれ（jitter）を加えて町らしく見せる。各カテゴリは 3 バリエーション（`Xxx.tsx` / `Xxx2.tsx` / `Xxx3.tsx`）からスロット座標で決定的に選ぶ。最大 9 個。10 個以上は日ビューの HUD に「あと N 件」と出す
   - 村人（`Villagers.tsx`）：せり上がりが終わったあと、島の上に小さな人が歩く
-  - **家計簿の貯金目標を達成した月は黄金郷**（`IslandTheme = 'luxury'`）。金と大理石のリゾート塔、屋上のヤシ・プール・金の車・噴水・ヘリ、海のヨット、空から降る金貨と札、画面全体のきらめき。未達の月はいつもの草・土・石・雪
+  - **家計簿の貯金目標を達成した月は黄金郷**（`IslandTheme = 'luxury'`。NISA の達成も同じ土台）。金で縁取った黒曜石とガラスの塔（ドット絵テクスチャ）と白い日付、屋上のヤシ・プール・金の車・噴水、いちばん高い塔の上に浮かぶ巨大な金の $、エメラルドの礁湖とヨット、周回するヘリ、礁湖の外の空と雲海、浮島、ドット絵の金貨と札の雨、きらめき、右上の太陽のレンズフレア。未達の月はいつもの草・土・石・雪
   - 最上段ブロックの手前の面に日付数字（ピクセルフォント。雪頂上は濃紺、それ以外はクリーム色）
   - 月を切り替えるとタワーが日付順に地面から伸び上がる（読み込み時の 1 演出）
 - 曜日ヘッダー（SUN〜SAT）はグリッド奥の木の看板として 3D 内に置く。月名・件数は HUD の左上（巨大な月数字がヒーロー）
@@ -133,6 +133,7 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - 記録と目標はグループ id に属する。1 プラグインに複数グループ、グループに複数メンバー
 - 目標の期間は任意（`start`〜`end`）。島に見せるのは、その月の最終日の時点で期間中か直前に終わった目標
 - 画面は 1 つのプラグインだけを表示する。月の HUD 右上の「管理」で切り替える（最初は `lib/pluginApi.ts` の `DEFAULT_PLUGIN_ID` = 家計簿）。入力パネル `PluginHud` は fields から自動で作り、目標は指標・期間・目標値を選ぶ
+- 島の土台は `plain` / `luxury`（黄金郷）/ `muscle`（マッチョの島。フィットネスの最高段階）。黄金郷とマッチョの島は海を礁湖にして青空と雲海を見せ、光を明るくする
 - エフェクトは `effects[]` の `theme`（島の土台。`lib/effects.ts` の `EFFECT_THEMES`）と `scene`（空・霧・光の色とボクセルの絵。`components/month/EffectSprites.tsx` が描く）。達成率の段階ごとに変えられる
 - 同梱の例は釣り・NISA・フィットネス・ペット・自炊・自主勉強・ゲームの練習。各フォルダの `sample.json` が、空のときに起動とリセットで入る。どれも 3 月（最初に開く月）が最高段階
 - 雛形は `cd server && python new_plugin.py <id> <名前>`。連携の URL とトークンは `secret/.env`
@@ -191,7 +192,7 @@ export interface PluginEntry {
 ## 3D 表現の規約
 
 - 単位：1 マス = 1 × 1（`CELL_SIZE`）。タワーの幅は 1.0（`TOWER_WIDTH`。マスいっぱいに使う）、ブロックの高さは 0.5（`BLOCK_HEIGHT`）。グリッドは原点中心に置き、x = 曜日（`colToX`）、z = 週（`rowToZ`）、y = 高さ。変換は `lib/camera.ts` に集約
-- ブロックの質感は高さ（level）で決める：0 = 草の地面、1〜2 = 土（天面なら草）、3〜5 = 石、6 以上 = 雪（`blockKindForLevel`）。黄金郷では 0 = 砂金の浜、それより上は金。黄金郷の高い塔（予定 4 件以上）は側面に金の $ 看板（`luxury/DollarSign`）、6 件以上は屋上にヘリが付く（`LuxuryRooftop`）
+- ブロックの質感は高さ（level）で決める：0 = 草の地面、1〜2 = 土（天面なら草）、3〜5 = 石、6 以上 = 雪（`blockKindForLevel`）。黄金郷では 0 = 砂金の浜、それより上は金で縁取った黒曜石（3 段目以上の奇数段はガラス張り、最上段は数字が読めるよう黒曜石。`blocks/luxuryTextures.ts` のドット絵）。予定 3 件以上で最も高い塔の上に巨大な $ が浮かぶ（`LuxuryLandmark`。日ビューでは出さない）
 - ブロックは `BoxGeometry` + `MeshStandardMaterial` の 6 面配列（フラットな単色。テクスチャ画像は使わない）。材質はモジュール定数として共有する
 - 建物モデルは **1 ファイル 1 建物**、`export const Salon = ({ position }: ObjectProps) => …` 形式。中身は `Voxel`（位置・サイズ・色）を `<group>` で束ねた、底面 0.26 × 0.26・高さ 0.45 以内のボクセル（3×3・ピッチ 0.29 に収めるため）。色→材質は `materialFor` でキャッシュして共有する
 - ライト：`ambientLight` + 影付き `directionalLight` 1 灯。背景は CSS の空色グラデーション（Canvas は透過）、地面の下に海面（青い平面）、遠景に `fog`（水平線色）で「島の地図」感を出す
@@ -259,16 +260,21 @@ src/                               ← Vite プロジェクトルート
    │   ├─ month/
    │   │   ├─ MonthScene.tsx       ← <Canvas>、ライト、fog、海面、OrbitControls、DayTower と日付ラベルの配置（split なら相方の島と飛行機も。luxury なら花火と金の光）
    │   │   ├─ Flight.tsx           ← ふたりの予定の日に島と島を往復するボクセル飛行機（ハートの旗）
-   │   │   ├─ LuxuryFx.tsx         ← 黄金郷のマネーレイン（厚みのある金貨と凹版の札。InstancedMesh）
+   │   │   ├─ LuxuryFx.tsx         ← 黄金郷のドット絵の金貨と札の雨（手前の大きなものは画面の左右だけ）、きらめき、レンズフレア（three の Lensflare。ライトには付けない）
+   │   │   ├─ LuxurySky.tsx        ← 黄金郷の空：礁湖の外の雲海（InstancedMesh 2 つ）と浮島
+   │   │   ├─ LuxuryLandmark.tsx   ← いちばん高い塔の上に浮かぶ巨大な金の $
+   │   │   ├─ MuscleScene.tsx      ← マッチョの島（theme muscle）：島の奥の 3 人の巨大なボディビルダー（ポーズ・ダンベル・バーベル）、後光、PROTEIN 看板、シェイカー。日ビューでは出さない
    │   │   ├─ LuxuryMarina.tsx     ← 海のヨットと周回ヘリ
-   │   │   ├─ LuxuryRooftop.tsx    ← 屋上のヤシ・プール・車・噴水・ヘリ
+   │   │   ├─ LuxuryRooftop.tsx    ← 屋上のヤシ・プール・車・噴水・金塊
    │   │   ├─ DayTower.tsx         ← 1 日分：地面 + 積みブロック + 屋上 3×3 の建物 + ハイライト + 出現アニメ（luxury ならリゾート屋上）
-   │   │   ├─ Sea.tsx              ← 全体の海面（揺れる水面）
+   │   │   ├─ Sea.tsx              ← 全体の海面（揺れる水面）。黄金郷では縁が透ける丸い礁湖（中心エメラルド → 青）
    │   │   ├─ Villagers.tsx        ← 出現アニメ後に島の上を歩く村人
    │   │   ├─ PixelLabels.tsx      ← ピクセル文字を 1 つの InstancedMesh で描く
    │   │   ├─ WeekdayHeader.tsx    ← グリッド奥の木の看板（SUN〜SAT）
    │   │   └─ CameraRig.tsx        ← pose が変わるたびにカメラを補間移動、到着後はユーザー操作に任せる
    │   ├─ models/
+   │   │   ├─ blocks/pixelTexture.ts, luxuryTextures.ts, gymTextures.ts ← 塔の面のドット絵テクスチャ（黄金郷・マッチョの島）
+   │   │   ├─ pixelArt.ts          ← ドット絵 → 厚みのあるボクセル板のジオメトリ（同じ色の横の並びは 1 枚にまとめる）
    │   │   ├─ materials.ts         ← 共有 BoxGeometry と色 → MeshStandardMaterial のキャッシュ
    │   │   ├─ Voxel.tsx            ← 建物を組む最小単位（位置・サイズ・色）
    │   │   ├─ OwnerPlate.tsx       ← 建物の足元の「縁取り」台座。所有者色、共有なら縦縞
@@ -290,7 +296,6 @@ src/                               ← Vite プロジェクトルート
    │   │   └─ luxury/              ← 黄金郷の装飾パーツ
    │   │       ├─ GoldVoxel.tsx    ← 金ボクセルの最小単位
    │   │       ├─ Palm.tsx / Pool.tsx / Car.tsx / Fountain.tsx ← 屋上のヤシ・プール・金の車・噴水
-   │   │       ├─ DollarSign.tsx   ← 高い塔の側面の金の $ 看板
    │   │       ├─ Helicopter.tsx   ← ヘリ（屋上と周回）
    │   │       └─ Yacht.tsx        ← 海のヨット
    │   └─ hud/

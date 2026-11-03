@@ -127,7 +127,8 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
 
   useEffect(() => {
     document.body.classList.toggle('is-luxury', theme === 'luxury');
-    return () => document.body.classList.remove('is-luxury');
+    document.body.classList.toggle('is-muscle', theme === 'muscle');
+    return () => document.body.classList.remove('is-luxury', 'is-muscle');
   }, [theme]);
 
   if (view.kind === 'year') {

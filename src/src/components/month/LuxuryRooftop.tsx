@@ -1,8 +1,6 @@
 import { Car } from '../models/luxury/Car';
-import { DollarSign } from '../models/luxury/DollarSign';
 import { Fountain } from '../models/luxury/Fountain';
 import { GoldVoxel } from '../models/luxury/GoldVoxel';
-import { Helicopter } from '../models/luxury/Helicopter';
 import { Palm } from '../models/luxury/Palm';
 import { Pool } from '../models/luxury/Pool';
 import { Voxel } from '../models/Voxel';
@@ -20,7 +18,7 @@ const seedFromDateKey = (dateKey: string): number => {
 };
 
 /**
- * 黄金郷の屋上。ヤシ、プール、金の車、噴水、金塊、高い塔には $ とヘリ。
+ * 黄金郷の屋上。ヤシ、プール、金の車、噴水、金塊。$ とヘリはいちばん高い塔だけ（LuxuryLandmark）。
  * 手前（+z）の下半分は日付ラベルを隠さない。
  */
 export const LuxuryRooftop = ({ dateKey, count, y }: LuxuryRooftopProps) => {
@@ -47,12 +45,6 @@ export const LuxuryRooftop = ({ dateKey, count, y }: LuxuryRooftopProps) => {
         </group>
       ) : null}
       {count >= 3 ? <Voxel x={0} y={0.02} z={0.08} w={0.08} h={0.012} d={0.28} color="#e23d4f" /> : null}
-      {count >= 4 ? (
-        <group position={[0.56, -1.15, 0.12]} scale={2.2}>
-          <DollarSign position={[0, 0, 0]} />
-        </group>
-      ) : null}
-      {count >= 6 ? <Helicopter position={[0.02, 0.48, -0.02]} /> : null}
     </group>
   );
 };

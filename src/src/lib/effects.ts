@@ -9,6 +9,7 @@ import type { PluginManifest } from '../types/plugins';
 export const EFFECT_THEMES: Record<string, IslandTheme> = {
   plain: 'plain',
   luxury: 'luxury',
+  muscle: 'muscle',
 };
 
 export const islandThemeFor = (effect: string): IslandTheme => {

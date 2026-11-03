@@ -3,5 +3,6 @@
  * `lib/effects.ts` の対応表でこのどれかに割り当てられる。
  * - plain：いつもの草・土・石・雪
  * - luxury：目標を達成した黄金郷
+ * - muscle：目標を達成したマッチョの島（巨大なボディビルダー・プロテイン）
  */
-export type IslandTheme = 'plain' | 'luxury';
+export type IslandTheme = 'plain' | 'luxury' | 'muscle';

@@ -7,9 +7,10 @@ export type BlockKind =
   | 'stone'
   | 'snow'
   | 'goldShore'
-  | 'gold'
-  | 'marble'
-  | 'goldGlass';
+  | 'luxuryStone'
+  | 'luxuryGlass'
+  | 'gymStone'
+  | 'gymSlate';
 
 export const BLOCK_COLORS = {
   grassTop: '#5fb63b',
@@ -37,7 +38,8 @@ export const BLOCK_COLORS = {
 
 /**
  * level 0 = 海に接する島の縁。1〜2 = 土（天面なら草）。3〜5 = 石。6 以上 = 雪。
- * 黄金郷では砂金の浜と、上まで金の塔。$ は高い塔の側面に載せる。
+ * 黄金郷では砂金の浜と、金で縁取った黒曜石の塔。高い塔は途中がガラス張り。
+ * 最上段は日付の白い数字が読めるよう黒曜石にする。$ は高い塔の側面に載せる。
  */
 export const blockKindForLevel = (
   level: number,
@@ -46,7 +48,14 @@ export const blockKindForLevel = (
 ): BlockKind => {
   if (theme === 'luxury') {
     if (level === 0) return 'goldShore';
-    return 'gold';
+    if (isTop) return 'luxuryStone';
+    return level >= 3 && level % 2 === 1 ? 'luxuryGlass' : 'luxuryStone';
+  }
+  if (theme === 'muscle') {
+    // マッチョの島：灰色の石と濃いスレートのレンガ。最上段は白い数字が読めるようスレート
+    if (level === 0) return 'shore';
+    if (isTop) return 'gymSlate';
+    return level % 3 === 0 ? 'gymSlate' : 'gymStone';
   }
   if (level === 0) return 'shore';
   if (level <= 2) return isTop ? 'grass' : 'dirt';

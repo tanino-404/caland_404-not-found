@@ -169,70 +169,10 @@
     {
       "id": "muscle",
       "minProgress": 1,
-      "theme": "plain",
+      "theme": "muscle",
       "scene": {
         "ambient": "#ffe2c8",
         "sprites": [
-          {
-            "model": {
-              "palette": {
-                "s": "#f2b48a",
-                "k": "#9aa4b0",
-                "d": "#2b2f36",
-                "t": "#e0412e"
-              },
-              "layers": [
-                [
-                  "..tt..",
-                  "..tt.."
-                ],
-                [
-                  "..ss..",
-                  "..ss.."
-                ],
-                [
-                  "..ss..",
-                  "..ss.."
-                ],
-                [
-                  ".ssss.",
-                  ".ssss."
-                ],
-                [
-                  "ssssss",
-                  "ssssss"
-                ],
-                [
-                  ".ssss.",
-                  ".ssss."
-                ],
-                [
-                  "..ss..",
-                  "..ss.."
-                ],
-                [
-                  "..ss..",
-                  "..ss.."
-                ],
-                [
-                  "d.ss.d",
-                  "d.ss.d"
-                ],
-                [
-                  "dkkkkd",
-                  "dkkkkd"
-                ],
-                [
-                  "d....d",
-                  "d....d"
-                ]
-              ]
-            },
-            "count": 4,
-            "zone": "shore",
-            "motion": "pump",
-            "size": 0.13
-          },
           {
             "model": {
               "palette": {
@@ -291,6 +231,127 @@
             "zone": "rooftop",
             "motion": "bob",
             "size": 0.06
+          },
+          {
+            "model": {
+              "palette": {
+                "b": "#2b2f36",
+                "r": "#d8322a",
+                "g": "#b8bec8",
+                "d": "#1c1d22"
+              },
+              "layers": [
+                [
+                  "b...b",
+                  ".....",
+                  "b...b"
+                ],
+                [
+                  "rrrrr",
+                  "rrrrr",
+                  "rrrrr"
+                ],
+                [
+                  "d...d",
+                  ".....",
+                  "d...d"
+                ],
+                [
+                  "dgggd",
+                  ".....",
+                  "....."
+                ]
+              ]
+            },
+            "count": 10,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "w": "#f4f4f4",
+                "r": "#e8402e",
+                "k": "#22201f",
+                "s": "#f0a878",
+                "y": "#ffd23a"
+              },
+              "layers": [
+                [
+                  "wwwwwr",
+                  "wwwwww",
+                  "wwwwwr"
+                ],
+                [
+                  ".rr...",
+                  ".rrkk.",
+                  ".rr..."
+                ],
+                [
+                  "......",
+                  "..yy..",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..ss..",
+                  "......"
+                ]
+              ]
+            },
+            "count": 2,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.09,
+            "speed": 1.4
+          },
+          {
+            "model": {
+              "palette": {
+                "h": "#8a5a2b",
+                "w": "#fff8e7",
+                "m": "#5b3a1a",
+                "r": "#e8402e"
+              },
+              "layers": [
+                [
+                  ".hhhh.",
+                  "hhhhhh",
+                  ".hhhh."
+                ],
+                [
+                  "......",
+                  "..m...",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..mww.",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..mww.",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..mw..",
+                  "......"
+                ],
+                [
+                  "......",
+                  "..r...",
+                  "......"
+                ]
+              ]
+            },
+            "count": 2,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.1,
+            "speed": 0.2
           }
         ]
       }

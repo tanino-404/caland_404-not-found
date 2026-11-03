@@ -24,7 +24,12 @@ import { DayTower } from './DayTower';
 import { EffectSprites, type RooftopSpot } from './EffectSprites';
 import { Flight } from './Flight';
 import { LuxuryFx } from './LuxuryFx';
+import { LuxuryLandmark } from './LuxuryLandmark';
 import { LuxuryMarina } from './LuxuryMarina';
+import { Clouds, LuxurySky } from './LuxurySky';
+import { MuscleFx } from './MuscleFx';
+import { MuscleScene } from './MuscleScene';
+import { MuscleSea } from './MuscleSea';
 import { type PixelLabel, PixelLabels } from './PixelLabels';
 import { Sea } from './Sea';
 import { Villagers } from './Villagers';
@@ -112,7 +117,7 @@ const buildDayLabels = (
         rowToZ(cell.row, grid.rows) + TOWER_WIDTH / 2 + 0.012,
       ],
       rotation: [0, 0, 0],
-      color: theme === 'luxury' ? '#3a2208' : count >= 6 ? '#1b2a41' : '#fff6dc',
+      color: theme === 'luxury' || theme === 'muscle' ? '#ffffff' : count >= 6 ? '#1b2a41' : '#fff6dc',
       pitch: 0.055,
     };
   });
@@ -169,7 +174,20 @@ export const MonthScene = ({
     () => (partnerByDate ? buildDayLabels(grid, partnerByDate, theme) : []),
     [grid, partnerByDate, theme],
   );
+  /** 達成した島（黄金郷・マッチョ）は空ごと明るくする */
+  const bright = theme !== 'plain';
   const horizon = scene?.horizon ?? (theme === 'luxury' ? LUXURY_HORIZON_COLOR : HORIZON_COLOR);
+  /** 黄金郷の目印（浮かぶ巨大な $）を付ける、いちばん高い塔 */
+  const tallest = useMemo(() => {
+    let best: { x: number; z: number; top: number; count: number } | null = null;
+    for (const cell of grid.cells) {
+      const count = byDate.get(cell.dateKey)?.length ?? 0;
+      if (count >= 3 && (best === null || count > best.count)) {
+        best = { x: colToX(cell.col), z: rowToZ(cell.row, grid.rows), top: towerTopY(count), count };
+      }
+    }
+    return best;
+  }, [grid, byDate]);
   const rooftops: RooftopSpot[] = useMemo(
     () =>
       grid.cells
@@ -213,7 +231,7 @@ export const MonthScene = ({
     <>
       <Canvas
         dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true, toneMappingExposure: theme === 'luxury' ? 1.12 : 0.95 }}
+        gl={{ antialias: true, alpha: true, toneMappingExposure: bright ? 1.12 : 0.95 }}
         camera={{ position: [3.2, 11, 11.5], fov: 40, near: 0.1, far: 120 }}
         onCreated={({ camera }) => {
           camera.lookAt(0, 1.2, 0);
@@ -226,14 +244,14 @@ export const MonthScene = ({
           attach="fog"
           args={[horizon, split ? 26 : 18, split ? 62 : 48]}
         />
-        <ambientLight intensity={theme === 'luxury' ? 0.78 : 0.55} color={scene?.ambient ?? '#fff8ee'} />
+        <ambientLight intensity={bright ? 0.78 : 0.55} color={scene?.ambient ?? '#fff8ee'} />
         <hemisphereLight
-          args={theme === 'luxury' ? ['#c8f0ff', '#f0d9a0', 1.15] : ['#dff3ff', '#c9b48a', 0.9]}
+          args={bright ? ['#c8f0ff', '#f0d9a0', 1.15] : ['#dff3ff', '#c9b48a', 0.9]}
         />
         <directionalLight
           position={[6, 12, 4]}
-          intensity={theme === 'luxury' ? 1.55 : 1.1}
-          color={theme === 'luxury' ? '#fff5d6' : '#fff1d6'}
+          intensity={bright ? 1.55 : 1.1}
+          color={bright ? '#fff5d6' : '#fff1d6'}
         />
         {theme === 'luxury' ? (
           <>
@@ -263,8 +281,20 @@ export const MonthScene = ({
             <>
               <LuxuryFx />
               <LuxuryMarina />
+              <LuxurySky />
+              {tallest !== null && view.kind === 'month' ? (
+                <LuxuryLandmark x={tallest.x} z={tallest.z} top={tallest.top} />
+              ) : null}
             </>
           ) : null}
+          {theme === 'muscle' ? (
+            <>
+              <Clouds />
+              <MuscleFx />
+              <MuscleSea rows={grid.rows} />
+            </>
+          ) : null}
+          {theme === 'muscle' && view.kind === 'month' ? <MuscleScene rows={grid.rows} /> : null}
           <AfterRise>
             <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} theme={theme} />
             <PixelLabels labels={dayLabels} />

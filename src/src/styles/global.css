@@ -39,7 +39,8 @@ body {
   -webkit-font-smoothing: none;
 }
 
-body.is-luxury {
+body.is-luxury,
+body.is-muscle {
   background: linear-gradient(180deg, #4aa8ff 0%, #8ed4ff 48%, #dff6ff 100%);
 }
 

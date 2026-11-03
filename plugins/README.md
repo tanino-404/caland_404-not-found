@@ -41,7 +41,7 @@ plugins/
 
 `{ id, minProgress, theme, scene? }` の配列。達成率（0〜1）が届いた中で最大の `minProgress` を使う。`minProgress: 0` は必須。
 
-- `theme`：島の土台。`plain`（草・土・石・雪）か `luxury`（黄金郷）
+- `theme`：島の土台。`plain`（草・土・石・雪）、`luxury`（黄金郷）、`muscle`（マッチョの島：巨大なボディビルダー・PROTEIN 看板・シェイカー・石レンガの塔）
 - `scene`：土台に重ねるもの。すべて任意
   - `sky` `horizon` `ambient`：空・遠景の霧・環境光の色（`#rrggbb`）
   - `sprites`：ボクセルの絵（8 種類まで）。`{ model, count, zone, motion, size, speed? }`

@@ -9,13 +9,14 @@ export interface YearAchievements {
   error: string | null;
 }
 
-/** 年ビューを開いたときに、全プラグインの月ごとの達成を読む */
-export const useYearAchievements = (year: number): YearAchievements => {
+/** 年ビューを開いたときに、owner（島の持ち主）の全プラグインの月ごとの達成を読む。owner が null なら読まない */
+export const useYearAchievements = (year: number, owner: string | null): YearAchievements => {
   const [state, setState] = useState<YearAchievements>({ months: null, error: null });
 
   useEffect(() => {
+    if (owner === null) return;
     let active = true;
-    fetchAchievements(year).then(
+    fetchAchievements(year, owner).then(
       (months) => {
         if (active) setState({ months, error: null });
       },
@@ -27,7 +28,7 @@ export const useYearAchievements = (year: number): YearAchievements => {
     return () => {
       active = false;
     };
-  }, [year]);
+  }, [year, owner]);
 
   return state;
 };

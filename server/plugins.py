@@ -875,22 +875,28 @@ def goal_status(conn: sqlite3.Connection, manifest: dict, group_id: str, at: str
 
 
 def year_achievements(db_path: Path, plugins_dir: Path, query: str) -> dict:
-    """GET /api/achievements?year=YYYY。月ごとに、月末の時点で目標を達成しているプラグイン（先頭グループ）。"""
+    """GET /api/achievements?year=YYYY&owner=名前。月ごとに、月末の時点で目標を達成しているプラグイン。
+    各プラグインで owner が入っている先頭のグループを見る（画面の島のテーマと同じ選び方）。"""
     raw = _query(query, "year")
     if raw is None or not raw.isdigit() or not 1 <= int(raw) <= 9999:
         raise ApiError(400, f"year は 1〜9999 の整数です: {raw}")
     year = int(raw)
+    owner = str(_query(query, "owner"))
     manifests = list_manifests(plugins_dir)
     months: dict[str, list[dict]] = {}
     conn = connect(db_path)
     try:
-        groups = {m["id"]: fetch_groups(conn, m["id"]) for m in manifests}
+        own: dict[str, str] = {}
+        for m in manifests:
+            mine = [g for g in fetch_groups(conn, m["id"]) if owner in g["members"]]
+            if len(mine) > 0:
+                own[m["id"]] = mine[0]["id"]
         for month in range(1, 13):
             at = f"{year:04d}-{month:02d}-{calendar.monthrange(year, month)[1]:02d}"
             months[str(month)] = [
                 {"id": m["id"], "name": m["name"]}
                 for m in manifests
-                if len(groups[m["id"]]) > 0 and goal_status(conn, m, groups[m["id"]][0]["id"], at)["achieved"]
+                if m["id"] in own and goal_status(conn, m, own[m["id"]], at)["achieved"]
             ]
     finally:
         conn.close()

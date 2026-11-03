@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from 'react';
-import type { NewPluginGoalInput } from '../../hooks/useSharedCalendar';
+import type { NewPluginGoalInput } from '../../hooks/usePlugin';
 import { daysInMonth, toDateKey } from '../../lib/calendar';
 import { computeMetric, formatMetricValue, goalMetric, monthEndKey, monthStartKey } from '../../lib/pluginStatus';
 import type {
@@ -11,12 +11,12 @@ import type {
   PluginManifest,
   PluginStatus,
 } from '../../types/plugins';
+import './PluginHud.css';
 
 export interface PluginHudProps {
   manifest: PluginManifest;
-  /** 表示中のグループ。自分がメンバーでなければ参加ボタンを出す */
+  /** 自分が入っているグループ */
   group: PluginGroup;
-  onJoinGroup: () => Promise<void>;
   year: number;
   month: number;
   currentUser: string;
@@ -30,8 +30,114 @@ export interface PluginHudProps {
   onRemoveEntry: (entryId: string) => void;
   onAddGoal: (input: NewPluginGoalInput) => void | Promise<void>;
   onRemoveGoal: (goalId: string) => void;
+  onPrevMonth: () => void;
+  onNextMonth: () => void;
+  /** 「✕ 閉じる」で呼ぶ。親がパネルを閉じて月の表示に戻す */
   onClose: () => void;
 }
+
+const wrapMonth = (month: number, delta: number): number => ((month - 1 + delta + 12) % 12) + 1;
+
+interface PanelHeadProps {
+  year: number;
+  month: number;
+  name: string;
+  onPrevMonth: () => void;
+  onNextMonth: () => void;
+  onClose: () => void;
+}
+
+/** 見出しと月送り「◀」「▶」、「✕ 閉じる」 */
+const PanelHead = ({ year, month, name, onPrevMonth, onNextMonth, onClose }: PanelHeadProps) => (
+  <header className="ledger-head">
+    <div>
+      <div className="ledger-kicker">
+        {year}年{month}月
+      </div>
+      <h2 className="ledger-title">{name}</h2>
+    </div>
+    <div className="ledger-month-nav">
+      <button
+        type="button"
+        className="btn btn-small"
+        aria-label={`${wrapMonth(month, -1)}月へ`}
+        title={`${wrapMonth(month, -1)}月へ`}
+        onClick={onPrevMonth}
+      >
+        ◀
+      </button>
+      <button
+        type="button"
+        className="btn btn-small"
+        aria-label={`${wrapMonth(month, 1)}月へ`}
+        title={`${wrapMonth(month, 1)}月へ`}
+        onClick={onNextMonth}
+      >
+        ▶
+      </button>
+      <button type="button" className="btn btn-small ledger-close" aria-label={`${name}を閉じる`} onClick={onClose}>
+        ✕ 閉じる
+      </button>
+    </div>
+  </header>
+);
+
+export interface PluginStartProps {
+  manifest: PluginManifest;
+  year: number;
+  month: number;
+  currentUser: string;
+  /** 自分だけのグループを作る */
+  onStart: () => Promise<void>;
+  onPrevMonth: () => void;
+  onNextMonth: () => void;
+  onClose: () => void;
+}
+
+/** まだこのプラグインのグループに入っていないとき。自分のグループを作って記録を始める */
+export const PluginStart = ({
+  manifest,
+  year,
+  month,
+  currentUser,
+  onStart,
+  onPrevMonth,
+  onNextMonth,
+  onClose,
+}: PluginStartProps) => {
+  const [error, setError] = useState<string | null>(null);
+  return (
+    <aside className="ledger-panel panel" aria-label={`${year}年${month}月の${manifest.name}`}>
+      <PanelHead
+        year={year}
+        month={month}
+        name={manifest.name}
+        onPrevMonth={onPrevMonth}
+        onNextMonth={onNextMonth}
+        onClose={onClose}
+      />
+      {manifest.description === undefined ? null : <p className="ledger-status">{manifest.description}</p>}
+      <p className="ledger-status">{currentUser}さんの{manifest.name}はまだありません。</p>
+      <button
+        type="button"
+        className="btn btn-small"
+        onClick={() => {
+          onStart().catch((err: unknown) => {
+            console.error(err);
+            setError(err instanceof Error ? err.message : String(err));
+          });
+        }}
+      >
+        {manifest.name}を始める
+      </button>
+      {error === null ? null : (
+        <p className="ledger-status" role="alert">
+          {error}
+        </p>
+      )}
+    </aside>
+  );
+};
 
 const initialFieldValues = (manifest: PluginManifest): Record<string, string> => {
   const values: Record<string, string> = {};
@@ -88,7 +194,6 @@ const formatAverage = (value: number, unit: string | undefined): string =>
 export const PluginHud = ({
   manifest,
   group,
-  onJoinGroup,
   year,
   month,
   currentUser,
@@ -99,6 +204,8 @@ export const PluginHud = ({
   onRemoveEntry,
   onAddGoal,
   onRemoveGoal,
+  onPrevMonth,
+  onNextMonth,
   onClose,
 }: PluginHudProps) => {
   const days = daysInMonth(year, month);
@@ -245,33 +352,18 @@ export const PluginHud = ({
 
   return (
     <aside className="ledger-panel panel" aria-label={`${year}年${month}月の${manifest.name}`}>
-      <header className="ledger-head">
-        <div>
-          <div className="ledger-kicker">{year}年{month}月</div>
-          <h2 className="ledger-title">{manifest.name}</h2>
-        </div>
-        <button type="button" className="link-btn" onClick={onClose}>
-          閉じる
-        </button>
-      </header>
+      <PanelHead
+        year={year}
+        month={month}
+        name={manifest.name}
+        onPrevMonth={onPrevMonth}
+        onNextMonth={onNextMonth}
+        onClose={onClose}
+      />
 
       <p className="ledger-status">
         グループ「{group.name}」（{group.members.join('・')}）
       </p>
-      {group.members.includes(currentUser) ? null : (
-        <button
-          type="button"
-          className="btn btn-small"
-          onClick={() => {
-            onJoinGroup().catch((err: unknown) => {
-              console.error(err);
-              setEntryError(err instanceof Error ? err.message : String(err));
-            });
-          }}
-        >
-          このグループに入って記録する
-        </button>
-      )}
 
       <dl className="plugin-metrics">
         {manifest.metrics.map((m) => {

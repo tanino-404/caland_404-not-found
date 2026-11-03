@@ -2,6 +2,7 @@ import { DoubleSide, MeshStandardMaterial } from 'three';
 import { pixelArtGeometry } from '../models/pixelArt';
 import { buildFallers } from './fallers';
 import { Glints, PixelRain, type RainItem, SunFlare } from './SkyFx';
+import { type SkyFxProps, useSkyFade } from './skyFade';
 
 // ---------- ドット絵のお金 ----------
 
@@ -108,11 +109,14 @@ const MONEY: RainItem[] = [
   },
 ];
 
-/** 黄金郷の空：ドット絵のお金の雨、きらめき、レンズフレア */
-export const LuxuryFx = () => (
-  <group>
-    <PixelRain items={MONEY} />
-    <Glints />
-    <SunFlare />
-  </group>
-);
+/** 黄金郷の空：ドット絵のお金の雨、きらめき、レンズフレア。active の切り替えでフェードイン・アウトする */
+export const LuxuryFx = ({ active, flare }: SkyFxProps) => {
+  const { fade, group } = useSkyFade(active);
+  return (
+    <group ref={group} visible={false}>
+      <PixelRain items={MONEY} fade={fade} />
+      <Glints fade={fade} />
+      {flare ? <SunFlare /> : null}
+    </group>
+  );
+};

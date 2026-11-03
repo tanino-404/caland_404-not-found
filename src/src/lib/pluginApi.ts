@@ -138,13 +138,13 @@ const groupPath = (pluginId: string, groupId: string): string =>
 export const fetchManifests = async (): Promise<PluginManifest[]> =>
   listOf('プラグイン一覧', await request('/api/plugins'), 'plugins', asManifest);
 
-/** プラグインの先頭グループの記録と目標をまとめて読む */
-export const fetchPluginState = async (manifest: PluginManifest): Promise<PluginState> => {
+/** owner が入っている先頭のグループの記録と目標をまとめて読む。どのグループにも入っていなければ空 */
+export const fetchPluginState = async (manifest: PluginManifest, owner: string): Promise<PluginState> => {
   const groups = listOf('グループ一覧', await request(`/api/plugins/${encodeURIComponent(manifest.id)}/groups`), 'groups', asGroup);
-  if (groups.length === 0) {
-    throw new Error(`pluginApi: ${manifest.name}（${manifest.id}）にグループがありません`);
+  const group = groups.find((g) => g.members.includes(owner));
+  if (group === undefined) {
+    return { manifest, group: null, entries: [], goals: [] };
   }
-  const group = groups[0];
   const [entriesBody, goalsBody] = await Promise.all([
     request(`${groupPath(manifest.id, group.id)}/entries`),
     request(`${groupPath(manifest.id, group.id)}/goals`),
@@ -154,9 +154,9 @@ export const fetchPluginState = async (manifest: PluginManifest): Promise<Plugin
   return { manifest, group, entries, goals };
 };
 
-export const joinPluginGroup = async (pluginId: string, groupId: string, member: string): Promise<void> => {
-  await request(`${groupPath(pluginId, groupId)}/members`, jsonInit('POST', { member }));
-};
+/** member だけのグループを作る */
+export const createPluginGroup = async (pluginId: string, name: string, member: string): Promise<PluginGroup> =>
+  asGroup(await request(`/api/plugins/${encodeURIComponent(pluginId)}/groups`, jsonInit('POST', { name, members: [member] })));
 
 export const createPluginEntry = async (
   pluginId: string,
@@ -182,9 +182,9 @@ export const deletePluginGoal = async (pluginId: string, groupId: string, id: st
   });
 };
 
-/** 月（1〜12）→ その月末に目標を達成しているプラグイン */
-export const fetchAchievements = async (year: number): Promise<Map<number, PluginSummary[]>> => {
-  const body = await request(`/api/achievements?year=${year}`);
+/** 月（1〜12）→ その月末に、owner が入っているグループで目標を達成しているプラグイン */
+export const fetchAchievements = async (year: number, owner: string): Promise<Map<number, PluginSummary[]>> => {
+  const body = await request(`/api/achievements?year=${year}&owner=${encodeURIComponent(owner)}`);
   if (!isRecord(body) || !isRecord(body.months)) throw formatError('達成一覧', body);
   const months = new Map<number, PluginSummary[]>();
   for (const [key, list] of Object.entries(body.months)) {

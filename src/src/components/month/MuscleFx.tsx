@@ -4,6 +4,7 @@ import { Voxel } from '../models/Voxel';
 import { FloatingIsland } from './LuxurySky';
 import { buildFallers } from './fallers';
 import { Glints, PixelRain, type RainItem, SunFlare } from './SkyFx';
+import { type SkyFxProps, useSkyFade } from './skyFade';
 
 // ---------- 降るもの（ドット絵） ----------
 
@@ -93,16 +94,21 @@ const GYM_ISLANDS: { position: [number, number, number]; scale: number; phase: n
   { position: [7.8, 5.8, -12.5], scale: 1.5, phase: 4.4, top: 'dumbbell' },
 ];
 
-/** マッチョの島の空：降るプロテインのボトルとバナナ、きらめき、太陽、ジムの浮島 */
-export const MuscleFx = () => (
-  <group>
-    <PixelRain items={RAIN} />
-    <Glints />
-    <SunFlare />
-    {GYM_ISLANDS.map(({ position, scale, phase, top }) => (
-      <FloatingIsland key={`${position[0]}-${position[2]}`} position={position} scale={scale} phase={phase}>
-        {top === 'dumbbell' ? <GiantDumbbell /> : top === 'kettlebell' ? <GiantKettlebell /> : <SquatRack />}
-      </FloatingIsland>
-    ))}
-  </group>
-);
+/** マッチョの島の空：降るプロテインのボトルとバナナ、きらめき、太陽、ジムの浮島。降るものは active でフェードする */
+export const MuscleFx = ({ active, flare }: SkyFxProps) => {
+  const { fade, group } = useSkyFade(active);
+  return (
+    <group>
+      <group ref={group} visible={false}>
+        <PixelRain items={RAIN} fade={fade} />
+        <Glints fade={fade} />
+        {flare ? <SunFlare /> : null}
+      </group>
+      {GYM_ISLANDS.map(({ position, scale, phase, top }) => (
+        <FloatingIsland key={`${position[0]}-${position[2]}`} position={position} scale={scale} phase={phase}>
+          {top === 'dumbbell' ? <GiantDumbbell /> : top === 'kettlebell' ? <GiantKettlebell /> : <SquatRack />}
+        </FloatingIsland>
+      ))}
+    </group>
+  );
+};

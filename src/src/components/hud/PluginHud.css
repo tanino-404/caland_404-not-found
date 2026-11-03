@@ -1,0 +1,202 @@
+/* ---------- 家計簿 ---------- */
+
+/* 右矢印（right 28px + 64px 角）と重ならないよう右寄りに置く。下は下部バーの上 */
+.ledger-panel {
+  position: absolute;
+  top: 24px;
+  left: auto;
+  right: 120px;
+  bottom: 96px;
+  width: min(360px, calc(100vw - 56px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  overflow: auto;
+  z-index: 2;
+}
+
+.ledger-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ledger-kicker {
+  font-size: 12px;
+}
+
+.ledger-title {
+  margin: 2px 0 0;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.ledger-sums {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+}
+
+.ledger-sums div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ledger-sums dt {
+  font-size: 11px;
+}
+
+.ledger-sums dd {
+  margin: 0;
+  font-size: 13px;
+}
+
+.ledger-goal-line,
+.ledger-status,
+.ledger-empty {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ledger-status[role='alert'] {
+  color: #8b1a1a;
+}
+
+.ledger-coins {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+}
+
+.ledger-coins span {
+  display: block;
+  height: 14px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.ledger-coins span.is-filled {
+  background: var(--gold);
+}
+
+.ledger-goal-form,
+.ledger-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 2px dashed var(--ink);
+}
+
+.ledger-kinds {
+  display: flex;
+  gap: 8px;
+}
+
+.ledger-entry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.ledger-entry-form label,
+.ledger-goal-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.ledger-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 0;
+  border-top: 2px dashed var(--ink);
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.ledger-list li {
+  display: grid;
+  grid-template-columns: 36px 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.ledger-list-day {
+  opacity: 0.75;
+}
+
+.ledger-list-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ledger-list-in {
+  color: #1f6b3a;
+}
+
+.ledger-list-out {
+  color: #a12323;
+}
+
+.ledger-list-owner {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.ledger-month-nav {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ledger-close {
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+/* 720px 以下は矢印が 48px 角に縮む。重なってもパネルを優先して画面幅いっぱいに広げる */
+@media (max-width: 720px) {
+  .ledger-panel {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    z-index: 8;
+  }
+}
+
+/* 目標を達成した月の金色の文字（月ビューの .hud-savings.is-gold と同じ色） */
+.ledger-status.is-gold,
+.ledger-sums dd.is-gold {
+  color: #7a3d00;
+}
+
+/* ---------- 管理プラグインの指標 ---------- */
+
+.plugin-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 6px 12px;
+  margin: 8px 0;
+}
+
+.plugin-metrics dt {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.plugin-metrics dd {
+  margin: 0;
+  font-size: 15px;
+}

@@ -156,7 +156,8 @@ export interface PluginStatus {
 
 export interface PluginState {
   manifest: PluginManifest;
-  group: PluginGroup;
+  /** 島の持ち主が入っているグループ。入っていなければ null（記録も目標も空） */
+  group: PluginGroup | null;
   entries: PluginEntry[];
   goals: PluginGoal[];
 }

@@ -25,7 +25,11 @@ import new_plugin
 import plugins
 import seed
 
-JS_SAMPLE_SHA256 = "5fb31f489f318adb85c32e800bfb6bf08b0a1a0f78a0c98efb91184db86bf8b3"
+JS_SAMPLE_SHA256 = "d54bf63d3adca37a8835e946f51b92bf99b4110213bd89b9347903498307e62d"
+# サンプル家計を DB に入れるときの「今日」。これより後の記帳は DB に入らない。
+TODAY = "2026-11-03"
+TARO = "たろう"
+HANA = "はなこ"
 
 OLD_SCHEMA = """
 CREATE TABLE ledger_entries (
@@ -82,18 +86,20 @@ PRACTICE_MANIFEST = {
 }
 
 
-def seed_as_plugin_entries() -> list[dict]:
+def seed_as_plugin_entries(member: str, group_id: str) -> list[dict]:
+    """member の家計簿グループに入るサンプル記帳。TODAY より後は除く。"""
     entries, _ = seed.build_sample()
     return [
         {
             "id": entry["id"],
             "pluginId": "ledger",
-            "groupId": db.LEDGER_GROUP_ID,
+            "groupId": group_id,
             "date": entry["date"],
             "data": {"kind": entry["kind"], "amount": entry["amount"], "title": entry["title"]},
             "owners": entry["owners"],
         }
         for entry in entries
+        if entry["owners"] == [member] and entry["date"] <= TODAY
     ]
 
 
@@ -107,6 +113,8 @@ class PluginApiTest(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.db_path = Path(self.tmp.name) / "ledger.sqlite"
+        db.TODAY_OVERRIDE = TODAY
+        self.addCleanup(setattr, db, "TODAY_OVERRIDE", None)
         self.plugins_dir = app.PLUGINS_DIR
         self.httpd: app.LedgerHTTPServer | None = None
         self.thread: threading.Thread | None = None
@@ -174,20 +182,24 @@ class PluginApiTest(unittest.TestCase):
             parsed = json.loads(raw.decode("utf-8")) if raw else None
             return exc.code, parsed
 
-    def ledger_group(self) -> str:
+    def ledger_group(self, member: str = TARO) -> str:
+        """家計簿はメンバーごとに 1 グループ。member だけのグループの id"""
         status, body = self.request("GET", "/api/plugins/ledger/groups")
         self.assertEqual(200, status)
         assert isinstance(body, dict)
-        self.assertEqual(1, len(body["groups"]))
-        return body["groups"][0]["id"]
+        mine = [g["id"] for g in body["groups"] if g["members"] == [member]]
+        self.assertEqual(1, len(mine))
+        return mine[0]
 
     # ---------- シードと移し替え ----------
 
     def test_sample_matches_javascript_seed(self) -> None:
         entries, goals = seed.build_sample()
         self.assertEqual(JS_SAMPLE_SHA256, canonical_sample_hash(entries))
-        self.assertEqual(158, len(entries))
-        self.assertEqual({f"2026-{month:02d}": 50_000 for month in range(1, 13)}, goals)
+        self.assertEqual(870, len(entries))
+        every_month = {f"{year}-{month:02d}": 30_000 for year in (2025, 2026, 2027) for month in range(1, 13)}
+        self.assertEqual({TARO: every_month, HANA: every_month}, goals)
+        self.assertEqual({1}, {len(entry["owners"]) for entry in entries})
 
     def test_empty_db_seeds_ledger_plugin(self) -> None:
         self.assertFalse(self.db_path.exists())
@@ -202,37 +214,42 @@ class PluginApiTest(unittest.TestCase):
         self.assertEqual(200, status)
         assert isinstance(groups, dict)
         self.assertEqual(
-            [{"id": db.LEDGER_GROUP_ID, "pluginId": "ledger", "name": db.LEDGER_GROUP_NAME, "members": ["たろう", "はなこ"]}],
+            [
+                {"id": "ledger-member-1", "pluginId": "ledger", "name": "たろうの家計簿", "members": [TARO]},
+                {"id": "ledger-member-2", "pluginId": "ledger", "name": "はなこの家計簿", "members": [HANA]},
+            ],
             groups["groups"],
         )
 
-        status, body = self.request("GET", f"/api/plugins/ledger/groups/{db.LEDGER_GROUP_ID}/entries")
-        self.assertEqual(200, status)
-        assert isinstance(body, dict)
-        self.assertEqual(seed_as_plugin_entries(), body["entries"])
+        for member, group in ((TARO, "ledger-member-1"), (HANA, "ledger-member-2")):
+            status, body = self.request("GET", f"/api/plugins/ledger/groups/{group}/entries")
+            self.assertEqual(200, status)
+            assert isinstance(body, dict)
+            self.assertEqual(seed_as_plugin_entries(member, group), body["entries"])
 
-        status, goals = self.request("GET", f"/api/plugins/ledger/groups/{db.LEDGER_GROUP_ID}/goals")
+        status, goals = self.request("GET", "/api/plugins/ledger/groups/ledger-member-1/goals")
         self.assertEqual(200, status)
         assert isinstance(goals, dict)
-        self.assertEqual(12, len(goals["goals"]))
+        self.assertEqual(36, len(goals["goals"]))
         march = next(g for g in goals["goals"] if g["start"] == "2026-03-01")
-        self.assertEqual({"metric": "savings", "end": "2026-03-31", "target": 50_000},
+        self.assertEqual({"metric": "savings", "end": "2026-03-31", "target": 30_000},
                          {k: march[k] for k in ("metric", "end", "target")})
 
-        status, st = self.request(
-            "GET", f"/api/plugins/ledger/groups/{db.LEDGER_GROUP_ID}/status?at=2026-03-31"
-        )
+        status, st = self.request("GET", "/api/plugins/ledger/groups/ledger-member-1/status?at=2026-03-31")
         self.assertEqual(200, status)
         assert isinstance(st, dict)
-        self.assertEqual((129_000, True, 1.0, "luxury", True),
+        self.assertEqual((66_000, True, 1.0, "luxury", True),
                          (st["value"], st["achieved"], st["progress"], st["effect"], st["finished"]))
 
-        status, st = self.request(
-            "GET", f"/api/plugins/ledger/groups/{db.LEDGER_GROUP_ID}/status?at=2026-08-31"
-        )
+        status, st = self.request("GET", "/api/plugins/ledger/groups/ledger-member-1/status?at=2026-08-31")
         assert isinstance(st, dict)
-        self.assertEqual((-51_600, False, 0.0, "plain"),
+        self.assertEqual((-26_400, False, 0.0, "plain"),
                          (st["value"], st["achieved"], st["progress"], st["effect"]))
+
+        # 今日より後の記帳は入らないので、先の月は達成しない
+        status, st = self.request("GET", "/api/plugins/ledger/groups/ledger-member-1/status?at=2026-12-31")
+        assert isinstance(st, dict)
+        self.assertFalse(st["achieved"])
 
     def test_old_db_is_migrated_to_plugin_tables(self) -> None:
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
@@ -254,7 +271,7 @@ class PluginApiTest(unittest.TestCase):
         db.ensure_ready(self.db_path, self.plugins_dir)
         self.start()
 
-        group = self.ledger_group()
+        group = self.ledger_group("ぎんこう")
         status, body = self.request("GET", f"/api/plugins/ledger/groups/{group}/entries")
         assert isinstance(body, dict)
         self.assertEqual(
@@ -550,22 +567,30 @@ class PluginApiTest(unittest.TestCase):
 
     def test_year_achievements_counts_plugins_per_month(self) -> None:
         self.start()
-        status, body = self.request("GET", "/api/achievements?year=2026")
+        status, body = self.request("GET", f"/api/achievements?year=2026&owner={quote(TARO)}")
         self.assertEqual(200, status)
         assert isinstance(body, dict)
         self.assertEqual(2026, body["year"])
         self.assertEqual([str(m) for m in range(1, 13)], list(body["months"]))
         march = [p["id"] for p in body["months"]["3"]]
-        # 3 月はすべての同梱プラグインが目標達成
-        self.assertEqual(sorted(["cooking", "fishing", "fitness", "game", "ledger", "nisa", "pets", "study"]), sorted(march))
-        # 8 月の家計簿は未達（貯金 -51,600 円）
+        # 3 月はたろうが入っているすべての同梱プラグインが目標達成（自主勉強ははなこだけのグループ）
+        self.assertEqual(sorted(["cooking", "fishing", "fitness", "game", "ledger", "nisa", "pets"]), sorted(march))
+        # 8 月の家計簿は未達（貯金 -26,400 円）
         self.assertNotIn("ledger", [p["id"] for p in body["months"]["8"]])
 
-        status, bad = self.request("GET", "/api/achievements?year=abc")
+        status, body = self.request("GET", f"/api/achievements?year=2026&owner={quote(HANA)}")
+        assert isinstance(body, dict)
+        self.assertIn("study", [p["id"] for p in body["months"]["3"]])
+        self.assertNotIn("fitness", [p["id"] for p in body["months"]["3"]])
+
+        status, bad = self.request("GET", f"/api/achievements?year=abc&owner={quote(TARO)}")
         self.assertEqual(400, status)
         status, missing = self.request("GET", "/api/achievements")
         self.assertEqual(400, status)
         self.assertEqual({"error": "year がありません"}, missing)
+        status, missing = self.request("GET", "/api/achievements?year=2026")
+        self.assertEqual(400, status)
+        self.assertEqual({"error": "owner がありません"}, missing)
 
     def test_metric_where_filters_entries(self) -> None:
         self.start()
@@ -596,7 +621,7 @@ class PluginApiTest(unittest.TestCase):
 
         status, body = self.request("GET", f"/api/plugins/ledger/groups/{group}/entries")
         assert isinstance(body, dict)
-        self.assertEqual(158, len(body["entries"]))
+        self.assertEqual(len(seed_as_plugin_entries(TARO, group)), len(body["entries"]))
         self.assertNotIn(created["id"], [entry["id"] for entry in body["entries"]])
 
     def test_unknown_paths_and_methods(self) -> None:

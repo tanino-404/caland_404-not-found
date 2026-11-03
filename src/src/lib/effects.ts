@@ -27,3 +27,11 @@ export const assertKnownEffects = (manifest: PluginManifest): void => {
     islandThemeFor(effect.theme);
   }
 };
+
+/** 年ビューのツールチップに出す、変わった島の名前。plain は変わっていないので null */
+export const THEME_LABELS: Record<IslandTheme, string | null> = {
+  plain: null,
+  luxury: '黄金郷',
+  muscle: 'マッチョの島',
+  library: '知識の島',
+};

@@ -1,0 +1,59 @@
+/* ---------- 年ビュー HUD（看板の語彙は global.css の .hud / .panel / .chip を使う） ---------- */
+
+.year-hud-legend {
+  width: 260px;
+}
+
+/* 標高 0〜6+ のチップを横一列に。global.css の .hud-legend ul（2 列グリッド）は使わない */
+.year-hud-steps {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 2px dashed var(--ink);
+}
+
+.year-hud-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.year-hud-step .chip {
+  width: 16px;
+  height: 16px;
+  margin-right: 0;
+}
+
+.year-hud-step small {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.year-hud-steps-end {
+  font-size: 12px;
+  line-height: 1;
+  padding-bottom: 3px;
+}
+
+.year-hud-gold {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.year-hud-gold .chip {
+  width: 16px;
+  height: 16px;
+}
+
+.year-hud-stars {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #e8a400;
+  text-shadow: 1px 1px 0 var(--ink);
+}

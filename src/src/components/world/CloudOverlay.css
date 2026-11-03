@@ -1,0 +1,145 @@
+/* ---------- 月⇔年の切り替えで画面を覆う雲 ---------- */
+
+.cloud-overlay {
+  --cloud-white: #ffffff;
+  --cloud-shade: #e2f1fc;
+  --cloud-sky-top: #dff4ff;
+  --cloud-sky-bottom: #f7fbff;
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.cloud-overlay.is-active {
+  opacity: 1;
+}
+
+/* 雲の隙間から下のワールドが見えないよう、薄い空色で全面を埋める */
+.cloud-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--cloud-sky-top) 0%, var(--cloud-sky-bottom) 100%);
+}
+
+/* 左右から流れ込む雲の帯。画面の 7 割幅なので、揃うと中央で重なる */
+.cloud-bank {
+  position: absolute;
+  top: -12%;
+  bottom: -12%;
+  width: 72%;
+  transition: transform 0.45s ease;
+}
+
+.cloud-bank-left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.cloud-bank-right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.cloud-overlay.is-active .cloud-bank-left,
+.cloud-overlay.is-active .cloud-bank-right {
+  transform: translateX(0);
+}
+
+/*
+ * 雲 1 つ。radial-gradient の硬い円を重ねて、ピクセルゲームのような輪郭にする。
+ * 下側は少し青く影をつける
+ */
+.cloud {
+  position: absolute;
+  display: block;
+  background-image:
+    radial-gradient(circle at 22% 62%, var(--cloud-white) 0 26%, transparent 27%),
+    radial-gradient(circle at 42% 42%, var(--cloud-white) 0 34%, transparent 35%),
+    radial-gradient(circle at 64% 48%, var(--cloud-white) 0 30%, transparent 31%),
+    radial-gradient(circle at 80% 64%, var(--cloud-white) 0 24%, transparent 25%),
+    radial-gradient(ellipse at 50% 74%, var(--cloud-shade) 0 46%, transparent 47%);
+  filter: blur(1.2px) drop-shadow(0 6px 0 rgba(27, 42, 65, 0.08));
+  animation: cloud-drift 7s ease-in-out infinite alternate;
+}
+
+.cloud-bank-right .cloud {
+  transform: scaleX(-1);
+  animation-name: cloud-drift-mirrored;
+}
+
+.cloud-1 {
+  left: -6%;
+  top: 4%;
+  width: 78%;
+  height: 34%;
+  animation-delay: -1s;
+}
+
+.cloud-2 {
+  left: 24%;
+  top: 26%;
+  width: 92%;
+  height: 40%;
+  animation-delay: -3.2s;
+}
+
+.cloud-3 {
+  left: -10%;
+  top: 48%;
+  width: 84%;
+  height: 36%;
+  animation-delay: -5.1s;
+}
+
+.cloud-4 {
+  left: 30%;
+  top: 66%;
+  width: 90%;
+  height: 38%;
+  animation-delay: -2.3s;
+}
+
+.cloud-5 {
+  left: 6%;
+  top: -8%;
+  width: 70%;
+  height: 30%;
+  animation-delay: -4.4s;
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translate(-2.5%, 0);
+  }
+  to {
+    transform: translate(2.5%, -1.5%);
+  }
+}
+
+@keyframes cloud-drift-mirrored {
+  from {
+    transform: translate(2.5%, 0) scaleX(-1);
+  }
+  to {
+    transform: translate(-2.5%, -1.5%) scaleX(-1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-bank {
+    transition: none;
+  }
+
+  .cloud-bank-left,
+  .cloud-bank-right {
+    transform: translateX(0);
+  }
+
+  .cloud {
+    animation: none;
+  }
+}

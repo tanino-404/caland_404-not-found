@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { type RefObject, useMemo, useRef } from 'react';
 import {
   AdditiveBlending,
   type BufferGeometry,
@@ -14,10 +14,12 @@ import {
 } from 'three';
 import { Lensflare, LensflareElement } from 'three/examples/jsm/objects/Lensflare.js';
 import { type Faller, unit } from './fallers';
+import { APPEAR_BAND, VANISH_BAND } from './skyFade';
 
 /**
  * 達成した島の空に重ねる演出（黄金郷とマッチョの島で共用）：
  * ドット絵の板を降らせる PixelRain、瞬く星 Glints、右上の太陽のレンズフレア SunFlare。
+ * どれも skyFade.ts の useSkyFade の値を受け取り、達成した月に入る / 出るときに 1 秒かけて現れ・消える。
  */
 
 // ---------- 降るもの ----------
@@ -30,7 +32,10 @@ export interface RainItem {
   motion: 'spin' | 'flutter';
 }
 
-const RainLayer = ({ item }: { item: RainItem }) => {
+/** 落下の進み k（0〜1）で、上端の帯では 0 → 1、下端の帯では 1 → 0 */
+const bandScale = (k: number): number => Math.min(1, k / APPEAR_BAND, (1 - k) / VANISH_BAND);
+
+const RainLayer = ({ item, fade }: { item: RainItem; fade: RefObject<number> }) => {
   const mesh = useRef<InstancedMesh>(null);
   const o = useMemo(() => new Object3D(), []);
   useFrame(({ clock }) => {
@@ -38,16 +43,17 @@ const RainLayer = ({ item }: { item: RainItem }) => {
     if (!m) return;
     const t = clock.elapsedTime;
     item.fallers.forEach((f, i) => {
+      let k: number;
       if (item.motion === 'spin') {
-        const k = (t * f.speed + f.phase) % 1;
+        k = (t * f.speed + f.phase) % 1;
         o.position.set(f.x + Math.sin(t * 0.6 + i) * 0.15, f.top - k * f.fall, f.z);
         o.rotation.set(0.35 + Math.sin(t * 0.9 + i) * 0.3, t * 2.2 + i, Math.sin(t * 0.7 + i) * 0.25);
       } else {
-        const k = (t * f.speed * 0.8 + f.phase) % 1;
+        k = (t * f.speed * 0.8 + f.phase) % 1;
         o.position.set(f.x + Math.sin(t * 1.1 + i * 1.7) * 0.6, f.top - k * f.fall, f.z + Math.cos(t * 0.8 + i) * 0.3);
         o.rotation.set(-0.9 + Math.sin(t * 2.1 + i) * 0.6, t * 0.5 + i * 0.9, Math.sin(t * 1.4 + i * 0.7) * 0.5);
       }
-      o.scale.setScalar(f.size);
+      o.scale.setScalar(f.size * fade.current * bandScale(k));
       o.updateMatrix();
       m.setMatrixAt(i, o.matrix);
     });
@@ -57,10 +63,10 @@ const RainLayer = ({ item }: { item: RainItem }) => {
 };
 
 /** ドット絵の板（pixelArtGeometry）を空から降らせる。種類ごとに InstancedMesh 1 つ */
-export const PixelRain = ({ items }: { items: RainItem[] }) => (
+export const PixelRain = ({ items, fade }: { items: RainItem[]; fade: RefObject<number> }) => (
   <group>
     {items.map((item, index) => (
-      <RainLayer key={index} item={item} />
+      <RainLayer key={index} item={item} fade={fade} />
     ))}
   </group>
 );
@@ -134,7 +140,7 @@ const GLINT_COUNT = 72;
 const GLINT_TINTS = [new Color('#ffffff'), new Color('#fff2b0'), new Color('#ffd86a')];
 
 /** 島のまわりで瞬く 4 本光条の星 */
-export const Glints = () => {
+export const Glints = ({ fade }: { fade: RefObject<number> }) => {
   const mesh = useRef<InstancedMesh>(null);
   const o = useMemo(() => new Object3D(), []);
   const points = useMemo(
@@ -162,7 +168,7 @@ export const Glints = () => {
       o.position.set(p.x, p.y, p.z);
       o.quaternion.copy(camera.quaternion);
       o.rotateZ(t * 0.2 + i);
-      o.scale.setScalar(p.size * twinkle * twinkle);
+      o.scale.setScalar(p.size * twinkle * twinkle * fade.current);
       o.updateMatrix();
       m.setMatrixAt(i, o.matrix);
     });

@@ -1,4 +1,4 @@
-import { useFrame } from '@react-three/fiber';
+import { type ThreeEvent, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import type { Group } from 'three';
 import { Voxel } from '../models/Voxel';
@@ -13,6 +13,9 @@ const ENDPOINT_LIFT = 0.35;
 const HEART_PATTERN = ['.##.##.', '#######', '#######', '.#####.', '..###..', '...#...'];
 const HEART_PITCH = 0.055;
 const HEART_COLOR = '#ff5d73';
+/** クリック用の透明な当たり判定（機体と旗を包む箱）。中心 z と寸法 */
+const HIT_BOX_CENTER_Z = -0.25;
+const HIT_BOX_SIZE: [number, number, number] = [0.8, 0.7, 1.4];
 
 export interface FlightProps {
   /** 飛行ルートが通る列のワールド x */
@@ -29,7 +32,12 @@ export interface FlightProps {
   apexY: number;
   /** 複数便の位相をずらすためのオフセット（秒） */
   phase: number;
+  /** 渡すと機体がクリックできる（友達の島モードで、その日の件数を出す） */
+  onClick?: () => void;
 }
+
+/** 離陸でゆっくり加速し、着陸前にゆっくり減速する（smoothstep） */
+const easeInOut = (t: number): number => t * t * (3 - 2 * t);
 
 /** 2 次ベジェ（z-y 平面）。t=0.5 でほぼ apexY を通る */
 const curve = (
@@ -50,7 +58,7 @@ const curve = (
 };
 
 /** ハートの旗を曳いて、ふたりの塔の間を往復するボクセル飛行機（共通の予定の印） */
-export const Flight = ({ x, z0, y0, z1, y1, apexY, phase }: FlightProps) => {
+export const Flight = ({ x, z0, y0, z1, y1, apexY, phase, onClick }: FlightProps) => {
   const root = useRef<Group>(null);
   const heartSpin = useRef<Group>(null);
 
@@ -66,20 +74,21 @@ export const Flight = ({ x, z0, y0, z1, y1, apexY, phase }: FlightProps) => {
       heartSpin.current.rotation.y += delta * 1.4;
     }
     const time = (clock.elapsedTime + phase) % cycleSeconds;
-    // 行き → 待機 → 帰り → 待機
-    let t: number;
+    // 行き → 待機 → 帰り → 待機。線形の進み具合を ease して加減速にする
+    let linear: number;
     if (time < flightSeconds) {
-      t = time / flightSeconds;
+      linear = time / flightSeconds;
     } else if (time < flightSeconds + HOLD_SECONDS) {
-      t = 1;
+      linear = 1;
     } else if (time < 2 * flightSeconds + HOLD_SECONDS) {
-      t = 1 - (time - flightSeconds - HOLD_SECONDS) / flightSeconds;
+      linear = 1 - (time - flightSeconds - HOLD_SECONDS) / flightSeconds;
     } else {
-      t = 0;
+      linear = 0;
     }
     const outbound = time < flightSeconds + HOLD_SECONDS;
+    const t = easeInOut(linear);
     const [z, y] = curve(t, z0, startY, z1, endY, apexY);
-    const aheadT = Math.min(1, Math.max(0, t + (outbound ? 0.02 : -0.02)));
+    const aheadT = easeInOut(Math.min(1, Math.max(0, linear + (outbound ? 0.02 : -0.02))));
     const [az, ay] = curve(aheadT, z0, startY, z1, endY, apexY);
     g.position.set(x, y, z);
     if (aheadT !== t) {
@@ -87,8 +96,31 @@ export const Flight = ({ x, z0, y0, z1, y1, apexY, phase }: FlightProps) => {
     }
   });
 
+  const handleOver = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    document.body.style.cursor = 'pointer';
+  };
+  const handleOut = () => {
+    document.body.style.cursor = '';
+  };
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
+    e.stopPropagation();
+    onClick?.();
+  };
+
   return (
-    <group ref={root}>
+    <group
+      ref={root}
+      onPointerOver={onClick ? handleOver : undefined}
+      onPointerOut={onClick ? handleOut : undefined}
+      onClick={onClick ? handleClick : undefined}
+    >
+      {onClick ? (
+        <mesh position={[0, 0, HIT_BOX_CENTER_Z]}>
+          <boxGeometry args={HIT_BOX_SIZE} />
+          <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+        </mesh>
+      ) : null}
       {/* 機体（機首は +z） */}
       <Voxel x={0} y={-0.07} z={0} w={0.14} h={0.14} d={0.5} color="#f8f8f8" />
       <Voxel x={0} y={0.03} z={0.17} w={0.1} h={0.07} d={0.09} color="#2e86de" />

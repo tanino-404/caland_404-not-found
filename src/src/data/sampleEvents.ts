@@ -1,16 +1,28 @@
 /**
- * 固定データ（デモ用）：2026 年 1 年分のサンプル予定。
- * シード固定の乱数で生成するため、毎回同じ内容になる。
+ * 固定データ（デモ用）：2025・2026・2027 年の 3 年分のサンプル予定。
+ * 年ごとにシード固定の乱数で生成するため、毎回同じ内容になる。
  * 繁忙月（3 月・10 月・12 月）と閑散月（8 月）を意図的に作り、山と谷を出す。
+ * 2025 年は 2026 年の 0.8 倍。2027 年はまだ予定を入れていない未来なので、先の月ほど少なくする。
+ * server/seed.py の build_sample_events と同じ出力。
  */
 import type { CalendarEvent, EventCategory } from '../types/calendar';
 import { daysInMonth, toDateKey, weekdayOf } from '../lib/calendar';
 
+/** 最初に開く年 */
 export const SAMPLE_YEAR = 2026;
+/** サンプルを入れる年（昇順） */
+export const SAMPLE_YEARS = [2025, 2026, 2027];
 
 /** デモ用の初期メンバー。サンプル予定はこの 2 人のもの（結婚式など一部は 2 人で共有） */
 export const SAMPLE_MEMBERS = ['たろう', 'はなこ'];
 const SHARED_RATIO = 0.12;
+/** 1 日に予定が入らない確率 */
+const SKIP_RATIO = 0.25;
+/** 1 日の件数の係数 */
+const COUNT_SCALE = 2.8;
+
+/** 年ごとの乱数シード。2026 年は 20260917 */
+export const sampleEventSeed = (year: number): number => 20260917 + (year - 2026) * 10000;
 
 const TITLES: Record<EventCategory, string[]> = {
   beauty: ['カット', 'カラー', 'パーマ', 'ヘッドスパ', 'ネイル', 'まつエク'],
@@ -42,25 +54,41 @@ const MONTH_BUSYNESS: Record<number, number> = {
 const WEEKDAY_CATEGORIES: EventCategory[] = ['work', 'work', 'work', 'school', 'gym', 'hospital'];
 const WEEKEND_CATEGORIES: EventCategory[] = ['beauty', 'restaurant', 'restaurant', 'gym', 'travel', 'school'];
 
-/** 必ず入れる「見せ場」の日 */
-const SIGNATURE_DAYS: { date: string; categories: EventCategory[] }[] = [
+/** 必ず入れる「見せ場」の日。月・日で持ち、SIGNATURE_YEARS の各年に同じ日付で入れる */
+const SIGNATURE_DAYS: { month: number; day: number; categories: EventCategory[] }[] = [
   {
-    date: toDateKey(SAMPLE_YEAR, 12, 19),
+    month: 12,
+    day: 19,
     categories: ['wedding', 'beauty', 'restaurant', 'travel', 'wedding', 'restaurant', 'beauty', 'travel', 'wedding'],
   },
   {
-    date: toDateKey(SAMPLE_YEAR, 3, 27),
+    month: 3,
+    day: 27,
     categories: ['work', 'work', 'work', 'restaurant', 'work', 'gym', 'work', 'hospital'],
   },
   {
-    date: toDateKey(SAMPLE_YEAR, 10, 10),
+    month: 10,
+    day: 10,
     categories: ['travel', 'travel', 'restaurant', 'beauty', 'gym', 'restaurant', 'travel'],
   },
   {
-    date: toDateKey(SAMPLE_YEAR, 6, 6),
+    month: 6,
+    day: 6,
     categories: ['wedding', 'beauty', 'restaurant', 'travel'],
   },
 ];
+/** 2027 年はまだ先の予定なので見せ場の日を入れない */
+const SIGNATURE_YEARS = [2025, 2026];
+
+/**
+ * 年・月ごとの件数の倍率。2025 年は 2026 年の 0.8 倍。
+ * 2027 年は 1 月 0.7 から 12 月 0.15 へ線形に減らす。
+ */
+const yearScale = (year: number, month: number): number => {
+  if (year === 2025) return 0.8;
+  if (year === 2027) return 0.7 - 0.05 * (month - 1);
+  return 1;
+};
 
 const mulberry32 = (seed: number) => (): number => {
   seed = (seed + 0x6d2b79f5) | 0;
@@ -80,14 +108,18 @@ const pickOwners = (rng: () => number, category: EventCategory): string[] => {
   return [pick(rng, SAMPLE_MEMBERS)];
 };
 
-const buildSampleEvents = (): CalendarEvent[] => {
-  const rng = mulberry32(20260917);
+const buildSampleEventsForYear = (year: number): CalendarEvent[] => {
+  const rng = mulberry32(sampleEventSeed(year));
   const events: CalendarEvent[] = [];
-  const signature = new Map(SIGNATURE_DAYS.map((s) => [s.date, s.categories]));
+  const signature = new Map<string, EventCategory[]>(
+    SIGNATURE_YEARS.includes(year)
+      ? SIGNATURE_DAYS.map((s) => [toDateKey(year, s.month, s.day), s.categories])
+      : [],
+  );
   let id = 0;
   const push = (date: string, category: EventCategory) => {
     events.push({
-      id: `sample-${id++}`,
+      id: `sample-${year}-${id++}`,
       date,
       title: pick(rng, TITLES[category]),
       category,
@@ -96,19 +128,20 @@ const buildSampleEvents = (): CalendarEvent[] => {
   };
 
   for (let month = 1; month <= 12; month++) {
-    const total = daysInMonth(SAMPLE_YEAR, month);
+    const total = daysInMonth(year, month);
+    const scale = yearScale(year, month);
     for (let day = 1; day <= total; day++) {
-      const date = toDateKey(SAMPLE_YEAR, month, day);
+      const date = toDateKey(year, month, day);
       const fixed = signature.get(date);
       if (fixed) {
         for (const category of fixed) push(date, category);
         continue;
       }
-      const weekday = weekdayOf(SAMPLE_YEAR, month, day);
+      const weekday = weekdayOf(year, month, day);
       const isWeekend = weekday === 0 || weekday === 6;
       const pool = isWeekend ? WEEKEND_CATEGORIES : WEEKDAY_CATEGORIES;
-      if (rng() < 0.2) continue;
-      const raw = rng() * 3.2 * MONTH_BUSYNESS[month] + (rng() < 0.15 ? 3 : 0);
+      if (rng() < SKIP_RATIO) continue;
+      const raw = (rng() * COUNT_SCALE * MONTH_BUSYNESS[month] + (rng() < 0.15 ? 3 : 0)) * scale;
       const count = Math.min(10, Math.floor(raw));
       for (let i = 0; i < count; i++) push(date, pick(rng, pool));
     }
@@ -116,4 +149,6 @@ const buildSampleEvents = (): CalendarEvent[] => {
   return events;
 };
 
-export const sampleEvents: CalendarEvent[] = buildSampleEvents();
+export const sampleEvents: CalendarEvent[] = SAMPLE_YEARS.flatMap((year) =>
+  buildSampleEventsForYear(year),
+);

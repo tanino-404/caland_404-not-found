@@ -86,18 +86,20 @@ export const asCalendarSnapshot = (body: unknown): CalendarSnapshot => {
 export const fetchCalendar = async (): Promise<CalendarSnapshot> =>
   asCalendarSnapshot(await request('/api/calendar'));
 
-export const createMember = async (name: string): Promise<string[]> => {
-  const body = await request('/api/members', jsonInit('POST', { name }));
-  if (!isRecord(body) || !Array.isArray(body.members)) {
-    throw new Error(`calendarApi: メンバーの応答形式が不正です: ${JSON.stringify(body)}`);
+const asName = (body: unknown): string => {
+  if (!isRecord(body) || typeof body.name !== 'string') {
+    throw new Error(`calendarApi: ログイン応答の形式が不正です: ${JSON.stringify(body)}`);
   }
-  return body.members.map((member) => {
-    if (typeof member !== 'string') {
-      throw new Error(`calendarApi: メンバーの形式が不正です: ${JSON.stringify(body.members)}`);
-    }
-    return member;
-  });
+  return body.name;
 };
+
+/** ID とパスワードでログイン。失敗（401 など）はサーバーのメッセージのまま Error になる */
+export const loginMember = async (name: string, password: string): Promise<string> =>
+  asName(await request('/api/login', jsonInit('POST', { name, password })));
+
+/** ID とパスワードで新規登録。既存の ID なら 409 のメッセージで Error になる */
+export const registerMember = async (name: string, password: string): Promise<string> =>
+  asName(await request('/api/register', jsonInit('POST', { name, password })));
 
 export const createEvent = async (body: NewEventRequest): Promise<CalendarEvent> =>
   asEvent(await request('/api/events', jsonInit('POST', body)));

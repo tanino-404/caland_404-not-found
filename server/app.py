@@ -11,6 +11,7 @@ from urllib.parse import unquote, urlparse
 import db
 import plugins
 import suggest
+import weather
 
 HOST = "127.0.0.1"
 PORT = 8787
@@ -126,11 +127,17 @@ def make_handler(db_path: Path, plugins_dir: Path) -> type[BaseHTTPRequestHandle
             if self.command == "GET" and path == "/api/achievements":
                 self._write_json(200, plugins.year_achievements(db_path, plugins_dir, parsed.query))
                 return
+            if self.command == "GET" and path == "/api/weather":
+                self._write_json(200, weather.get_weather_now())
+                return
             if self.command == "POST" and path == "/api/reset":
                 self._write_json(200, db.reset_demo(db_path, plugins_dir))
                 return
-            if self.command == "POST" and path == "/api/members":
-                self._write_json(200, db.add_member(db_path, _read_body(self)))
+            if self.command == "POST" and path == "/api/login":
+                self._write_json(200, db.login_member(db_path, _read_body(self)))
+                return
+            if self.command == "POST" and path == "/api/register":
+                self._write_json(201, db.register_member(db_path, _read_body(self)))
                 return
             if self.command == "POST" and path == "/api/events":
                 self._write_json(201, db.add_event(db_path, _read_body(self)))
@@ -150,8 +157,10 @@ def make_handler(db_path: Path, plugins_dir: Path) -> type[BaseHTTPRequestHandle
                 "/api/health",
                 "/api/calendar",
                 "/api/achievements",
+                "/api/weather",
                 "/api/reset",
-                "/api/members",
+                "/api/login",
+                "/api/register",
                 "/api/events",
                 "/api/suggest",
             } or action is not None:

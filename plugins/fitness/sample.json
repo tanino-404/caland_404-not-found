@@ -1,0 +1,1713 @@
+{
+ "groups": [
+  {
+   "id": "fitness-home",
+   "name": "たろうの筋トレ",
+   "members": [
+    "たろう"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "fitness-home",
+   "date": "2026-01-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 45,
+    "body_weight": 71.8
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 20,
+    "body_weight": 71.4
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 60
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 100,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 45,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 60
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 30,
+    "body_weight": 71.1
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 52.5,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 30,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 30,
+    "body_weight": 71.1,
+    "memo": "筋肉痛"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 90,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-01-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 100,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 52.5,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 40,
+    "body_weight": 70.9
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 70,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 40,
+    "body_weight": 70.9,
+    "memo": "フォーム良し"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45,
+    "body_weight": 71.0
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-02-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 80,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 45,
+    "body_weight": 70.6
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45,
+    "body_weight": 70.5,
+    "memo": "筋肉痛"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 20,
+    "memo": "寝不足"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 52.5,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 52.5,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 60
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45,
+    "body_weight": 70.7
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 52.5,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 30,
+    "body_weight": 70.4,
+    "memo": "筋肉痛"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 70,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-03-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 40,
+    "body_weight": 70.5
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 52.5,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45,
+    "body_weight": 70.3
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 90,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 45,
+    "body_weight": 70.2
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 55.0,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 70,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 60,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 80,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-04-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 20
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 30,
+    "body_weight": 69.9
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 40,
+    "body_weight": 70.0
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 80,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 40,
+    "body_weight": 69.7
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 30,
+    "body_weight": 69.7
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 45,
+    "memo": "寝不足"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 60
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-05-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 80,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 45,
+    "memo": "寝不足"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-06-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30,
+    "body_weight": 69.6,
+    "memo": "筋肉痛"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-06-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-06-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 40,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-06-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 90,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 40,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-06-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 60,
+    "body_weight": 69.2
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 45,
+    "body_weight": 68.9
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 70,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 20,
+    "body_weight": 68.6
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 45,
+    "body_weight": 68.4,
+    "memo": "フォーム良し"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 80,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 40,
+    "body_weight": 67.7
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 30,
+    "body_weight": 67.4
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 90,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 45,
+    "body_weight": 66.9
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 30,
+    "body_weight": 66.6,
+    "memo": "フォーム良し"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-07-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 80,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 30,
+    "body_weight": 66.3
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-08-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 100,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 45,
+    "body_weight": 66.0,
+    "memo": "フォーム良し"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-08-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-08-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 57.5,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-08-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-08-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 60,
+    "body_weight": 65.9
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-08-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 100,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 60,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 45,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 30,
+    "body_weight": 65.5
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 60.0,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 40,
+    "body_weight": 65.6
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 80,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45,
+    "body_weight": 65.6
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30,
+    "memo": "自己ベスト"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 60,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 40,
+    "body_weight": 65.5
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-09-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 20,
+    "body_weight": 65.2
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 70,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 60
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 60,
+    "reps": 8,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 62.5,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 62.5,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 40,
+    "body_weight": 65.1,
+    "memo": "寝不足"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 62.5,
+    "reps": 10,
+    "sets": 3,
+    "minutes": 30,
+    "body_weight": 65.0
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-10-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 20,
+    "memo": "筋肉痛"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45,
+    "body_weight": 64.4
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 62.5,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 65.0,
+    "reps": 5,
+    "sets": 3,
+    "minutes": 30,
+    "memo": "フォーム良し"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 70,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 40,
+    "body_weight": 64.4
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 100,
+    "reps": 10,
+    "sets": 4,
+    "minutes": 30
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 67.5,
+    "reps": 5,
+    "sets": 4,
+    "minutes": 40
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 45
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 80,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 45,
+    "body_weight": 64.6
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 30,
+    "body_weight": 64.1
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 90,
+    "reps": 8,
+    "sets": 3,
+    "minutes": 40,
+    "body_weight": 64.0,
+    "memo": "フォーム良し"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-11-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "core",
+    "minutes": 20
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-12-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "bench",
+    "weight_kg": 67.5,
+    "reps": 5,
+    "sets": 5,
+    "minutes": 30,
+    "body_weight": 64.2,
+    "memo": "筋肉痛"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-12-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "run",
+    "minutes": 20,
+    "body_weight": 64.0
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-12-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "squat",
+    "weight_kg": 60,
+    "reps": 8,
+    "sets": 4,
+    "minutes": 30,
+    "memo": "寝不足"
+   }
+  },
+  {
+   "group": "fitness-home",
+   "date": "2026-12-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "training": "deadlift",
+    "weight_kg": 100,
+    "reps": 10,
+    "sets": 5,
+    "minutes": 30,
+    "body_weight": 64.1
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "fitness-home",
+   "label": "1月のトレーニング目標",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "2月のトレーニング目標",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "3月のトレーニング目標",
+   "start": "2026-03-01",
+   "end": "2026-03-31",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "4月のトレーニング目標",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "5月のトレーニング目標",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "6月のトレーニング目標",
+   "start": "2026-06-01",
+   "end": "2026-06-30",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "7月のトレーニング目標",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "8月のトレーニング目標",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "9月のトレーニング目標",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "10月のトレーニング目標",
+   "start": "2026-10-01",
+   "end": "2026-10-31",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "11月のトレーニング目標",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 12
+  },
+  {
+   "group": "fitness-home",
+   "label": "12月のトレーニング目標",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 12
+  }
+ ]
+}

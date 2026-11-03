@@ -1,4 +1,4 @@
-import type { IslandTheme } from '../../../types/ledger';
+import type { IslandTheme } from '../../../types/island';
 
 export type BlockKind =
   | 'grass'

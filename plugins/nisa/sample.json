@@ -1,0 +1,610 @@
+{
+ "groups": [
+  {
+   "id": "nisa-home",
+   "name": "ふたりの資産",
+   "members": [
+    "たろう",
+    "はなこ"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "nisa-home",
+   "date": "2026-01-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-01-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-01-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 33033,
+    "profit": -300
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-02-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-02-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-02-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 67191,
+    "profit": 525
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-03-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-03-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-03-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "growth",
+    "amount": 30000,
+    "fund": "sp500",
+    "memo": "押し目買い"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-03-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 136674,
+    "profit": 6675
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-04-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-04-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-04-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "growth",
+    "amount": 20000,
+    "fund": "sp500",
+    "memo": "ボーナスで"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-04-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 197787,
+    "profit": 14455
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-05-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-05-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-05-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 240435,
+    "profit": 23770
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-06-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-06-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-06-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "growth",
+    "amount": 50000,
+    "fund": "japan",
+    "memo": "ボーナスで"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-06-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 323583,
+    "profit": 23585
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-07-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-07-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-07-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 371260,
+    "profit": 37929
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-08-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-08-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-08-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 422064,
+    "profit": 55400
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-09-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-09-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-09-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "growth",
+    "amount": 20000,
+    "fund": "sp500",
+    "memo": "押し目買い"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-09-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 490594,
+    "profit": 70597
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-10-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-10-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-10-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 515088,
+    "profit": 61758
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-11-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-11-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-11-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "growth",
+    "amount": 10000,
+    "fund": "sp500",
+    "memo": "ボーナスで"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-11-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 560560,
+    "profit": 63897
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-12-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16667,
+    "fund": "allcountry"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-12-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "tsumitate",
+    "amount": 16666,
+    "fund": "sp500"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-12-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "growth",
+    "amount": 100000,
+    "fund": "japan",
+    "memo": "高配当株"
+   }
+  },
+  {
+   "group": "nisa-home",
+   "date": "2026-12-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "kind": "valuation",
+    "total_value": 722696,
+    "profit": 92700
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "nisa-home",
+   "label": "1月の投資目標",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "2月の投資目標",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "3月の投資目標",
+   "start": "2026-03-01",
+   "end": "2026-03-31",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "4月の投資目標",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "5月の投資目標",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "6月の投資目標",
+   "start": "2026-06-01",
+   "end": "2026-06-30",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "7月の投資目標",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "8月の投資目標",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "9月の投資目標",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "10月の投資目標",
+   "start": "2026-10-01",
+   "end": "2026-10-31",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "11月の投資目標",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 50000
+  },
+  {
+   "group": "nisa-home",
+   "label": "12月の投資目標",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 50000
+  }
+ ]
+}

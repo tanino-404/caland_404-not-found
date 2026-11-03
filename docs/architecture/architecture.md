@@ -104,18 +104,15 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - 目標が書いてあり、貯金 ≥ 目標ならその月の島は `luxury`。目標が無い月は達成扱いにしない
 - 固定サンプルは月目標 50,000 円。12 月（賞与）・3 月などは達成、6 月（結婚式）・8 月（休暇）・10 月（旅行）などは未達。デモ開始の繁忙月（3 月）が黄金郷になる
 - HUD の「家計簿」から記帳・削除・目標変更ができ、達成／未達は 3D に即座に反映される
-- 家計 API（すべて JSON。失敗時は `{ "error": "<例外メッセージ>" }`）：
-  - `GET /api/ledger` → `{ entries, goals }`
-  - `POST /api/ledger` 本文 `{ date, kind, amount, title, owner }` → 201 で 1 件
-  - `DELETE /api/ledger/<id>?user=<名前>` → 204。自分の記帳以外は 403
-  - `PUT /api/goals` 本文 `{ year, month, amount }` → `{ yearMonth, amount }`
-  - `POST /api/ledger/reset` → 家計だけサンプルで作り直し、`{ entries, goals }`
+- **家計簿は管理内容プラグイン `plugins/ledger` として動く**（下の「7. 管理内容プラグイン」）。旧 `/api/ledger` `/api/goals` は廃止。旧テーブル `ledger_entries` / `monthly_goals` は起動時に `plugin_*` テーブルへ移し替えて捨てる
+- API（すべて JSON。失敗時は `{ "error": "<例外メッセージ>" }`）：
+  - `/api/plugins/**` → `plugins/README.md` の API 節
   - `GET /api/calendar` → `{ members, events }`
   - `POST /api/members` 本文 `{ name }` → `{ members }`
   - `POST /api/events` 本文 `{ date, title, category, owner, invited, place }` → 201 で 1 件。`place` は任意
   - `POST /api/events/<id>/join` 本文 `{ user }` → 予定 1 件
   - `POST /api/events/<id>/leave` 本文 `{ user }` → `{ event }`。最後の所有者が抜けると `event` は null
-  - `POST /api/reset` → 予定と家計をサンプルで作り直し、`{ entries, goals, members, events }`
+  - `POST /api/reset` → 予定と家計プラグインをサンプルで作り直し、`{ members, events }`。他のプラグインの記録は触らない
   - `GET /api/health` → `{ "ok": true }`
   - `POST /api/suggest` 本文 `{ date, title, category, place }` → `{ place: { name, lat, lon }, weather, items, message }`。`message` は LINE へ送信済み。YuMake の予報範囲外の日付や、キー未設定、場所が見つからないときは `{ "error": "<例外メッセージ>" }` で止める
 
@@ -126,6 +123,16 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - 天気は YuMake 体感温度予報（`feelsLike.php?lat&lon`）。目的地の緯度経度を Overpass からそのまま渡せる。公開 Overpass が 502 か 504 のときは、同じ検索を 2 秒、4 秒、8 秒待って最大 4 回までやり直す。それでも失敗したらそのエラーをそのまま出す。予報は発表時刻から最大 78 時間先なので、デモでは今日から 3 日以内の日付で場所を入れる
 - Claude は持ち物の案を作り、同じ天気の数値で検討し直してから LINE の本文を書く。降水が 0 で天気が雨・雪・雷でないときは傘などの雨具を送らない。防寒は体感の最低が 18℃未満、暑さ対策は体感の最高が 22℃以上のときだけ。検討後も矛盾が残ったら送らずにエラーで止める。本文は絵文字と空行で区切る
 - LINE は Messaging API の push（`/v2/bot/message/push`）。送信先は LINE Developers コンソールのユーザー ID（`LINE_PUSH_TO`）。ボットを友だち追加したアカウントだけ届く
+
+### 7. 管理内容プラグイン（サンドボックス）
+
+- 1 フォルダ = 1 プラグイン（`plugins/<id>/plugin.json`）。書式は `plugins/README.md`。検証は `python server/plugins.py validate`
+- 項目（fields）、数値化する指標（metrics）、目標の向き（goal）、達成率ごとのエフェクト（effects）、外部連携（integrations：送信 webhook と受信 ingest。形式は `ADAPTERS` に関数を足す）を宣言で書く。ブラウザで任意コードは動かさない
+- 記録と目標はグループ id に属する。1 プラグインに複数グループ、グループに複数メンバー
+- 目標の期間は任意（`start`〜`end`）。島に見せるのは、その月の最終日の時点で期間中か直前に終わった目標
+- 画面は 1 つのプラグインだけを表示する（`lib/pluginApi.ts` の `DISPLAYED_PLUGIN_ID`）。入力パネル `PluginHud` は fields から自動で作る
+- エフェクト名 → 島の見た目は `lib/effects.ts` の `EFFECT_THEMES`。未実装の名前なら読み込み時にエラーで止める
+- 指標と進捗はサーバー（`plugins.py`）と画面（`lib/pluginStatus.ts`）で同じ計算をする
 
 ### 初期表示
 
@@ -159,16 +166,16 @@ export type ViewState =
   | { kind: 'month'; year: number; month: number }               // month: 1-12
   | { kind: 'day'; year: number; month: number; day: number };
 
-// src/src/types/ledger.ts
-export type LedgerKind = 'income' | 'expense';
+// src/src/types/island.ts
 export type IslandTheme = 'plain' | 'luxury';
 
-export interface LedgerEntry {
+// src/src/types/plugins.ts（抜粋）
+export interface PluginEntry {
   id: string;
+  pluginId: string;
+  groupId: string;
   date: string;          // 'YYYY-MM-DD'
-  kind: LedgerKind;
-  amount: number;        // 円。1 以上の整数
-  title: string;
+  data: Record<string, string | number | boolean | string[]>; // plugin.json の fields
   owners: string[];
 }
 ```
@@ -198,11 +205,12 @@ export interface LedgerEntry {
 ```
 server/                            ← 家計簿のローカルサーバー（Python 3.11・標準ライブラリのみ）
 ├─ .venv/                          ← 仮想環境
-├─ app.py                          ← 127.0.0.1:8787 の HTTP。/api/ledger と /api/goals と /api/suggest
-├─ db.py                           ← SQLite のスキーマ・CRUD。失敗時は例外を隠さない
+├─ app.py                          ← 127.0.0.1:8787 の HTTP。/api/calendar 系、/api/plugins は plugins.py へ、/api/suggest
+├─ db.py                           ← 予定・メンバーのスキーマと CRUD。家計プラグインのシードと旧家計テーブルの移し替え
+├─ plugins.py                      ← 管理内容プラグインの検証・記録・目標・進捗・外部連携。`python plugins.py validate`
 ├─ seed.py                         ← sampleLedger.ts と同じシードで一年分を入れる
 ├─ suggest.py                      ← Overpass → YuMake → Claude → LINE。キーは secret/.env
-├─ tests/                          ← unittest（DB と API）
+├─ tests/                          ← unittest（プラグイン API・移し替え・連携・plugin.json の検証）
 └─ data/
     └─ ledger.sqlite               ← 本機の家計 DB（gitignore 対象）
 
@@ -220,19 +228,21 @@ src/                               ← Vite プロジェクトルート
    ├─ App.tsx                      ← ViewState を持ち、Year / Month シーンと HUD を切り替える（共有ファイル）
    ├─ types/
    │   ├─ calendar.ts              ← CalendarEvent / EventCategory / ViewState / CATEGORY_INFO（色・表示名）
-   │   └─ ledger.ts                ← LedgerEntry / MonthlyGoals / IslandTheme
+   │   ├─ island.ts                ← IslandTheme
+   │   └─ plugins.ts               ← プラグイン定義・記録・目標・グループ・進捗の型
    ├─ data/
    │   ├─ sampleEvents.ts          ← 固定データ：2026 年一年分のサンプル予定（シード固定生成）
-   │   └─ sampleLedger.ts          ← 固定データ：2026 年一年分の家計簿と月目標
+   │   └─ sampleLedger.ts          ← 固定データ：2026 年一年分の家計簿と月目標（server/seed.py との照合用。画面は使わない）
    ├─ lib/
    │   ├─ calendar.ts              ← 月グリッド計算・日別集計・最繁忙月・日付表記（純関数）
    │   ├─ camera.ts                ← グリッド座標 ⇄ ワールド座標、月俯瞰（1 島 / 2 島）/ 日ズームのカメラ姿勢、相方の島の z オフセット
    │   ├─ pixelFont.ts             ← 3×5 ピクセルフォント（数字と SUN〜SAT に必要な英字）
    │   ├─ members.ts               ← メンバー識別色、所有者チップの背景、所有者別の件数内訳、島ごとの予定の振り分け
-   │   ├─ ledger.ts                ← 月の収支集計・目標・黄金郷判定・円表記（純関数）
+   │   ├─ pluginStatus.ts          ← 指標・目標の選び方・進捗・エフェクト（plugins.py と同じ計算の純関数）
+   │   ├─ effects.ts               ← エフェクト名 → IslandTheme の対応表
    │   ├─ calendarApi.ts           ← 予定とメンバー（/api/calendar）の呼び出し。失敗時は Error を投げる
    │   ├─ suggestApi.ts            ← 持ち物提案（/api/suggest）。失敗時は Error を投げる
-   │   ├─ ledgerApi.ts             ← 家計簿サーバー（/api）の呼び出し。失敗時は Error を投げる
+   │   ├─ pluginApi.ts             ← /api/plugins の呼び出し。表示するプラグイン id。失敗時は Error を投げる
    │   └─ storage.ts               ← localStorage の読み書き（version 4。ログイン中の名前だけ）
    ├─ hooks/
    │   └─ useSharedCalendar.ts     ← 予定・メンバー・家計は /api。ログイン中の名前だけ localStorage。2 秒ごとに読み直す
@@ -280,7 +290,7 @@ src/                               ← Vite プロジェクトルート
    │   └─ hud/
    │       ├─ LoginScreen.tsx      ← ユーザー名だけのログイン、既存メンバーのワンクリック、サンプルに戻す
    │       ├─ MonthHud.tsx         ← 月名・前後月・年ビューへ・家計簿・貯金 / 目標・現在のユーザー・凡例・ホバーの日付と所有者内訳
-   │       ├─ LedgerHud.tsx        ← 月の家計簿：収支・目標・記帳・削除
+   │       ├─ PluginHud.tsx        ← プラグインの入力パネル：fields から作るフォーム・任意期間の目標・記録一覧
    │       └─ DayHud.tsx           ← 日付・予定一覧（所有者チップ・場所・持ち物を提案・参加する/削除/抜ける）・予定を建てるフォーム（場所・種類チップ・誘う）・持ち物提案の結果・月に戻る
    └─ styles/
        └─ global.css               ← デザイントークン、HUD（看板風パネル）、ヒートマップ、レスポンシブ
@@ -304,5 +314,5 @@ src/                               ← Vite プロジェクトルート
 | C. データと集計・年ビュー | `data/sampleEvents.ts` / `lib/calendar.ts` / `components/year/**` |
 | D. HUD とスタイル | `components/hud/**` / `styles/global.css` |
 | E. ログイン・共有の状態 | `hooks/useSharedCalendar.ts` / `lib/storage.ts` / `lib/members.ts` |
-| F. 家計簿と黄金郷 | `types/ledger.ts` / `data/sampleLedger.ts` / `lib/ledger.ts` / `components/hud/LedgerHud.tsx` / `components/month/Luxury*.tsx` / `components/models/luxury/**` |
+| F. 管理内容プラグインと黄金郷 | `plugins/**` / `server/plugins.py` / `types/plugins.ts` / `lib/plugin*.ts` / `lib/effects.ts` / `components/hud/PluginHud.tsx` / `components/month/Luxury*.tsx` / `components/models/luxury/**` |
 | 共有（声をかけてから） | `App.tsx` / `main.tsx` / `types/calendar.ts` / `package.json` 等の設定ファイル |

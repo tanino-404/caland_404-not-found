@@ -12,7 +12,7 @@ import {
 } from '../../lib/camera';
 import type { MonthCell } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import type { IslandTheme } from '../../types/ledger';
+import type { IslandTheme } from '../../types/island';
 import { Block } from '../models/blocks/Block';
 import { BLOCK_COLORS, blockKindForLevel } from '../models/blocks/blockKinds';
 import { OBJECT_BY_CATEGORY } from '../models/objects';

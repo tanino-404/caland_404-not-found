@@ -1,0 +1,5640 @@
+{
+ "groups": [
+  {
+   "id": "cooking-home",
+   "name": "ふたりの台所",
+   "members": [
+    "たろう",
+    "はなこ"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "cooking-home",
+   "date": "2026-01-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 699,
+    "kcal": 680,
+    "protein_g": 24.7,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 185,
+    "kcal": 602,
+    "protein_g": 34.2,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 318,
+    "kcal": 354,
+    "protein_g": 16.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 401,
+    "kcal": 86,
+    "protein_g": 6.9,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 897,
+    "kcal": 88,
+    "protein_g": 6.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 751,
+    "kcal": 700,
+    "protein_g": 25.8,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 154,
+    "kcal": 385,
+    "protein_g": 17.3,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 418,
+    "kcal": 85,
+    "protein_g": 7.6,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 757,
+    "kcal": 371,
+    "protein_g": 18.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 248,
+    "kcal": 409,
+    "protein_g": 19.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 352,
+    "kcal": 620,
+    "protein_g": 30.4,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 831,
+    "kcal": 673,
+    "protein_g": 23.7,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 807,
+    "kcal": 83,
+    "protein_g": 7.0,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 422,
+    "kcal": 675,
+    "protein_g": 26.4,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 876,
+    "kcal": 492,
+    "protein_g": 23.6,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 632,
+    "kcal": 93,
+    "protein_g": 6.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 492,
+    "kcal": 377,
+    "protein_g": 17.0,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 197,
+    "kcal": 388,
+    "protein_g": 25.4,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 605,
+    "kcal": 355,
+    "protein_g": 17.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 797,
+    "kcal": 689,
+    "protein_g": 26.3,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 602,
+    "kcal": 628,
+    "protein_g": 24.9,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 177,
+    "kcal": 718,
+    "protein_g": 25.0,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 741,
+    "kcal": 710,
+    "protein_g": 22.8,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-01-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 305,
+    "kcal": 641,
+    "protein_g": 24.5,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 893,
+    "kcal": 36,
+    "protein_g": 2.8,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 366,
+    "kcal": 519,
+    "protein_g": 30.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 879,
+    "kcal": 395,
+    "protein_g": 28.0,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 452,
+    "kcal": 440,
+    "protein_g": 29.4,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 547,
+    "kcal": 43,
+    "protein_g": 3.3,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 542,
+    "kcal": 466,
+    "protein_g": 26.7,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 709,
+    "kcal": 85,
+    "protein_g": 7.4,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 287,
+    "kcal": 416,
+    "protein_g": 19.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 824,
+    "kcal": 371,
+    "protein_g": 19.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 777,
+    "kcal": 396,
+    "protein_g": 19.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 691,
+    "kcal": 773,
+    "protein_g": 23.2,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 326,
+    "kcal": 374,
+    "protein_g": 18.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 627,
+    "kcal": 83,
+    "protein_g": 7.4,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 538,
+    "kcal": 400,
+    "protein_g": 16.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 881,
+    "kcal": 651,
+    "protein_g": 32.5,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 710,
+    "kcal": 757,
+    "protein_g": 25.9,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 356,
+    "kcal": 707,
+    "protein_g": 24.3,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 599,
+    "kcal": 390,
+    "protein_g": 17.1,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 803,
+    "kcal": 539,
+    "protein_g": 20.4,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 223,
+    "kcal": 709,
+    "protein_g": 31.1,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 847,
+    "kcal": 635,
+    "protein_g": 25.1,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ],
+    "memo": "冷蔵庫の残り物で"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 490,
+    "kcal": 571,
+    "protein_g": 22.6,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 230,
+    "kcal": 528,
+    "protein_g": 22.3,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 198,
+    "kcal": 81,
+    "protein_g": 6.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 742,
+    "kcal": 565,
+    "protein_g": 20.6,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 398,
+    "kcal": 42,
+    "protein_g": 3.1,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 542,
+    "kcal": 85,
+    "protein_g": 7.4,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 661,
+    "kcal": 419,
+    "protein_g": 30.4,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 279,
+    "kcal": 375,
+    "protein_g": 18.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-02-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 413,
+    "kcal": 85,
+    "protein_g": 6.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 359,
+    "kcal": 712,
+    "protein_g": 25.9,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 177,
+    "kcal": 695,
+    "protein_g": 23.8,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 559,
+    "kcal": 401,
+    "protein_g": 17.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 825,
+    "kcal": 459,
+    "protein_g": 32.6,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ],
+    "memo": "冷蔵庫の残り物で"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 635,
+    "kcal": 698,
+    "protein_g": 32.2,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 616,
+    "kcal": 37,
+    "protein_g": 3.0,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 758,
+    "kcal": 396,
+    "protein_g": 18.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 767,
+    "kcal": 589,
+    "protein_g": 31.8,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 603,
+    "kcal": 688,
+    "protein_g": 31.9,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 610,
+    "kcal": 562,
+    "protein_g": 19.8,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 455,
+    "kcal": 671,
+    "protein_g": 24.4,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 391,
+    "kcal": 709,
+    "protein_g": 24.9,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 198,
+    "kcal": 41,
+    "protein_g": 2.8,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 662,
+    "kcal": 38,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 878,
+    "kcal": 452,
+    "protein_g": 28.6,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 615,
+    "kcal": 386,
+    "protein_g": 16.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 737,
+    "kcal": 43,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 815,
+    "kcal": 42,
+    "protein_g": 3.1,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 532,
+    "kcal": 500,
+    "protein_g": 22.6,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 321,
+    "kcal": 394,
+    "protein_g": 19.4,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 531,
+    "kcal": 524,
+    "protein_g": 20.3,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 455,
+    "kcal": 506,
+    "protein_g": 22.3,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 152,
+    "kcal": 41,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 234,
+    "kcal": 82,
+    "protein_g": 6.6,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 787,
+    "kcal": 40,
+    "protein_g": 3.3,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 579,
+    "kcal": 727,
+    "protein_g": 24.7,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 540,
+    "kcal": 637,
+    "protein_g": 29.3,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 689,
+    "kcal": 97,
+    "protein_g": 7.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 258,
+    "kcal": 703,
+    "protein_g": 23.2,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 315,
+    "kcal": 511,
+    "protein_g": 32.3,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 737,
+    "kcal": 491,
+    "protein_g": 21.9,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 381,
+    "kcal": 476,
+    "protein_g": 29.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 217,
+    "kcal": 563,
+    "protein_g": 23.3,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 201,
+    "kcal": 506,
+    "protein_g": 31.3,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 564,
+    "kcal": 676,
+    "protein_g": 25.1,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-03-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 192,
+    "kcal": 95,
+    "protein_g": 7.3,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 195,
+    "kcal": 37,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 694,
+    "kcal": 400,
+    "protein_g": 17.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 442,
+    "kcal": 414,
+    "protein_g": 17.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 219,
+    "kcal": 624,
+    "protein_g": 34.8,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 744,
+    "kcal": 730,
+    "protein_g": 26.8,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 542,
+    "kcal": 670,
+    "protein_g": 33.3,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 287,
+    "kcal": 709,
+    "protein_g": 25.4,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 278,
+    "kcal": 486,
+    "protein_g": 32.1,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 409,
+    "kcal": 682,
+    "protein_g": 32.3,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 407,
+    "kcal": 379,
+    "protein_g": 16.2,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 896,
+    "kcal": 438,
+    "protein_g": 29.2,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 828,
+    "kcal": 621,
+    "protein_g": 26.7,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 156,
+    "kcal": 753,
+    "protein_g": 25.9,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 729,
+    "kcal": 344,
+    "protein_g": 17.7,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 450,
+    "kcal": 441,
+    "protein_g": 31.5,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 375,
+    "kcal": 39,
+    "protein_g": 3.1,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 825,
+    "kcal": 424,
+    "protein_g": 26.0,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 772,
+    "kcal": 42,
+    "protein_g": 3.3,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 412,
+    "kcal": 684,
+    "protein_g": 26.2,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 217,
+    "kcal": 751,
+    "protein_g": 27.8,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 898,
+    "kcal": 83,
+    "protein_g": 7.6,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 863,
+    "kcal": 360,
+    "protein_g": 17.2,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 601,
+    "kcal": 87,
+    "protein_g": 7.0,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 508,
+    "kcal": 628,
+    "protein_g": 24.0,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 597,
+    "kcal": 373,
+    "protein_g": 16.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 888,
+    "kcal": 662,
+    "protein_g": 25.7,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-04-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 308,
+    "kcal": 428,
+    "protein_g": 26.6,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 422,
+    "kcal": 600,
+    "protein_g": 34.6,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 236,
+    "kcal": 409,
+    "protein_g": 30.1,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 391,
+    "kcal": 445,
+    "protein_g": 30.8,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 192,
+    "kcal": 36,
+    "protein_g": 3.1,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 535,
+    "kcal": 85,
+    "protein_g": 7.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 763,
+    "kcal": 385,
+    "protein_g": 19.2,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 553,
+    "kcal": 489,
+    "protein_g": 20.4,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 288,
+    "kcal": 493,
+    "protein_g": 32.2,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 896,
+    "kcal": 43,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 304,
+    "kcal": 688,
+    "protein_g": 32.7,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 317,
+    "kcal": 365,
+    "protein_g": 19.1,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 697,
+    "kcal": 559,
+    "protein_g": 21.8,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 858,
+    "kcal": 524,
+    "protein_g": 31.2,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 411,
+    "kcal": 353,
+    "protein_g": 17.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 468,
+    "kcal": 370,
+    "protein_g": 16.2,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 734,
+    "kcal": 411,
+    "protein_g": 28.0,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 516,
+    "kcal": 42,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 429,
+    "kcal": 397,
+    "protein_g": 17.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 676,
+    "kcal": 479,
+    "protein_g": 23.8,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 371,
+    "kcal": 42,
+    "protein_g": 3.0,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 756,
+    "kcal": 484,
+    "protein_g": 28.2,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 243,
+    "kcal": 93,
+    "protein_g": 6.9,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 501,
+    "kcal": 535,
+    "protein_g": 23.5,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 309,
+    "kcal": 493,
+    "protein_g": 31.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 323,
+    "kcal": 520,
+    "protein_g": 31.2,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 674,
+    "kcal": 650,
+    "protein_g": 24.9,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 800,
+    "kcal": 672,
+    "protein_g": 31.7,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 796,
+    "kcal": 388,
+    "protein_g": 17.1,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 574,
+    "kcal": 88,
+    "protein_g": 6.6,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 455,
+    "kcal": 757,
+    "protein_g": 27.1,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 596,
+    "kcal": 632,
+    "protein_g": 33.7,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 530,
+    "kcal": 404,
+    "protein_g": 25.3,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-05-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 424,
+    "kcal": 483,
+    "protein_g": 20.6,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 833,
+    "kcal": 98,
+    "protein_g": 7.2,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 768,
+    "kcal": 362,
+    "protein_g": 18.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 550,
+    "kcal": 83,
+    "protein_g": 6.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ],
+    "memo": "冷蔵庫の残り物で"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 437,
+    "kcal": 81,
+    "protein_g": 6.4,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 324,
+    "kcal": 85,
+    "protein_g": 7.0,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 162,
+    "kcal": 478,
+    "protein_g": 22.2,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 478,
+    "kcal": 668,
+    "protein_g": 26.9,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 688,
+    "kcal": 360,
+    "protein_g": 18.4,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 814,
+    "kcal": 588,
+    "protein_g": 33.6,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 468,
+    "kcal": 727,
+    "protein_g": 24.5,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 875,
+    "kcal": 41,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 521,
+    "kcal": 356,
+    "protein_g": 19.4,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 563,
+    "kcal": 82,
+    "protein_g": 7.1,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 212,
+    "kcal": 98,
+    "protein_g": 6.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-06-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 754,
+    "kcal": 521,
+    "protein_g": 22.6,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 761,
+    "kcal": 92,
+    "protein_g": 7.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 184,
+    "kcal": 352,
+    "protein_g": 16.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 699,
+    "kcal": 86,
+    "protein_g": 6.8,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 748,
+    "kcal": 43,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 513,
+    "kcal": 406,
+    "protein_g": 26.0,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 466,
+    "kcal": 507,
+    "protein_g": 30.3,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 334,
+    "kcal": 507,
+    "protein_g": 28.7,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 564,
+    "kcal": 403,
+    "protein_g": 18.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "冷蔵庫の残り物で"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 644,
+    "kcal": 501,
+    "protein_g": 29.7,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 841,
+    "kcal": 784,
+    "protein_g": 23.4,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 603,
+    "kcal": 86,
+    "protein_g": 7.0,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 774,
+    "kcal": 388,
+    "protein_g": 17.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 314,
+    "kcal": 431,
+    "protein_g": 25.6,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 616,
+    "kcal": 43,
+    "protein_g": 3.0,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 728,
+    "kcal": 479,
+    "protein_g": 23.4,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 341,
+    "kcal": 90,
+    "protein_g": 6.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 263,
+    "kcal": 36,
+    "protein_g": 2.7,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 522,
+    "kcal": 632,
+    "protein_g": 23.5,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 280,
+    "kcal": 444,
+    "protein_g": 28.5,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 686,
+    "kcal": 717,
+    "protein_g": 24.7,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-07-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 179,
+    "kcal": 546,
+    "protein_g": 20.8,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 675,
+    "kcal": 87,
+    "protein_g": 7.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 707,
+    "kcal": 377,
+    "protein_g": 16.4,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 527,
+    "kcal": 712,
+    "protein_g": 24.9,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 296,
+    "kcal": 512,
+    "protein_g": 22.7,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 832,
+    "kcal": 83,
+    "protein_g": 6.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 833,
+    "kcal": 743,
+    "protein_g": 23.7,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 894,
+    "kcal": 39,
+    "protein_g": 3.1,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 209,
+    "kcal": 413,
+    "protein_g": 18.4,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 201,
+    "kcal": 362,
+    "protein_g": 18.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-08-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 821,
+    "kcal": 392,
+    "protein_g": 19.7,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 576,
+    "kcal": 435,
+    "protein_g": 30.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 272,
+    "kcal": 661,
+    "protein_g": 23.6,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 416,
+    "kcal": 392,
+    "protein_g": 19.2,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 223,
+    "kcal": 675,
+    "protein_g": 23.9,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 191,
+    "kcal": 614,
+    "protein_g": 31.9,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 497,
+    "kcal": 669,
+    "protein_g": 24.3,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 327,
+    "kcal": 621,
+    "protein_g": 25.6,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 654,
+    "kcal": 724,
+    "protein_g": 25.1,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 390,
+    "kcal": 479,
+    "protein_g": 22.5,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 363,
+    "kcal": 604,
+    "protein_g": 31.0,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 876,
+    "kcal": 692,
+    "protein_g": 27.6,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 353,
+    "kcal": 748,
+    "protein_g": 22.0,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ],
+    "memo": "冷蔵庫の残り物で"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 671,
+    "kcal": 39,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 230,
+    "kcal": 407,
+    "protein_g": 17.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 562,
+    "kcal": 37,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 827,
+    "kcal": 710,
+    "protein_g": 27.6,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 870,
+    "kcal": 628,
+    "protein_g": 32.8,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 707,
+    "kcal": 439,
+    "protein_g": 30.4,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 260,
+    "kcal": 94,
+    "protein_g": 7.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 768,
+    "kcal": 84,
+    "protein_g": 7.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 409,
+    "kcal": 38,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 185,
+    "kcal": 421,
+    "protein_g": 30.1,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 826,
+    "kcal": 754,
+    "protein_g": 25.8,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 601,
+    "kcal": 612,
+    "protein_g": 30.1,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 332,
+    "kcal": 96,
+    "protein_g": 6.7,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 205,
+    "kcal": 36,
+    "protein_g": 2.8,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 166,
+    "kcal": 468,
+    "protein_g": 30.7,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 577,
+    "kcal": 412,
+    "protein_g": 17.8,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 363,
+    "kcal": 715,
+    "protein_g": 25.6,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-09-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 844,
+    "kcal": 516,
+    "protein_g": 32.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 281,
+    "kcal": 445,
+    "protein_g": 32.3,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 792,
+    "kcal": 568,
+    "protein_g": 19.9,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 335,
+    "kcal": 404,
+    "protein_g": 17.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 327,
+    "kcal": 758,
+    "protein_g": 25.0,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 824,
+    "kcal": 660,
+    "protein_g": 34.5,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 542,
+    "kcal": 543,
+    "protein_g": 22.1,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 418,
+    "kcal": 669,
+    "protein_g": 22.9,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 735,
+    "kcal": 397,
+    "protein_g": 17.7,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 817,
+    "kcal": 727,
+    "protein_g": 27.6,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 709,
+    "kcal": 98,
+    "protein_g": 6.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 354,
+    "kcal": 84,
+    "protein_g": 6.5,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 751,
+    "kcal": 36,
+    "protein_g": 3.3,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 402,
+    "kcal": 679,
+    "protein_g": 31.2,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 620,
+    "kcal": 419,
+    "protein_g": 26.7,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 436,
+    "kcal": 513,
+    "protein_g": 23.7,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 341,
+    "kcal": 451,
+    "protein_g": 32.0,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 339,
+    "kcal": 682,
+    "protein_g": 24.7,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-10-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 760,
+    "kcal": 440,
+    "protein_g": 29.6,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 154,
+    "kcal": 465,
+    "protein_g": 30.0,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 160,
+    "kcal": 481,
+    "protein_g": 22.9,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 720,
+    "kcal": 663,
+    "protein_g": 23.9,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 231,
+    "kcal": 670,
+    "protein_g": 22.0,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 466,
+    "kcal": 717,
+    "protein_g": 23.1,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 353,
+    "kcal": 414,
+    "protein_g": 27.8,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 891,
+    "kcal": 669,
+    "protein_g": 28.1,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 244,
+    "kcal": 670,
+    "protein_g": 24.4,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 697,
+    "kcal": 371,
+    "protein_g": 17.7,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 869,
+    "kcal": 688,
+    "protein_g": 25.0,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 632,
+    "kcal": 479,
+    "protein_g": 28.6,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 156,
+    "kcal": 398,
+    "protein_g": 18.2,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 397,
+    "kcal": 36,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 527,
+    "kcal": 682,
+    "protein_g": 23.6,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 613,
+    "kcal": 396,
+    "protein_g": 17.9,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 360,
+    "kcal": 654,
+    "protein_g": 23.7,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 671,
+    "kcal": 442,
+    "protein_g": 28.7,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 343,
+    "kcal": 443,
+    "protein_g": 27.8,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ],
+    "memo": "冷蔵庫の残り物で"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 441,
+    "kcal": 467,
+    "protein_g": 31.6,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 751,
+    "kcal": 41,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 339,
+    "kcal": 460,
+    "protein_g": 29.9,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 753,
+    "kcal": 648,
+    "protein_g": 35.0,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 230,
+    "kcal": 403,
+    "protein_g": 19.7,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 813,
+    "kcal": 624,
+    "protein_g": 29.1,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 794,
+    "kcal": 692,
+    "protein_g": 32.2,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 229,
+    "kcal": 470,
+    "protein_g": 30.3,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 275,
+    "kcal": 376,
+    "protein_g": 17.6,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 561,
+    "kcal": 355,
+    "protein_g": 18.3,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 192,
+    "kcal": 401,
+    "protein_g": 27.4,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 180,
+    "kcal": 673,
+    "protein_g": 33.9,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 789,
+    "kcal": 473,
+    "protein_g": 22.7,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 251,
+    "kcal": 43,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 568,
+    "kcal": 381,
+    "protein_g": 19.1,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-11-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 235,
+    "kcal": 346,
+    "protein_g": 18.1,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 664,
+    "kcal": 547,
+    "protein_g": 21.9,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 843,
+    "kcal": 39,
+    "protein_g": 3.0,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 278,
+    "kcal": 675,
+    "protein_g": 29.4,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 539,
+    "kcal": 36,
+    "protein_g": 3.3,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "豆腐とわかめの味噌汁",
+    "cost": 357,
+    "kcal": 96,
+    "protein_g": 7.3,
+    "ingredients": [
+     "豆腐",
+     "わかめ",
+     "味噌"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 804,
+    "kcal": 39,
+    "protein_g": 3.2,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "野菜炒め",
+    "cost": 181,
+    "kcal": 390,
+    "protein_g": 19.5,
+    "ingredients": [
+     "キャベツ",
+     "もやし",
+     "豚こま"
+    ],
+    "memo": "大成功"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 514,
+    "kcal": 670,
+    "protein_g": 33.4,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 297,
+    "kcal": 38,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 479,
+    "kcal": 41,
+    "protein_g": 2.8,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "カレー",
+    "cost": 709,
+    "kcal": 739,
+    "protein_g": 22.6,
+    "ingredients": [
+     "じゃがいも",
+     "にんじん",
+     "豚肉",
+     "カレールー"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 272,
+    "kcal": 40,
+    "protein_g": 3.1,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 433,
+    "kcal": 461,
+    "protein_g": 25.6,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 839,
+    "kcal": 654,
+    "protein_g": 23.9,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 431,
+    "kcal": 38,
+    "protein_g": 2.8,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "肉じゃが",
+    "cost": 183,
+    "kcal": 490,
+    "protein_g": 21.1,
+    "ingredients": [
+     "じゃがいも",
+     "牛肉",
+     "玉ねぎ",
+     "にんじん"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "オムライス",
+    "cost": 377,
+    "kcal": 687,
+    "protein_g": 27.0,
+    "ingredients": [
+     "卵",
+     "鶏肉",
+     "ケチャップ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 304,
+    "kcal": 498,
+    "protein_g": 32.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 218,
+    "kcal": 688,
+    "protein_g": 34.0,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 312,
+    "kcal": 477,
+    "protein_g": 29.5,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 848,
+    "kcal": 446,
+    "protein_g": 30.3,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ],
+    "memo": "味が薄かった"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 166,
+    "kcal": 43,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 153,
+    "kcal": 704,
+    "protein_g": 32.1,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "親子丼",
+    "cost": 354,
+    "kcal": 606,
+    "protein_g": 34.5,
+    "ingredients": [
+     "鶏もも肉",
+     "卵",
+     "玉ねぎ"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "ほうれん草のおひたし",
+    "cost": 517,
+    "kcal": 37,
+    "protein_g": 2.9,
+    "ingredients": [
+     "ほうれん草",
+     "かつお節"
+    ]
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "鮭のムニエル",
+    "cost": 721,
+    "kcal": 437,
+    "protein_g": 26.9,
+    "ingredients": [
+     "鮭",
+     "バター",
+     "レモン"
+    ],
+    "memo": "作り置き"
+   }
+  },
+  {
+   "group": "cooking-home",
+   "date": "2026-12-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "menu": "サバの味噌煮",
+    "cost": 769,
+    "kcal": 524,
+    "protein_g": 29.9,
+    "ingredients": [
+     "サバ",
+     "味噌",
+     "しょうが"
+    ]
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "cooking-home",
+   "label": "1月の自炊目標",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "2月の自炊目標",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "3月の自炊目標",
+   "start": "2026-03-01",
+   "end": "2026-03-31",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "4月の自炊目標",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "5月の自炊目標",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "6月の自炊目標",
+   "start": "2026-06-01",
+   "end": "2026-06-30",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "7月の自炊目標",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "8月の自炊目標",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "9月の自炊目標",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "10月の自炊目標",
+   "start": "2026-10-01",
+   "end": "2026-10-31",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "11月の自炊目標",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 30
+  },
+  {
+   "group": "cooking-home",
+   "label": "12月の自炊目標",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 30
+  }
+ ]
+}

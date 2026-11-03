@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "id": "cooking",
+  "name": "自炊",
+  "version": "1.0.0",
+  "description": "作ったごはんと材料費・栄養を記録する。材料は買い物リストとしても残る。自炊の回数が目標に届くと、果樹園と畑と家畜の島になる。",
+  "fields": [
+    {
+      "key": "menu",
+      "type": "text",
+      "label": "メニュー",
+      "required": true
+    },
+    {
+      "key": "cost",
+      "type": "integer",
+      "label": "材料費",
+      "unit": "円",
+      "min": 0
+    },
+    {
+      "key": "kcal",
+      "type": "integer",
+      "label": "カロリー",
+      "unit": "kcal",
+      "min": 0
+    },
+    {
+      "key": "protein_g",
+      "type": "number",
+      "label": "たんぱく質",
+      "unit": "g",
+      "min": 0
+    },
+    {
+      "key": "ingredients",
+      "type": "tags",
+      "label": "材料（買い物リスト）"
+    },
+    {
+      "key": "memo",
+      "type": "text",
+      "label": "メモ"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "meals",
+      "label": "自炊",
+      "agg": "count",
+      "unit": "回"
+    },
+    {
+      "key": "cost",
+      "label": "材料費",
+      "agg": "sum",
+      "field": "cost",
+      "unit": "円"
+    },
+    {
+      "key": "avg_kcal",
+      "label": "平均カロリー",
+      "agg": "avg",
+      "field": "kcal",
+      "unit": "kcal"
+    },
+    {
+      "key": "protein",
+      "label": "たんぱく質",
+      "agg": "sum",
+      "field": "protein_g",
+      "unit": "g"
+    }
+  ],
+  "goal": {
+    "metric": "meals",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "sprout",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "o": "#ff8a1e",
+                "g": "#3fae3a"
+              },
+              "layers": [
+                [
+                  "o"
+                ],
+                [
+                  "o"
+                ],
+                [
+                  "o"
+                ],
+                [
+                  "g"
+                ],
+                [
+                  "g"
+                ]
+              ]
+            },
+            "count": 14,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.04
+          }
+        ]
+      }
+    },
+    {
+      "id": "farm",
+      "minProgress": 1,
+      "theme": "plain",
+      "scene": {
+        "horizon": "#e6f7c8",
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "t": "#7a4e24",
+                "l": "#4caf3a",
+                "r": "#e8402e"
+              },
+              "layers": [
+                [
+                  "...",
+                  ".t.",
+                  "..."
+                ],
+                [
+                  "...",
+                  ".t.",
+                  "..."
+                ],
+                [
+                  "lrl",
+                  "lll",
+                  "rll"
+                ],
+                [
+                  ".l.",
+                  "lrl",
+                  ".l."
+                ],
+                [
+                  "...",
+                  ".l.",
+                  "..."
+                ]
+              ]
+            },
+            "count": 16,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.06
+          },
+          {
+            "model": {
+              "palette": {
+                "o": "#ff8a1e",
+                "g": "#3fae3a"
+              },
+              "layers": [
+                [
+                  "o"
+                ],
+                [
+                  "o"
+                ],
+                [
+                  "o"
+                ],
+                [
+                  "g"
+                ],
+                [
+                  "g"
+                ]
+              ]
+            },
+            "count": 14,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.04
+          },
+          {
+            "model": {
+              "palette": {
+                "w": "#f6f6f2",
+                "k": "#2a2a2a",
+                "p": "#f2a0a8",
+                "n": "#d8c8a0"
+              },
+              "layers": [
+                [
+                  "w..w..",
+                  "w..w.."
+                ],
+                [
+                  "wkwwwp",
+                  "wwkwwp"
+                ],
+                [
+                  "wwkwww",
+                  "kwwwww"
+                ],
+                [
+                  "....n.",
+                  "....n."
+                ]
+              ]
+            },
+            "count": 4,
+            "zone": "shore",
+            "motion": "hop",
+            "size": 0.12
+          },
+          {
+            "model": {
+              "palette": {
+                "y": "#f2b632",
+                "w": "#ffffff",
+                "r": "#e0302a"
+              },
+              "layers": [
+                [
+                  ".y.",
+                  ".y."
+                ],
+                [
+                  "www",
+                  "www"
+                ],
+                [
+                  "..w",
+                  "..w"
+                ],
+                [
+                  "..r",
+                  "..."
+                ]
+              ]
+            },
+            "count": 6,
+            "zone": "shore",
+            "motion": "hop",
+            "size": 0.08
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

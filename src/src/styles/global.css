@@ -425,6 +425,46 @@ button {
   margin-right: 4px;
 }
 
+.hud-plugin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px 0 14px;
+  font-size: 15px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.hud-plugin-label {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.hud-plugin-select {
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  padding: 8px 2px;
+  cursor: pointer;
+}
+
+.plugin-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 6px 12px;
+  margin: 8px 0;
+}
+
+.plugin-metrics dt {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.plugin-metrics dd {
+  margin: 0;
+  font-size: 15px;
+}
+
 .hud-months {
   position: absolute;
   left: 28px;

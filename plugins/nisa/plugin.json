@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "id": "nisa",
+  "name": "NISA",
+  "version": "1.0.0",
+  "description": "つみたて投資枠と成長投資枠の買付と、月末の評価損益を記録する。期間の投資額が目標に届くと、島がブルジョワになる。",
+  "fields": [
+    {
+      "key": "kind",
+      "type": "select",
+      "label": "記録の種類",
+      "options": [
+        {
+          "value": "tsumitate",
+          "label": "つみたて投資枠"
+        },
+        {
+          "value": "growth",
+          "label": "成長投資枠"
+        },
+        {
+          "value": "valuation",
+          "label": "月末の評価"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "amount",
+      "type": "integer",
+      "label": "買付額",
+      "unit": "円",
+      "min": 1
+    },
+    {
+      "key": "fund",
+      "type": "select",
+      "label": "銘柄",
+      "options": [
+        {
+          "value": "allcountry",
+          "label": "全世界株式"
+        },
+        {
+          "value": "sp500",
+          "label": "米国株式(S&P500)"
+        },
+        {
+          "value": "japan",
+          "label": "国内株式"
+        },
+        {
+          "value": "bond",
+          "label": "先進国債券"
+        }
+      ]
+    },
+    {
+      "key": "total_value",
+      "type": "integer",
+      "label": "評価額",
+      "unit": "円",
+      "min": 0
+    },
+    {
+      "key": "profit",
+      "type": "integer",
+      "label": "評価損益",
+      "unit": "円"
+    },
+    {
+      "key": "memo",
+      "type": "text",
+      "label": "メモ"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "invested",
+      "label": "投資額",
+      "agg": "sum",
+      "field": "amount",
+      "unit": "円"
+    },
+    {
+      "key": "tsumitate",
+      "label": "つみたて投資枠",
+      "agg": "sum",
+      "field": "amount",
+      "unit": "円",
+      "where": {
+        "field": "kind",
+        "values": [
+          "tsumitate"
+        ]
+      }
+    },
+    {
+      "key": "growth",
+      "label": "成長投資枠",
+      "agg": "sum",
+      "field": "amount",
+      "unit": "円",
+      "where": {
+        "field": "kind",
+        "values": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "key": "total_value",
+      "label": "評価額",
+      "agg": "latest",
+      "field": "total_value",
+      "unit": "円"
+    },
+    {
+      "key": "profit",
+      "label": "評価損益",
+      "agg": "latest",
+      "field": "profit",
+      "unit": "円"
+    }
+  ],
+  "goal": {
+    "metric": "invested",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "growing",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "g": "#3ddc84"
+              },
+              "layers": [
+                [
+                  "..g.."
+                ],
+                [
+                  "..g.."
+                ],
+                [
+                  "..g.."
+                ],
+                [
+                  "ggggg"
+                ],
+                [
+                  ".ggg."
+                ],
+                [
+                  "..g.."
+                ]
+              ],
+              "glow": true
+            },
+            "count": 6,
+            "zone": "sky",
+            "motion": "bob",
+            "size": 0.09
+          }
+        ]
+      }
+    },
+    {
+      "id": "bourgeois",
+      "minProgress": 1,
+      "theme": "luxury",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "g": "#3ddc84"
+              },
+              "layers": [
+                [
+                  "..g.."
+                ],
+                [
+                  "..g.."
+                ],
+                [
+                  "..g.."
+                ],
+                [
+                  "ggggg"
+                ],
+                [
+                  ".ggg."
+                ],
+                [
+                  "..g.."
+                ]
+              ],
+              "glow": true
+            },
+            "count": 12,
+            "zone": "sky",
+            "motion": "bob",
+            "size": 0.1
+          },
+          {
+            "model": {
+              "palette": {
+                "g": "#2fbf71",
+                "y": "#ffd34a"
+              },
+              "layers": [
+                [
+                  "ggggggg",
+                  "ggggggg"
+                ],
+                [
+                  "g.g.g.g",
+                  "g.g.g.g"
+                ],
+                [
+                  "..g.g.g",
+                  "..g.g.g"
+                ],
+                [
+                  "....g.g",
+                  "....g.g"
+                ],
+                [
+                  "......y",
+                  "......y"
+                ]
+              ]
+            },
+            "count": 4,
+            "zone": "shore",
+            "motion": "bob",
+            "size": 0.16
+          },
+          {
+            "model": {
+              "palette": {
+                "b": "#c8a46a",
+                "t": "#7a5a2a",
+                "y": "#ffd34a"
+              },
+              "layers": [
+                [
+                  ".bbb.",
+                  "bbbbb",
+                  "bbbbb",
+                  "bbbbb",
+                  ".bbb."
+                ],
+                [
+                  ".bbb.",
+                  "bbybb",
+                  "byyyb",
+                  "bbybb",
+                  ".bbb."
+                ],
+                [
+                  "..b..",
+                  ".bbb.",
+                  ".bbb.",
+                  ".bbb.",
+                  "..b.."
+                ],
+                [
+                  ".....",
+                  "..t..",
+                  ".ttt.",
+                  "..t..",
+                  "....."
+                ],
+                [
+                  ".....",
+                  ".....",
+                  "..b..",
+                  ".....",
+                  "....."
+                ]
+              ]
+            },
+            "count": 12,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.045
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

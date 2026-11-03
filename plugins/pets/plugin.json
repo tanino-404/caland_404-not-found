@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "id": "pets",
+  "name": "ペットのお世話",
+  "version": "1.0.0",
+  "description": "ごはん・散歩・リフレッシュ（トイレ掃除・水換え）を記録する。お世話の回数が目標に届くと、動物があふれる楽園の島になる。",
+  "fields": [
+    {
+      "key": "pet",
+      "type": "select",
+      "label": "どの子",
+      "options": [
+        {
+          "value": "pochi",
+          "label": "ポチ（いぬ）"
+        },
+        {
+          "value": "tama",
+          "label": "タマ（ねこ）"
+        },
+        {
+          "value": "kingyo",
+          "label": "金魚"
+        },
+        {
+          "value": "hamu",
+          "label": "ハム（ハムスター）"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "care",
+      "type": "select",
+      "label": "お世話",
+      "options": [
+        {
+          "value": "food",
+          "label": "ごはん"
+        },
+        {
+          "value": "walk",
+          "label": "散歩"
+        },
+        {
+          "value": "refresh",
+          "label": "リフレッシュ"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "food_g",
+      "type": "integer",
+      "label": "ごはんの量",
+      "unit": "g",
+      "min": 1
+    },
+    {
+      "key": "walk_min",
+      "type": "integer",
+      "label": "散歩",
+      "unit": "分",
+      "min": 1
+    },
+    {
+      "key": "memo",
+      "type": "text",
+      "label": "メモ"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "care_count",
+      "label": "お世話",
+      "agg": "count",
+      "unit": "回"
+    },
+    {
+      "key": "walk_total",
+      "label": "散歩",
+      "agg": "sum",
+      "field": "walk_min",
+      "unit": "分"
+    },
+    {
+      "key": "food_total",
+      "label": "ごはん",
+      "agg": "sum",
+      "field": "food_g",
+      "unit": "g"
+    },
+    {
+      "key": "refresh_count",
+      "label": "リフレッシュ",
+      "agg": "count",
+      "unit": "回",
+      "where": {
+        "field": "care",
+        "values": [
+          "refresh"
+        ]
+      }
+    }
+  ],
+  "goal": {
+    "metric": "care_count",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "visitors",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "b": "#b07840",
+                "h": "#c58a4e",
+                "e": "#6b4423",
+                "t": "#b07840",
+                "n": "#222222"
+              },
+              "layers": [
+                [
+                  "b..b..",
+                  "b..b.."
+                ],
+                [
+                  "bbbbh.",
+                  "bbbbh."
+                ],
+                [
+                  "t..bhn",
+                  "...bhn"
+                ],
+                [
+                  "....e.",
+                  "....e."
+                ]
+              ]
+            },
+            "count": 4,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "b": "#f0a040",
+                "h": "#f4b25c",
+                "e": "#c76a1a",
+                "t": "#f0a040",
+                "n": "#e86a8a"
+              },
+              "layers": [
+                [
+                  "b..b..",
+                  "b..b.."
+                ],
+                [
+                  "bbbbh.",
+                  "bbbbh."
+                ],
+                [
+                  "t..bhn",
+                  "...bhn"
+                ],
+                [
+                  "....e.",
+                  "....e."
+                ]
+              ]
+            },
+            "count": 4,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "id": "paradise",
+      "minProgress": 1,
+      "theme": "plain",
+      "scene": {
+        "horizon": "#d8f6e0",
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "b": "#b07840",
+                "h": "#c58a4e",
+                "e": "#6b4423",
+                "t": "#b07840",
+                "n": "#222222"
+              },
+              "layers": [
+                [
+                  "b..b..",
+                  "b..b.."
+                ],
+                [
+                  "bbbbh.",
+                  "bbbbh."
+                ],
+                [
+                  "t..bhn",
+                  "...bhn"
+                ],
+                [
+                  "....e.",
+                  "....e."
+                ]
+              ]
+            },
+            "count": 12,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "b": "#f0a040",
+                "h": "#f4b25c",
+                "e": "#c76a1a",
+                "t": "#f0a040",
+                "n": "#e86a8a"
+              },
+              "layers": [
+                [
+                  "b..b..",
+                  "b..b.."
+                ],
+                [
+                  "bbbbh.",
+                  "bbbbh."
+                ],
+                [
+                  "t..bhn",
+                  "...bhn"
+                ],
+                [
+                  "....e.",
+                  "....e."
+                ]
+              ]
+            },
+            "count": 12,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "h": "#e8c38e",
+                "w": "#fff3dc",
+                "e": "#c79a62"
+              },
+              "layers": [
+                [
+                  "hhh",
+                  "hww"
+                ],
+                [
+                  "hhh",
+                  "hhh"
+                ],
+                [
+                  "e.e",
+                  "..."
+                ]
+              ]
+            },
+            "count": 10,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.04
+          },
+          {
+            "model": {
+              "palette": {
+                "a": "#ff7a2a",
+                "b": "#ffd0a0",
+                "e": "#1b2a41"
+              },
+              "layers": [
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ],
+                [
+                  "bbaaea",
+                  "bbaaea"
+                ],
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ]
+              ]
+            },
+            "count": 14,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.06,
+            "speed": 0.7
+          },
+          {
+            "model": {
+              "palette": {
+                "y": "#ffd23a",
+                "o": "#ff8a2a",
+                "w": "#fff6c8"
+              },
+              "layers": [
+                [
+                  "..w.",
+                  "yyyo",
+                  "..w."
+                ],
+                [
+                  "....",
+                  ".y..",
+                  "...."
+                ]
+              ]
+            },
+            "count": 10,
+            "zone": "sky",
+            "motion": "orbit",
+            "size": 0.07,
+            "speed": 0.6
+          },
+          {
+            "model": {
+              "palette": {
+                "b": "#b07840",
+                "h": "#c58a4e",
+                "e": "#6b4423",
+                "t": "#b07840",
+                "n": "#222222"
+              },
+              "layers": [
+                [
+                  "b..b..",
+                  "b..b.."
+                ],
+                [
+                  "bbbbh.",
+                  "bbbbh."
+                ],
+                [
+                  "t..bhn",
+                  "...bhn"
+                ],
+                [
+                  "....e.",
+                  "....e."
+                ]
+              ]
+            },
+            "count": 4,
+            "zone": "shore",
+            "motion": "hop",
+            "size": 0.12
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

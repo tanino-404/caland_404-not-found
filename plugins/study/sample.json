@@ -1,0 +1,3183 @@
+{
+ "groups": [
+  {
+   "id": "study-home",
+   "name": "はなこの勉強",
+   "members": [
+    "はなこ"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "study-home",
+   "date": "2026-01-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 56,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 48,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 61,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 55,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 71,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 68,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 51,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 63,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 55,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 50,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 53,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 60,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 64,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 68,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 75,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-01-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 62,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 56,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 54,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 53,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 56,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 49,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 62,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 54,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 69,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 62,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 55,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 63,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 58,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 68,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 65,
+    "note": "ベクトルの内積"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 72,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 62,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 65,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 72,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 54,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 51,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-02-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 62,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 66,
+    "note": "地理の気候区分",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 61,
+    "note": "漢字テスト対策",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 59,
+    "note": "長文読解",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 59,
+    "note": "古文の助動詞",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 51,
+    "note": "評論文の要約",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "長文読解",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 57,
+    "note": "ベクトルの内積",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 64,
+    "note": "リスニング",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 71,
+    "note": "漢字テスト対策",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 59,
+    "note": "地理の気候区分",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 60,
+    "note": "古文の助動詞",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 55,
+    "note": "評論文の要約",
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "math",
+    "score": 80,
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "english",
+    "score": 70,
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "japanese",
+    "score": 81,
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "science",
+    "score": 75,
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "social",
+    "score": 65,
+    "tests": [
+     "学年末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 67,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 56,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "単語帳 200 語"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 54,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 69,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 51,
+    "note": "江戸時代の改革"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 58,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 57,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 69,
+    "note": "江戸時代の改革"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 62,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 66,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 69,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 59,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 58,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 70,
+    "note": "江戸時代の改革"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-03-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 67,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 63,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 55,
+    "note": "江戸時代の改革"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 60,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 65,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 62,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 56,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 62,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 53,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 67,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-04-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 59,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 72,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 60,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 65,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 65,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 58,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 59,
+    "note": "単語帳 200 語"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 59,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 65,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 70,
+    "note": "江戸時代の改革"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 64,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 60,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 53,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 53,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 52,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 60,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 50,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 52,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-05-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 66,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 62,
+    "note": "ベクトルの内積",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 61,
+    "note": "江戸時代の改革",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 60,
+    "note": "二次関数の最大最小",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 72,
+    "note": "地理の気候区分",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 70,
+    "note": "長文読解",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 59,
+    "note": "数列の漸化式",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 66,
+    "note": "公民の三権分立",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 70,
+    "note": "リスニング",
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "english",
+    "score": 71,
+    "tests": [
+     "英単語テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 74,
+    "note": "遺伝の計算",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 76,
+    "note": "江戸時代の改革",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 62,
+    "note": "数列の漸化式",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 69,
+    "note": "公民の三権分立",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 68,
+    "note": "確率の問題演習",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 47,
+    "note": "単語帳 200 語",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 59,
+    "note": "単語帳 200 語",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 61,
+    "note": "江戸時代の改革",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 49,
+    "note": "力学の運動方程式",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 65,
+    "note": "長文読解",
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "math",
+    "score": 67,
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "english",
+    "score": 62,
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "japanese",
+    "score": 52,
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "science",
+    "score": 67,
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "social",
+    "score": 46,
+    "tests": [
+     "期末テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 66,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 59,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 61,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 57,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 54,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 73,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 58,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 58,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-07-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 55,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-08-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 65,
+    "note": "ベクトルの内積"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-08-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 55,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-08-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 55,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-08-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 63,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-08-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 63,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-08-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 56,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 59,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 61,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 67,
+    "note": "ベクトルの内積"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 49,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 68,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 49,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 55,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 56,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 64,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 66,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 74,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 64,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 58,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 58,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-09-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 60,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 56,
+    "note": "地理の気候区分",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 60,
+    "note": "江戸時代の改革",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 65,
+    "note": "ベクトルの内積",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 51,
+    "note": "化学反応式",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 76,
+    "note": "漢字テスト対策",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 70,
+    "note": "地理の気候区分",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 60,
+    "note": "化学反応式",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "化学反応式",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 60,
+    "note": "遺伝の計算",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 65,
+    "note": "漢字テスト対策",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 61,
+    "note": "力学の運動方程式",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 41,
+    "note": "単語帳 200 語",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 48,
+    "note": "化学反応式",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 68,
+    "note": "確率の問題演習",
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "math",
+    "score": 65,
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "english",
+    "score": 80,
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "japanese",
+    "score": 77,
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "science",
+    "score": 62,
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "result",
+    "subject": "social",
+    "score": 75,
+    "tests": [
+     "中間テスト"
+    ]
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 67,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 50,
+    "note": "二次関数の最大最小"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 53,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 61,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 61,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-10-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 68,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 55,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 74,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 59,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 56,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 62,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 81,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 60,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 66,
+    "note": "数列の漸化式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 56,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 64,
+    "note": "長文読解"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 56,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 50,
+    "note": "地理の気候区分"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 55,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 63,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 59,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 49,
+    "note": "江戸時代の改革"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 54,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 68,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 60,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-11-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 57,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 59,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 59,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 68,
+    "note": "漢字テスト対策"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 59,
+    "note": "ベクトルの内積"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 58,
+    "note": "関係代名詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 49,
+    "note": "評論文の要約"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 56,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 46,
+    "note": "遺伝の計算"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 70,
+    "note": "力学の運動方程式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "social",
+    "minutes": 66,
+    "note": "公民の三権分立"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 70,
+    "note": "確率の問題演習"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "science",
+    "minutes": 71,
+    "note": "化学反応式"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "japanese",
+    "minutes": 53,
+    "note": "古文の助動詞"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "english",
+    "minutes": 59,
+    "note": "リスニング"
+   }
+  },
+  {
+   "group": "study-home",
+   "date": "2026-12-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "kind": "study",
+    "subject": "math",
+    "minutes": 57,
+    "note": "数列の漸化式"
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "study-home",
+   "label": "1月の勉強時間",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "2月の勉強時間",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "学年末テスト",
+   "start": "2026-03-01",
+   "end": "2026-03-10",
+   "target": 600
+  },
+  {
+   "group": "study-home",
+   "label": "春休みの復習",
+   "start": "2026-03-11",
+   "end": "2026-03-31",
+   "target": 900
+  },
+  {
+   "group": "study-home",
+   "label": "4月の勉強時間",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "5月の勉強時間",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "英単語テスト",
+   "start": "2026-06-01",
+   "end": "2026-06-12",
+   "target": 400
+  },
+  {
+   "group": "study-home",
+   "label": "期末テスト",
+   "start": "2026-06-15",
+   "end": "2026-06-30",
+   "target": 900
+  },
+  {
+   "group": "study-home",
+   "label": "7月の勉強時間",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "8月の勉強時間",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "9月の勉強時間",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "中間テスト",
+   "start": "2026-10-01",
+   "end": "2026-10-16",
+   "target": 800
+  },
+  {
+   "group": "study-home",
+   "label": "10月後半",
+   "start": "2026-10-17",
+   "end": "2026-10-31",
+   "target": 600
+  },
+  {
+   "group": "study-home",
+   "label": "11月の勉強時間",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 1200
+  },
+  {
+   "group": "study-home",
+   "label": "12月の勉強時間",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 1200
+  }
+ ]
+}

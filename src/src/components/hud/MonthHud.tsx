@@ -1,12 +1,13 @@
 import { MONTH_NAMES_EN, formatDateJa } from '../../lib/calendar';
 import { breakdownByOwner, memberColor, ownerChipBackground } from '../../lib/members';
-import { formatYen } from '../../lib/ledger';
+import { formatMetricValue, goalMetric } from '../../lib/pluginStatus';
 import {
   CATEGORIES,
   CATEGORY_INFO,
   type CalendarEvent,
   type IslandLayout,
 } from '../../types/calendar';
+import type { PluginManifest, PluginStatus, PluginSummary } from '../../types/plugins';
 
 export interface MonthHudProps {
   year: number;
@@ -26,10 +27,13 @@ export interface MonthHudProps {
   onNextMonth: () => void;
   onShowYear: () => void;
   onLogout: () => void;
-  savings: number;
-  goal: number | null;
-  achieved: boolean;
-  onOpenLedger: () => void;
+  /** 表示中プラグインの定義と、この月の目標・進捗 */
+  manifest: PluginManifest;
+  status: PluginStatus;
+  /** 切り替えられるプラグイン */
+  plugins: PluginSummary[];
+  onSelectPlugin: (pluginId: string) => Promise<void>;
+  onOpenPlugin: () => void;
 }
 
 const parseKey = (key: string): [number, number, number] => {
@@ -55,10 +59,11 @@ export const MonthHud = ({
   onNextMonth,
   onShowYear,
   onLogout,
-  savings,
-  goal,
-  achieved,
-  onOpenLedger,
+  manifest,
+  status,
+  plugins,
+  onSelectPlugin,
+  onOpenPlugin,
 }: MonthHudProps) => {
   const hovered = hoveredKey ? parseKey(hoveredKey) : null;
   const hoveredEvents = hoveredKey ? (byDate.get(hoveredKey) ?? NO_EVENTS) : NO_EVENTS;
@@ -68,6 +73,8 @@ export const MonthHud = ({
   const allColors = members.map((m) => memberColor(members, m));
   const others = members.filter((m) => m !== currentUser);
   const split = layout === 'split' && partner !== null;
+  const metric = goalMetric(manifest);
+  const achieved = status.achieved;
 
   return (
     <div className="hud">
@@ -79,10 +86,12 @@ export const MonthHud = ({
             {year}年{month}月 · 予定 {monthTotal} 件
           </div>
           <div className={achieved ? 'hud-savings is-gold' : 'hud-savings'}>
-            {goal === null
-              ? '貯金目標なし'
-              : `貯金 ${formatYen(savings)} / ${formatYen(goal)}`}
-            {achieved ? ' · 黄金郷' : null}
+            {status.goal === null
+              ? `${manifest.name}の目標なし`
+              : `${status.goal.label !== '' ? status.goal.label : metric.label} ${
+                  status.value === null ? '—' : formatMetricValue(status.value, metric.unit)
+                } / ${formatMetricValue(status.goal.target, metric.unit)}`}
+            {achieved ? ' · 達成' : null}
           </div>
         </div>
       </header>
@@ -104,8 +113,27 @@ export const MonthHud = ({
         >
           {split ? 'ひとつの島で見る' : 'ふたりの島で見る'}
         </button>
-        <button type="button" className="btn" onClick={onOpenLedger}>
-          家計簿
+        <label className="hud-plugin panel">
+          <span className="hud-plugin-label">管理</span>
+          <select
+            className="hud-plugin-select"
+            value={manifest.id}
+            onChange={(e) => {
+              onSelectPlugin(e.target.value).catch((err: unknown) => {
+                console.error(err);
+                window.alert(err instanceof Error ? err.message : String(err));
+              });
+            }}
+          >
+            {plugins.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button type="button" className="btn" onClick={onOpenPlugin}>
+          {manifest.name}を開く
         </button>
         <button type="button" className="btn" onClick={onShowYear}>
           一年を見る
@@ -165,7 +193,7 @@ export const MonthHud = ({
         <p className="hud-hint">
           {split
             ? `手前が ${currentUser}、奥が ${partner} の島。ふたりの予定の日は、島と島を飛行機が行き来する`
-            : 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。貯金目標を達成すると島が黄金郷になる'}
+            : 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。目標を達成すると島の見た目が変わる'}
         </p>
       </aside>
 

@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "id": "game",
+  "name": "ゲームの練習",
+  "version": "1.0.0",
+  "description": "ゲームの種類ごとにプレイ時間とランク・レートを記録する。期間の練習時間が目標に届くと、島がサイバーパンクになる。",
+  "fields": [
+    {
+      "key": "game",
+      "type": "select",
+      "label": "ゲーム",
+      "options": [
+        {
+          "value": "fps",
+          "label": "FPS"
+        },
+        {
+          "value": "fighting",
+          "label": "格闘ゲーム"
+        },
+        {
+          "value": "puzzle",
+          "label": "パズル"
+        },
+        {
+          "value": "moba",
+          "label": "MOBA"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "minutes",
+      "type": "integer",
+      "label": "プレイ時間",
+      "unit": "分",
+      "min": 1,
+      "required": true
+    },
+    {
+      "key": "rank",
+      "type": "text",
+      "label": "ゲーム内ランク"
+    },
+    {
+      "key": "rating",
+      "type": "integer",
+      "label": "レート",
+      "min": 0
+    },
+    {
+      "key": "ranked",
+      "type": "boolean",
+      "label": "ランクマッチ"
+    },
+    {
+      "key": "memo",
+      "type": "text",
+      "label": "メモ"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "play_minutes",
+      "label": "練習時間",
+      "agg": "sum",
+      "field": "minutes",
+      "unit": "分"
+    },
+    {
+      "key": "sessions",
+      "label": "プレイ",
+      "agg": "count",
+      "unit": "回"
+    },
+    {
+      "key": "max_rating",
+      "label": "最高レート",
+      "agg": "max",
+      "field": "rating"
+    },
+    {
+      "key": "fps_minutes",
+      "label": "FPS の時間",
+      "agg": "sum",
+      "field": "minutes",
+      "unit": "分",
+      "where": {
+        "field": "game",
+        "values": [
+          "fps"
+        ]
+      }
+    }
+  ],
+  "goal": {
+    "metric": "play_minutes",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "neon",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "p": "#7a3df5",
+                "c": "#3df5ff"
+              },
+              "layers": [
+                [
+                  "p"
+                ],
+                [
+                  "p"
+                ],
+                [
+                  "p"
+                ],
+                [
+                  "p"
+                ],
+                [
+                  "c"
+                ]
+              ],
+              "glow": true
+            },
+            "count": 14,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "id": "cyberpunk",
+      "minProgress": 1,
+      "theme": "plain",
+      "scene": {
+        "sky": "#140a2e",
+        "horizon": "#2a1050",
+        "ambient": "#b48cff",
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "x": "#ff3df0"
+              },
+              "layers": [
+                [
+                  "...xx.xx..."
+                ],
+                [
+                  "x.x.....x.x"
+                ],
+                [
+                  "x.xxxxxxx.x"
+                ],
+                [
+                  "xxxxxxxxxxx"
+                ],
+                [
+                  ".xx.xxx.xx."
+                ],
+                [
+                  "..xxxxxxx.."
+                ],
+                [
+                  "...x...x..."
+                ],
+                [
+                  "..x.....x.."
+                ]
+              ],
+              "glow": true
+            },
+            "count": 8,
+            "zone": "sky",
+            "motion": "orbit",
+            "size": 0.06,
+            "speed": 0.4
+          },
+          {
+            "model": {
+              "palette": {
+                "x": "#3df5ff"
+              },
+              "layers": [
+                [
+                  "...xx.xx..."
+                ],
+                [
+                  "x.x.....x.x"
+                ],
+                [
+                  "x.xxxxxxx.x"
+                ],
+                [
+                  "xxxxxxxxxxx"
+                ],
+                [
+                  ".xx.xxx.xx."
+                ],
+                [
+                  "..xxxxxxx.."
+                ],
+                [
+                  "...x...x..."
+                ],
+                [
+                  "..x.....x.."
+                ]
+              ],
+              "glow": true
+            },
+            "count": 8,
+            "zone": "sky",
+            "motion": "orbit",
+            "size": 0.05,
+            "speed": 0.55
+          },
+          {
+            "model": {
+              "palette": {
+                "p": "#7a3df5",
+                "c": "#3df5ff"
+              },
+              "layers": [
+                [
+                  "p"
+                ],
+                [
+                  "p"
+                ],
+                [
+                  "p"
+                ],
+                [
+                  "p"
+                ],
+                [
+                  "c"
+                ]
+              ],
+              "glow": true
+            },
+            "count": 24,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "x": "#ff3df0"
+              },
+              "layers": [
+                [
+                  "x"
+                ]
+              ],
+              "glow": true
+            },
+            "count": 24,
+            "zone": "sea",
+            "motion": "jump",
+            "size": 0.12,
+            "speed": 0.8
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

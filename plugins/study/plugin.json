@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "id": "study",
+  "name": "自主勉強",
+  "version": "1.0.0",
+  "description": "勉強時間と内容を科目ごとに記録し、何のテストに向けた勉強かをタグで残す。テスト当日の点数も記録して振り返れる。期間の勉強時間が目標に届くと、大きな図書館の島になる。",
+  "fields": [
+    {
+      "key": "kind",
+      "type": "select",
+      "label": "記録の種類",
+      "options": [
+        {
+          "value": "study",
+          "label": "勉強"
+        },
+        {
+          "value": "result",
+          "label": "テストの点数"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "subject",
+      "type": "select",
+      "label": "科目",
+      "options": [
+        {
+          "value": "math",
+          "label": "数学"
+        },
+        {
+          "value": "english",
+          "label": "英語"
+        },
+        {
+          "value": "japanese",
+          "label": "国語"
+        },
+        {
+          "value": "science",
+          "label": "理科"
+        },
+        {
+          "value": "social",
+          "label": "社会"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "minutes",
+      "type": "integer",
+      "label": "勉強時間",
+      "unit": "分",
+      "min": 1
+    },
+    {
+      "key": "score",
+      "type": "integer",
+      "label": "点数",
+      "unit": "点",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "key": "tests",
+      "type": "tags",
+      "label": "向けたテスト"
+    },
+    {
+      "key": "note",
+      "type": "text",
+      "label": "勉強した内容"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "minutes",
+      "label": "勉強時間",
+      "agg": "sum",
+      "field": "minutes",
+      "unit": "分"
+    },
+    {
+      "key": "sessions",
+      "label": "勉強",
+      "agg": "count",
+      "unit": "回",
+      "where": {
+        "field": "kind",
+        "values": [
+          "study"
+        ]
+      }
+    },
+    {
+      "key": "avg_score",
+      "label": "平均点",
+      "agg": "avg",
+      "field": "score",
+      "unit": "点"
+    },
+    {
+      "key": "math_minutes",
+      "label": "数学の時間",
+      "agg": "sum",
+      "field": "minutes",
+      "unit": "分",
+      "where": {
+        "field": "subject",
+        "values": [
+          "math"
+        ]
+      }
+    },
+    {
+      "key": "english_minutes",
+      "label": "英語の時間",
+      "agg": "sum",
+      "field": "minutes",
+      "unit": "分",
+      "where": {
+        "field": "subject",
+        "values": [
+          "english"
+        ]
+      }
+    }
+  ],
+  "goal": {
+    "metric": "minutes",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "reading",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "r": "#c0392b",
+                "b": "#2e5aa8",
+                "g": "#2f8a4a",
+                "p": "#fff3d6"
+              },
+              "layers": [
+                [
+                  "rrrp",
+                  "rrrp"
+                ],
+                [
+                  "bbbp",
+                  "bbbp"
+                ],
+                [
+                  "gggp",
+                  "gggp"
+                ]
+              ]
+            },
+            "count": 12,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "id": "library",
+      "minProgress": 1,
+      "theme": "plain",
+      "scene": {
+        "horizon": "#ffe8c4",
+        "ambient": "#fff0d0",
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "r": "#8b3a2e",
+                "c": "#f2ead8",
+                "s": "#c8bca0"
+              },
+              "layers": [
+                [
+                  "sssssss",
+                  "sssssss",
+                  "sssssss",
+                  "sssssss"
+                ],
+                [
+                  "c.c.c.c",
+                  "c.c.c.c",
+                  "c.c.c.c",
+                  "c.c.c.c"
+                ],
+                [
+                  "c.c.c.c",
+                  "c.c.c.c",
+                  "c.c.c.c",
+                  "c.c.c.c"
+                ],
+                [
+                  "c.c.c.c",
+                  "c.c.c.c",
+                  "c.c.c.c",
+                  "c.c.c.c"
+                ],
+                [
+                  "rrrrrrr",
+                  "rrrrrrr",
+                  "rrrrrrr",
+                  "rrrrrrr"
+                ],
+                [
+                  ".rrrrr.",
+                  ".rrrrr.",
+                  ".rrrrr.",
+                  ".rrrrr."
+                ],
+                [
+                  "..rrr..",
+                  "..rrr..",
+                  "..rrr..",
+                  "..rrr.."
+                ],
+                [
+                  "...r...",
+                  "...r...",
+                  "...r...",
+                  "...r..."
+                ]
+              ]
+            },
+            "count": 3,
+            "zone": "shore",
+            "motion": "bob",
+            "size": 0.1
+          },
+          {
+            "model": {
+              "palette": {
+                "r": "#c0392b",
+                "b": "#2e5aa8",
+                "g": "#2f8a4a",
+                "p": "#fff3d6"
+              },
+              "layers": [
+                [
+                  "rrrp",
+                  "rrrp"
+                ],
+                [
+                  "bbbp",
+                  "bbbp"
+                ],
+                [
+                  "gggp",
+                  "gggp"
+                ]
+              ]
+            },
+            "count": 18,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "c": "#8b3a2e",
+                "p": "#fff8e7"
+              },
+              "layers": [
+                [
+                  "ccc",
+                  "ccc",
+                  "ccc",
+                  "ccc",
+                  "ccc"
+                ],
+                [
+                  "ppp",
+                  "ppp",
+                  "...",
+                  "ppp",
+                  "ppp"
+                ],
+                [
+                  "ppp",
+                  "...",
+                  "...",
+                  "...",
+                  "ppp"
+                ]
+              ]
+            },
+            "count": 14,
+            "zone": "sky",
+            "motion": "orbit",
+            "size": 0.08,
+            "speed": 0.5
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

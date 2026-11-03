@@ -1,0 +1,933 @@
+{
+ "groups": [
+  {
+   "id": "fishing-home",
+   "name": "釣り仲間",
+   "members": [
+    "たろう",
+    "はなこ"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "fishing-home",
+   "date": "2026-01-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 7,
+    "length_cm": 16.2,
+    "weight_g": 1460,
+    "place": "淡路島 洲本港",
+    "tide": "ebb",
+    "time_slot": "dawn",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-01-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "tai",
+    "count": 2,
+    "length_cm": 35.2,
+    "weight_g": 877,
+    "place": "岸和田一文字",
+    "tide": "flood",
+    "time_slot": "dawn",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-01-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 3,
+    "length_cm": 23.5,
+    "weight_g": 927,
+    "place": "淡路島 洲本港",
+    "tide": "ebb",
+    "time_slot": "dusk",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-02-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 4,
+    "length_cm": 38.6,
+    "weight_g": 1793,
+    "place": "岸和田一文字",
+    "tide": "flood",
+    "time_slot": "night",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-02-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "saba",
+    "count": 4,
+    "length_cm": 12.5,
+    "weight_g": 499,
+    "place": "岸和田一文字",
+    "tide": "ebb",
+    "time_slot": "dusk",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "tai",
+    "count": 5,
+    "length_cm": 20.7,
+    "weight_g": 1180,
+    "place": "須磨海づり公園",
+    "tide": "ebb",
+    "time_slot": "dawn",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-03-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 2,
+    "length_cm": 15.2,
+    "weight_g": 347,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "night",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-03-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "saba",
+    "count": 3,
+    "length_cm": 15.2,
+    "weight_g": 505,
+    "place": "須磨海づり公園",
+    "tide": "ebb",
+    "time_slot": "night",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-03-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 7,
+    "length_cm": 39.9,
+    "weight_g": 2598,
+    "place": "岸和田一文字",
+    "tide": "ebb",
+    "time_slot": "dawn",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-03-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 5,
+    "length_cm": 27.8,
+    "weight_g": 1510,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-03-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 4,
+    "length_cm": 38.2,
+    "weight_g": 2109,
+    "place": "大阪南港",
+    "tide": "high",
+    "time_slot": "dawn",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-04-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 5,
+    "length_cm": 15.2,
+    "weight_g": 940,
+    "place": "大阪南港",
+    "tide": "flood",
+    "time_slot": "dawn",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-04-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 4,
+    "length_cm": 15.4,
+    "weight_g": 617,
+    "place": "淡路島 洲本港",
+    "tide": "high",
+    "time_slot": "dawn",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-04-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 6,
+    "length_cm": 24.2,
+    "weight_g": 1166,
+    "place": "泉佐野食品コンビナート",
+    "tide": "low",
+    "time_slot": "day",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-04-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 3,
+    "length_cm": 26.8,
+    "weight_g": 1124,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-04-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 4,
+    "length_cm": 15.7,
+    "weight_g": 507,
+    "place": "須磨海づり公園",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-05-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 5,
+    "length_cm": 35.0,
+    "weight_g": 1780,
+    "place": "須磨海づり公園",
+    "tide": "flood",
+    "time_slot": "dusk",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-05-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 4,
+    "length_cm": 25.0,
+    "weight_g": 1396,
+    "place": "泉佐野食品コンビナート",
+    "tide": "flood",
+    "time_slot": "dusk",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-05-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 4,
+    "length_cm": 18.8,
+    "weight_g": 626,
+    "place": "須磨海づり公園",
+    "tide": "high",
+    "time_slot": "dusk",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-05-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 4,
+    "length_cm": 21.1,
+    "weight_g": 937,
+    "place": "大阪南港",
+    "tide": "flood",
+    "time_slot": "night",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-05-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "tai",
+    "count": 4,
+    "length_cm": 18.8,
+    "weight_g": 738,
+    "place": "泉佐野食品コンビナート",
+    "tide": "low",
+    "time_slot": "night",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-05-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 3,
+    "length_cm": 20.9,
+    "weight_g": 539,
+    "place": "泉佐野食品コンビナート",
+    "tide": "high",
+    "time_slot": "dawn",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-06-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 5,
+    "length_cm": 20.7,
+    "weight_g": 1406,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "night",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-06-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 5,
+    "length_cm": 15.5,
+    "weight_g": 695,
+    "place": "須磨海づり公園",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-06-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "tai",
+    "count": 4,
+    "length_cm": 26.4,
+    "weight_g": 1104,
+    "place": "岸和田一文字",
+    "tide": "flood",
+    "time_slot": "day",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-07-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 6,
+    "length_cm": 22.1,
+    "weight_g": 1167,
+    "place": "岸和田一文字",
+    "tide": "high",
+    "time_slot": "dawn",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-07-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 3,
+    "length_cm": 47.0,
+    "weight_g": 1540,
+    "place": "泉佐野食品コンビナート",
+    "tide": "low",
+    "time_slot": "night",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-07-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 6,
+    "length_cm": 21.4,
+    "weight_g": 1506,
+    "place": "大阪南港",
+    "tide": "flood",
+    "time_slot": "night",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-07-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 5,
+    "length_cm": 44.3,
+    "weight_g": 2638,
+    "place": "岸和田一文字",
+    "tide": "low",
+    "time_slot": "dusk",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-07-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 4,
+    "length_cm": 21.6,
+    "weight_g": 696,
+    "place": "泉佐野食品コンビナート",
+    "tide": "flood",
+    "time_slot": "dawn",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-07-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 4,
+    "length_cm": 25.9,
+    "weight_g": 1230,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "day",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-08-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 7,
+    "length_cm": 13.9,
+    "weight_g": 1032,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "day",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-08-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 7,
+    "length_cm": 33.0,
+    "weight_g": 2526,
+    "place": "淡路島 洲本港",
+    "tide": "flood",
+    "time_slot": "dawn",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-08-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 4,
+    "length_cm": 26.3,
+    "weight_g": 1314,
+    "place": "岸和田一文字",
+    "tide": "high",
+    "time_slot": "night",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-08-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "saba",
+    "count": 5,
+    "length_cm": 26.6,
+    "weight_g": 1322,
+    "place": "淡路島 洲本港",
+    "tide": "ebb",
+    "time_slot": "day",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-08-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 2,
+    "length_cm": 20.3,
+    "weight_g": 467,
+    "place": "大阪南港",
+    "tide": "low",
+    "time_slot": "night",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-08-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 5,
+    "length_cm": 23.3,
+    "weight_g": 1026,
+    "place": "淡路島 洲本港",
+    "tide": "high",
+    "time_slot": "day",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-09-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 5,
+    "length_cm": 24.9,
+    "weight_g": 1492,
+    "place": "須磨海づり公園",
+    "tide": "low",
+    "time_slot": "dusk",
+    "memo": "サビキで連発"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-09-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 6,
+    "length_cm": 15.3,
+    "weight_g": 988,
+    "place": "岸和田一文字",
+    "tide": "ebb",
+    "time_slot": "night",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-09-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "kasago",
+    "count": 4,
+    "length_cm": 18.0,
+    "weight_g": 877,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "dusk",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-09-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 3,
+    "length_cm": 46.1,
+    "weight_g": 1838,
+    "place": "須磨海づり公園",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-10-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "ika",
+    "count": 6,
+    "length_cm": 20.5,
+    "weight_g": 1065,
+    "place": "須磨海づり公園",
+    "tide": "high",
+    "time_slot": "night",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-10-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "seabass",
+    "count": 3,
+    "length_cm": 43.5,
+    "weight_g": 1127,
+    "place": "須磨海づり公園",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-10-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 3,
+    "length_cm": 12.6,
+    "weight_g": 346,
+    "place": "岸和田一文字",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": "風が強かった"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-10-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 4,
+    "length_cm": 13.3,
+    "weight_g": 743,
+    "place": "大阪南港",
+    "tide": "ebb",
+    "time_slot": "day",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-10-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "tai",
+    "count": 6,
+    "length_cm": 17.0,
+    "weight_g": 975,
+    "place": "泉佐野食品コンビナート",
+    "tide": "ebb",
+    "time_slot": "day",
+    "memo": ""
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-11-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 5,
+    "length_cm": 12.7,
+    "weight_g": 653,
+    "place": "淡路島 洲本港",
+    "tide": "low",
+    "time_slot": "dawn",
+    "memo": "潮止まりで沈黙"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-11-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "saba",
+    "count": 5,
+    "length_cm": 15.2,
+    "weight_g": 1040,
+    "place": "淡路島 洲本港",
+    "tide": "ebb",
+    "time_slot": "day",
+    "memo": "隣の人が大物"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-12-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "tai",
+    "count": 6,
+    "length_cm": 30.0,
+    "weight_g": 1943,
+    "place": "岸和田一文字",
+    "tide": "high",
+    "time_slot": "dusk",
+    "memo": ""
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "fishing-home",
+   "label": "1月の釣果目標",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "2月の釣果目標",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "3月の釣果目標",
+   "start": "2026-03-01",
+   "end": "2026-03-31",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "4月の釣果目標",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "5月の釣果目標",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "6月の釣果目標",
+   "start": "2026-06-01",
+   "end": "2026-06-30",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "7月の釣果目標",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "8月の釣果目標",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "9月の釣果目標",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "10月の釣果目標",
+   "start": "2026-10-01",
+   "end": "2026-10-31",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "11月の釣果目標",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 20
+  },
+  {
+   "group": "fishing-home",
+   "label": "12月の釣果目標",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 20
+  }
+ ]
+}

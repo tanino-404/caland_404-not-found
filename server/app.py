@@ -1,4 +1,4 @@
-"""家計簿 HTTP サーバー。127.0.0.1:8787 だけを受け付ける。"""
+"""予定・管理プラグイン HTTP サーバー。127.0.0.1:8787 だけを受け付ける。"""
 
 from __future__ import annotations
 
@@ -6,14 +6,16 @@ import json
 import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import unquote, urlparse
 
 import db
+import plugins
 import suggest
 
 HOST = "127.0.0.1"
 PORT = 8787
 DB_PATH = Path(__file__).resolve().parent / "data" / "ledger.sqlite"
+PLUGINS_DIR = Path(__file__).resolve().parents[1] / "plugins"
 
 
 class LedgerHTTPServer(ThreadingHTTPServer):
@@ -23,7 +25,7 @@ class LedgerHTTPServer(ThreadingHTTPServer):
     daemon_threads = True
 
 
-def _read_body(handler: BaseHTTPRequestHandler) -> dict:
+def _read_body(handler: BaseHTTPRequestHandler) -> object:
     header = handler.headers.get("Content-Length")
     if header is None:
         raise db.LedgerError(400, "Content-Length がありません")
@@ -45,18 +47,6 @@ def _read_body(handler: BaseHTTPRequestHandler) -> dict:
     return payload
 
 
-def _query_user(query: str) -> str:
-    params = parse_qs(query, keep_blank_values=True)
-    if "user" not in params:
-        raise db.LedgerError(400, "user がありません")
-    if len(params["user"]) != 1:
-        raise db.LedgerError(400, "user は 1 つだけ指定してください")
-    user = params["user"][0].strip()
-    if user == "":
-        raise db.LedgerError(400, "user が空です")
-    return user
-
-
 def _event_action(path: str) -> tuple[str, str] | None:
     prefix = "/api/events/"
     if not path.startswith(prefix):
@@ -70,7 +60,7 @@ def _event_action(path: str) -> tuple[str, str] | None:
     return event_id, action
 
 
-def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
+def make_handler(db_path: Path, plugins_dir: Path) -> type[BaseHTTPRequestHandler]:
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self) -> None:
             self._dispatch()
@@ -94,6 +84,8 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
                 self._route()
             except db.LedgerError as exc:
                 self._fail(exc.status, exc)
+            except plugins.ApiError as exc:
+                self._fail(exc.status, exc)
             except Exception as exc:
                 self._fail(500, exc)
 
@@ -110,23 +102,29 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
             parsed = urlparse(self.path)
             path = parsed.path
             action = _event_action(path)
+            if path == "/api/plugins" or path.startswith("/api/plugins/"):
+                status, payload = plugins.handle(
+                    self.command,
+                    path,
+                    parsed.query,
+                    self.headers,
+                    lambda: _read_body(self),
+                    db_path,
+                    plugins_dir,
+                )
+                if status == 204:
+                    self._write_empty(204)
+                else:
+                    self._write_json(status, payload)
+                return
             if self.command == "GET" and path == "/api/health":
                 self._write_json(200, {"ok": True})
-                return
-            if self.command == "GET" and path == "/api/ledger":
-                self._write_json(200, db.fetch_ledger(db_path))
                 return
             if self.command == "GET" and path == "/api/calendar":
                 self._write_json(200, db.fetch_calendar(db_path))
                 return
-            if self.command == "POST" and path == "/api/ledger":
-                self._write_json(201, db.add_entry(db_path, _read_body(self)))
-                return
-            if self.command == "POST" and path == "/api/ledger/reset":
-                self._write_json(200, db.reset_ledger(db_path))
-                return
             if self.command == "POST" and path == "/api/reset":
-                self._write_json(200, db.reset_demo(db_path))
+                self._write_json(200, db.reset_demo(db_path, plugins_dir))
                 return
             if self.command == "POST" and path == "/api/members":
                 self._write_json(200, db.add_member(db_path, _read_body(self)))
@@ -145,28 +143,14 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
                     return
                 self._write_json(200, db.leave_event(db_path, event_id, body))
                 return
-            if self.command == "PUT" and path == "/api/goals":
-                self._write_json(200, db.set_goal(db_path, _read_body(self)))
-                return
-            if self.command == "DELETE" and path.startswith("/api/ledger/"):
-                entry_id = unquote(path[len("/api/ledger/") :])
-                if entry_id == "" or "/" in entry_id:
-                    raise db.LedgerError(404, f"not found: {path}")
-                db.delete_entry(db_path, entry_id, _query_user(parsed.query))
-                self._write_empty(204)
-                return
-            ledger_id = path.startswith("/api/ledger/") and "/" not in unquote(path[len("/api/ledger/") :])
             if path in {
                 "/api/health",
-                "/api/ledger",
-                "/api/ledger/reset",
                 "/api/calendar",
                 "/api/reset",
                 "/api/members",
                 "/api/events",
                 "/api/suggest",
-                "/api/goals",
-            } or ledger_id or action is not None:
+            } or action is not None:
                 raise db.LedgerError(405, f"method not allowed: {self.command} {path}")
             raise db.LedgerError(404, f"not found: {path}")
 
@@ -186,11 +170,11 @@ def make_handler(db_path: Path) -> type[BaseHTTPRequestHandler]:
     return Handler
 
 
-def serve(db_path: Path, host: str = HOST, port: int = PORT) -> LedgerHTTPServer:
+def serve(db_path: Path, host: str = HOST, port: int = PORT, plugins_dir: Path = PLUGINS_DIR) -> LedgerHTTPServer:
     if host != HOST:
         raise RuntimeError("listen host は 127.0.0.1 だけです")
-    db.ensure_ready(db_path)
-    return LedgerHTTPServer((host, port), make_handler(db_path))
+    db.ensure_ready(db_path, plugins_dir)
+    return LedgerHTTPServer((host, port), make_handler(db_path, plugins_dir))
 
 
 def main() -> None:

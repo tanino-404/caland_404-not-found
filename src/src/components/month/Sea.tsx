@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import type { BufferAttribute, PlaneGeometry } from 'three';
 import { SEA_Y } from '../../lib/camera';
-import type { IslandTheme } from '../../types/ledger';
+import type { IslandTheme } from '../../types/island';
 import { BLOCK_COLORS } from '../models/blocks/blockKinds';
 
 /** 波立つ海面の一辺（島を囲む範囲） */

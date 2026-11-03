@@ -1,7 +1,12 @@
-"""SQLite のスキーマと家計簿の読み書き。例外は握りつぶさない。"""
+"""SQLite のスキーマと予定・メンバーの読み書き。例外は握りつぶさない。
+
+家計簿は管理内容プラグイン（plugins/ledger）として plugin_* テーブルに入る。
+旧テーブル（ledger_entries / monthly_goals）が残っていれば起動時に移し替えて捨てる。
+"""
 
 from __future__ import annotations
 
+import calendar
 import json
 import random
 import sqlite3
@@ -10,21 +15,10 @@ from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
+import plugins
 import seed
 
 SCHEMA = """
-CREATE TABLE IF NOT EXISTS ledger_entries (
-  id TEXT PRIMARY KEY,
-  date TEXT NOT NULL,
-  kind TEXT NOT NULL CHECK(kind IN ('income','expense')),
-  amount INTEGER NOT NULL CHECK(amount >= 1),
-  title TEXT NOT NULL,
-  owners_json TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS monthly_goals (
-  year_month TEXT PRIMARY KEY,
-  amount INTEGER NOT NULL CHECK(amount >= 1)
-);
 CREATE TABLE IF NOT EXISTS members (
   name TEXT PRIMARY KEY
 );
@@ -39,6 +33,10 @@ CREATE TABLE IF NOT EXISTS events (
   place TEXT NOT NULL DEFAULT ''
 );
 """
+
+LEDGER_PLUGIN_ID = "ledger"
+LEDGER_GROUP_ID = "ledger-home"
+LEDGER_GROUP_NAME = "みんなの家計簿"
 
 CATEGORIES = (
     "beauty",
@@ -76,9 +74,13 @@ def _immediate(conn: sqlite3.Connection):
         conn.commit()
 
 
-def _counts_empty(conn: sqlite3.Connection) -> bool:
-    entries = conn.execute("SELECT COUNT(*) AS n FROM ledger_entries").fetchone()["n"]
-    goals = conn.execute("SELECT COUNT(*) AS n FROM monthly_goals").fetchone()["n"]
+def _ledger_empty(conn: sqlite3.Connection) -> bool:
+    entries = conn.execute(
+        "SELECT COUNT(*) AS n FROM plugin_entries WHERE plugin_id = ?", (LEDGER_PLUGIN_ID,)
+    ).fetchone()["n"]
+    goals = conn.execute(
+        "SELECT COUNT(*) AS n FROM plugin_goals WHERE plugin_id = ?", (LEDGER_PLUGIN_ID,)
+    ).fetchone()["n"]
     return entries == 0 and goals == 0
 
 
@@ -88,29 +90,80 @@ def _calendar_empty(conn: sqlite3.Connection) -> bool:
     return members == 0 and events == 0
 
 
+def _month_bounds(year_month: str) -> tuple[str, str]:
+    year, month = (int(part) for part in year_month.split("-"))
+    last = calendar.monthrange(year, month)[1]
+    return f"{year_month}-01", f"{year_month}-{last:02d}"
+
+
+def _ledger_goal(year_month: str, amount: int) -> dict:
+    start, end = _month_bounds(year_month)
+    return {
+        "id": f"goal-{LEDGER_PLUGIN_ID}-{year_month}",
+        "pluginId": LEDGER_PLUGIN_ID,
+        "groupId": LEDGER_GROUP_ID,
+        "metric": "savings",
+        "label": f"{int(year_month[5:7])}月の貯金目標",
+        "start": start,
+        "end": end,
+        "target": amount,
+    }
+
+
+def _ensure_ledger_group(conn: sqlite3.Connection) -> None:
+    plugins.save_group(conn, LEDGER_GROUP_ID, LEDGER_PLUGIN_ID, LEDGER_GROUP_NAME)
+    for name in _member_names(conn):
+        plugins.add_group_member(conn, LEDGER_GROUP_ID, name)
+
+
 def _insert_sample(conn: sqlite3.Connection) -> None:
     entries, goals = seed.build_sample()
-    conn.executemany(
-        """
-        INSERT INTO ledger_entries (id, date, kind, amount, title, owners_json)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        [
-            (
-                entry["id"],
-                entry["date"],
-                entry["kind"],
-                entry["amount"],
-                entry["title"],
-                json.dumps(entry["owners"], ensure_ascii=False),
+    _ensure_ledger_group(conn)
+    for entry in entries:
+        plugins.insert_entry(
+            conn,
+            LEDGER_PLUGIN_ID,
+            LEDGER_GROUP_ID,
+            entry["id"],
+            entry["date"],
+            {"kind": entry["kind"], "amount": entry["amount"], "title": entry["title"]},
+            entry["owners"],
+        )
+    for year_month, amount in goals.items():
+        plugins.save_goal(conn, _ledger_goal(year_month, amount))
+
+
+def _table_exists(conn: sqlite3.Connection, name: str) -> bool:
+    row = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?", (name,)
+    ).fetchone()
+    return row is not None
+
+
+def _migrate_old_ledger(conn: sqlite3.Connection) -> None:
+    """旧テーブル（ledger_entries / monthly_goals）をプラグイン形式へ移し替えて捨てる。"""
+    if not _table_exists(conn, "ledger_entries"):
+        return
+    if _ledger_empty(conn):
+        _ensure_ledger_group(conn)
+        rows = conn.execute(
+            "SELECT id, date, kind, amount, title, owners_json FROM ledger_entries ORDER BY rowid"
+        ).fetchall()
+        for row in rows:
+            plugins.insert_entry(
+                conn,
+                LEDGER_PLUGIN_ID,
+                LEDGER_GROUP_ID,
+                row["id"],
+                row["date"],
+                {"kind": row["kind"], "amount": row["amount"], "title": row["title"]},
+                _owners(row["id"], row["owners_json"]),
             )
-            for entry in entries
-        ],
-    )
-    conn.executemany(
-        "INSERT INTO monthly_goals (year_month, amount) VALUES (?, ?)",
-        list(goals.items()),
-    )
+        goal_rows = conn.execute("SELECT year_month, amount FROM monthly_goals ORDER BY year_month").fetchall()
+        for row in goal_rows:
+            plugins.save_goal(conn, _ledger_goal(row["year_month"], row["amount"]))
+    conn.execute("DROP TABLE ledger_entries")
+    conn.execute("DROP TABLE monthly_goals")
 
 
 def _insert_calendar(conn: sqlite3.Connection) -> None:
@@ -141,34 +194,6 @@ def _owners(entry_id: str, raw: str) -> list:
     return owners
 
 
-def _row_to_entry(row: sqlite3.Row) -> dict:
-    return {
-        "id": row["id"],
-        "date": row["date"],
-        "kind": row["kind"],
-        "amount": row["amount"],
-        "title": row["title"],
-        "owners": _owners(row["id"], row["owners_json"]),
-    }
-
-
-def _snapshot(conn: sqlite3.Connection) -> dict:
-    entry_rows = conn.execute(
-        """
-        SELECT id, date, kind, amount, title, owners_json
-        FROM ledger_entries
-        ORDER BY rowid
-        """
-    ).fetchall()
-    goal_rows = conn.execute(
-        "SELECT year_month, amount FROM monthly_goals ORDER BY year_month"
-    ).fetchall()
-    return {
-        "entries": [_row_to_entry(row) for row in entry_rows],
-        "goals": {row["year_month"]: row["amount"] for row in goal_rows},
-    }
-
-
 def _ensure_events_place(conn: sqlite3.Connection) -> None:
     """既存 DB の events に place 列が無ければ足す（作成済み DB の移行）。"""
     columns = [row["name"] for row in conn.execute("PRAGMA table_info(events)")]
@@ -176,25 +201,30 @@ def _ensure_events_place(conn: sqlite3.Connection) -> None:
         conn.execute("ALTER TABLE events ADD COLUMN place TEXT NOT NULL DEFAULT ''")
 
 
-def ensure_ready(path: Path) -> None:
+def _insert_plugin_samples(conn: sqlite3.Connection, plugins_dir: Path) -> None:
+    """家計以外で、まだグループが無いプラグインに sample.json を入れる。"""
+    for manifest in plugins.list_manifests(plugins_dir):
+        if manifest["id"] == LEDGER_PLUGIN_ID or plugins.plugin_has_groups(conn, manifest["id"]):
+            continue
+        sample = plugins.load_sample(manifest, plugins_dir)
+        if sample is not None:
+            plugins.insert_sample(conn, manifest, sample)
+
+
+def ensure_ready(path: Path, plugins_dir: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     conn = connect(path)
     try:
         conn.executescript(SCHEMA)
+        conn.executescript(plugins.SCHEMA)
         with _immediate(conn):
             _ensure_events_place(conn)
-            if _counts_empty(conn):
-                _insert_sample(conn)
             if _calendar_empty(conn):
                 _insert_calendar(conn)
-    finally:
-        conn.close()
-
-
-def fetch_ledger(path: Path) -> dict:
-    conn = connect(path)
-    try:
-        return _snapshot(conn)
+            _migrate_old_ledger(conn)
+            if _ledger_empty(conn):
+                _insert_sample(conn)
+            _insert_plugin_samples(conn, plugins_dir)
     finally:
         conn.close()
 
@@ -209,20 +239,6 @@ def _require_present(body: dict, key: str) -> object:
     if key not in body:
         raise LedgerError(400, f"{key} がありません")
     return body[key]
-
-
-def _require_int(body: dict, key: str) -> int:
-    value = _require_present(body, key)
-    if isinstance(value, bool) or not isinstance(value, int):
-        raise LedgerError(400, f"{key} は整数である必要があります")
-    return value
-
-
-def _require_positive_int(body: dict, key: str) -> int:
-    value = _require_present(body, key)
-    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
-        raise LedgerError(400, f"{key} は 1 以上の整数である必要があります")
-    return value
 
 
 def _require_text(body: dict, key: str) -> str:
@@ -246,109 +262,6 @@ def _require_date(body: dict) -> str:
     if parsed.strftime("%Y-%m-%d") != value:
         raise LedgerError(400, "date は YYYY-MM-DD である必要があります")
     return value
-
-
-def _require_kind(body: dict) -> str:
-    value = _require_present(body, "kind")
-    if value not in ("income", "expense"):
-        raise LedgerError(400, "kind は income または expense である必要があります")
-    return value
-
-
-def new_entry_id() -> str:
-    unix_ms = int(time.time() * 1000)
-    rand = random.randrange(1_000_000)
-    return f"ledger-{unix_ms}-{rand}"
-
-
-def add_entry(path: Path, body: object) -> dict:
-    payload = _require_object(body)
-    entry = {
-        "id": new_entry_id(),
-        "date": _require_date(payload),
-        "kind": _require_kind(payload),
-        "amount": _require_positive_int(payload, "amount"),
-        "title": _require_text(payload, "title"),
-        "owners": [_require_text(payload, "owner")],
-    }
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute(
-                """
-                INSERT INTO ledger_entries (id, date, kind, amount, title, owners_json)
-                VALUES (?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    entry["id"],
-                    entry["date"],
-                    entry["kind"],
-                    entry["amount"],
-                    entry["title"],
-                    json.dumps(entry["owners"], ensure_ascii=False),
-                ),
-            )
-        return entry
-    finally:
-        conn.close()
-
-
-def delete_entry(path: Path, entry_id: str, user: str) -> None:
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            row = conn.execute(
-                "SELECT id, title, owners_json FROM ledger_entries WHERE id = ?",
-                (entry_id,),
-            ).fetchone()
-            if row is None:
-                raise LedgerError(404, f"記帳が見つかりません: {entry_id}")
-            owners = _owners(row["id"], row["owners_json"])
-            if user not in owners:
-                raise LedgerError(403, f'"{user}" の記帳ではありません: {row["title"]}')
-            cursor = conn.execute("DELETE FROM ledger_entries WHERE id = ?", (entry_id,))
-            if cursor.rowcount != 1:
-                raise LedgerError(404, f"記帳が見つかりません: {entry_id}")
-    finally:
-        conn.close()
-
-
-def set_goal(path: Path, body: object) -> dict:
-    payload = _require_object(body)
-    year = _require_int(payload, "year")
-    month = _require_int(payload, "month")
-    amount = _require_positive_int(payload, "amount")
-    if month < 1 or month > 12:
-        raise LedgerError(400, "month は 1 から 12 である必要があります")
-    if year < 0 or year > 9999:
-        raise LedgerError(400, "year は 0 から 9999 である必要があります")
-    year_month = f"{year:04d}-{month:02d}"
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute(
-                """
-                INSERT INTO monthly_goals (year_month, amount)
-                VALUES (?, ?)
-                ON CONFLICT(year_month) DO UPDATE SET amount = excluded.amount
-                """,
-                (year_month, amount),
-            )
-        return {"yearMonth": year_month, "amount": amount}
-    finally:
-        conn.close()
-
-
-def reset_ledger(path: Path) -> dict:
-    conn = connect(path)
-    try:
-        with _immediate(conn):
-            conn.execute("DELETE FROM ledger_entries")
-            conn.execute("DELETE FROM monthly_goals")
-            _insert_sample(conn)
-        return _snapshot(conn)
-    finally:
-        conn.close()
 
 
 def _member_names(conn: sqlite3.Connection) -> list[str]:
@@ -539,18 +452,17 @@ def leave_event(path: Path, event_id: str, body: object) -> dict:
         conn.close()
 
 
-def reset_demo(path: Path) -> dict:
+def reset_demo(path: Path, plugins_dir: Path) -> dict:
+    """予定・メンバー・全プラグインの記録をサンプルで作り直す。"""
     conn = connect(path)
     try:
         with _immediate(conn):
-            conn.execute("DELETE FROM ledger_entries")
-            conn.execute("DELETE FROM monthly_goals")
             conn.execute("DELETE FROM events")
             conn.execute("DELETE FROM members")
-            _insert_sample(conn)
+            plugins.delete_plugin_data(conn)
             _insert_calendar(conn)
-        snapshot = _snapshot(conn)
-        snapshot.update(_calendar_snapshot(conn))
-        return snapshot
+            _insert_sample(conn)
+            _insert_plugin_samples(conn, plugins_dir)
+        return _calendar_snapshot(conn)
     finally:
         conn.close()

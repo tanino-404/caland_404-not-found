@@ -1,0 +1,8029 @@
+{
+ "groups": [
+  {
+   "id": "pets-home",
+   "name": "うちの子たち",
+   "members": [
+    "たろう",
+    "はなこ"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "pets-home",
+   "date": "2026-01-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30,
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15,
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh",
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-01-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20,
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-02-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-03-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15,
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30,
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-04-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-05-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh",
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45,
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15,
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15,
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-06-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-07-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-08-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30,
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-09-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-27",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-31",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15,
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh",
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-26",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-10-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45,
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "公園でボール遊び"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-14",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-16",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20,
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-28",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-11-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-08",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-11",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-12",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-15",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-19",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-23",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "food",
+    "food_g": 100
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-29",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 60
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "food",
+    "food_g": 80
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-01",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-02",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30,
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-04",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-05",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-06",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-07",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-09",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-10",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh",
+    "memo": "よく食べた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-13",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20,
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45,
+    "memo": "水槽の水を半分換えた"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-17",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15,
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-18",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-20",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 20
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-21",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 45,
+    "memo": "爪切りもした"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-22",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-24",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "tama",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-25",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "hamu",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "pet": "kingyo",
+    "care": "refresh"
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 30
+   }
+  },
+  {
+   "group": "pets-home",
+   "date": "2026-12-30",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "pet": "pochi",
+    "care": "walk",
+    "walk_min": 15
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "pets-home",
+   "label": "1月のお世話目標",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "2月のお世話目標",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "3月のお世話目標",
+   "start": "2026-03-01",
+   "end": "2026-03-31",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "4月のお世話目標",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "5月のお世話目標",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "6月のお世話目標",
+   "start": "2026-06-01",
+   "end": "2026-06-30",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "7月のお世話目標",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "8月のお世話目標",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "9月のお世話目標",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "10月のお世話目標",
+   "start": "2026-10-01",
+   "end": "2026-10-31",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "11月のお世話目標",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 60
+  },
+  {
+   "group": "pets-home",
+   "label": "12月のお世話目標",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 60
+  }
+ ]
+}

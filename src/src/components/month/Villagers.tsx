@@ -4,7 +4,7 @@ import type { Group } from 'three';
 import { TOWER_WIDTH, colToX, rowToZ, towerTopY } from '../../lib/camera';
 import type { MonthCell } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import type { IslandTheme } from '../../types/ledger';
+import type { IslandTheme } from '../../types/island';
 import { Voxel } from '../models/Voxel';
 
 /** 町全体で出す村人の上限 */

@@ -1,0 +1,2694 @@
+{
+ "groups": [
+  {
+   "id": "game-home",
+   "name": "たろうの練習",
+   "members": [
+    "たろう"
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "group": "game-home",
+   "date": "2026-01-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 99
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 79
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 79,
+    "rating": 1153,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 82,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 95,
+    "rating": 1135,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 95,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 82,
+    "rating": 1104,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 80
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 103,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 91
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-01-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 94
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 82,
+    "rating": 1157,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 82
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 96,
+    "rating": 1199,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 80
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 73
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 90,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 96,
+    "rating": 1211,
+    "rank": "シルバー",
+    "ranked": true,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 107,
+    "rating": 1183,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 85,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 93,
+    "rating": 1160,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 81
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 94
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 96
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 109
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-02-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 94
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 85,
+    "rating": 1166,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 101
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 87,
+    "rating": 1136,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 87,
+    "rating": 1163,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 91,
+    "rating": 1134,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 95,
+    "rating": 1157,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 99,
+    "rating": 1185,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 86,
+    "rating": 1191,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 85,
+    "rating": 1196,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 77,
+    "rating": 1250,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 83,
+    "rating": 1230,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 98
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 86
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 91
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 89,
+    "rating": 1216,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-03-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 86,
+    "rating": 1180,
+    "rank": "ブロンズ",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 88,
+    "rating": 1210,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 91,
+    "rating": 1221,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 101,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 86,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 96,
+    "rating": 1244,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 83
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 100,
+    "rating": 1255,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 87,
+    "rating": 1294,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-04-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 76,
+    "rating": 1283,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 88
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 99
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 88
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 83,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 97
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 78
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 99
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 91,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 91
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 88,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 78
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 99,
+    "memo": "新キャラ練習"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-05-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 85
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 91,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 87
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 102
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 87,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 79
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 79,
+    "rating": 1331,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-06-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 91
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 96,
+    "rating": 1313,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 76,
+    "rating": 1342,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 102
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 92,
+    "rating": 1366,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 85,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 80
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 105,
+    "rating": 1334,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 99,
+    "rating": 1343,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 90,
+    "rating": 1329,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 85,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 97
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 77
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 95,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 94,
+    "memo": "新キャラ練習"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 74
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 101,
+    "rating": 1377,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 88
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 81
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-07-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 82,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 96
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 76,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 86
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 105
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 73,
+    "rating": 1386,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 78
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 98,
+    "rating": 1409,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 93,
+    "rating": 1458,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 109
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 79,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 98
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 85
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 97,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 84,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 94
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 97,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 91
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 76,
+    "rating": 1484,
+    "rank": "シルバー",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-08-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 83,
+    "rating": 1529,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 93,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 84,
+    "memo": "大会の VOD を見た"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 106
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 94
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-16",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 82
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 100,
+    "rating": 1508,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-09-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 81
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 84
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 91
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-08",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 99
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 86
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-11",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 100,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 91,
+    "memo": "新キャラ練習"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 98
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 80
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 86,
+    "rating": 1561,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 91,
+    "rating": 1605,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-27",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 87,
+    "rating": 1620,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 80,
+    "rating": 1591,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-10-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 83,
+    "rating": 1578,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 96
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 88
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 98,
+    "rating": 1564,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 108,
+    "rating": 1582,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 89,
+    "rating": 1571,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 107,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 87
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 84,
+    "rating": 1581,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 79
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 96,
+    "rating": 1631,
+    "rank": "ゴールド",
+    "ranked": true,
+    "memo": "エイム練習 30 分"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-15",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 94
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 92
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 75,
+    "rating": 1639,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-19",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 88
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 85
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 76
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 83,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-11-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-02",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-03",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 80
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-04",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 84,
+    "rating": 1617,
+    "rank": "ゴールド",
+    "ranked": true,
+    "memo": "連敗で終了"
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-05",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-06",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 87
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-07",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 79
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-09",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 83
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-10",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 81
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-12",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 88
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-13",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 103
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-14",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-17",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-18",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-20",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 85
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-21",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 105
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-22",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 93,
+    "rating": 1620,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-23",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 100
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-24",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 88,
+    "rating": 1665,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-25",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 90
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-26",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "moba",
+    "minutes": 93
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-28",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 95
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-29",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "puzzle",
+    "minutes": 89
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-30",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fps",
+    "minutes": 96,
+    "rating": 1675,
+    "rank": "ゴールド",
+    "ranked": true
+   }
+  },
+  {
+   "group": "game-home",
+   "date": "2026-12-31",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "game": "fighting",
+    "minutes": 79
+   }
+  }
+ ],
+ "goals": [
+  {
+   "group": "game-home",
+   "label": "1月の練習目標",
+   "start": "2026-01-01",
+   "end": "2026-01-31",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "2月の練習目標",
+   "start": "2026-02-01",
+   "end": "2026-02-28",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "3月の練習目標",
+   "start": "2026-03-01",
+   "end": "2026-03-31",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "4月の練習目標",
+   "start": "2026-04-01",
+   "end": "2026-04-30",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "5月の練習目標",
+   "start": "2026-05-01",
+   "end": "2026-05-31",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "6月の練習目標",
+   "start": "2026-06-01",
+   "end": "2026-06-30",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "7月の練習目標",
+   "start": "2026-07-01",
+   "end": "2026-07-31",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "8月の練習目標",
+   "start": "2026-08-01",
+   "end": "2026-08-31",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "9月の練習目標",
+   "start": "2026-09-01",
+   "end": "2026-09-30",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "10月の練習目標",
+   "start": "2026-10-01",
+   "end": "2026-10-31",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "11月の練習目標",
+   "start": "2026-11-01",
+   "end": "2026-11-30",
+   "target": 1800
+  },
+  {
+   "group": "game-home",
+   "label": "12月の練習目標",
+   "start": "2026-12-01",
+   "end": "2026-12-31",
+   "target": 1800
+  }
+ ]
+}

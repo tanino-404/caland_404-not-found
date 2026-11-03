@@ -17,9 +17,11 @@ import {
 } from '../../lib/camera';
 import { type MonthGrid, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent, IslandLayout, ViewState } from '../../types/calendar';
-import type { IslandTheme } from '../../types/ledger';
+import type { IslandTheme } from '../../types/island';
+import type { EffectScene } from '../../types/plugins';
 import { CameraRig } from './CameraRig';
 import { DayTower } from './DayTower';
+import { EffectSprites, type RooftopSpot } from './EffectSprites';
 import { Flight } from './Flight';
 import { LuxuryFx } from './LuxuryFx';
 import { LuxuryMarina } from './LuxuryMarina';
@@ -77,6 +79,10 @@ export interface MonthSceneProps {
   onHover: (dateKey: string | null) => void;
   onSelectDay: (day: number) => void;
   theme: IslandTheme;
+  /** 表示中プラグインの目標達成エフェクト（島の土台に重ねる）。無ければ null */
+  scene: EffectScene | null;
+  /** エフェクトが変わったら重ねる絵を作り直すためのキー */
+  sceneKey: string;
 }
 
 const NO_EVENTS: CalendarEvent[] = [];
@@ -135,6 +141,8 @@ export const MonthScene = ({
   onHover,
   onSelectDay,
   theme,
+  scene,
+  sceneKey,
 }: MonthSceneProps) => {
   const { year, month } = view;
   const grid = useMemo(() => buildMonthGrid(year, month), [year, month]);
@@ -161,7 +169,18 @@ export const MonthScene = ({
     () => (partnerByDate ? buildDayLabels(grid, partnerByDate, theme) : []),
     [grid, partnerByDate, theme],
   );
-  const horizon = theme === 'luxury' ? LUXURY_HORIZON_COLOR : HORIZON_COLOR;
+  const horizon = scene?.horizon ?? (theme === 'luxury' ? LUXURY_HORIZON_COLOR : HORIZON_COLOR);
+  const rooftops: RooftopSpot[] = useMemo(
+    () =>
+      grid.cells
+        .filter((cell) => (byDate.get(cell.dateKey)?.length ?? 0) > 0)
+        .map((cell) => ({
+          x: colToX(cell.col),
+          y: towerTopY(byDate.get(cell.dateKey)?.length ?? 0),
+          z: rowToZ(cell.row, grid.rows),
+        })),
+    [grid, byDate],
+  );
 
   const flights: FlightSpec[] = useMemo(() => {
     if (!split) return [];
@@ -201,12 +220,13 @@ export const MonthScene = ({
         }}
         onPointerMissed={() => onHover(null)}
       >
+        {scene?.sky !== undefined ? <color attach="background" args={[scene.sky]} /> : null}
         <fog
-          key={`${theme}-${split ? 'wide' : 'near'}`}
+          key={`${theme}-${horizon}-${split ? 'wide' : 'near'}`}
           attach="fog"
           args={[horizon, split ? 26 : 18, split ? 62 : 48]}
         />
-        <ambientLight intensity={theme === 'luxury' ? 0.78 : 0.55} color="#fff8ee" />
+        <ambientLight intensity={theme === 'luxury' ? 0.78 : 0.55} color={scene?.ambient ?? '#fff8ee'} />
         <hemisphereLight
           args={theme === 'luxury' ? ['#c8f0ff', '#f0d9a0', 1.15] : ['#dff3ff', '#c9b48a', 0.9]}
         />
@@ -224,7 +244,7 @@ export const MonthScene = ({
 
         <Sea theme={theme} />
 
-        <group key={`${year}-${month}-${layout}-${theme}`}>
+        <group key={`${year}-${month}-${layout}-${theme}-${sceneKey}`}>
           <WeekdayHeader rows={grid.rows} />
           {grid.cells.map((cell) => (
             <DayTower
@@ -248,6 +268,9 @@ export const MonthScene = ({
           <AfterRise>
             <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} theme={theme} />
             <PixelLabels labels={dayLabels} />
+            {scene?.sprites !== undefined ? (
+              <EffectSprites key={sceneKey} sprites={scene.sprites} rows={grid.rows} rooftops={rooftops} />
+            ) : null}
           </AfterRise>
 
           {split ? (

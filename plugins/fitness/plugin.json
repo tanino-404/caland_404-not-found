@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "id": "fitness",
+  "name": "フィットネス",
+  "version": "1.0.0",
+  "description": "トレーニングと体重を記録する。期間のトレーニング回数が目標に届くと、島からムキムキの腕が生えてダンベルを上げる。",
+  "fields": [
+    {
+      "key": "training",
+      "type": "select",
+      "label": "トレーニング",
+      "options": [
+        {
+          "value": "bench",
+          "label": "ベンチプレス"
+        },
+        {
+          "value": "squat",
+          "label": "スクワット"
+        },
+        {
+          "value": "deadlift",
+          "label": "デッドリフト"
+        },
+        {
+          "value": "run",
+          "label": "ランニング"
+        },
+        {
+          "value": "core",
+          "label": "体幹"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "weight_kg",
+      "type": "number",
+      "label": "重さ",
+      "unit": "kg",
+      "min": 0
+    },
+    {
+      "key": "reps",
+      "type": "integer",
+      "label": "回数",
+      "unit": "回",
+      "min": 1
+    },
+    {
+      "key": "sets",
+      "type": "integer",
+      "label": "セット",
+      "unit": "セット",
+      "min": 1
+    },
+    {
+      "key": "minutes",
+      "type": "integer",
+      "label": "時間",
+      "unit": "分",
+      "min": 1
+    },
+    {
+      "key": "body_weight",
+      "type": "number",
+      "label": "体重",
+      "unit": "kg",
+      "min": 20,
+      "max": 200
+    },
+    {
+      "key": "memo",
+      "type": "text",
+      "label": "メモ"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "sessions",
+      "label": "トレーニング",
+      "agg": "count",
+      "unit": "回"
+    },
+    {
+      "key": "minutes",
+      "label": "合計時間",
+      "agg": "sum",
+      "field": "minutes",
+      "unit": "分"
+    },
+    {
+      "key": "bench_max",
+      "label": "ベンチプレス最高",
+      "agg": "max",
+      "field": "weight_kg",
+      "unit": "kg",
+      "where": {
+        "field": "training",
+        "values": [
+          "bench"
+        ]
+      }
+    },
+    {
+      "key": "body_weight",
+      "label": "体重",
+      "agg": "latest",
+      "field": "body_weight",
+      "unit": "kg"
+    }
+  ],
+  "goal": {
+    "metric": "sessions",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "warmup",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "d": "#2b2f36",
+                "k": "#9aa4b0"
+              },
+              "layers": [
+                [
+                  "d...d",
+                  "d...d",
+                  "d...d"
+                ],
+                [
+                  "dkkkd",
+                  "dkkkd",
+                  "dkkkd"
+                ],
+                [
+                  "d...d",
+                  "d...d",
+                  "d...d"
+                ]
+              ]
+            },
+            "count": 10,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "id": "muscle",
+      "minProgress": 1,
+      "theme": "plain",
+      "scene": {
+        "ambient": "#ffe2c8",
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "s": "#f2b48a",
+                "k": "#9aa4b0",
+                "d": "#2b2f36",
+                "t": "#e0412e"
+              },
+              "layers": [
+                [
+                  "..tt..",
+                  "..tt.."
+                ],
+                [
+                  "..ss..",
+                  "..ss.."
+                ],
+                [
+                  "..ss..",
+                  "..ss.."
+                ],
+                [
+                  ".ssss.",
+                  ".ssss."
+                ],
+                [
+                  "ssssss",
+                  "ssssss"
+                ],
+                [
+                  ".ssss.",
+                  ".ssss."
+                ],
+                [
+                  "..ss..",
+                  "..ss.."
+                ],
+                [
+                  "..ss..",
+                  "..ss.."
+                ],
+                [
+                  "d.ss.d",
+                  "d.ss.d"
+                ],
+                [
+                  "dkkkkd",
+                  "dkkkkd"
+                ],
+                [
+                  "d....d",
+                  "d....d"
+                ]
+              ]
+            },
+            "count": 4,
+            "zone": "shore",
+            "motion": "pump",
+            "size": 0.13
+          },
+          {
+            "model": {
+              "palette": {
+                "d": "#2b2f36",
+                "k": "#9aa4b0"
+              },
+              "layers": [
+                [
+                  "d...d",
+                  "d...d",
+                  "d...d"
+                ],
+                [
+                  "dkkkd",
+                  "dkkkd",
+                  "dkkkd"
+                ],
+                [
+                  "d...d",
+                  "d...d",
+                  "d...d"
+                ]
+              ]
+            },
+            "count": 16,
+            "zone": "rooftop",
+            "motion": "hop",
+            "size": 0.05
+          },
+          {
+            "model": {
+              "palette": {
+                "w": "#f4f4f4",
+                "b": "#3a6fd8"
+              },
+              "layers": [
+                [
+                  "ww",
+                  "ww"
+                ],
+                [
+                  "bb",
+                  "bb"
+                ],
+                [
+                  "bb",
+                  "bb"
+                ],
+                [
+                  "ww",
+                  "ww"
+                ]
+              ]
+            },
+            "count": 8,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.06
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

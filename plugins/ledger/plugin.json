@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "id": "ledger",
+  "name": "家計簿",
+  "version": "1.0.0",
+  "description": "収入と支出を記帳し、期間の貯金が目標以上なら島が黄金郷になる。",
+  "fields": [
+    {
+      "key": "kind",
+      "type": "select",
+      "label": "収支",
+      "options": [
+        {
+          "value": "income",
+          "label": "収入"
+        },
+        {
+          "value": "expense",
+          "label": "支出"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "amount",
+      "type": "integer",
+      "label": "金額",
+      "unit": "円",
+      "min": 1,
+      "required": true
+    },
+    {
+      "key": "title",
+      "type": "text",
+      "label": "内容",
+      "required": true
+    }
+  ],
+  "metrics": [
+    {
+      "key": "savings",
+      "label": "貯金",
+      "agg": "sum",
+      "field": "amount",
+      "unit": "円",
+      "negateWhen": {
+        "field": "kind",
+        "values": [
+          "expense"
+        ]
+      }
+    },
+    {
+      "key": "entry_count",
+      "label": "記帳数",
+      "agg": "count"
+    }
+  ],
+  "goal": {
+    "metric": "savings",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "plain",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "luxury",
+      "minProgress": 1,
+      "theme": "luxury"
+    }
+  ],
+  "integrations": []
+}

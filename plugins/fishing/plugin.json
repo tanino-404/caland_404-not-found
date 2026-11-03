@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 1,
+  "id": "fishing",
+  "name": "釣り",
+  "version": "1.0.0",
+  "description": "釣果を記録する。期間の釣果数が目標に届くと、島の海に魚があふれる。潮と時間帯も残して、あとで釣れる条件を振り返る。",
+  "fields": [
+    {
+      "key": "species",
+      "type": "select",
+      "label": "魚の種類",
+      "options": [
+        {
+          "value": "aji",
+          "label": "アジ"
+        },
+        {
+          "value": "saba",
+          "label": "サバ"
+        },
+        {
+          "value": "tai",
+          "label": "マダイ"
+        },
+        {
+          "value": "seabass",
+          "label": "スズキ"
+        },
+        {
+          "value": "ika",
+          "label": "アオリイカ"
+        },
+        {
+          "value": "kasago",
+          "label": "カサゴ"
+        }
+      ],
+      "required": true
+    },
+    {
+      "key": "count",
+      "type": "integer",
+      "label": "数",
+      "unit": "匹",
+      "min": 1,
+      "required": true
+    },
+    {
+      "key": "length_cm",
+      "type": "number",
+      "label": "最大の大きさ",
+      "unit": "cm",
+      "min": 0
+    },
+    {
+      "key": "weight_g",
+      "type": "integer",
+      "label": "合計の重さ",
+      "unit": "g",
+      "min": 0
+    },
+    {
+      "key": "place",
+      "type": "place",
+      "label": "場所"
+    },
+    {
+      "key": "tide",
+      "type": "select",
+      "label": "潮",
+      "options": [
+        {
+          "value": "flood",
+          "label": "上げ潮"
+        },
+        {
+          "value": "high",
+          "label": "満潮"
+        },
+        {
+          "value": "ebb",
+          "label": "下げ潮"
+        },
+        {
+          "value": "low",
+          "label": "干潮"
+        }
+      ]
+    },
+    {
+      "key": "time_slot",
+      "type": "select",
+      "label": "時間帯",
+      "options": [
+        {
+          "value": "dawn",
+          "label": "朝まづめ"
+        },
+        {
+          "value": "day",
+          "label": "日中"
+        },
+        {
+          "value": "dusk",
+          "label": "夕まづめ"
+        },
+        {
+          "value": "night",
+          "label": "夜"
+        }
+      ]
+    },
+    {
+      "key": "memo",
+      "type": "text",
+      "label": "メモ"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "catch",
+      "label": "釣果",
+      "agg": "sum",
+      "field": "count",
+      "unit": "匹"
+    },
+    {
+      "key": "max_length",
+      "label": "最大の大きさ",
+      "agg": "max",
+      "field": "length_cm",
+      "unit": "cm"
+    },
+    {
+      "key": "total_weight",
+      "label": "合計の重さ",
+      "agg": "sum",
+      "field": "weight_g",
+      "unit": "g"
+    },
+    {
+      "key": "trips",
+      "label": "釣行",
+      "agg": "count",
+      "unit": "回"
+    },
+    {
+      "key": "dusk_catch",
+      "label": "夕まづめの釣果",
+      "agg": "sum",
+      "field": "count",
+      "unit": "匹",
+      "where": {
+        "field": "time_slot",
+        "values": [
+          "dusk"
+        ]
+      }
+    }
+  ],
+  "goal": {
+    "metric": "catch",
+    "op": ">="
+  },
+  "effects": [
+    {
+      "id": "calm",
+      "minProgress": 0,
+      "theme": "plain"
+    },
+    {
+      "id": "nibble",
+      "minProgress": 0.5,
+      "theme": "plain",
+      "scene": {
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "a": "#7fb6d8",
+                "b": "#5a8fb0",
+                "e": "#1b2a41"
+              },
+              "layers": [
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ],
+                [
+                  "bbaaea",
+                  "bbaaea"
+                ],
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ]
+              ]
+            },
+            "count": 6,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.07,
+            "speed": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "school",
+      "minProgress": 1,
+      "theme": "plain",
+      "scene": {
+        "horizon": "#bff0ff",
+        "sprites": [
+          {
+            "model": {
+              "palette": {
+                "a": "#ff8a3d",
+                "b": "#ffffff",
+                "e": "#1b2a41"
+              },
+              "layers": [
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ],
+                [
+                  "bbaaea",
+                  "bbaaea"
+                ],
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ]
+              ]
+            },
+            "count": 14,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.07,
+            "speed": 0.6
+          },
+          {
+            "model": {
+              "palette": {
+                "a": "#7fb6d8",
+                "b": "#5a8fb0",
+                "e": "#1b2a41"
+              },
+              "layers": [
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ],
+                [
+                  "bbaaea",
+                  "bbaaea"
+                ],
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ]
+              ]
+            },
+            "count": 16,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.06,
+            "speed": 0.8
+          },
+          {
+            "model": {
+              "palette": {
+                "a": "#ff5a6a",
+                "b": "#ffb0b8",
+                "e": "#1b2a41"
+              },
+              "layers": [
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ],
+                [
+                  "bbaaea",
+                  "bbaaea"
+                ],
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ]
+              ]
+            },
+            "count": 10,
+            "zone": "sea",
+            "motion": "jump",
+            "size": 0.08,
+            "speed": 1.0
+          },
+          {
+            "model": {
+              "palette": {
+                "a": "#ffd34a",
+                "b": "#3a8fd0",
+                "e": "#1b2a41"
+              },
+              "layers": [
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ],
+                [
+                  "bbaaea",
+                  "bbaaea"
+                ],
+                [
+                  "b.aaa.",
+                  "b.aaa."
+                ]
+              ]
+            },
+            "count": 10,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.05,
+            "speed": 1.2
+          },
+          {
+            "model": {
+              "palette": {
+                "h": "#8a5a2b",
+                "m": "#5b3a1a",
+                "s": "#fff8e7"
+              },
+              "layers": [
+                [
+                  ".hhhh.",
+                  "hhhhhh",
+                  ".hhhh."
+                ],
+                [
+                  "h....h",
+                  "h....h",
+                  "h....h"
+                ],
+                [
+                  "......",
+                  "...m..",
+                  "......"
+                ],
+                [
+                  "......",
+                  "...ms.",
+                  "......"
+                ],
+                [
+                  "......",
+                  "...ms.",
+                  "......"
+                ],
+                [
+                  "......",
+                  "...m..",
+                  "......"
+                ]
+              ]
+            },
+            "count": 3,
+            "zone": "sea",
+            "motion": "orbit",
+            "size": 0.09,
+            "speed": 0.15
+          }
+        ]
+      }
+    }
+  ],
+  "integrations": []
+}

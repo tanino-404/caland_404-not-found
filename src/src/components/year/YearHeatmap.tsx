@@ -8,6 +8,9 @@ export interface YearHeatmapProps {
   year: number;
   byDate: Map<string, CalendarEvent[]>;
   luxuriousMonths: ReadonlySet<number>;
+  /** 表示中プラグインの目標を最高段階まで達成した月 */
+  achievedMonths: ReadonlySet<number>;
+  pluginName: string;
   onSelectMonth: (month: number) => void;
 }
 
@@ -49,7 +52,14 @@ const buildIsland = (
 
 const ELEVATION_LABELS = ['0', '1', '2', '3', '4', '5', '6+'];
 
-export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: YearHeatmapProps) => {
+export const YearHeatmap = ({
+  year,
+  byDate,
+  luxuriousMonths,
+  achievedMonths,
+  pluginName,
+  onSelectMonth,
+}: YearHeatmapProps) => {
   const islands = useMemo(
     () => Array.from({ length: 12 }, (_, i) => buildIsland(year, i + 1, byDate)),
     [year, byDate],
@@ -62,7 +72,7 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
         <div>
           <h1 className="yi-title">一年を、上から見る。</h1>
           <p className="yi-sub">
-            12 の島。海は予定なし、雪山は 6 件以上。貯金を達成した月は黄金郷。島をクリックで降りる。
+            12 の島。海は予定なし、雪山は 6 件以上。★ は「{pluginName}」の目標を達成した月。島をクリックで降りる。
           </p>
         </div>
       </header>
@@ -70,17 +80,16 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
       <div className="yi-grid">
         {islands.map((island) => {
           const luxury = luxuriousMonths.has(island.month);
+          const achieved = achievedMonths.has(island.month);
           return (
             <button
               key={island.month}
               type="button"
               className={luxury ? 'yi-card is-luxury' : 'yi-card'}
               onClick={() => onSelectMonth(island.month)}
-              aria-label={
-                luxury
-                  ? `${island.month}月の黄金郷 予定 ${island.total} 件 最高峰 ${island.peak} 件`
-                  : `${island.month}月の島 予定 ${island.total} 件 最高峰 ${island.peak} 件`
-              }
+              aria-label={`${island.month}月の${luxury ? '黄金郷' : '島'} 予定 ${island.total} 件 最高峰 ${island.peak} 件${
+                achieved ? ` ${pluginName}の目標達成` : ''
+              }`}
             >
               <div className="yi-card-head">
                 <span className="yi-month">
@@ -92,6 +101,7 @@ export const YearHeatmap = ({ year, byDate, luxuriousMonths, onSelectMonth }: Ye
                   <span className="yi-count">{island.total} 件</span>
                   <span className="yi-peak">
                     {luxury ? '黄金郷' : `最高峰 ${island.peak} 件`}
+                    {achieved ? ' ★' : ''}
                   </span>
                 </span>
               </div>

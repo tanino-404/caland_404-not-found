@@ -4,9 +4,27 @@
  * 黄金郷の島と普通の島が一年の地図で並ぶようにする。
  */
 import { daysInMonth, toDateKey } from '../lib/calendar';
-import { toYearMonth } from '../lib/ledger';
-import type { LedgerEntry, LedgerKind, MonthlyGoals } from '../types/ledger';
 import { SAMPLE_MEMBERS, SAMPLE_YEAR } from './sampleEvents';
+
+// server/seed.py が同じ乱数・定数でこのデータを再現する（plugins/ledger のシード）。
+// アプリ本体はプラグイン API から読むため、ここは照合用の固定データとしてだけ残す。
+type LedgerKind = 'income' | 'expense';
+
+interface LedgerEntry {
+  id: string;
+  /** 'YYYY-MM-DD' */
+  date: string;
+  kind: LedgerKind;
+  amount: number;
+  title: string;
+  owners: string[];
+}
+
+/** 月キー 'YYYY-MM' → その月の貯金目標（円） */
+type MonthlyGoals = Record<string, number>;
+
+const toYearMonth = (year: number, month: number): string =>
+  `${year}-${String(month).padStart(2, '0')}`;
 
 const EXPENSE_TITLES = [
   '食費',

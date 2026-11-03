@@ -123,6 +123,9 @@ def make_handler(db_path: Path, plugins_dir: Path) -> type[BaseHTTPRequestHandle
             if self.command == "GET" and path == "/api/calendar":
                 self._write_json(200, db.fetch_calendar(db_path))
                 return
+            if self.command == "GET" and path == "/api/achievements":
+                self._write_json(200, plugins.year_achievements(db_path, plugins_dir, parsed.query))
+                return
             if self.command == "POST" and path == "/api/reset":
                 self._write_json(200, db.reset_demo(db_path, plugins_dir))
                 return
@@ -146,6 +149,7 @@ def make_handler(db_path: Path, plugins_dir: Path) -> type[BaseHTTPRequestHandle
             if path in {
                 "/api/health",
                 "/api/calendar",
+                "/api/achievements",
                 "/api/reset",
                 "/api/members",
                 "/api/events",

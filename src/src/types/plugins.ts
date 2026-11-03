@@ -30,7 +30,8 @@ export interface PluginField {
   unit?: string;
 }
 
-export type MetricAggregate = 'sum' | 'count' | 'max' | 'min' | 'avg' | 'latest';
+/** delta は期間の最後の値 − 最初の値（体重の増減など） */
+export type MetricAggregate = 'sum' | 'count' | 'max' | 'min' | 'avg' | 'latest' | 'delta';
 
 /** select の項目がこのどれかの記録 */
 export interface SelectRule {
@@ -49,6 +50,8 @@ export interface PluginMetric {
   negateWhen?: SelectRule;
   /** この条件に合う記録だけを集計する（成長投資枠だけ、数学だけ等） */
   where?: SelectRule;
+  /** この指標で目標を立てたときの向き。無ければ manifest.goal.op */
+  op?: '>=' | '<=';
 }
 
 /** ボクセルの絵。layers は下→上、各層は奥→手前の行、各行の 1 文字が 1 ボクセル（'.' は空） */
@@ -139,6 +142,8 @@ export interface PluginGroup {
 export interface PluginStatus {
   at: string;
   goal: PluginGoal | null;
+  /** 目標の向き */
+  op: '>=' | '<=';
   value: number | null;
   /** 0〜1 */
   progress: number;

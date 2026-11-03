@@ -108,6 +108,14 @@
       "agg": "latest",
       "field": "body_weight",
       "unit": "kg"
+    },
+    {
+      "key": "weight_change",
+      "label": "体重の増減",
+      "agg": "delta",
+      "field": "body_weight",
+      "unit": "kg",
+      "op": "<="
     }
   ],
   "goal": {

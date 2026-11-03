@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import app
 import db
+import new_plugin
 import plugins
 import seed
 
@@ -547,6 +548,25 @@ class PluginApiTest(unittest.TestCase):
         assert isinstance(body, dict)
         self.assertNotIn(created["id"], [e["id"] for e in body["entries"]])
 
+    def test_year_achievements_counts_plugins_per_month(self) -> None:
+        self.start()
+        status, body = self.request("GET", "/api/achievements?year=2026")
+        self.assertEqual(200, status)
+        assert isinstance(body, dict)
+        self.assertEqual(2026, body["year"])
+        self.assertEqual([str(m) for m in range(1, 13)], list(body["months"]))
+        march = [p["id"] for p in body["months"]["3"]]
+        # 3 月はすべての同梱プラグインが目標達成
+        self.assertEqual(sorted(["cooking", "fishing", "fitness", "game", "ledger", "nisa", "pets", "study"]), sorted(march))
+        # 8 月の家計簿は未達（貯金 -51,600 円）
+        self.assertNotIn("ledger", [p["id"] for p in body["months"]["8"]])
+
+        status, bad = self.request("GET", "/api/achievements?year=abc")
+        self.assertEqual(400, status)
+        status, missing = self.request("GET", "/api/achievements")
+        self.assertEqual(400, status)
+        self.assertEqual({"error": "year がありません"}, missing)
+
     def test_metric_where_filters_entries(self) -> None:
         self.start()
         status, st = self.request("GET", "/api/plugins/nisa/groups/nisa-home/entries?from=2026-03-01&to=2026-03-31")
@@ -599,6 +619,49 @@ class PluginApiTest(unittest.TestCase):
 
 
 class ManifestValidationTest(unittest.TestCase):
+    def test_new_plugin_scaffold_is_valid(self) -> None:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        original = plugins.PLUGINS_DIR
+        plugins.PLUGINS_DIR = Path(tmp.name)
+        self.addCleanup(setattr, plugins, "PLUGINS_DIR", original)
+        self.assertEqual(0, new_plugin.main(["reading", "読書"]))
+        manifest = plugins.load_manifest("reading", Path(tmp.name))
+        self.assertEqual("読書", manifest["name"])
+        self.assertTrue((Path(tmp.name) / "reading" / "README.md").is_file())
+        with self.assertRaises(FileExistsError):
+            new_plugin.main(["reading", "読書"])
+        with self.assertRaises(ValueError):
+            new_plugin.main(["Bad_ID", "だめ"])
+
+    def test_read_secret_uses_env_file(self) -> None:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        env_path = Path(tmp.name) / ".env"
+        env_path.write_text("# コメント\nTEST_SECRET_ONLY_IN_FILE = abc123\nEMPTY_ONE=\n", encoding="utf-8")
+        original = plugins.ENV_PATH
+        plugins.ENV_PATH = env_path
+        self.addCleanup(setattr, plugins, "ENV_PATH", original)
+        self.assertEqual("abc123", plugins.read_secret("TEST_SECRET_ONLY_IN_FILE", "テスト"))
+        with self.assertRaises(plugins.ApiError) as caught:
+            plugins.read_secret("EMPTY_ONE", "テスト")
+        self.assertEqual(500, caught.exception.status)
+
+    def test_delta_metric_with_lower_is_better_goal(self) -> None:
+        metric = {"key": "change", "label": "増減", "agg": "delta", "field": "kg", "op": "<="}
+        entries = [
+            {"date": "2026-03-20", "data": {"kg": 70.0}},
+            {"date": "2026-03-01", "data": {"kg": 72.0}},
+            {"date": "2026-03-10", "data": {"memo": "体重なし"}},
+        ]
+        self.assertEqual(-2.0, plugins.compute_metric(metric, entries))
+        self.assertEqual("<=", plugins.goal_op({"goal": {"op": ">="}}, metric))
+        achieved, progress = plugins.evaluate("<=", -2.0, -3)
+        self.assertFalse(achieved)
+        self.assertAlmostEqual(2 / 3, progress)
+        self.assertEqual((True, 1.0), plugins.evaluate("<=", -3.5, -3))
+        self.assertEqual((False, 0.0), plugins.evaluate("<=", 0.5, -3))
+
     def valid(self) -> dict:
         return json.loads(json.dumps(PRACTICE_MANIFEST, ensure_ascii=False))
 

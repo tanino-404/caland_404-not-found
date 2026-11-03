@@ -10,7 +10,7 @@ import { useSharedCalendar, type SharedCalendar } from './hooks/useSharedCalenda
 import { busiestMonth, countEventsInMonth, groupEventsByDate, toDateKey } from './lib/calendar';
 import { islandThemeFor } from './lib/effects';
 import { datesSharedBetween, eventsOwnedBy } from './lib/members';
-import { effectById, isTopEffect, monthEndKey, monthStartKey, statusAt } from './lib/pluginStatus';
+import { effectById, monthEndKey, monthStartKey, statusAt } from './lib/pluginStatus';
 import type { IslandLayout, ViewState } from './types/calendar';
 import type { IslandTheme } from './types/island';
 import type { PluginState, PluginStatus } from './types/plugins';
@@ -26,7 +26,7 @@ export const App = () => {
       </div>
     );
   }
-  if (!calendar.calendarReady || calendar.plugin === null) {
+  if (!calendar.calendarReady || (calendar.plugin === null && calendar.pluginError === null)) {
     return (
       <div className="app">
         <p className="boot-panel panel">地図を読み込んでいます</p>
@@ -36,7 +36,8 @@ export const App = () => {
   return <MapScreen calendar={calendar} plugin={calendar.plugin} />;
 };
 
-const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: PluginState }) => {
+/** plugin が null のとき（読み込みに失敗）は、地図だけ出して管理の表示はエラーにする */
+const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: PluginState | null }) => {
   const byDate = useMemo(() => groupEventsByDate(calendar.events), [calendar.events]);
   const [view, setView] = useState<ViewState>(() => ({
     kind: 'month',
@@ -77,6 +78,7 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
   /** 各月の目標と進捗。基準日はその月の最終日（期間中か、直前に終わった目標を見せる） */
   const monthStatuses = useMemo(() => {
     const map = new Map<number, PluginStatus>();
+    if (plugin === null) return map;
     for (let month = 1; month <= 12; month++) {
       map.set(month, statusAt(plugin.manifest, plugin.goals, plugin.entries, monthEndKey(view.year, month)));
     }
@@ -84,6 +86,9 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
   }, [plugin, view.year]);
 
   const statusOf = (month: number): PluginStatus => {
+    if (plugin === null) {
+      throw new Error('App: プラグインが読み込まれていません');
+    }
     const status = monthStatuses.get(month);
     if (status === undefined) {
       throw new Error(`App: 月の状態がありません: ${month}`);
@@ -91,34 +96,34 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
     return status;
   };
 
-  const effect = view.kind === 'year' ? null : effectById(plugin.manifest, statusOf(view.month).effect);
+  const effect =
+    view.kind === 'year' || plugin === null ? null : effectById(plugin.manifest, statusOf(view.month).effect);
   const theme: IslandTheme = effect === null ? 'plain' : islandThemeFor(effect.theme);
 
-  /** 年ビュー：黄金郷の土台になる月と、最高段階のエフェクトに届いた月 */
-  const yearMarks = useMemo(() => {
+  /** 年ビュー：表示中プラグインのエフェクトが黄金郷の土台になる月 */
+  const luxuriousMonths = useMemo(() => {
     const luxurious = new Set<number>();
-    const achieved = new Set<number>();
+    if (plugin === null) return luxurious;
     for (const [month, status] of monthStatuses) {
       if (islandThemeFor(effectById(plugin.manifest, status.effect).theme) === 'luxury') luxurious.add(month);
-      if (status.goal !== null && isTopEffect(plugin.manifest, status.effect)) achieved.add(month);
     }
-    return { luxurious, achieved };
-  }, [monthStatuses, plugin.manifest]);
+    return luxurious;
+  }, [monthStatuses, plugin]);
 
   const monthEntries = useMemo(() => {
-    if (view.kind === 'year') return [];
+    if (view.kind === 'year' || plugin === null) return [];
     const prefix = monthStartKey(view.year, view.month).slice(0, 8);
     return plugin.entries
       .filter((entry) => entry.date.startsWith(prefix))
       .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
-  }, [plugin.entries, view]);
+  }, [plugin, view]);
 
   const monthGoals = useMemo(() => {
-    if (view.kind === 'year') return [];
+    if (view.kind === 'year' || plugin === null) return [];
     const start = monthStartKey(view.year, view.month);
     const end = monthEndKey(view.year, view.month);
     return plugin.goals.filter((goal) => goal.start <= end && goal.end >= start);
-  }, [plugin.goals, view]);
+  }, [plugin, view]);
 
   useEffect(() => {
     document.body.classList.toggle('is-luxury', theme === 'luxury');
@@ -130,9 +135,7 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
       <YearHeatmap
         year={view.year}
         byDate={byDate}
-        luxuriousMonths={yearMarks.luxurious}
-        achievedMonths={yearMarks.achieved}
-        pluginName={plugin.manifest.name}
+        luxuriousMonths={luxuriousMonths}
         onSelectMonth={(month) => setView({ kind: 'month', year: view.year, month })}
       />
     );
@@ -163,7 +166,7 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
           }}
           theme={theme}
           scene={effect?.scene ?? null}
-          sceneKey={`${plugin.manifest.id}-${effect?.id ?? 'none'}`}
+          sceneKey={`${calendar.selectedPluginId}-${effect?.id ?? 'none'}`}
         />
       </div>
       {user === null ? (
@@ -193,8 +196,9 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
               setPluginOpen(false);
               calendar.logout();
             }}
-            manifest={plugin.manifest}
-            status={statusOf(month)}
+            plugin={plugin === null ? null : { manifest: plugin.manifest, status: statusOf(month) }}
+            pluginError={calendar.pluginError}
+            selectedPluginId={calendar.selectedPluginId}
             plugins={calendar.plugins}
             onSelectPlugin={(id) => {
               setPluginOpen(false);
@@ -202,7 +206,22 @@ const MapScreen = ({ calendar, plugin }: { calendar: SharedCalendar; plugin: Plu
             }}
             onOpenPlugin={() => setPluginOpen(true)}
           />
-          {pluginOpen ? (
+          {pluginOpen && plugin === null ? (
+            <div className="hud">
+              <aside className="ledger-panel panel" aria-label="管理プラグインのエラー">
+                <header className="ledger-head">
+                  <h2 className="ledger-title">管理プラグインを読み込めません</h2>
+                  <button type="button" className="link-btn" onClick={() => setPluginOpen(false)}>
+                    閉じる
+                  </button>
+                </header>
+                <pre className="ledger-status" role="alert">
+                  {calendar.pluginError}
+                </pre>
+              </aside>
+            </div>
+          ) : null}
+          {pluginOpen && plugin !== null ? (
             <div className="hud">
               <PluginHud
                 key={`${plugin.manifest.id}-${year}-${month}`}

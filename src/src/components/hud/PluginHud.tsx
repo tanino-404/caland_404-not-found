@@ -102,11 +102,16 @@ export const PluginHud = ({
   onClose,
 }: PluginHudProps) => {
   const days = daysInMonth(year, month);
+  /** 記録の一覧に金額などを出す既定の指標 */
   const metric = goalMetric(manifest);
+  /** 今の目標の指標（体重の増減など、既定と違うことがある） */
+  const statusMetric = goalMetric(manifest, status.goal?.metric);
   const [values, setValues] = useState<Record<string, string>>(() => initialFieldValues(manifest));
   const [day, setDay] = useState(String(Math.min(25, days)));
   const [entryError, setEntryError] = useState<string | null>(null);
   const [goalLabel, setGoalLabel] = useState('');
+  const [goalMetricKey, setGoalMetricKey] = useState(manifest.goal.metric);
+  const formMetric = goalMetric(manifest, goalMetricKey);
   const [goalStart, setGoalStart] = useState(monthStartKey(year, month));
   const [goalEnd, setGoalEnd] = useState(monthEndKey(year, month));
   const [goalTarget, setGoalTarget] = useState(status.goal === null ? '' : String(status.goal.target));
@@ -138,7 +143,7 @@ export const PluginHud = ({
       if (goalTarget.trim() === '' || !Number.isFinite(target)) {
         throw new Error(`PluginHud: 目標は数値にしてください: ${goalTarget}`);
       }
-      await onAddGoal({ start: goalStart, end: goalEnd, target, label: goalLabel });
+      await onAddGoal({ metric: goalMetricKey, start: goalStart, end: goalEnd, target, label: goalLabel });
       setGoalError(null);
     } catch (err) {
       console.error(err);
@@ -285,12 +290,12 @@ export const PluginHud = ({
       ) : (
         <>
           <p className="ledger-goal-line">
-            {status.goal.label !== '' ? status.goal.label : metric.label}（{status.goal.start} 〜 {status.goal.end}）
+            {status.goal.label !== '' ? status.goal.label : statusMetric.label}（{status.goal.start} 〜 {status.goal.end}）
           </p>
           <p className="ledger-goal-line">
-            {metric.label}{' '}
-            {status.value === null ? 'まだ記録なし' : formatMetricValue(status.value, metric.unit)} /{' '}
-            {formatMetricValue(status.goal.target, metric.unit)}
+            {statusMetric.label}{' '}
+            {status.value === null ? 'まだ記録なし' : formatMetricValue(status.value, statusMetric.unit)}{' '}
+            {status.op === '<=' ? '≦' : '/'} {formatMetricValue(status.goal.target, statusMetric.unit)}
             {status.achieved ? ' · 達成' : ` · 進捗 ${Math.round(status.progress * 100)}%`}
           </p>
           <div className="ledger-coins" aria-hidden="true">
@@ -308,9 +313,22 @@ export const PluginHud = ({
 
       <form className="ledger-goal-form" onSubmit={submitGoal}>
         <label className="login-label" htmlFor="plugin-goal-target">
-          目標（{metric.label}
-          {metric.unit !== undefined ? ` · ${metric.unit}` : ''}、期間は自由）
+          目標（期間は自由。{(formMetric.op ?? manifest.goal.op) === '<=' ? '以下' : '以上'}で達成）
         </label>
+        <div className="ledger-kinds" role="radiogroup" aria-label="目標にする指標">
+          {manifest.metrics.map((m) => (
+            <button
+              key={m.key}
+              type="button"
+              role="radio"
+              aria-checked={goalMetricKey === m.key}
+              className={goalMetricKey === m.key ? 'category-btn is-selected' : 'category-btn'}
+              onClick={() => setGoalMetricKey(m.key)}
+            >
+              {m.label}
+            </button>
+          ))}
+        </div>
         <div className="login-row">
           <input
             className="input"
@@ -334,7 +352,7 @@ export const PluginHud = ({
             inputMode="numeric"
             value={goalTarget}
             onChange={(e) => setGoalTarget(e.target.value)}
-            placeholder={metric.unit ?? '数値'}
+            placeholder={formMetric.unit ?? '数値'}
           />
           <input
             className="input"
@@ -356,8 +374,8 @@ export const PluginHud = ({
             {goals.map((goal) => (
               <li key={goal.id}>
                 <span className="ledger-list-title">
-                  {goal.label !== '' ? goal.label : metric.label} {goal.start}〜{goal.end} ·{' '}
-                  {formatMetricValue(goal.target, metric.unit)}
+                  {goal.label !== '' ? goal.label : goalMetric(manifest, goal.metric).label} {goal.start}〜{goal.end} ·{' '}
+                  {formatMetricValue(goal.target, goalMetric(manifest, goal.metric).unit)}
                 </span>
                 <button type="button" className="link-btn" onClick={() => onRemoveGoal(goal.id)}>
                   消す

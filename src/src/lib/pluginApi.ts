@@ -5,6 +5,7 @@ import type {
   PluginGroup,
   PluginManifest,
   PluginState,
+  PluginSummary,
 } from '../types/plugins';
 import { assertKnownEffects } from './effects';
 
@@ -172,11 +173,31 @@ export const deletePluginEntry = async (pluginId: string, groupId: string, id: s
 export const createPluginGoal = async (
   pluginId: string,
   groupId: string,
-  body: { user: string; start: string; end: string; target: number; label: string },
+  body: { user: string; metric: string; start: string; end: string; target: number; label: string },
 ): Promise<PluginGoal> => asGoal(await request(`${groupPath(pluginId, groupId)}/goals`, jsonInit('POST', body)));
 
 export const deletePluginGoal = async (pluginId: string, groupId: string, id: string, user: string): Promise<void> => {
   await request(`${groupPath(pluginId, groupId)}/goals/${encodeURIComponent(id)}?user=${encodeURIComponent(user)}`, {
     method: 'DELETE',
   });
+};
+
+/** 月（1〜12）→ その月末に目標を達成しているプラグイン */
+export const fetchAchievements = async (year: number): Promise<Map<number, PluginSummary[]>> => {
+  const body = await request(`/api/achievements?year=${year}`);
+  if (!isRecord(body) || !isRecord(body.months)) throw formatError('達成一覧', body);
+  const months = new Map<number, PluginSummary[]>();
+  for (const [key, list] of Object.entries(body.months)) {
+    if (!Array.isArray(list)) throw formatError('達成一覧', body);
+    months.set(
+      Number(key),
+      list.map((item) => {
+        if (!isRecord(item) || typeof item.id !== 'string' || typeof item.name !== 'string') {
+          throw formatError('達成したプラグイン', item);
+        }
+        return { id: item.id, name: item.name };
+      }),
+    );
+  }
+  return months;
 };

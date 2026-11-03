@@ -40,6 +40,8 @@ export interface NewPluginEntryInput {
 }
 
 export interface NewPluginGoalInput {
+  /** 目標にする指標の key */
+  metric: string;
   start: string;
   end: string;
   target: number;
@@ -54,14 +56,18 @@ export interface SharedCalendar {
   plugin: PluginState | null;
   /** 切り替えられるプラグインの一覧 */
   plugins: PluginSummary[];
+  /** 表示中のプラグイン id（読み込みに失敗していても分かる） */
+  selectedPluginId: string;
   /** 表示するプラグインを切り替える */
   selectPlugin: (pluginId: string) => Promise<void>;
   /** 表示中プラグインのグループに自分も入る */
   joinPluginGroup: () => Promise<void>;
   /** 予定の初回読み込みが成功するまで false */
   calendarReady: boolean;
-  /** 読み込みに失敗したときのメッセージ。成功時は null */
+  /** 予定の読み込みに失敗したときのメッセージ。地図を止める。成功時は null */
   loadError: string | null;
+  /** プラグインの読み込みに失敗したときのメッセージ。地図は止めずパネルに出す */
+  pluginError: string | null;
   login: (name: string) => Promise<void>;
   logout: () => void;
   addEvent: (input: NewEventInput) => Promise<void>;
@@ -94,9 +100,12 @@ export const useSharedCalendar = (): SharedCalendar => {
   const [plugin, setPlugin] = useState<PluginState | null>(null);
   const [plugins, setPlugins] = useState<PluginSummary[]>([]);
   const selectedId = useRef(DEFAULT_PLUGIN_ID);
+  const [selectedPluginId, setSelectedPluginId] = useState(DEFAULT_PLUGIN_ID);
   const pluginsJson = useRef('');
   const [calendarReady, setCalendarReady] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [pluginError, setPluginError] = useState<string | null>(null);
+  const pluginErrorRef = useRef<string | null>(null);
   const revision = useRef(0);
   const alive = useRef(true);
   const calendarJson = useRef('');
@@ -157,20 +166,23 @@ export const useSharedCalendar = (): SharedCalendar => {
   const refresh = async (seen: number) => {
     const [calendarResult, pluginResult] = await Promise.allSettled([fetchCalendar(), loadSelectedPlugin()]);
     if (!alive.current || revision.current !== seen) return;
-    const messages: string[] = [];
     if (calendarResult.status === 'rejected') {
       console.error(calendarResult.reason);
-      messages.push(errorMessage(calendarResult.reason));
+      throw new Error(errorMessage(calendarResult.reason));
     }
+    applyCalendar(calendarResult.value);
+    // プラグインの失敗では地図を止めない。エラー全文をパネルに出し、直るまで読み直し続ける
     if (pluginResult.status === 'rejected') {
-      console.error(pluginResult.reason);
-      messages.push(errorMessage(pluginResult.reason));
-    }
-    if (messages.length > 0) {
-      throw new Error(messages.join('\n'));
-    }
-    if (calendarResult.status === 'fulfilled') applyCalendar(calendarResult.value);
-    if (pluginResult.status === 'fulfilled') {
+      const message = errorMessage(pluginResult.reason);
+      if (message !== pluginErrorRef.current) console.error(pluginResult.reason);
+      pluginErrorRef.current = message;
+      setPluginError(message);
+      pluginJson.current = '';
+      pluginRef.current = null;
+      setPlugin(null);
+    } else {
+      pluginErrorRef.current = null;
+      setPluginError(null);
       applyPluginList(pluginResult.value.list);
       applyPlugin(pluginResult.value.state);
     }
@@ -228,11 +240,13 @@ export const useSharedCalendar = (): SharedCalendar => {
     if (name.length === 0) {
       throw new Error('login: ユーザー名が空です');
     }
-    const state = requirePlugin('login');
-    if (!membersRef.current.includes(name) || !state.group.members.includes(name)) {
+    const state = pluginRef.current;
+    const needsMember = !membersRef.current.includes(name);
+    const needsGroup = state !== null && !state.group.members.includes(name);
+    if (needsMember || needsGroup) {
       await afterWrite(async () => {
         await createMember(name);
-        await joinPluginGroup(state.manifest.id, state.group.id, name);
+        if (state !== null) await joinPluginGroup(state.manifest.id, state.group.id, name);
       });
     }
     saveCurrentUser(name);
@@ -293,7 +307,7 @@ export const useSharedCalendar = (): SharedCalendar => {
     });
   };
 
-  const addPluginGoal = ({ start, end, target, label }: NewPluginGoalInput): Promise<void> => {
+  const addPluginGoal = ({ metric, start, end, target, label }: NewPluginGoalInput): Promise<void> => {
     const user = requireUser('addPluginGoal');
     const state = requirePlugin('addPluginGoal');
     if (!DATE_KEY.test(start) || !DATE_KEY.test(end)) {
@@ -306,7 +320,7 @@ export const useSharedCalendar = (): SharedCalendar => {
       throw new Error(`addPluginGoal: 目標は数値にしてください: ${target}`);
     }
     return afterWrite(async () => {
-      await createPluginGoal(state.manifest.id, state.group.id, { user, start, end, target, label: label.trim() });
+      await createPluginGoal(state.manifest.id, state.group.id, { user, metric, start, end, target, label: label.trim() });
     });
   };
 
@@ -323,6 +337,7 @@ export const useSharedCalendar = (): SharedCalendar => {
       throw new Error(`selectPlugin: プラグインが見つかりません: ${pluginId}`);
     }
     selectedId.current = pluginId;
+    setSelectedPluginId(pluginId);
     return afterWrite(async () => undefined);
   };
 
@@ -348,10 +363,12 @@ export const useSharedCalendar = (): SharedCalendar => {
     events,
     plugin,
     plugins,
+    selectedPluginId,
     selectPlugin,
     joinPluginGroup: joinCurrentGroup,
     calendarReady,
     loadError,
+    pluginError,
     login,
     logout,
     addEvent,

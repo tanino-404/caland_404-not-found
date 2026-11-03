@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useYearAchievements } from '../../hooks/useYearAchievements';
 import { MONTH_NAMES_EN, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
 import { ELEVATION_COLORS, LUXURY_ELEVATION_COLORS, elevationColor } from '../models/blocks/blockKinds';
@@ -8,9 +9,6 @@ export interface YearHeatmapProps {
   year: number;
   byDate: Map<string, CalendarEvent[]>;
   luxuriousMonths: ReadonlySet<number>;
-  /** 表示中プラグインの目標を最高段階まで達成した月 */
-  achievedMonths: ReadonlySet<number>;
-  pluginName: string;
   onSelectMonth: (month: number) => void;
 }
 
@@ -56,14 +54,13 @@ export const YearHeatmap = ({
   year,
   byDate,
   luxuriousMonths,
-  achievedMonths,
-  pluginName,
   onSelectMonth,
 }: YearHeatmapProps) => {
   const islands = useMemo(
     () => Array.from({ length: 12 }, (_, i) => buildIsland(year, i + 1, byDate)),
     [year, byDate],
   );
+  const achievements = useYearAchievements(year);
 
   return (
     <section className="yi">
@@ -71,16 +68,18 @@ export const YearHeatmap = ({
         <div className="yi-year">{year}</div>
         <div>
           <h1 className="yi-title">一年を、上から見る。</h1>
-          <p className="yi-sub">
-            12 の島。海は予定なし、雪山は 6 件以上。★ は「{pluginName}」の目標を達成した月。島をクリックで降りる。
-          </p>
+          {achievements.error !== null ? (
+            <p className="yi-sub" role="alert">
+              目標の達成を読み込めません: {achievements.error}
+            </p>
+          ) : null}
         </div>
       </header>
 
       <div className="yi-grid">
         {islands.map((island) => {
           const luxury = luxuriousMonths.has(island.month);
-          const achieved = achievedMonths.has(island.month);
+          const achieved = achievements.months?.get(island.month) ?? [];
           return (
             <button
               key={island.month}
@@ -88,7 +87,7 @@ export const YearHeatmap = ({
               className={luxury ? 'yi-card is-luxury' : 'yi-card'}
               onClick={() => onSelectMonth(island.month)}
               aria-label={`${island.month}月の${luxury ? '黄金郷' : '島'} 予定 ${island.total} 件 最高峰 ${island.peak} 件${
-                achieved ? ` ${pluginName}の目標達成` : ''
+                achieved.length > 0 ? ` 目標達成 ${achieved.map((p) => p.name).join('・')}` : ''
               }`}
             >
               <div className="yi-card-head">
@@ -101,8 +100,12 @@ export const YearHeatmap = ({
                   <span className="yi-count">{island.total} 件</span>
                   <span className="yi-peak">
                     {luxury ? '黄金郷' : `最高峰 ${island.peak} 件`}
-                    {achieved ? ' ★' : ''}
                   </span>
+                  {achieved.length > 0 ? (
+                    <span className="yi-stars" title={achieved.map((p) => p.name).join('・')}>
+                      {'★'.repeat(achieved.length)}
+                    </span>
+                  ) : null}
                 </span>
               </div>
               <div className={luxury ? 'yi-map is-luxury' : 'yi-map'}>

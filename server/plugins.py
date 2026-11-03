@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import calendar
 import hmac
 import json
 import math
@@ -26,13 +27,14 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote
 
 PLUGINS_DIR = Path(__file__).resolve().parents[1] / "plugins"
+ENV_PATH = Path(__file__).resolve().parents[1] / "secret" / ".env"
 SCHEMA_VERSION = 1
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]{0,39}$")
 KEY_PATTERN = re.compile(r"^[a-z][a-z0-9_]*$")
 ENV_PATTERN = re.compile(r"^[A-Z_][A-Z0-9_]*$")
 FIELD_TYPES = ("text", "number", "integer", "select", "tags", "boolean", "date", "place")
 NUMERIC_TYPES = ("number", "integer")
-AGGREGATES = ("sum", "count", "max", "min", "avg", "latest")
+AGGREGATES = ("sum", "count", "max", "min", "avg", "latest", "delta")
 GOAL_OPS = (">=", "<=")
 HOOK_EVENTS = ("entry.created", "goal.achieved")
 COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
@@ -221,6 +223,8 @@ def _validate_metrics(metrics: object, fields: dict[str, dict], where: str) -> s
         _expect(key not in keys, where, f"metric key が重複しています: {key}")
         _expect(isinstance(metric.get("label"), str), where, f"{key}.label は文字列です")
         _expect(metric.get("agg") in AGGREGATES, where, f"{key}.agg は {', '.join(AGGREGATES)} のどれかです")
+        if "op" in metric:
+            _expect(metric["op"] in GOAL_OPS, where, f"{key}.op は >= か <= です")
         if metric["agg"] != "count":
             target = fields.get(metric.get("field", ""))
             _expect(
@@ -765,10 +769,18 @@ def compute_metric(metric: dict, entries: list[dict]) -> float | int | None:
         return min(values)
     if metric["agg"] == "avg":
         return sum(values) / len(values)
+    if metric["agg"] == "delta":
+        return values[-1] - values[0]
     return values[-1]
 
 
+def goal_op(manifest: dict, metric: dict) -> str:
+    """目標の向き。指標に op があればそれ（体重は <=）、無ければ goal.op。"""
+    return metric.get("op", manifest["goal"]["op"])
+
+
 def evaluate(op: str, value: float | int | None, target: float | int) -> tuple[bool, float]:
+    """達成と進捗（0〜1）。<= で目標が負（-3 kg など）のときは、目標へどれだけ近づいたかで測る。"""
     if value is None:
         return False, 0.0
     if op == ">=":
@@ -776,7 +788,12 @@ def evaluate(op: str, value: float | int | None, target: float | int) -> tuple[b
         progress = 1.0 if achieved else (max(0.0, value / target) if target > 0 else 0.0)
     else:
         achieved = value <= target
-        progress = 1.0 if achieved else (max(0.0, target / value) if value > 0 else 0.0)
+        if achieved:
+            progress = 1.0
+        elif target < 0:
+            progress = max(0.0, value / target) if value < 0 else 0.0
+        else:
+            progress = max(0.0, target / value) if value > 0 else 0.0
     return achieved, min(1.0, progress)
 
 
@@ -839,15 +856,16 @@ def pick_goal(goals: list[dict], at: str) -> dict | None:
 def goal_status(conn: sqlite3.Connection, manifest: dict, group_id: str, at: str) -> dict:
     goal = pick_goal(fetch_goals(conn, manifest["id"], group_id), at)
     if goal is None:
-        return {"at": at, "goal": None, "value": None, "progress": 0.0, "achieved": False, "finished": False, "effect": pick_effect(manifest, 0.0)}
+        return {"at": at, "goal": None, "op": manifest["goal"]["op"], "value": None, "progress": 0.0, "achieved": False, "finished": False, "effect": pick_effect(manifest, 0.0)}
     metric = next(m for m in manifest["metrics"] if m["key"] == goal["metric"])
-    op = manifest["goal"]["op"]
+    op = goal_op(manifest, metric)
     entries = fetch_entries(conn, manifest["id"], group_id, goal["start"], min(goal["end"], at))
     value = compute_metric(metric, entries)
     achieved, progress = evaluate(op, value, goal["target"])
     return {
         "at": at,
         "goal": goal,
+        "op": op,
         "value": value,
         "progress": progress,
         "achieved": achieved,
@@ -856,19 +874,55 @@ def goal_status(conn: sqlite3.Connection, manifest: dict, group_id: str, at: str
     }
 
 
+def year_achievements(db_path: Path, plugins_dir: Path, query: str) -> dict:
+    """GET /api/achievements?year=YYYY。月ごとに、月末の時点で目標を達成しているプラグイン（先頭グループ）。"""
+    raw = _query(query, "year")
+    if raw is None or not raw.isdigit() or not 1 <= int(raw) <= 9999:
+        raise ApiError(400, f"year は 1〜9999 の整数です: {raw}")
+    year = int(raw)
+    manifests = list_manifests(plugins_dir)
+    months: dict[str, list[dict]] = {}
+    conn = connect(db_path)
+    try:
+        groups = {m["id"]: fetch_groups(conn, m["id"]) for m in manifests}
+        for month in range(1, 13):
+            at = f"{year:04d}-{month:02d}-{calendar.monthrange(year, month)[1]:02d}"
+            months[str(month)] = [
+                {"id": m["id"], "name": m["name"]}
+                for m in manifests
+                if len(groups[m["id"]]) > 0 and goal_status(conn, m, groups[m["id"]][0]["id"], at)["achieved"]
+            ]
+    finally:
+        conn.close()
+    return {"year": year, "months": months}
+
+
 # ---------- 外部連携の送信 ----------
 
 
+def read_secret(key: str, where: str) -> str:
+    """秘密情報を読む。実行時の環境変数にあればそれ、無ければ secret/.env。どちらにも無ければ止める。"""
+    value = os.environ.get(key, "")
+    if value != "":
+        return value
+    if ENV_PATH.is_file():
+        for line in ENV_PATH.read_text("utf-8").splitlines():
+            text = line.strip()
+            if text == "" or text.startswith("#") or "=" not in text:
+                continue
+            name, raw = text.split("=", 1)
+            if name.strip() == key and raw.strip() != "":
+                return raw.strip()
+    raise ApiError(500, f"{key} が secret/.env にも環境変数にもありません（{where}）")
+
+
 def resolve_hooks(manifest: dict, on: str) -> list[tuple[dict, str]]:
-    """送信先 URL は環境変数から読む。未設定なら記録の前に止める。"""
+    """送信先 URL は secret/.env から読む。未設定なら記録の前に止める。"""
     found: list[tuple[dict, str]] = []
     for hook in manifest.get("integrations", []):
         if hook["direction"] != "outgoing" or hook["on"] != on:
             continue
-        url = os.environ.get(hook["urlEnv"], "")
-        if url == "":
-            raise ApiError(500, f"{hook['urlEnv']} が未設定です（{manifest['id']} の integration {hook['id']}）")
-        found.append((hook, url))
+        found.append((hook, read_secret(hook["urlEnv"], f"{manifest['id']} の integration {hook['id']}")))
     return found
 
 
@@ -1075,9 +1129,7 @@ def _dispatch(
             if hook is None:
                 raise ApiError(404, f"受け口が見つかりません: {hook_id}")
             if "tokenEnv" in hook:
-                expected = os.environ.get(hook["tokenEnv"], "")
-                if expected == "":
-                    raise ApiError(500, f"{hook['tokenEnv']} が未設定です")
+                expected = read_secret(hook["tokenEnv"], f"{plugin_id} の受け口 {hook_id}")
                 given = getattr(headers, "get")("X-Plugin-Token") or ""
                 if not hmac.compare_digest(str(given), expected):
                     raise ApiError(401, "X-Plugin-Token が一致しません")

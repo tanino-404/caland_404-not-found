@@ -27,9 +27,10 @@ export interface MonthHudProps {
   onNextMonth: () => void;
   onShowYear: () => void;
   onLogout: () => void;
-  /** 表示中プラグインの定義と、この月の目標・進捗 */
-  manifest: PluginManifest;
-  status: PluginStatus;
+  /** 表示中プラグインの定義と、この月の目標・進捗。読み込みに失敗したら null */
+  plugin: { manifest: PluginManifest; status: PluginStatus } | null;
+  pluginError: string | null;
+  selectedPluginId: string;
   /** 切り替えられるプラグイン */
   plugins: PluginSummary[];
   onSelectPlugin: (pluginId: string) => Promise<void>;
@@ -59,8 +60,9 @@ export const MonthHud = ({
   onNextMonth,
   onShowYear,
   onLogout,
-  manifest,
-  status,
+  plugin,
+  pluginError,
+  selectedPluginId,
   plugins,
   onSelectPlugin,
   onOpenPlugin,
@@ -73,8 +75,10 @@ export const MonthHud = ({
   const allColors = members.map((m) => memberColor(members, m));
   const others = members.filter((m) => m !== currentUser);
   const split = layout === 'split' && partner !== null;
-  const metric = goalMetric(manifest);
-  const achieved = status.achieved;
+  const status = plugin?.status ?? null;
+  const metric = plugin === null ? null : goalMetric(plugin.manifest, plugin.status.goal?.metric);
+  const achieved = status?.achieved ?? false;
+  const pluginName = plugin?.manifest.name ?? '管理';
 
   return (
     <div className="hud">
@@ -86,11 +90,13 @@ export const MonthHud = ({
             {year}年{month}月 · 予定 {monthTotal} 件
           </div>
           <div className={achieved ? 'hud-savings is-gold' : 'hud-savings'}>
-            {status.goal === null
-              ? `${manifest.name}の目標なし`
-              : `${status.goal.label !== '' ? status.goal.label : metric.label} ${
-                  status.value === null ? '—' : formatMetricValue(status.value, metric.unit)
-                } / ${formatMetricValue(status.goal.target, metric.unit)}`}
+            {status === null || metric === null
+              ? `管理プラグインを読み込めません${pluginError === null ? '' : '（開くと詳細）'}`
+              : status.goal === null
+                ? `${pluginName}の目標なし`
+                : `${status.goal.label !== '' ? status.goal.label : metric.label} ${
+                    status.value === null ? '—' : formatMetricValue(status.value, metric.unit)
+                  } ${status.op === '<=' ? '≦' : '/'} ${formatMetricValue(status.goal.target, metric.unit)}`}
             {achieved ? ' · 達成' : null}
           </div>
         </div>
@@ -117,7 +123,7 @@ export const MonthHud = ({
           <span className="hud-plugin-label">管理</span>
           <select
             className="hud-plugin-select"
-            value={manifest.id}
+            value={selectedPluginId}
             onChange={(e) => {
               onSelectPlugin(e.target.value).catch((err: unknown) => {
                 console.error(err);
@@ -133,7 +139,7 @@ export const MonthHud = ({
           </select>
         </label>
         <button type="button" className="btn" onClick={onOpenPlugin}>
-          {manifest.name}を開く
+          {pluginName}を開く
         </button>
         <button type="button" className="btn" onClick={onShowYear}>
           一年を見る

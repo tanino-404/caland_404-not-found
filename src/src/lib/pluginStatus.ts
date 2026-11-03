@@ -48,6 +48,7 @@ export const computeMetric = (metric: PluginMetric, entries: PluginEntry[]): num
   if (metric.agg === 'max') return Math.max(...values);
   if (metric.agg === 'min') return Math.min(...values);
   if (metric.agg === 'avg') return values.reduce((total, v) => total + v, 0) / values.length;
+  if (metric.agg === 'delta') return values[values.length - 1] - values[0];
   return values[values.length - 1];
 };
 
@@ -63,7 +64,10 @@ export const evaluate = (
     return { achieved, progress: Math.min(1, progress) };
   }
   const achieved = value <= target;
-  const progress = achieved ? 1 : value > 0 ? Math.max(0, target / value) : 0;
+  if (achieved) return { achieved, progress: 1 };
+  // 目標が負（-3 kg など）のときは、目標へどれだけ近づいたかで測る
+  const progress =
+    target < 0 ? (value < 0 ? Math.max(0, value / target) : 0) : value > 0 ? Math.max(0, target / value) : 0;
   return { achieved, progress: Math.min(1, progress) };
 };
 
@@ -105,9 +109,6 @@ export const effectById = (manifest: PluginManifest, id: string): PluginEffect =
   return effect;
 };
 
-/** 最高段階のエフェクト（年ビューで「達成」の印に使う） */
-export const isTopEffect = (manifest: PluginManifest, id: string): boolean =>
-  manifest.effects.every((e) => e.minProgress <= effectById(manifest, id).minProgress);
 
 export const statusAt = (
   manifest: PluginManifest,
@@ -120,6 +121,7 @@ export const statusAt = (
     return {
       at,
       goal: null,
+      op: manifest.goal.op,
       value: null,
       progress: 0,
       achieved: false,
@@ -134,15 +136,16 @@ export const statusAt = (
   const until = goal.end < at ? goal.end : at;
   const inRange = entries.filter((entry) => entry.date >= goal.start && entry.date <= until);
   const value = computeMetric(metric, inRange);
-  const { achieved, progress } = evaluate(manifest.goal.op, value, goal.target);
-  return { at, goal, value, progress, achieved, finished: goal.end <= at, effect: pickEffect(manifest, progress) };
+  const op = metric.op ?? manifest.goal.op;
+  const { achieved, progress } = evaluate(op, value, goal.target);
+  return { at, goal, op, value, progress, achieved, finished: goal.end <= at, effect: pickEffect(manifest, progress) };
 };
 
-/** 目標に使う指標（manifest.goal.metric）の定義 */
-export const goalMetric = (manifest: PluginManifest): PluginMetric => {
-  const metric = manifest.metrics.find((m) => m.key === manifest.goal.metric);
+/** 指標の定義。key を省くと既定の目標の指標（manifest.goal.metric） */
+export const goalMetric = (manifest: PluginManifest, key: string = manifest.goal.metric): PluginMetric => {
+  const metric = manifest.metrics.find((m) => m.key === key);
   if (metric === undefined) {
-    throw new Error(`pluginStatus: goal.metric が metrics にありません: ${manifest.goal.metric}`);
+    throw new Error(`pluginStatus: 指標が metrics にありません: ${key}`);
   }
   return metric;
 };

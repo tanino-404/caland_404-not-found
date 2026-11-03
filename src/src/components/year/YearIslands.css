@@ -189,6 +189,13 @@
   color: rgba(27, 42, 65, 0.7);
 }
 
+.yi-stars {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #e8a400;
+  text-shadow: 1px 1px 0 var(--ink);
+}
+
 /* ---------- ミニ地図 ---------- */
 
 .yi-map {

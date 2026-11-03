@@ -80,6 +80,7 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 
 - 12 か月を「島」のカード（`YearHeatmap.tsx` + `YearIslands.css`）として 2 列で並べる。各カードに月名・件数・最高峰と、その月の 7 列 × 週数のミニマップ（海の上に島）
 - ミニマップの色は予定数 0〜6+ の 7 段階（`blockKinds.ts` の `ELEVATION_COLORS`）。0 件は海、以降は 3D 側のブロック色（土 → 石 → 雪）と揃えて世界観をつなげる
+- 各カードに、その月に目標を達成した管理内容の数だけ ★ を出す（全プラグイン。`hooks/useYearAchievements.ts`）。ホバーで名前
 - 島カードをクリック → その月の `month` ビューへ
 - 貯金目標を達成した月のカードは黄金郷（金の枠・ミニマップも金〜大理石〜金ガラス）。未達の月は通常の標高色
 - 初期版は 2D 固定（concept.md の指示どおり）
@@ -108,6 +109,7 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - API（すべて JSON。失敗時は `{ "error": "<例外メッセージ>" }`）：
   - `/api/plugins/**` → `plugins/README.md` の API 節
   - `GET /api/calendar` → `{ members, events }`
+  - `GET /api/achievements?year=YYYY` → `{ year, months: { "1": [{ id, name }], ... } }`。月末の時点で目標を達成しているプラグイン（各プラグインの先頭グループ）。年ビューの ★ の数
   - `POST /api/members` 本文 `{ name }` → `{ members }`
   - `POST /api/events` 本文 `{ date, title, category, owner, invited, place }` → 201 で 1 件。`place` は任意
   - `POST /api/events/<id>/join` 本文 `{ user }` → 予定 1 件
@@ -130,8 +132,11 @@ year（2D ヒートマップ） ──月をクリック──▶ month（3D 月
 - 項目（fields）、数値化する指標（metrics）、目標の向き（goal）、達成率ごとのエフェクト（effects）、外部連携（integrations：送信 webhook と受信 ingest。形式は `ADAPTERS` に関数を足す）を宣言で書く。ブラウザで任意コードは動かさない
 - 記録と目標はグループ id に属する。1 プラグインに複数グループ、グループに複数メンバー
 - 目標の期間は任意（`start`〜`end`）。島に見せるのは、その月の最終日の時点で期間中か直前に終わった目標
-- 画面は 1 つのプラグインだけを表示する（`lib/pluginApi.ts` の `DISPLAYED_PLUGIN_ID`）。入力パネル `PluginHud` は fields から自動で作る
-- エフェクト名 → 島の見た目は `lib/effects.ts` の `EFFECT_THEMES`。未実装の名前なら読み込み時にエラーで止める
+- 画面は 1 つのプラグインだけを表示する。月の HUD 右上の「管理」で切り替える（最初は `lib/pluginApi.ts` の `DEFAULT_PLUGIN_ID` = 家計簿）。入力パネル `PluginHud` は fields から自動で作り、目標は指標・期間・目標値を選ぶ
+- エフェクトは `effects[]` の `theme`（島の土台。`lib/effects.ts` の `EFFECT_THEMES`）と `scene`（空・霧・光の色とボクセルの絵。`components/month/EffectSprites.tsx` が描く）。達成率の段階ごとに変えられる
+- 同梱の例は釣り・NISA・フィットネス・ペット・自炊・自主勉強・ゲームの練習。各フォルダの `sample.json` が、空のときに起動とリセットで入る。どれも 3 月（最初に開く月）が最高段階
+- 雛形は `cd server && python new_plugin.py <id> <名前>`。連携の URL とトークンは `secret/.env`
+- プラグインの読み込みに失敗しても地図は止めない。月の HUD とパネルにエラー全文を出し、2 秒ごとに読み直す（plugin.json を直せばそのまま戻る）。予定の失敗は今までどおり地図を止める
 - 指標と進捗はサーバー（`plugins.py`）と画面（`lib/pluginStatus.ts`）で同じ計算をする
 
 ### 初期表示
@@ -207,7 +212,8 @@ server/                            ← 家計簿のローカルサーバー（Py
 ├─ .venv/                          ← 仮想環境
 ├─ app.py                          ← 127.0.0.1:8787 の HTTP。/api/calendar 系、/api/plugins は plugins.py へ、/api/suggest
 ├─ db.py                           ← 予定・メンバーのスキーマと CRUD。家計プラグインのシードと旧家計テーブルの移し替え
-├─ plugins.py                      ← 管理内容プラグインの検証・記録・目標・進捗・外部連携。`python plugins.py validate`
+├─ plugins.py                      ← 管理内容プラグインの検証・記録・目標・進捗・外部連携・sample.json。`python plugins.py validate`
+├─ new_plugin.py                   ← プラグインの雛形（plugins/<id>/ の plugin.json と README.md）を作る
 ├─ seed.py                         ← sampleLedger.ts と同じシードで一年分を入れる
 ├─ suggest.py                      ← Overpass → YuMake → Claude → LINE。キーは secret/.env
 ├─ tests/                          ← unittest（プラグイン API・移し替え・連携・plugin.json の検証）
@@ -239,7 +245,7 @@ src/                               ← Vite プロジェクトルート
    │   ├─ pixelFont.ts             ← 3×5 ピクセルフォント（数字と SUN〜SAT に必要な英字）
    │   ├─ members.ts               ← メンバー識別色、所有者チップの背景、所有者別の件数内訳、島ごとの予定の振り分け
    │   ├─ pluginStatus.ts          ← 指標・目標の選び方・進捗・エフェクト（plugins.py と同じ計算の純関数）
-   │   ├─ effects.ts               ← エフェクト名 → IslandTheme の対応表
+   │   ├─ effects.ts               ← 島の土台（effects[].theme）→ IslandTheme の対応表
    │   ├─ calendarApi.ts           ← 予定とメンバー（/api/calendar）の呼び出し。失敗時は Error を投げる
    │   ├─ suggestApi.ts            ← 持ち物提案（/api/suggest）。失敗時は Error を投げる
    │   ├─ pluginApi.ts             ← /api/plugins の呼び出し。表示するプラグイン id。失敗時は Error を投げる

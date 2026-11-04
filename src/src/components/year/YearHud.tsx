@@ -1,5 +1,5 @@
-import type { PluginSummary } from '../../types/plugins';
-import { ELEVATION_COLORS, LUXURY_ELEVATION_COLORS } from '../models/blocks/blockKinds';
+import type { PluginRef } from '../../types/plugins';
+import { ELEVATION_COLORS } from '../models/blocks/blockKinds';
 import './YearHud.css';
 
 export interface YearHudProps {
@@ -11,7 +11,7 @@ export interface YearHudProps {
   hoveredCount: number;
   hoveredThemeLabel: string | null;
   /** ホバー中の月に目標を達成したプラグイン（全プラグイン。★ の数） */
-  hoveredAchieved: PluginSummary[];
+  hoveredAchieved: PluginRef[];
   /** 表示中のプラグインの名前 */
   pluginName: string;
   /** 目標の達成を読み込めなかったときのメッセージ */
@@ -19,6 +19,9 @@ export interface YearHudProps {
   /** 友達の年ビューのときの友達の名前。null なら自分たちの年 */
   friend: string | null;
 }
+
+/** 目標を達成した月のチップの色（金） */
+const ACHIEVED_CHIP = '#f0c43a';
 
 /** 標高チップの見出し。ELEVATION_COLORS と同じ順（0 = 海、6+ = 雪山） */
 const ELEVATION_LABELS = ['0', '1', '2', '3', '4', '5', '6+'];
@@ -58,7 +61,7 @@ export const YearHud = ({
         <span className="year-hud-steps-end">雪山</span>
       </div>
       <div className="year-hud-gold">
-        <span className="chip" style={{ background: LUXURY_ELEVATION_COLORS[2] }} />
+        <span className="chip" style={{ background: ACHIEVED_CHIP }} />
         目標を達成した月（{pluginName}）
       </div>
       {achievementsError !== null ? (

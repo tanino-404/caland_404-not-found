@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { fetchAchievements } from '../lib/pluginApi';
-import type { PluginSummary } from '../types/plugins';
+import type { PluginRef } from '../types/plugins';
 
 export interface YearAchievements {
   /** 月（1〜12）→ 目標を達成したプラグイン。読み込み中は null */
-  months: Map<number, PluginSummary[]> | null;
+  months: Map<number, PluginRef[]> | null;
   /** 読み込みに失敗したときのメッセージ */
   error: string | null;
 }

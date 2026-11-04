@@ -1,4 +1,4 @@
-import { type SetPixel, noise, paintPixels } from './pixelTexture';
+import { noise, paintPixels, type SetPixel } from '@plugin-sdk';
 
 /**
  * 黄金郷の塔のドット絵テクスチャ。金の縁とガラスの照りだけが光る。

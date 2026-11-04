@@ -4,6 +4,10 @@
   "name": "家計簿",
   "version": "1.0.0",
   "description": "収入と支出を記帳し、期間の貯金が目標以上なら島が黄金郷になる。",
+  "preinstalled": true,
+  "islands": [
+    "luxury"
+  ],
   "fields": [
     {
       "key": "kind",

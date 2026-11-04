@@ -12,12 +12,12 @@ import {
 } from '../../lib/camera';
 import type { MonthCell } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import type { IslandTheme } from '../../types/island';
+import type { Island } from '../../types/island';
 import { Block } from '../models/blocks/Block';
-import { BLOCK_COLORS, blockKindForLevel } from '../models/blocks/blockKinds';
+import { BLOCK_COLORS } from '../models/blocks/blockKinds';
+import { blockMaterialFor } from '../models/blocks/blockMaterials';
 import { OBJECT_BY_CATEGORY } from '../models/objects';
 import { OwnerPlate, PLATE_HEIGHT } from '../models/OwnerPlate';
-import { LuxuryRooftop } from './LuxuryRooftop';
 
 /** 屋上 3×3 のスロット座標（配置順は日付ごとにシャッフルする） */
 const SLOTS: [number, number][] = [
@@ -86,8 +86,11 @@ export interface DayTowerProps {
   /** 省略すると操作できない飾りの塔になる（相方の島用） */
   onHover?: (dateKey: string | null) => void;
   onSelect?: (day: number) => void;
-  theme: IslandTheme;
+  /** 目標を達成して変わった島。いつもの島は null */
+  island: Island | null;
 }
+
+const PLAIN_WATER = { color: BLOCK_COLORS.water, roughness: 0.25, metalness: 0.1, opacity: 0.55 };
 
 export const DayTower = ({
   cell,
@@ -97,7 +100,7 @@ export const DayTower = ({
   highlighted,
   onHover,
   onSelect,
-  theme,
+  island,
 }: DayTowerProps) => {
   const group = useRef<Group>(null);
   const water = useRef<Mesh>(null);
@@ -109,6 +112,8 @@ export const DayTower = ({
   const rooftop = events.slice(0, MAX_ROOFTOP_OBJECTS);
   const rooftopLayout = buildRooftopLayout(cell.dateKey);
   const wavePhase = (cell.col * 1.7 + cell.row * 2.3) % (Math.PI * 2);
+  const waterLook = island?.water ?? PLAIN_WATER;
+  const Rooftop = island?.Rooftop;
 
   useFrame((_, delta) => {
     const g = group.current;
@@ -152,23 +157,19 @@ export const DayTower = ({
         <mesh ref={water} position={[0, WATER_CENTER_Y, 0]}>
           <boxGeometry args={[TOWER_WIDTH, WATER_HEIGHT, TOWER_WIDTH]} />
           <meshStandardMaterial
-            color={theme === 'luxury' ? BLOCK_COLORS.luxuryWater : BLOCK_COLORS.water}
-            roughness={theme === 'luxury' ? 0.18 : 0.25}
-            metalness={theme === 'luxury' ? 0.25 : 0.1}
+            color={waterLook.color}
+            roughness={waterLook.roughness}
+            metalness={waterLook.metalness}
             transparent
-            opacity={theme === 'luxury' ? 0.62 : 0.55}
+            opacity={waterLook.opacity}
             depthWrite={false}
           />
         </mesh>
       ) : null}
       {levels.map((level) => (
-        <Block
-          key={level}
-          level={level}
-          kind={blockKindForLevel(level, level === count, theme)}
-        />
+        <Block key={level} level={level} material={blockMaterialFor(level, level === count, island)} />
       ))}
-      {theme === 'luxury' && !isSea ? <LuxuryRooftop dateKey={cell.dateKey} count={count} y={top} /> : null}
+      {Rooftop !== undefined && !isSea ? <Rooftop dateKey={cell.dateKey} count={count} y={top} /> : null}
       {rooftop.map((event, i) => {
         const Building = OBJECT_BY_CATEGORY[event.category];
         const { slot, jitter } = rooftopLayout[i];

@@ -1,10 +1,5 @@
 import { MeshStandardMaterial } from 'three';
-import { pixelArtGeometry } from '../models/pixelArt';
-import { Voxel } from '../models/Voxel';
-import { FloatingIsland } from './LuxurySky';
-import { buildFallers } from './fallers';
-import { Glints, PixelRain, type RainItem, SunFlare } from './SkyFx';
-import { type SkyFxProps, useSkyFade } from './skyFade';
+import { buildFallers, FloatingIsland, Glints, pixelArtGeometry, PixelRain, type RainItem, type IslandFxProps, SunFlare, useSkyFade, Voxel } from '@plugin-sdk';
 
 // ---------- 降るもの（ドット絵） ----------
 
@@ -95,7 +90,7 @@ const GYM_ISLANDS: { position: [number, number, number]; scale: number; phase: n
 ];
 
 /** マッチョの島の空：降るプロテインのボトルとバナナ、きらめき、太陽、ジムの浮島。降るものは active でフェードする */
-export const MuscleFx = ({ active, flare }: SkyFxProps) => {
+export const MuscleFx = ({ active, flare }: IslandFxProps) => {
   const { fade, group } = useSkyFade(active);
   return (
     <group>

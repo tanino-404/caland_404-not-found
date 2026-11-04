@@ -14,19 +14,12 @@ import {
 } from '../../lib/camera';
 import { type MonthGrid, buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import type { IslandTheme } from '../../types/island';
+import { loadedIslands } from '../../lib/islands';
+import type { Island } from '../../types/island';
 import type { EffectScene } from '../../types/plugins';
 import { DayTower } from './DayTower';
 import { EffectSprites, type RooftopSpot } from './EffectSprites';
 import { Flight } from './Flight';
-import { LibraryGrounds, LibraryScene } from './LibraryScene';
-import { LuxuryFx } from './LuxuryFx';
-import { LuxuryLandmark } from './LuxuryLandmark';
-import { LuxuryMarina } from './LuxuryMarina';
-import { Clouds, LuxurySky } from './LuxurySky';
-import { MuscleFx } from './MuscleFx';
-import { MuscleScene } from './MuscleScene';
-import { MuscleSea } from './MuscleSea';
 import { type PixelLabel, PixelLabels } from './PixelLabels';
 import { Villagers } from './Villagers';
 import { WeekdayHeader } from './WeekdayHeader';
@@ -75,7 +68,7 @@ const NO_EVENTS: CalendarEvent[] = [];
 const buildDayLabels = (
   grid: MonthGrid,
   byDate: Map<string, CalendarEvent[]>,
-  theme: IslandTheme,
+  island: Island | null,
 ): PixelLabel[] =>
   grid.cells.map((cell) => {
     const count = byDate.get(cell.dateKey)?.length ?? 0;
@@ -97,7 +90,7 @@ const buildDayLabels = (
         rowToZ(cell.row, grid.rows) + TOWER_WIDTH / 2 + 0.012,
       ],
       rotation: [0, 0, 0],
-      color: theme === 'plain' ? (count >= 6 ? '#1b2a41' : '#fff6dc') : '#ffffff',
+      color: island === null ? (count >= 6 ? '#1b2a41' : '#fff6dc') : '#ffffff',
       pitch: 0.055,
     };
   });
@@ -176,7 +169,7 @@ const buildFlights = (
   return [];
 };
 
-/** 黄金郷の目印（浮かぶ巨大な $）を付ける、いちばん高い塔（予定 3 件以上） */
+/** 島の目印（黄金郷の浮かぶ巨大な $ など）を付ける、いちばん高い塔（予定 3 件以上） */
 const tallestTower = (grid: MonthGrid, byDate: Map<string, CalendarEvent[]>) => {
   let best: { x: number; z: number; top: number; count: number } | null = null;
   for (const cell of grid.cells) {
@@ -197,9 +190,9 @@ const rooftopSpots = (grid: MonthGrid, byDate: Map<string, CalendarEvent[]>): Ro
       z: rowToZ(cell.row, grid.rows),
     }));
 
-/** 島ごとの見た目：土台のテーマと、表示中プラグインのエフェクトに付いた絵（無ければ null） */
+/** 島ごとの見た目：目標を達成して変わった島（いつもの島は null）と、表示中プラグインのエフェクトに付いた絵（無ければ null） */
 export interface IslandLook {
-  theme: IslandTheme;
+  island: Island | null;
   scene: EffectScene | null;
   /** エフェクトが変わったら重ねる絵を作り直すためのキー */
   sceneKey: string;
@@ -209,38 +202,24 @@ interface IslandDecorProps {
   grid: MonthGrid;
   byDate: Map<string, CalendarEvent[]>;
   look: IslandLook;
-  /** 日ビューのときは島の奥の大きな飾り（巨人・図書館・$）を出さない */
+  /** 日ビューのときは島の奥の大きな飾りを出さない（島の Decor が dayView を見て決める） */
   dayView: boolean;
 }
 
 /** 中央の島だけに付ける、達成した島の大きな飾り（重いので隣の島には付けない） */
 const IslandDecor = ({ grid, byDate, look, dayView }: IslandDecorProps) => {
-  const { theme, scene, sceneKey } = look;
+  const { island, scene, sceneKey } = look;
   const tallest = useMemo(() => tallestTower(grid, byDate), [grid, byDate]);
   const rooftops = useMemo(() => rooftopSpots(grid, byDate), [grid, byDate]);
+  const Decor = island?.Decor;
   return (
     <>
-      {theme === 'luxury' ? (
-        <>
-          <LuxuryMarina />
-          <LuxurySky />
-          {tallest !== null && !dayView ? <LuxuryLandmark x={tallest.x} z={tallest.z} top={tallest.top} /> : null}
-        </>
-      ) : null}
-      {theme === 'muscle' ? (
-        <>
-          <Clouds />
-          <MuscleFx active flare />
-          <MuscleSea rows={grid.rows} />
-          {dayView ? null : <MuscleScene rows={grid.rows} />}
-        </>
-      ) : null}
-      {theme === 'library' ? (
-        <>
-          <Clouds />
-          <LibraryGrounds rows={grid.rows} />
-          {dayView ? null : <LibraryScene rows={grid.rows} />}
-        </>
+      {Decor !== undefined ? (
+        <Decor
+          rows={grid.rows}
+          dayView={dayView}
+          tallest={tallest === null ? null : { x: tallest.x, z: tallest.z, top: tallest.top }}
+        />
       ) : null}
       {scene?.sprites !== undefined ? (
         <AfterRise>
@@ -271,7 +250,7 @@ interface MonthIslandProps {
   partner: PartnerIsland | null;
 }
 
-/** 1 か月ぶんの島。WeekdayHeader・塔・村人・日付ラベル、黄金郷なら金貨の雨。中央の島には達成した島の飾り */
+/** 1 か月ぶんの島。WeekdayHeader・塔・村人・日付ラベル、達成した島の空の演出。中央の島には達成した島の飾り */
 const MonthIsland = ({
   year,
   month,
@@ -287,12 +266,12 @@ const MonthIsland = ({
   friend,
   partner,
 }: MonthIslandProps) => {
-  const { theme } = look;
+  const { island } = look;
   const grid = useMemo(() => buildMonthGrid(year, month), [year, month]);
-  const dayLabels = useMemo(() => buildDayLabels(grid, byDate, theme), [grid, byDate, theme]);
+  const dayLabels = useMemo(() => buildDayLabels(grid, byDate, island), [grid, byDate, island]);
   const partnerDayLabels = useMemo(
-    () => (partner !== null ? buildDayLabels(grid, partner.byDate, theme) : []),
-    [grid, partner, theme],
+    () => (partner !== null ? buildDayLabels(grid, partner.byDate, island) : []),
+    [grid, partner, island],
   );
   const flights = useMemo(
     () => buildFlights(grid, byDate, partner, friend),
@@ -314,18 +293,20 @@ const MonthIsland = ({
           highlighted={hoveredKey === cell.dateKey || selectedDay === cell.day}
           onHover={onHover}
           onSelect={onSelect}
-          theme={theme}
+          island={island}
         />
       ))}
-      {/* 黄金郷のお金の雨。常に置いておき、黄金郷の月に入ったらフェードイン、出たらフェードアウト */}
-      <LuxuryFx active={theme === 'luxury'} flare={center} />
+      {/* 島の空の演出（黄金郷のお金の雨など）。読み込んだ島の分を常に置いておき、その島の月に入ったらフェードイン、出たらフェードアウト */}
+      {loadedIslands().map(({ key, Fx }) =>
+        Fx === undefined ? null : <Fx key={key} active={island?.key === key} flare={center} />,
+      )}
       {center ? (
-        <group key={`${theme}-${look.sceneKey}`}>
+        <group key={`${island?.key ?? 'plain'}-${look.sceneKey}`}>
           <IslandDecor grid={grid} byDate={byDate} look={look} dayView={selectedDay !== null} />
         </group>
       ) : null}
       <AfterRise>
-        <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} theme={theme} />
+        <Villagers cells={grid.cells} rows={grid.rows} byDate={byDate} island={island} />
         <PixelLabels labels={dayLabels} />
       </AfterRise>
 
@@ -339,11 +320,11 @@ const MonthIsland = ({
               events={partner.byDate.get(cell.dateKey) ?? NO_EVENTS}
               members={members}
               highlighted={false}
-              theme={theme}
+              island={island}
             />
           ))}
           <AfterRise>
-            <Villagers cells={grid.cells} rows={grid.rows} byDate={partner.byDate} theme={theme} />
+            <Villagers cells={grid.cells} rows={grid.rows} byDate={partner.byDate} island={island} />
             <PixelLabels labels={partnerDayLabels} />
           </AfterRise>
         </group>

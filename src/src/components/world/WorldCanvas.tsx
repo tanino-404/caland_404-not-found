@@ -1,33 +1,22 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { type ReactNode, useMemo, useRef, useState } from 'react';
-import {
-  type AmbientLight,
-  Color,
-  type DirectionalLight,
-  Fog,
-  type HemisphereLight,
-  type PointLight,
-  Vector3,
-} from 'three';
+import { type AmbientLight, Color, type DirectionalLight, Fog, type HemisphereLight, Vector3 } from 'three';
 import type { CameraPose } from '../../lib/camera';
-import type { IslandTheme } from '../../types/island';
+import type { Island } from '../../types/island';
 import type { EffectScene } from '../../types/plugins';
 import type { DayPhase, WeatherCondition } from '../../types/weather';
 import { type CameraSnap, CameraRig } from '../month/CameraRig';
 import { Sea } from '../month/Sea';
 
-export const HORIZON_COLOR = '#cfeeff';
-export const LUXURY_HORIZON_COLOR = '#b8e8ff';
-
 /**
- * 時刻帯ごとの地平（fog）色。晴れのときの値。
- * 親はこれに合わせて body の空グラデーション（sky-day / sky-evening / sky-night）の下端色を決める
+ * 時刻帯ごとの地平（fog）色。晴れのときの値。島が horizon を持っていればそちらを使う。
+ * body の空グラデーション（sky-day / sky-evening / sky-night）の下端色はこれに合わせてある
  */
-export const HORIZON_BY_PHASE: Record<DayPhase, Record<IslandTheme, string>> = {
-  day: { plain: HORIZON_COLOR, luxury: LUXURY_HORIZON_COLOR, muscle: HORIZON_COLOR, library: HORIZON_COLOR },
-  evening: { plain: '#ffc4a0', luxury: '#ffd0a4', muscle: '#ffc4a0', library: '#ffc4a0' },
-  night: { plain: '#2a3f6a', luxury: '#344b7c', muscle: '#2a3f6a', library: '#2a3f6a' },
+const HORIZON_BY_PHASE: Record<DayPhase, string> = {
+  day: '#cfeeff',
+  evening: '#ffc4a0',
+  night: '#2a3f6a',
 };
 
 /** 天気で地平色に混ぜる色と割合。clear は混ぜない */
@@ -43,14 +32,17 @@ const HORIZON_WEATHER_TINT: Record<WeatherCondition, { color: string; amount: nu
  * fog が実際に目標にする地平色（テーマ × 時刻帯 × 天気）。CSS の空色を天気まで合わせたいときに使う。
  * プラグインのエフェクトが地平色（scene.horizon）を持つときは、昼の色をそれに置き換える
  */
-export const horizonColorFor = (
-  theme: IslandTheme,
+const horizonColorFor = (
+  island: Island | null,
   dayPhase: DayPhase,
   weather: WeatherCondition,
   sceneHorizon: string | null,
 ): string => {
   const tint = HORIZON_WEATHER_TINT[weather];
-  const base = dayPhase === 'day' && sceneHorizon !== null ? sceneHorizon : HORIZON_BY_PHASE[dayPhase][theme];
+  const base =
+    dayPhase === 'day' && sceneHorizon !== null
+      ? sceneHorizon
+      : (island?.horizon?.[dayPhase] ?? HORIZON_BY_PHASE[dayPhase]);
   const color = new Color(base).lerp(new Color(tint.color), tint.amount);
   return `#${color.getHexString()}`;
 };
@@ -92,7 +84,7 @@ interface ThemeLighting {
   sunIntensity: number;
 }
 
-/** 達成した島（黄金郷・マッチョ・知識の島）は空ごと明るくする */
+/** 達成した島（プラグインの島）は空ごと明るくする */
 const BRIGHT_LIGHTING: ThemeLighting = {
   ambientColor: '#fff8ee',
   ambientIntensity: 0.78,
@@ -103,19 +95,14 @@ const BRIGHT_LIGHTING: ThemeLighting = {
   sunIntensity: 1.55,
 };
 
-const THEME_LIGHTING: Record<IslandTheme, ThemeLighting> = {
-  plain: {
-    ambientColor: '#fff8ee',
-    ambientIntensity: 0.55,
-    hemiSky: '#dff3ff',
-    hemiGround: '#c9b48a',
-    hemiIntensity: 0.9,
-    sunColor: '#fff1d6',
-    sunIntensity: 1.1,
-  },
-  luxury: BRIGHT_LIGHTING,
-  muscle: BRIGHT_LIGHTING,
-  library: BRIGHT_LIGHTING,
+const PLAIN_LIGHTING: ThemeLighting = {
+  ambientColor: '#fff8ee',
+  ambientIntensity: 0.55,
+  hemiSky: '#dff3ff',
+  hemiGround: '#c9b48a',
+  hemiIntensity: 0.9,
+  sunColor: '#fff1d6',
+  sunIntensity: 1.1,
 };
 
 /** 時刻帯で基準ライトにかける係数と、寄せる色 */
@@ -131,8 +118,6 @@ interface PhaseLighting {
   sunTint: string;
   sunTintAmount: number;
   sunPosition: [number, number, number];
-  /** 黄金郷の金のポイントライト。夜は強めて「光る島」に見せる */
-  goldIntensity: number;
 }
 
 const PHASE_LIGHTING: Record<DayPhase, PhaseLighting> = {
@@ -147,7 +132,6 @@ const PHASE_LIGHTING: Record<DayPhase, PhaseLighting> = {
     sunTint: '#ffffff',
     sunTintAmount: 0,
     sunPosition: [6, 12, 4],
-    goldIntensity: 1.6,
   },
   evening: {
     light: 0.9,
@@ -160,7 +144,6 @@ const PHASE_LIGHTING: Record<DayPhase, PhaseLighting> = {
     sunTint: '#ffb070',
     sunTintAmount: 0.75,
     sunPosition: [13, 4.5, 3],
-    goldIntensity: 1.9,
   },
   night: {
     light: 0.42,
@@ -173,7 +156,6 @@ const PHASE_LIGHTING: Record<DayPhase, PhaseLighting> = {
     sunTint: '#9fb7ff',
     sunTintAmount: 0.9,
     sunPosition: [-5, 9, 6],
-    goldIntensity: 2.8,
   },
 };
 
@@ -206,20 +188,19 @@ interface LightTarget {
   sunColor: Color;
   sunIntensity: number;
   sunPosition: Vector3;
-  goldIntensity: number;
   fogColor: Color;
   fogNear: number;
   fogFar: number;
 }
 
 const buildLightTarget = (
-  theme: IslandTheme,
+  island: Island | null,
   scene: EffectScene | null,
   dayPhase: DayPhase,
   weather: WeatherCondition,
   fogRange: FogRange,
 ): LightTarget => {
-  const base = THEME_LIGHTING[theme];
+  const base = island === null ? PLAIN_LIGHTING : BRIGHT_LIGHTING;
   const phase = PHASE_LIGHTING[dayPhase];
   const sky = WEATHER_LIGHTING[weather];
   const [fogNear, fogFar] = FOG_DISTANCE[fogRange];
@@ -238,8 +219,7 @@ const buildLightTarget = (
     sunColor: new Color(base.sunColor).lerp(new Color(phase.sunTint), phase.sunTintAmount),
     sunIntensity: base.sunIntensity * phase.light * sky.sun,
     sunPosition: new Vector3(...phase.sunPosition),
-    goldIntensity: phase.goldIntensity,
-    fogColor: new Color(horizonColorFor(theme, dayPhase, weather, scene?.horizon ?? null)),
+    fogColor: new Color(horizonColorFor(island, dayPhase, weather, scene?.horizon ?? null)),
     fogNear: fogNear * sky.fogNear,
     fogFar,
   };
@@ -255,19 +235,17 @@ const approach = (current: number, target: number, alpha: number): number =>
 
 interface SceneLightingProps {
   target: LightTarget;
-  luxury: boolean;
 }
 
 /**
  * ライトと fog の実体。JSX には最初の目標値だけを渡し、以後は useFrame で現在値から目標値へ指数補間する
  * （JSX の属性を書き換えると R3F が即座に上書きして補間と喧嘩するため）
  */
-const SceneLighting = ({ target, luxury }: SceneLightingProps) => {
+const SceneLighting = ({ target }: SceneLightingProps) => {
   const [initial] = useState(target);
   const ambient = useRef<AmbientLight>(null);
   const hemisphere = useRef<HemisphereLight>(null);
   const sun = useRef<DirectionalLight>(null);
-  const gold = useRef<PointLight>(null);
 
   useFrame(({ scene }, delta) => {
     const alpha = 1 - Math.exp(-delta * LIGHT_RATE);
@@ -291,11 +269,6 @@ const SceneLighting = ({ target, luxury }: SceneLightingProps) => {
       sunLight.color.lerp(target.sunColor, alpha);
       sunLight.intensity = approach(sunLight.intensity, target.sunIntensity, alpha);
       sunLight.position.lerp(target.sunPosition, alpha);
-    }
-
-    const goldLight = gold.current;
-    if (goldLight) {
-      goldLight.intensity = approach(goldLight.intensity, target.goldIntensity, alpha);
     }
 
     const fog = scene.fog;
@@ -323,25 +296,13 @@ const SceneLighting = ({ target, luxury }: SceneLightingProps) => {
         intensity={initial.sunIntensity}
         color={initial.sunColor}
       />
-      {luxury ? (
-        <>
-          <pointLight
-            ref={gold}
-            position={[0, 8, 0]}
-            intensity={initial.goldIntensity}
-            color="#ffd36a"
-            distance={28}
-          />
-          <pointLight position={[4, 2.5, 5]} intensity={0.7} color="#7ee0ff" distance={16} />
-        </>
-      ) : null}
     </>
   );
 };
 
 export interface WorldCanvasProps {
-  /** ライト・fog・海の色 */
-  theme: IslandTheme;
+  /** 目標を達成して変わった島。ライト・fog・海と、島が足すライト。いつもの島は null */
+  island: Island | null;
   /** 表示中プラグインのエフェクトの空・地平・環境光の色。無ければ null */
   scene: EffectScene | null;
   fogRange: FogRange;
@@ -367,7 +328,7 @@ export interface WorldCanvasProps {
  * ライト・fog・海・カメラ制御はここが持ち、ワールドは children で渡す
  */
 export const WorldCanvas = ({
-  theme,
+  island,
   scene,
   fogRange,
   dayPhase,
@@ -379,17 +340,17 @@ export const WorldCanvas = ({
   onPointerMissed,
   children,
 }: WorldCanvasProps) => {
-  const luxury = theme === 'luxury';
   const target = useMemo(
-    () => buildLightTarget(theme, scene, dayPhase, weather, fogRange),
-    [theme, scene, dayPhase, weather, fogRange],
+    () => buildLightTarget(island, scene, dayPhase, weather, fogRange),
+    [island, scene, dayPhase, weather, fogRange],
   );
+  const Lights = island?.Lights;
 
   return (
     <>
       <Canvas
         dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true, toneMappingExposure: theme === 'plain' ? 0.95 : 1.12 }}
+        gl={{ antialias: true, alpha: true, toneMappingExposure: island === null ? 0.95 : 1.12 }}
         camera={{ position: INITIAL_CAMERA_POSITION, fov: 40, near: 0.1, far: CAMERA_FAR[fogRange] }}
         onCreated={({ camera }) => {
           camera.lookAt(0, 1.2, 0);
@@ -398,9 +359,10 @@ export const WorldCanvas = ({
       >
         <CameraFar far={CAMERA_FAR[fogRange]} />
         {scene?.sky !== undefined ? <color attach="background" args={[scene.sky]} /> : null}
-        <SceneLighting target={target} luxury={luxury} />
+        <SceneLighting target={target} />
+        {Lights !== undefined ? <Lights dayPhase={dayPhase} /> : null}
 
-        <Sea theme={theme} />
+        <Sea island={island} />
 
         {children}
 

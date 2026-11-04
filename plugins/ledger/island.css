@@ -1,0 +1,70 @@
+/* 黄金郷（ledger/luxury）。島を表示しているあいだ App が .app に is-luxury を付ける */
+
+.app.is-luxury .scene canvas {
+  filter: contrast(1.08) saturate(1.35) brightness(1.04);
+}
+
+.app.is-luxury::before,
+.app.is-luxury::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.app.is-luxury::before {
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 14%, #fffce8 55%, transparent 56%),
+    radial-gradient(2px 2px at 18% 38%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 27% 8%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 36% 72%, #fff6c8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 44% 22%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2.5px 2.5px at 53% 48%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 62% 12%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 71% 64%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 79% 28%, #fff6c8 55%, transparent 56%),
+    radial-gradient(2px 2px at 88% 8%, #fff 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 92% 52%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2px 2px at 12% 82%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 48% 88%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 84% 86%, #fff6c8 55%, transparent 56%);
+  animation: luxury-twinkle 2.4s ease-in-out infinite;
+}
+
+.app.is-luxury::after {
+  background-image:
+    radial-gradient(2px 2px at 14% 58%, #fff 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 22% 18%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2.5px 2.5px at 33% 44%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 41% 6%, #fff6c8 55%, transparent 56%),
+    radial-gradient(2px 2px at 58% 76%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 67% 32%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 76% 54%, #fffce8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 85% 16%, #ffe27a 55%, transparent 56%),
+    radial-gradient(2px 2px at 6% 46%, #fff6c8 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 96% 70%, #fff 55%, transparent 56%),
+    radial-gradient(2px 2px at 29% 92%, #ffe27a 55%, transparent 56%),
+    radial-gradient(1.5px 1.5px at 73% 90%, #fffce8 55%, transparent 56%);
+  animation: luxury-twinkle 2.8s ease-in-out infinite;
+  animation-delay: -1.3s;
+}
+
+@keyframes luxury-twinkle {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.92;
+  }
+}
+
+.app.is-luxury .hud-month-number {
+  color: #6b3200;
+  text-shadow:
+    3px 3px 0 #ffd24a,
+    -1px -1px 0 #ffe9a8,
+    1px -1px 0 #ffe9a8,
+    -1px 1px 0 #ffe9a8;
+}

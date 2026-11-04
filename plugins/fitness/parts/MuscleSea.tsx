@@ -1,10 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import { Color, type Group, type InstancedMesh, MeshStandardMaterial, Object3D } from 'three';
-import { WATER_TOP_Y } from '../../lib/camera';
-import { UNIT_BOX } from '../models/materials';
-import { pixelArtGeometry } from '../models/pixelArt';
-import { Voxel } from '../models/Voxel';
+import { pixelArtGeometry, UNIT_BOX, Voxel, WATER_TOP_Y } from '@plugin-sdk';
 
 // ---------- 競泳レーン ----------
 

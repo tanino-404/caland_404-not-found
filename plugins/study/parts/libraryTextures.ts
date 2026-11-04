@@ -1,4 +1,4 @@
-import { type SetPixel, noise, paintPixels } from './pixelTexture';
+import { noise, paintPixels, type SetPixel } from '@plugin-sdk';
 
 /**
  * 知識の島（図書館）の塔のドット絵テクスチャ。明るい石灰岩とグレーの石のレンガ、上の縁にツタ。天面は芝。

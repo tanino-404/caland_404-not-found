@@ -1,8 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import type { Group } from 'three';
-import { Voxel } from '../Voxel';
-import { GoldVoxel } from './GoldVoxel';
+import { GoldVoxel, Voxel } from '@plugin-sdk';
 
 export interface HelicopterProps {
   position: [number, number, number];

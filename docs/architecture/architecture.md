@@ -132,14 +132,16 @@
 ### 9. 管理プラグインと島のテーマ（サンドボックス）
 
 - 1 フォルダ = 1 プラグイン（`plugins/<id>/plugin.json`）。書式は `plugins/README.md`。検証は `python server/plugins.py validate`。雛形は `cd server && python new_plugin.py <id> <名前>`。連携の URL とトークンは `secret/.env`
-- 項目（fields）、数値化する指標（metrics）、目標の向き（goal）、達成率ごとのエフェクト（effects）、外部連携（integrations：送信 webhook と受信 ingest。形式は `ADAPTERS` に関数を足す）を宣言で書く。ブラウザで任意コードは動かさない
+- 項目（fields）、数値化する指標（metrics）、目標の向き（goal）、達成率ごとのエフェクト（effects）、外部連携（integrations：送信 webhook と受信 ingest。形式は `ADAPTERS` に関数を足す）を宣言で書く。島の見た目だけは各フォルダの `island.tsx`（React Three Fiber）で書き、設定画面で**インストールしたプラグインのコードだけ**をブラウザで動かす
+- **島はプラグインが描く**：`lib/islands.ts` が Vite の `import.meta.glob('../../../plugins/*/island.tsx')` で島を見つけ、表示したプラグインの effects が使う島だけを遅延読み込みする（島ごとに別チャンク）。画面は島の名前で分岐せず、`types/island.ts` の `IslandDefinition`（ブロック・水・村人・地平・ライト・飾り・空の演出・屋上・凡例・年ビュー）を読む。部品は `src/src/plugin-sdk/index.ts`（`@plugin-sdk`）から使う。`vite.config.ts` の alias / `dedupe` / `server.fs.allow` と `tsconfig.app.json` の `paths` / `include` で src の外の plugins/ を同じ React・three で型チェックとビルドに入れる
+- **インストール**：`plugin_installs`（plugin_id, installed）。`preinstalled: true` のプラグインは初めて見たときに導入済み。設定画面の「プラグイン」でインストール・アンインストール（`POST|DELETE /api/plugins/<id>/install`）。「管理機能」と年ビューの ★ はインストール済みだけ。開発サーバーはフォルダを足すと再起動なしで読み込む。本番は `npm run build` し直す
 - 記録と目標はグループ id に属する。1 プラグインに複数グループ、グループに複数メンバー。目標の期間は任意（`start`〜`end`）。島に見せるのは、その月の最終日の時点で期間中か直前に終わった目標
 - **表示するプラグインは 1 つ**（最初は `lib/pluginApi.ts` の `DEFAULT_PLUGIN_ID` = 家計簿）。下部バー「管理機能」で切り替える。島のテーマはそのプラグインの達成だけで決まる
 - **島の持ち主のグループで決める**：自分の島は自分、友達の島は友達が入っている先頭のグループの記録と目標から、月ごとの進捗とエフェクトを計算する（`App.tsx` の `lookOf`）。持ち主がどのグループにも入っていなければ plain。新しいアカウントはまっさらな島から始まる
 - `hooks/usePlugin.ts`：プラグイン一覧と、表示中プラグインの島の持ち主のグループ（記録・目標）を 2 秒ごとに読む。持ち主が変わる（ログイン・友達の島へ移動）とすぐ読み直す。書き込みは自分のグループだけ
 - 入力パネル `PluginHud`（`components/hud/PluginHud.tsx` + `.css`）：fields から自動で作るフォーム・任意期間の目標・記録一覧。画面右（右矢印と重ならない `right: 120px`）、見出し横に月送り「◀」「▶」と「✕ 閉じる」。自分のグループが無いプラグインは `PluginStart` の「○○を始める」で自分だけのグループを作る
-- エフェクトは `effects[]` の `theme`（島の土台。`lib/effects.ts` の `EFFECT_THEMES`）と `scene`（空・地平・環境光の色とボクセルの絵。色は `WorldCanvas`、絵は `components/month/EffectSprites.tsx`）。達成率の段階ごとに変えられる
-- 島の土台は `plain` / `luxury`（黄金郷。家計簿・NISA）/ `muscle`（マッチョの島。フィットネス）/ `library`（知識の島。自主勉強）。plain 以外は海を礁湖にして青空と雲海を見せ、光を明るくする。空の演出（降るもの・きらめき・レンズフレア）は `SkyFx.tsx` を共用し、`skyFade.ts` で達成した月に入る / 出るときに 1 秒で現れ・消える（共有の材質を汚さないよう大きさで。1 個ずつも上端の帯で現れ、下端の帯で消える）
+- エフェクトは `effects[]` の `theme`（島の土台。`plain`、自分の `islands` の名前、または `<プラグイン id>/<島の名前>`。`lib/islands.ts`）と `scene`（空・地平・環境光の色とボクセルの絵。色は `WorldCanvas`、絵は `components/month/EffectSprites.tsx`）。達成率の段階ごとに変えられる
+- 島の例は `ledger/luxury`（黄金郷。家計簿・NISA）/ `fitness/muscle`（マッチョの島）/ `study/library`（知識の島）。plain 以外は海を礁湖にして青空と雲海を見せ、光を明るくする。空の演出（降るもの・きらめき・レンズフレア）は `SkyFx.tsx` を共用し、`skyFade.ts` で達成した月に入る / 出るときに 1 秒で現れ・消える（共有の材質を汚さないよう大きさで。1 個ずつも上端の帯で現れ、下端の帯で消える）
 - 家計簿もプラグイン（`plugins/ledger`）。**メンバーごとに 1 グループ**（「たろうの家計簿」）。月の貯金 = 収入 − 支出。サンプルの月目標は 1 人 30,000 円で、毎年 1・3・4・7・11・12 月が達成、6・8・10 月などは未達。**今日より後の記帳は DB に入れない**（`db._today()`、テストは `TODAY_OVERRIDE` で固定）ので、未来の月は達成しない
 - 同梱の例は家計簿・釣り・NISA・フィットネス・ペット・自炊・自主勉強・ゲームの練習。家計簿以外は各フォルダの `sample.json`（2026 年。3 月が最高段階）が空のときに起動とリセットで入る
 - 旧形式の家計（テーブル `ledger_entries` / `monthly_goals`。`owner` 列の有無どちらも）は起動時にメンバーごとのグループへ移し替えて捨てる
@@ -215,7 +217,8 @@ export type ViewState =
   | { kind: 'manage'; year: number; month: number };                 // 表示中プラグインの入力パネル
 
 // src/src/types/island.ts
-export type IslandTheme = 'plain' | 'luxury' | 'muscle' | 'library';
+export interface IslandDefinition { label: string; legend?; blocks?(level, isTop); blocksInYear?; water?; villagers?; horizon?; Lights?; Decor?; Fx?; Rooftop? }
+export interface Island extends IslandDefinition { key: string; pluginId: string; name: string } // いつもの島は null
 
 // src/src/types/plugins.ts（抜粋）
 export interface PluginEntry {
@@ -240,7 +243,7 @@ export interface PluginState {
 ## 3D 表現の規約
 
 - 単位：1 マス = 1 × 1（`CELL_SIZE`）。タワーの幅は 1.0（`TOWER_WIDTH`。マスいっぱいに使う）、ブロックの高さは 0.5（`BLOCK_HEIGHT`）。グリッドは原点中心に置き、x = 曜日（`colToX`）、z = 週（`rowToZ`）、y = 高さ。変換は `lib/camera.ts` に集約
-- ブロックの質感は高さ（level）で決める：0 = 草の地面、1〜2 = 土（天面なら草）、3〜5 = 石、6 以上 = 雪（`blockKindForLevel`）。黄金郷では 0 = 砂金の浜、それより上は金で縁取った黒曜石（3 段目以上の奇数段はガラス張り、最上段は数字が読めるよう黒曜石。`blocks/luxuryTextures.ts` のドット絵）。予定 3 件以上で最も高い塔の上に巨大な $ が浮かぶ（`LuxuryLandmark`。日ビューでは出さない）。マッチョの島は石とスレートのレンガ、知識の島は石灰岩とグレーの石（`gymTextures.ts` / `libraryTextures.ts`）。plain 以外は日付の数字が白
+- ブロックの質感は高さ（level）で決める：0 = 草の地面、1〜2 = 土（天面なら草）、3〜5 = 石、6 以上 = 雪（`plainBlockKind`）。達成した島はプラグインの `blocks` が決める（`blockMaterialFor`。黄金郷は砂金の浜と金縁の黒曜石・ガラス、マッチョの島は石とスレートのレンガ、知識の島は石灰岩とグレーの石。テクスチャは各プラグインの `parts/*Textures.ts`）。予定 3 件以上で最も高い塔は `Decor` に `tallest` として渡る（黄金郷の $ など）。plain 以外は日付の数字が白
 - ブロックは `BoxGeometry` + `MeshStandardMaterial` の 6 面配列（フラットな単色。テクスチャ画像は使わない）。材質はモジュール定数として共有する
 - 建物モデルは **1 ファイル 1 建物**、`export const Salon = ({ position }: ObjectProps) => …` 形式。中身は `Voxel`（位置・サイズ・色）を `<group>` で束ねた、底面 0.26 × 0.26・高さ 0.45 以内のボクセル（3×3・ピッチ 0.29 に収めるため）。色→材質は `materialFor` でキャッシュして共有する
 - ライト：`ambientLight` + 影付き `directionalLight` 1 灯。背景は CSS の空色グラデーション（Canvas は透過）、地面の下に海面（青い平面）、遠景に `fog`（水平線色）で「島の地図」感を出す
@@ -292,9 +295,10 @@ src/                               ← Vite プロジェクトルート
 └─ src/
    ├─ main.tsx                     ← エントリポイント（共有ファイル）
    ├─ App.tsx                      ← 画面と ViewState、ワールドの切り替え、雲の遷移、ローディングのタイミング（共有ファイル）
+   ├─ plugin-sdk/index.ts         ← プラグインの island.tsx が使う部品と型（@plugin-sdk）
    ├─ types/
    │   ├─ calendar.ts              ← CalendarEvent / EventCategory / IslandLayout / ViewState / CATEGORY_INFO
-   │   ├─ island.ts                ← IslandTheme
+   │   ├─ island.ts                ← IslandDefinition / Island（プラグインの島の約束事）
    │   ├─ plugins.ts               ← プラグイン定義・記録・目標・グループ・進捗の型
    │   └─ weather.ts               ← WeatherCondition / DayPhase / WeatherNow / WEATHER_LABELS
    ├─ data/
@@ -307,7 +311,7 @@ src/                               ← Vite プロジェクトルート
    │   ├─ pixelFont.ts             ← 3×5 ピクセルフォント
    │   ├─ members.ts               ← メンバー識別色、所有者別の件数内訳、島ごとの予定の振り分け
    │   ├─ pluginStatus.ts          ← 指標・目標の選び方・進捗・エフェクト（plugins.py と同じ計算の純関数）
-   │   ├─ effects.ts               ← 島の土台（effects[].theme）→ IslandTheme の対応表、テーマの表示名
+   │   ├─ islands.ts               ← plugins/*/island.tsx の遅延読み込みと、effects[].theme → 島（Island）
    │   ├─ calendarApi.ts           ← 予定・メンバー・ログイン・登録（/api/calendar /api/login /api/register /api/events）。失敗時は Error
    │   ├─ suggestApi.ts            ← 持ち物提案（/api/suggest）
    │   ├─ pluginApi.ts             ← /api/plugins と /api/achievements。表示するプラグインの既定 id
@@ -339,25 +343,18 @@ src/                               ← Vite プロジェクトルート
    │   │   ├─ MonthWorld.tsx       ← Canvas の子：前月・当月・翌月の 3 島カルーセル（±32、靄の中）、日ズーム、友達の飛行機、予備の split、readyKey / onReady。中央の島に達成した島の飾り（IslandDecor）
    │   │   ├─ CameraRig.tsx        ← pose へ補間。snap で瞬間移動してから補間
    │   │   ├─ Flight.tsx           ← ハートの旗の飛行機。onClick を渡すとクリックできる
-   │   │   ├─ LuxuryFx.tsx         ← 黄金郷のドット絵の金貨と札の雨、きらめき、レンズフレア（active でフェード）
-   │   │   ├─ LuxurySky.tsx        ← 黄金郷の空：礁湖の外の雲海と浮島
-   │   │   ├─ LuxuryLandmark.tsx   ← いちばん高い塔の上に浮かぶ巨大な金の $
-   │   │   ├─ LuxuryMarina.tsx     ← 海のヨットと周回ヘリ
-   │   │   ├─ LuxuryRooftop.tsx    ← 屋上のヤシ・プール・車・噴水・金塊
-   │   │   ├─ SkyFx.tsx / skyFade.ts / fallers.ts ← 降るドット絵・きらめき・レンズフレアと、そのフェード（黄金郷とマッチョの島で共用）
-   │   │   ├─ MuscleFx.tsx / MuscleSea.tsx / MuscleScene.tsx ← マッチョの島の空（ボトルとバナナの雨・ジムの浮島）・海（競泳レーン・リング）・島の奥の巨大なボディビルダー
-   │   │   ├─ LibraryScene.tsx     ← 知識の島：大図書館・LIBRARY の塔・巨大な本・読書の広場・滝
+   │   │   ├─ SkyFx.tsx / skyFade.ts / fallers.ts ← 降るドット絵・きらめき・レンズフレアと、そのフェード（プラグインの島の Fx が SDK から使う）
    │   │   ├─ EffectSprites.tsx    ← プラグインのエフェクトの scene.sprites（ボクセルの絵）
    │   │   ├─ DayTower.tsx         ← 1 日分：地面 + 積みブロック + 屋上 3×3 の建物 + ハイライト + 出現アニメ
    │   │   ├─ Sea.tsx              ← 全体の海面（揺れる水面 + 遠景板 400）。plain 以外は礁湖
    │   │   ├─ Villagers.tsx        ← 出現アニメ後に島の上を歩く村人
    │   │   ├─ PixelLabels.tsx      ← ピクセル文字を 1 つの InstancedMesh で描く
    │   │   └─ WeekdayHeader.tsx    ← グリッド奥の木の看板（SUN〜SAT）
-   │   ├─ models/                  ← ブロック・ボクセル建物・黄金郷のパーツ
-   │   │   ├─ materials.ts / Voxel.tsx / OwnerPlate.tsx / pixelArt.ts（ドット絵 → 厚みのあるボクセル板）
-   │   │   ├─ blocks/blockKinds.ts / Block.tsx / blockMaterials.ts（月と年で共有する形と材質）/ pixelTexture.ts, luxuryTextures.ts, gymTextures.ts, libraryTextures.ts
-   │   │   ├─ objects/             ← 屋上に並べる建物（1 ファイル 1 棟。各カテゴリ 3 バリエーション）
-   │   │   └─ luxury/              ← 黄金郷の装飾パーツ
+   │   ├─ models/                  ← ブロック・ボクセル建物
+   │   │   ├─ materials.ts / Voxel.tsx / GoldVoxel.tsx / Palm.tsx / OwnerPlate.tsx / pixelArt.ts（ドット絵 → 厚みのあるボクセル板）
+   │   │   ├─ blocks/blockKinds.ts / Block.tsx / blockMaterials.ts（月と年で共有する形と材質）/ pixelTexture.ts
+   │   │   └─ objects/             ← 屋上に並べる建物（1 ファイル 1 棟。各カテゴリ 3 バリエーション）
+   │   ├─ scenery/                 ← 島の飾りによく使う小物（Sky.tsx：雲海・浮島、Props.tsx：光る箱・木・街灯・滝）。SDK から使う
    │   └─ hud/
    │       ├─ BottomBar.tsx / .css ← 画面下部のホットバー（年/月・友達の島・管理プラグインのリスト・設定・ログアウト）
    │       ├─ SideArrows.tsx / .css ← 画面左右の「◀」「▶」と行き先の看板（月・年の移動）
@@ -392,5 +389,5 @@ src/                               ← Vite プロジェクトルート
 | C. データと集計・年ビュー | `data/**` / `lib/calendar.ts` / `components/year/**` / `server/seed.py` |
 | D. HUD とスタイル | `components/hud/**` / `components/title/**` / `styles/global.css` |
 | E. ログイン・共有の状態 | `hooks/useSharedCalendar.ts` / `lib/calendarApi.ts` / `lib/storage.ts` / `lib/members.ts` / `server/db.py` / `server/app.py` |
-| F. 管理プラグインと島のテーマ | `plugins/**` / `server/plugins.py` / `types/plugins.ts` / `types/island.ts` / `data/sampleLedger.ts` / `lib/plugin*.ts` / `lib/effects.ts` / `hooks/usePlugin.ts` / `components/hud/PluginHud.*` / `components/month/{Luxury,Muscle,Library,Sky}*.tsx` / `components/models/luxury/**` / `components/models/blocks/*Textures.ts` |
+| F. 管理プラグインと島のテーマ | `plugins/**`（島は `plugins/<id>/island.tsx` と `parts/`）/ `server/plugins.py` / `types/plugins.ts` / `types/island.ts` / `plugin-sdk/**` / `data/sampleLedger.ts` / `lib/plugin*.ts` / `lib/islands.ts` / `hooks/usePlugin.ts` / `components/hud/PluginHud.*` / `components/month/{SkyFx,skyFade,fallers,EffectSprites}*` / `components/scenery/**` |
 | 共有（声をかけてから） | `App.tsx` / `main.tsx` / `types/calendar.ts` / `package.json` 等の設定ファイル |

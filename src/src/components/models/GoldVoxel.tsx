@@ -1,4 +1,4 @@
-import { UNIT_BOX, materialForMetal } from '../materials';
+import { UNIT_BOX, materialForMetal } from './materials';
 
 export interface GoldVoxelProps {
   x: number;

@@ -305,6 +305,7 @@ def ensure_ready(path: Path, plugins_dir: Path) -> None:
             if _ledger_empty(conn):
                 _insert_sample(conn)
             _insert_plugin_samples(conn, plugins_dir)
+            plugins.sync_installs(conn, plugins.list_manifests(plugins_dir))
     finally:
         conn.close()
 

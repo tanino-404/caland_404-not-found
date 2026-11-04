@@ -58,7 +58,7 @@ PRACTICE_MANIFEST = {
     ],
     "metrics": [{"key": "total", "label": "合計", "agg": "sum", "field": "minutes", "unit": "分"}],
     "goal": {"metric": "total", "op": ">="},
-    "effects": [{"id": "plain", "minProgress": 0, "theme": "plain"}, {"id": "luxury", "minProgress": 1, "theme": "luxury"}],
+    "effects": [{"id": "plain", "minProgress": 0, "theme": "plain"}, {"id": "luxury", "minProgress": 1, "theme": "plain"}],
     "integrations": [
         {
             "id": "created",
@@ -573,8 +573,8 @@ class PluginApiTest(unittest.TestCase):
         self.assertEqual(2026, body["year"])
         self.assertEqual([str(m) for m in range(1, 13)], list(body["months"]))
         march = [p["id"] for p in body["months"]["3"]]
-        # 3 月はたろうが入っているすべての同梱プラグインが目標達成（自主勉強ははなこだけのグループ）
-        self.assertEqual(sorted(["cooking", "fishing", "fitness", "game", "ledger", "nisa", "pets"]), sorted(march))
+        # 3 月はたろうが入っているインストール済みのプラグインがすべて目標達成（自主勉強ははなこだけのグループ。釣りは未インストール）
+        self.assertEqual(sorted(["cooking", "fitness", "game", "ledger", "nisa", "pets"]), sorted(march))
         # 8 月の家計簿は未達（貯金 -26,400 円）
         self.assertNotIn("ledger", [p["id"] for p in body["months"]["8"]])
 
@@ -750,7 +750,7 @@ class ManifestValidationTest(unittest.TestCase):
                 plugins.validate_manifest(broken, "practice")
 
         unknown_theme = self.valid()
-        unknown_theme["effects"][1]["theme"] = "fishing"
+        unknown_theme["effects"][1]["theme"] = "volcano"
         with self.assertRaises(ValueError):
             plugins.validate_manifest(unknown_theme, "practice")
 

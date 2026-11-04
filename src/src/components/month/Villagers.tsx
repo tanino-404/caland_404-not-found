@@ -4,7 +4,7 @@ import type { Group } from 'three';
 import { TOWER_WIDTH, colToX, rowToZ, towerTopY } from '../../lib/camera';
 import type { MonthCell } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import type { IslandTheme } from '../../types/island';
+import type { Island } from '../../types/island';
 import { Voxel } from '../models/Voxel';
 
 /** 町全体で出す村人の上限 */
@@ -18,9 +18,7 @@ const SIDE = HALF * 2;
 const LAP = SIDE * 4;
 
 const SHIRT_COLORS = ['#e2564a', '#f2a23c', '#4aa3e2', '#63c07a', '#b07ae0', '#f2d24a'];
-const LUXURY_SHIRT_COLORS = ['#ffd24a', '#fff4c2', '#e23d4f', '#7ec8e8', '#3ecf6e'];
 const PANTS_COLORS = ['#3a4a6b', '#4b3a2c', '#2f5140', '#5a4668'];
-const LUXURY_PANTS_COLORS = ['#5a3a10', '#3a2208', '#7a1d2e'];
 const SKIN_COLOR = '#f0c39a';
 
 /** 日付キーと番号から決まる 0〜1 の値（毎フレーム同じ結果になる決定的ハッシュ） */
@@ -69,13 +67,14 @@ export interface VillagersProps {
   cells: MonthCell[];
   rows: number;
   byDate: Map<string, CalendarEvent[]>;
-  theme: IslandTheme;
+  /** 島が服の色を決めていればその色 */
+  island: Island | null;
 }
 
-export const Villagers = ({ cells, rows, byDate, theme }: VillagersProps) => {
+export const Villagers = ({ cells, rows, byDate, island }: VillagersProps) => {
   const villagers = useMemo(() => {
-    const shirts = theme === 'luxury' ? LUXURY_SHIRT_COLORS : SHIRT_COLORS;
-    const pants = theme === 'luxury' ? LUXURY_PANTS_COLORS : PANTS_COLORS;
+    const shirts = island?.villagers?.shirts ?? SHIRT_COLORS;
+    const pants = island?.villagers?.pants ?? PANTS_COLORS;
     const list: Villager[] = [];
     for (const cell of cells) {
       const eventCount = byDate.get(cell.dateKey)?.length ?? 0;
@@ -105,7 +104,7 @@ export const Villagers = ({ cells, rows, byDate, theme }: VillagersProps) => {
       }
     }
     return list;
-  }, [cells, rows, byDate, theme]);
+  }, [cells, rows, byDate, island]);
 
   const roots = useRef<(Group | null)[]>([]);
   const legs = useRef<(Group | null)[]>([]);

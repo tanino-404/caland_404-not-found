@@ -1,6 +1,7 @@
 import { useState, type KeyboardEvent } from 'react';
 import { useAudio } from '../../hooks/useAudio';
 import { memberColor } from '../../lib/members';
+import type { PluginSummary } from '../../types/plugins';
 import { WEATHER_LABELS, type DayPhase, type WeatherCondition } from '../../types/weather';
 import { IconSettings } from './icons';
 import './SettingsScreen.css';
@@ -19,6 +20,9 @@ export interface SettingsScreenProps {
   /** デバッグモード：ON のあいだ、天気と時刻帯を実際の値の代わりにここで選んだものにする */
   debug: WeatherDebug;
   onDebug: (next: WeatherDebug) => void;
+  /** plugins/ に置いてあるプラグイン（未インストールも含む） */
+  plugins: PluginSummary[];
+  onSetInstalled: (pluginId: string, installed: boolean) => Promise<void>;
 }
 
 /** 天気と時刻帯のデバッグ指定 */
@@ -95,6 +99,46 @@ const DebugPanel = ({ debug, onDebug }: DebugPanelProps) => (
         <p className="settings-note">ON のあいだは実際の天気と時刻の代わりに、ここで選んだものを 3D と空に反映します。</p>
       </>
     ) : null}
+  </div>
+);
+
+/* ---------- プラグイン：plugins/ のフォルダの一覧とインストール ---------- */
+
+interface PluginListProps {
+  plugins: PluginSummary[];
+  busy: boolean;
+  onToggle: (pluginId: string, installed: boolean) => void;
+}
+
+const PluginList = ({ plugins, busy, onToggle }: PluginListProps) => (
+  <div className="settings-plugins">
+    <h2 className="settings-slider-label" id="settings-plugins-label">
+      プラグイン
+    </h2>
+    <ul className="settings-plugin-list" aria-labelledby="settings-plugins-label">
+      {plugins.map((plugin) => (
+        <li key={plugin.id} className="settings-plugin">
+          <div className="settings-plugin-text">
+            <span className="settings-plugin-name">
+              {plugin.name}
+              {plugin.installed ? <small className="settings-plugin-badge">インストール済み</small> : null}
+            </span>
+            {plugin.description !== '' ? <span className="settings-note">{plugin.description}</span> : null}
+          </div>
+          <button
+            type="button"
+            className={plugin.installed ? 'mc-btn mc-btn-danger settings-plugin-btn' : 'mc-btn settings-plugin-btn'}
+            disabled={busy}
+            onClick={() => onToggle(plugin.id, !plugin.installed)}
+          >
+            {plugin.installed ? 'アンインストール' : 'インストール'}
+          </button>
+        </li>
+      ))}
+    </ul>
+    <p className="settings-note">
+      plugins/ にフォルダを置くとここに出ます。インストールすると「管理機能」に並び、島の見た目（island.tsx）が読み込まれます。記録と目標はアンインストールしても消えません。
+    </p>
   </div>
 );
 
@@ -201,6 +245,8 @@ export const SettingsScreen = ({
   onBack,
   debug,
   onDebug,
+  plugins,
+  onSetInstalled,
 }: SettingsScreenProps) => {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -249,6 +295,12 @@ export const SettingsScreen = ({
               onRelease={() => playSe('button')}
             />
           </div>
+
+          <PluginList
+            plugins={plugins}
+            busy={busy}
+            onToggle={(pluginId, installed) => void run(() => onSetInstalled(pluginId, installed))}
+          />
 
           <DebugPanel debug={debug} onDebug={onDebug} />
 

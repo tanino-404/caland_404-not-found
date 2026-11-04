@@ -10,8 +10,7 @@ import {
   MeshStandardMaterial,
   SRGBColorSpace,
 } from 'three';
-import { pixelArtGeometry } from '../models/pixelArt';
-import { Voxel } from '../models/Voxel';
+import { pixelArtGeometry, Voxel } from '@plugin-sdk';
 
 // ---------- ドット絵 ----------
 

@@ -5,9 +5,8 @@ import type {
   PluginGroup,
   PluginManifest,
   PluginState,
-  PluginSummary,
+  PluginRef,
 } from '../types/plugins';
-import { assertKnownEffects } from './effects';
 
 /** 最初に表示する管理内容プラグイン */
 export const DEFAULT_PLUGIN_ID = 'ledger';
@@ -59,9 +58,7 @@ const asManifest = (body: unknown): PluginManifest => {
     throw formatError('プラグイン定義', body);
   }
   // 詳細な検証はサーバー（plugins.py）が配信前に済ませている。ここでは形だけ確かめる
-  const manifest = body as unknown as PluginManifest;
-  assertKnownEffects(manifest);
-  return manifest;
+  return body as unknown as PluginManifest;
 };
 
 const asGroup = (body: unknown): PluginGroup => {
@@ -134,9 +131,26 @@ const listOf = <T>(what: string, body: unknown, key: string, each: (item: unknow
 const groupPath = (pluginId: string, groupId: string): string =>
   `/api/plugins/${encodeURIComponent(pluginId)}/groups/${encodeURIComponent(groupId)}`;
 
-/** 置いてあるプラグインの定義をすべて読む */
-export const fetchManifests = async (): Promise<PluginManifest[]> =>
-  listOf('プラグイン一覧', await request('/api/plugins'), 'plugins', asManifest);
+/** plugins/ に置いてあるプラグイン 1 つ。installed は設定画面でインストールしたか */
+export interface ListedPlugin {
+  manifest: PluginManifest;
+  installed: boolean;
+}
+
+const asListedPlugin = (body: unknown): ListedPlugin => {
+  if (!isRecord(body) || typeof body.installed !== 'boolean') throw formatError('プラグイン一覧', body);
+  const { installed, ...manifest } = body;
+  return { manifest: asManifest(manifest), installed };
+};
+
+/** 置いてあるプラグインの定義と導入状態をすべて読む */
+export const fetchPlugins = async (): Promise<ListedPlugin[]> =>
+  listOf('プラグイン一覧', await request('/api/plugins'), 'plugins', asListedPlugin);
+
+/** インストール（true）・アンインストール（false）する。記録と目標は消さない */
+export const setPluginInstalled = async (pluginId: string, installed: boolean): Promise<void> => {
+  await request(`/api/plugins/${encodeURIComponent(pluginId)}/install`, { method: installed ? 'POST' : 'DELETE' });
+};
 
 /** owner が入っている先頭のグループの記録と目標をまとめて読む。どのグループにも入っていなければ空 */
 export const fetchPluginState = async (manifest: PluginManifest, owner: string): Promise<PluginState> => {
@@ -183,10 +197,10 @@ export const deletePluginGoal = async (pluginId: string, groupId: string, id: st
 };
 
 /** 月（1〜12）→ その月末に、owner が入っているグループで目標を達成しているプラグイン */
-export const fetchAchievements = async (year: number, owner: string): Promise<Map<number, PluginSummary[]>> => {
+export const fetchAchievements = async (year: number, owner: string): Promise<Map<number, PluginRef[]>> => {
   const body = await request(`/api/achievements?year=${year}&owner=${encodeURIComponent(owner)}`);
   if (!isRecord(body) || !isRecord(body.months)) throw formatError('達成一覧', body);
-  const months = new Map<number, PluginSummary[]>();
+  const months = new Map<number, PluginRef[]>();
   for (const [key, list] of Object.entries(body.months)) {
     if (!Array.isArray(list)) throw formatError('達成一覧', body);
     months.set(

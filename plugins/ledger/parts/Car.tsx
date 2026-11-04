@@ -1,5 +1,4 @@
-import { Voxel } from '../Voxel';
-import { GoldVoxel } from './GoldVoxel';
+import { GoldVoxel, Voxel } from '@plugin-sdk';
 
 export interface CarProps {
   position: [number, number, number];

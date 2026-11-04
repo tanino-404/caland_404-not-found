@@ -29,11 +29,11 @@ import type { BgmScene } from './lib/audio';
 import { useSharedCalendar, type SharedCalendar } from './hooks/useSharedCalendar';
 import { countEventsInMonth, groupEventsByDate, toDateKey } from './lib/calendar';
 import { type CameraPose, TITLE_POSE, computeMonthPose, monthPullOutPose } from './lib/camera';
-import { THEME_LABELS, islandThemeFor } from './lib/effects';
+import { islandFor } from './lib/islands';
 import { datesSharedBetween, eventsOwnedBy } from './lib/members';
 import { effectById, monthEndKey, monthStartKey, statusAt } from './lib/pluginStatus';
 import type { CalendarEvent, ViewState } from './types/calendar';
-import type { IslandTheme } from './types/island';
+import type { Island } from './types/island';
 import type { PluginState, PluginStatus } from './types/plugins';
 
 export const App = () => (
@@ -95,7 +95,7 @@ const PLUGIN_ICONS: Record<string, IconComponent> = {
 };
 
 const NO_EVENTS_BY_DATE = new Map<string, CalendarEvent[]>();
-const PLAIN_LOOK: IslandLook = { theme: 'plain', scene: null, sceneKey: 'none' };
+const PLAIN_LOOK: IslandLook = { island: null, scene: null, sceneKey: 'none' };
 
 /** その月の最終日の時点の目標と進捗（期間中か、直前に終わった目標を見せる） */
 const monthStatus = (state: PluginState, year: number, month: number): PluginStatus =>
@@ -106,7 +106,7 @@ const lookOf = (state: PluginState | null, year: number, month: number): IslandL
   if (state === null) return PLAIN_LOOK;
   const effect = effectById(state.manifest, monthStatus(state, year, month).effect);
   return {
-    theme: islandThemeFor(effect.theme),
+    island: islandFor(state.manifest, effect.theme),
     scene: effect.scene ?? null,
     sceneKey: `${state.manifest.id}-${effect.id}`,
   };
@@ -207,12 +207,7 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
   const pluginState = plugin.state;
 
   const islandLookOf = (y: number, m: number): IslandLook => lookOf(pluginState, y, m);
-  const themeOf = (y: number, m: number): IslandTheme => islandLookOf(y, m).theme;
-  const luxuriousMonthsOf = (y: number): ReadonlySet<number> => {
-    const set = new Set<number>();
-    for (let m = 1; m <= 12; m++) if (themeOf(y, m) === 'luxury') set.add(m);
-    return set;
-  };
+  const islandOf = (y: number, m: number): Island | null => islandLookOf(y, m).island;
 
   const monthLook = islandLookOf(year, month);
   /** 表示中プラグインのこの月の目標と進捗。読み込みに失敗していれば null */
@@ -220,14 +215,17 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
 
   const shownWorld: World = user === null ? 'title' : world;
   const canvasLook: IslandLook = shownWorld === 'month' ? monthLook : PLAIN_LOOK;
-  const canvasTheme = canvasLook.theme;
+  const canvasIsland = canvasLook.island;
+  /** 島を表示しているあいだ body と .app に付けるクラス。島の CSS（plugins/<id>/island.css）はこれを見る */
+  const islandClasses = canvasIsland === null ? [] : ['is-island', `is-${canvasIsland.name}`];
+  const islandClassKey = islandClasses.join(' ');
 
   useEffect(() => {
-    document.body.classList.toggle('is-luxury', canvasTheme === 'luxury');
-    document.body.classList.toggle('is-muscle', canvasTheme === 'muscle');
-    document.body.classList.toggle('is-library', canvasTheme === 'library');
-    return () => document.body.classList.remove('is-luxury', 'is-muscle', 'is-library');
-  }, [canvasTheme]);
+    if (islandClassKey === '') return;
+    const classes = islandClassKey.split(' ');
+    document.body.classList.add(...classes);
+    return () => document.body.classList.remove(...classes);
+  }, [islandClassKey]);
   useEffect(() => {
     const classes = [`sky-${dayPhase}`, `weather-${condition}`];
     document.body.classList.add(...classes);
@@ -432,7 +430,7 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
     go({ kind: 'manage', year, month });
   };
 
-  const manageItems: ManageMenuItem[] = plugin.plugins.map((p) => ({
+  const manageItems: ManageMenuItem[] = plugin.plugins.filter((p) => p.installed).map((p) => ({
     id: p.id,
     label: p.name,
     icon: PLUGIN_ICONS[p.id] ?? IconManage,
@@ -507,6 +505,8 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
         onBack={() => setOverlay('none')}
         debug={weatherDebug}
         onDebug={setWeatherDebug}
+        plugins={plugin.plugins}
+        onSetInstalled={plugin.setInstalled}
       />
     ) : isYearView ? (
       <YearHud
@@ -514,7 +514,7 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
         total={yearTotalOf(yearByDate)}
         hoveredMonth={hoveredMonth}
         hoveredCount={hoveredMonth === null ? 0 : countEventsInMonth(yearByDate, year, hoveredMonth)}
-        hoveredThemeLabel={hoveredMonth === null ? null : THEME_LABELS[themeOf(year, hoveredMonth)]}
+        hoveredThemeLabel={hoveredMonth === null ? null : (islandOf(year, hoveredMonth)?.label ?? null)}
         hoveredAchieved={hoveredMonth === null ? [] : (achievements.months?.get(hoveredMonth) ?? [])}
         pluginName={pluginState?.manifest.name ?? '管理プラグイン'}
         achievementsError={achievements.error}
@@ -612,16 +612,17 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
         currentUser={user}
         plugin={pluginState === null || status === null ? null : { manifest: pluginState.manifest, status }}
         pluginError={plugin.error}
+        island={monthLook.island}
       />
     );
 
   const monthInteractive = mainVisible && shownWorld === 'month' && view.kind !== 'manage';
 
   return (
-    <div className={canvasTheme === 'luxury' ? 'app is-luxury' : 'app'}>
+    <div className={['app', ...islandClasses].join(' ')}>
       <div className="scene">
         <WorldCanvas
-          theme={canvasTheme}
+          island={canvasIsland}
           scene={canvasLook.scene}
           fogRange={shownWorld === 'year' ? 'wide' : 'near'}
           pose={pose}
@@ -669,7 +670,7 @@ const MapScreen = ({ calendar }: { calendar: SharedCalendar }) => {
             visible={shownWorld === 'year'}
             year={year}
             byDate={yearByDate}
-            luxuriousMonthsOf={luxuriousMonthsOf}
+            islandOf={islandOf}
             hoveredMonth={hoveredMonth}
             onHoverMonth={setHoveredMonth}
             onSelectMonth={showMonth}

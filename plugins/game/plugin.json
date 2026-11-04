@@ -4,6 +4,7 @@
   "name": "ゲームの練習",
   "version": "1.0.0",
   "description": "ゲームの種類ごとにプレイ時間とランク・レートを記録する。期間の練習時間が目標に届くと、島がサイバーパンクになる。",
+  "preinstalled": true,
   "fields": [
     {
       "key": "game",

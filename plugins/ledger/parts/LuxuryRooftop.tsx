@@ -1,9 +1,7 @@
-import { Car } from '../models/luxury/Car';
-import { Fountain } from '../models/luxury/Fountain';
-import { GoldVoxel } from '../models/luxury/GoldVoxel';
-import { Palm } from '../models/luxury/Palm';
-import { Pool } from '../models/luxury/Pool';
-import { Voxel } from '../models/Voxel';
+import { Car } from './Car';
+import { Fountain } from './Fountain';
+import { Pool } from './Pool';
+import { GoldVoxel, Palm, Voxel } from '@plugin-sdk';
 
 export interface LuxuryRooftopProps {
   dateKey: string;

@@ -10,9 +10,9 @@ import {
 } from '../../lib/camera';
 import { buildMonthGrid } from '../../lib/calendar';
 import type { CalendarEvent } from '../../types/calendar';
-import type { IslandTheme } from '../../types/island';
-import { BLOCK_GEOMETRY, BLOCK_MATERIALS } from '../models/blocks/blockMaterials';
-import { type BlockKind, blockKindForLevel } from '../models/blocks/blockKinds';
+import { islandByKey } from '../../lib/islands';
+import type { BlockMaterial, Island } from '../../types/island';
+import { BLOCK_GEOMETRY, blockMaterialFor } from '../models/blocks/blockMaterials';
 import { type PixelLabel, PixelLabels } from '../month/PixelLabels';
 import { YEAR_PITCH, islandCenter } from './yearLayout';
 
@@ -22,16 +22,12 @@ export interface YearWorldProps {
   year: number;
   /** 3 年分すべての予定（隣の年の島もキャッシュとして描く） */
   byDate: Map<string, CalendarEvent[]>;
-  /** その年の黄金郷の月（金ブロックで描く） */
-  luxuriousMonthsOf: (year: number) => ReadonlySet<number>;
+  /** 月の島。blocksInYear の島（黄金郷など）はその島のブロックで描く */
+  islandOf: (year: number, month: number) => Island | null;
   hoveredMonth: number | null;
   onHoverMonth: (month: number | null) => void;
   onSelectMonth: (month: number) => void;
 }
-
-// ---------- ブロックの見た目（Block.tsx と同じ形と材質を InstancedMesh で使う） ----------
-
-const BLOCK_KINDS = Object.keys(BLOCK_MATERIALS) as BlockKind[];
 
 /** 島の幅（曜日 7 列） */
 const ISLAND_WIDTH = 7;
@@ -65,24 +61,24 @@ interface IslandShape {
 }
 
 interface YearModel {
-  /** ブロック種類ごとの行列（出てこない種類は入れない） */
-  kinds: { kind: BlockKind; matrices: Matrix4[] }[];
+  /** 材質ごとの行列（出てこない材質は入れない）。Block.tsx と同じ形と材質を InstancedMesh で使う */
+  blocks: { material: BlockMaterial; matrices: Matrix4[] }[];
   islands: IslandShape[];
 }
 
 const buildYearModel = (
   year: number,
   byDate: Map<string, CalendarEvent[]>,
-  luxuriousMonths: ReadonlySet<number>,
+  islands: (Island | null)[],
 ): YearModel => {
   const dummy = new Object3D();
-  const byKind = new Map<BlockKind, Matrix4[]>();
-  const islands: IslandShape[] = [];
+  const byMaterial = new Map<BlockMaterial, Matrix4[]>();
+  const shapes: IslandShape[] = [];
 
   for (let month = 1; month <= 12; month += 1) {
     const { x, z } = islandCenter(month);
     const grid = buildMonthGrid(year, month);
-    const theme: IslandTheme = luxuriousMonths.has(month) ? 'luxury' : 'plain';
+    const island = islands[month - 1];
     let maxCount = 0;
 
     for (const cell of grid.cells) {
@@ -92,35 +88,32 @@ const buildYearModel = (
       const cx = x + colToX(cell.col);
       const cz = z + rowToZ(cell.row, grid.rows);
       for (let level = 0; level <= count; level += 1) {
-        const kind = blockKindForLevel(level, level === count, theme);
+        const material = blockMaterialFor(level, level === count, island);
         dummy.position.set(cx, BLOCK_HEIGHT / 2 + BLOCK_HEIGHT * level, cz);
         dummy.updateMatrix();
-        const list = byKind.get(kind);
+        const list = byMaterial.get(material);
         if (list) {
           list.push(dummy.matrix.clone());
         } else {
-          byKind.set(kind, [dummy.matrix.clone()]);
+          byMaterial.set(material, [dummy.matrix.clone()]);
         }
       }
     }
 
-    islands.push({ month, x, z, rows: grid.rows, height: towerTopY(maxCount) });
+    shapes.push({ month, x, z, rows: grid.rows, height: towerTopY(maxCount) });
   }
 
-  const kinds = BLOCK_KINDS.flatMap((kind) => {
-    const matrices = byKind.get(kind);
-    return matrices ? [{ kind, matrices }] : [];
-  });
-  return { kinds, islands };
+  const blocks = [...byMaterial].map(([material, matrices]) => ({ material, matrices }));
+  return { blocks, islands: shapes };
 };
 
-/** 1 種類のブロックを 1 つの InstancedMesh で描く */
+/** 1 つの材質のブロックを 1 つの InstancedMesh で描く */
 interface BlockInstancesProps {
-  kind: BlockKind;
+  material: BlockMaterial;
   matrices: Matrix4[];
 }
 
-const BlockInstances = ({ kind, matrices }: BlockInstancesProps) => {
+const BlockInstances = ({ material, matrices }: BlockInstancesProps) => {
   const ref = useRef<InstancedMesh>(null);
 
   useLayoutEffect(() => {
@@ -134,7 +127,7 @@ const BlockInstances = ({ kind, matrices }: BlockInstancesProps) => {
     <instancedMesh
       key={matrices.length}
       ref={ref}
-      args={[BLOCK_GEOMETRY, BLOCK_MATERIALS[kind], matrices.length]}
+      args={[BLOCK_GEOMETRY, material, matrices.length]}
       // 島は原点から離れているので、ジオメトリ 1 個ぶんの境界球で間引かれないようにする
       frustumCulled={false}
     />
@@ -146,8 +139,8 @@ const BlockInstances = ({ kind, matrices }: BlockInstancesProps) => {
 interface YearIslandsProps {
   year: number;
   byDate: Map<string, CalendarEvent[]>;
-  /** 黄金郷の月を "3,12" のように並べたキー。Set の参照が毎回変わっても再計算しないため */
-  luxuryKey: string;
+  /** 1〜12 月の島の key を "ledger/luxury,,,…" のように並べたもの（年ビューで描かない島は空）。参照が毎回変わっても再計算しないため */
+  islandsKey: string;
   x: number;
   /** 中央の年だけ true。ホバーとクリックを受ける */
   interactive: boolean;
@@ -156,13 +149,13 @@ interface YearIslandsProps {
   onSelectMonth: (month: number) => void;
 }
 
-const parseLuxuryKey = (key: string): ReadonlySet<number> =>
-  new Set(key === '' ? [] : key.split(',').map(Number));
+const parseIslandsKey = (key: string): (Island | null)[] =>
+  key.split(',').map((islandKey) => (islandKey === '' ? null : islandByKey(islandKey)));
 
 const YearIslands = ({
   year,
   byDate,
-  luxuryKey,
+  islandsKey,
   x,
   interactive,
   hoveredMonth,
@@ -170,8 +163,8 @@ const YearIslands = ({
   onSelectMonth,
 }: YearIslandsProps) => {
   const model = useMemo(
-    () => buildYearModel(year, byDate, parseLuxuryKey(luxuryKey)),
-    [year, byDate, luxuryKey],
+    () => buildYearModel(year, byDate, parseIslandsKey(islandsKey)),
+    [year, byDate, islandsKey],
   );
 
   const handleOver = (month: number) => (e: ThreeEvent<PointerEvent>) => {
@@ -190,8 +183,8 @@ const YearIslands = ({
 
   return (
     <group position={[x, 0, 0]}>
-      {model.kinds.map(({ kind, matrices }) => (
-        <BlockInstances key={kind} kind={kind} matrices={matrices} />
+      {model.blocks.map(({ material, matrices }, i) => (
+        <BlockInstances key={i} material={material} matrices={matrices} />
       ))}
       <PixelLabels labels={MONTH_LABELS} />
       {interactive
@@ -224,8 +217,11 @@ const YearIslands = ({
 
 // ---------- 年のカルーセル ----------
 
-const luxuryKeyOf = (months: ReadonlySet<number>): string =>
-  [...months].sort((a, b) => a - b).join(',');
+const islandsKeyOf = (year: number, islandOf: (year: number, month: number) => Island | null): string =>
+  Array.from({ length: 12 }, (_, i) => {
+    const island = islandOf(year, i + 1);
+    return island?.blocksInYear === true ? island.key : '';
+  }).join(',');
 
 /** 年の切替スライドの速さ（指数補間の係数） */
 const SLIDE_SPEED = 5;
@@ -238,7 +234,7 @@ export const YearWorld = ({
   visible,
   year,
   byDate,
-  luxuriousMonthsOf,
+  islandOf,
   hoveredMonth,
   onHoverMonth,
   onSelectMonth,
@@ -281,7 +277,7 @@ export const YearWorld = ({
           key={y}
           year={y}
           byDate={byDate}
-          luxuryKey={luxuryKeyOf(luxuriousMonthsOf(y))}
+          islandsKey={islandsKeyOf(y, islandOf)}
           x={(i - 1) * YEAR_PITCH}
           interactive={visible && y === year}
           hoveredMonth={y === year ? hoveredMonth : null}

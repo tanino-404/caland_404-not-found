@@ -4,6 +4,7 @@
   "name": "自炊",
   "version": "1.0.0",
   "description": "作ったごはんと材料費・栄養を記録する。材料は買い物リストとしても残る。自炊の回数が目標に届くと、果樹園と畑と家畜の島になる。",
+  "preinstalled": true,
   "fields": [
     {
       "key": "menu",

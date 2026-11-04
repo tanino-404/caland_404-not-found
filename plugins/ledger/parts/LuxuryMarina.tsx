@@ -1,9 +1,9 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import type { Group } from 'three';
-import { SEA_Y } from '../../lib/camera';
-import { Helicopter } from '../models/luxury/Helicopter';
-import { Yacht } from '../models/luxury/Yacht';
+import { Helicopter } from './Helicopter';
+import { Yacht } from './Yacht';
+import { SEA_Y } from '@plugin-sdk';
 
 const YACHTS: { position: [number, number, number]; yaw: number; scale: number }[] = [
   { position: [-4.6, SEA_Y + 0.02, 2.6], yaw: 0.5, scale: 1.7 },

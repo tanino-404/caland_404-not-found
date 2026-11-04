@@ -1,7 +1,7 @@
-import { type SetPixel, noise, paintPixels } from './pixelTexture';
+import { noise, paintPixels, type SetPixel } from '@plugin-sdk';
 
 /**
- * マッチョの島の塔のドット絵テクスチャ。灰色の石レンガと濃いスレートのレンガ、天面は芝。
+ * マッチョの島の塔のドット絵テクスチャ。灰色の石レンガと濃いスレートのレンガ（天面の芝は SDK の GRASS_TOP_MATERIAL）。
  * 上の縁の明るい帯だけが光る。
  */
 
@@ -11,7 +11,6 @@ const STONE = ['#9aa0a8', '#8c929b', '#a6acb4', '#858b94'];
 const STONE_MORTAR = '#6c717a';
 const SLATE = ['#3c465a', '#434e63', '#363f52', '#4a556b'];
 const SLATE_MORTAR = '#262d3b';
-const GRASS = ['#5fb63b', '#57ab35', '#6cc444', '#4f9e30'];
 
 const paint = (width: number, height: number, painter: (set: SetPixel) => void) =>
   paintPixels(width, height, new Set([TRIM_HI, TRIM]), painter);
@@ -40,11 +39,3 @@ const bricks = (set: SetPixel, faces: string[], mortar: string) => {
 export const GYM_STONE_SIDE = paint(16, 8, (set) => bricks(set, STONE, STONE_MORTAR));
 
 export const GYM_SLATE_SIDE = paint(16, 8, (set) => bricks(set, SLATE, SLATE_MORTAR));
-
-export const GYM_GRASS_TOP = paint(16, 16, (set) => {
-  for (let y = 0; y < 16; y++) {
-    for (let x = 0; x < 16; x++) {
-      set(x, y, GRASS[Math.floor(noise(x, y, 11) * GRASS.length)]);
-    }
-  }
-});

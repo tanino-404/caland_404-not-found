@@ -38,8 +38,11 @@ AGGREGATES = ("sum", "count", "max", "min", "avg", "latest", "delta")
 GOAL_OPS = (">=", "<=")
 HOOK_EVENTS = ("entry.created", "goal.achieved")
 COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
-# 画面（src/src/lib/effects.ts の EFFECT_THEMES）が描ける島の土台
-BUILTIN_THEMES = ("plain", "luxury", "muscle", "library")
+# どのプラグインでも使える島の土台。ほかの土台はプラグインが plugins/<id>/island.tsx で足し、plugin.json の islands に名前を書く
+PLAIN_THEME = "plain"
+ISLAND_FILE = "island.tsx"
+# ほかのプラグインの島を借りるときの theme：「<プラグイン id>/<島の名前>」
+SHARED_THEME_PATTERN = re.compile(r"^([a-z0-9][a-z0-9-]{0,39})/([a-z][a-z0-9_]*)$")
 # 画面（src/src/components/month/EffectSprites.tsx）が描ける置き場所と動き
 SPRITE_ZONES = ("sea", "sky", "shore", "rooftop")
 SPRITE_MOTIONS = ("orbit", "jump", "bob", "hop", "pump")
@@ -67,6 +70,10 @@ CREATE TABLE IF NOT EXISTS plugin_entries (
   owners_json TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS plugin_entries_scope ON plugin_entries (plugin_id, group_id, date);
+CREATE TABLE IF NOT EXISTS plugin_installs (
+  plugin_id TEXT PRIMARY KEY,
+  installed INTEGER NOT NULL CHECK (installed IN (0, 1))
+);
 CREATE TABLE IF NOT EXISTS plugin_goals (
   id TEXT PRIMARY KEY,
   plugin_id TEXT NOT NULL,
@@ -341,10 +348,24 @@ def _validate_scene(scene: object, where: str) -> None:
     _expect(total <= MAX_SCENE_VOXELS, where, f"scene のボクセル数（絵のボクセル × count の合計）は {MAX_SCENE_VOXELS} までです: {total}")
 
 
-def _validate_effects(effects: object, where: str) -> None:
+def _validate_islands(islands: object, where: str) -> list[str]:
+    _expect(
+        isinstance(islands, list)
+        and all(isinstance(name, str) and KEY_PATTERN.fullmatch(name) is not None and name != PLAIN_THEME for name in islands)
+        and len(set(islands)) == len(islands),
+        where,
+        f"islands は {ISLAND_FILE} が描く島の名前（英小文字の key、{PLAIN_THEME} 以外、重複なし）の配列です",
+    )
+    assert isinstance(islands, list)
+    return islands
+
+
+def _validate_effects(effects: object, islands: list[str], where: str) -> None:
     _expect(isinstance(effects, list) and len(effects) > 0, where, "effects は 1 つ以上の配列です")
     assert isinstance(effects, list)
+    themes = (PLAIN_THEME, *islands)
     seen: set[str] = set()
+    theme_hint = " か ".join([*themes, "<プラグイン id>/<島の名前>"])
     for effect in effects:
         _expect(
             isinstance(effect, dict)
@@ -352,9 +373,10 @@ def _validate_effects(effects: object, where: str) -> None:
             and KEY_PATTERN.fullmatch(effect["id"]) is not None
             and _is_number(effect.get("minProgress"))
             and 0 <= effect["minProgress"] <= 1
-            and effect.get("theme") in BUILTIN_THEMES,
+            and isinstance(effect.get("theme"), str)
+            and (effect["theme"] in themes or SHARED_THEME_PATTERN.fullmatch(effect["theme"]) is not None),
             where,
-            f"effects の要素は {{ id, minProgress: 0〜1, theme: {' か '.join(BUILTIN_THEMES)}, scene? }} です",
+            f"effects の要素は {{ id, minProgress: 0〜1, theme: {theme_hint}, scene? }} です",
         )
         _expect(effect["id"] not in seen, where, f"effect id が重複しています: {effect['id']}")
         seen.add(effect["id"])
@@ -377,7 +399,9 @@ def validate_manifest(manifest: object, dir_name: str) -> dict:
     _expect(isinstance(goal, dict), where, "goal はオブジェクトです")
     _expect(goal.get("metric") in metric_keys, where, "goal.metric は metrics の key です")
     _expect(goal.get("op") in GOAL_OPS, where, "goal.op は >= か <= です")
-    _validate_effects(manifest.get("effects"), where)
+    _expect(isinstance(manifest.get("preinstalled", False), bool), where, "preinstalled は true / false です")
+    islands = _validate_islands(manifest.get("islands", []), where)
+    _validate_effects(manifest.get("effects"), islands, where)
     _validate_integrations(manifest.get("integrations", []), fields, where)
     return manifest
 
@@ -388,7 +412,20 @@ def load_manifest(plugin_id: str, plugins_dir: Path) -> dict:
     path = plugins_dir / plugin_id / "plugin.json"
     if not path.is_file():
         raise ApiError(404, f"プラグインが見つかりません: {plugin_id}")
-    return validate_manifest(json.loads(path.read_text(encoding="utf-8")), plugin_id)
+    manifest = validate_manifest(json.loads(path.read_text(encoding="utf-8")), plugin_id)
+    where = f"plugins/{plugin_id}/plugin.json"
+    if len(manifest.get("islands", [])) > 0 and not (plugins_dir / plugin_id / ISLAND_FILE).is_file():
+        raise ValueError(f"{where}: islands を描く plugins/{plugin_id}/{ISLAND_FILE} がありません")
+    for effect in manifest["effects"]:
+        shared = SHARED_THEME_PATTERN.fullmatch(effect["theme"])
+        if shared is None:
+            continue
+        owner_id, island = shared.groups()
+        owner_path = plugins_dir / owner_id / "plugin.json"
+        owner_islands = json.loads(owner_path.read_text(encoding="utf-8")).get("islands", []) if owner_path.is_file() else []
+        if island not in owner_islands or not (plugins_dir / owner_id / ISLAND_FILE).is_file():
+            raise ValueError(f"{where}: effect {effect['id']} の theme {effect['theme']} は、plugins/{owner_id} の islands にありません")
+    return manifest
 
 
 def list_manifests(plugins_dir: Path) -> list[dict]:
@@ -397,6 +434,31 @@ def list_manifests(plugins_dir: Path) -> list[dict]:
         for child in sorted(plugins_dir.iterdir())
         if (child / "plugin.json").is_file()
     ]
+
+
+# ---------- インストール ----------
+
+
+def sync_installs(conn: sqlite3.Connection, manifests: list[dict]) -> None:
+    """まだ記録の無いプラグインの導入状態を決める。preinstalled なら導入済み、それ以外は未導入。
+    一度決めた状態は、画面からのインストール・アンインストールでだけ変わる。"""
+    for manifest in manifests:
+        conn.execute(
+            "INSERT OR IGNORE INTO plugin_installs (plugin_id, installed) VALUES (?, ?)",
+            (manifest["id"], 1 if manifest.get("preinstalled", False) else 0),
+        )
+
+
+def installed_ids(conn: sqlite3.Connection) -> set[str]:
+    return {row["plugin_id"] for row in conn.execute("SELECT plugin_id FROM plugin_installs WHERE installed = 1")}
+
+
+def set_installed(conn: sqlite3.Connection, plugin_id: str, installed: bool) -> None:
+    conn.execute(
+        "INSERT INTO plugin_installs (plugin_id, installed) VALUES (?, ?)"
+        " ON CONFLICT (plugin_id) DO UPDATE SET installed = excluded.installed",
+        (plugin_id, 1 if installed else 0),
+    )
 
 
 def pick_effect(manifest: dict, progress: float) -> str:
@@ -886,6 +948,8 @@ def year_achievements(db_path: Path, plugins_dir: Path, query: str) -> dict:
     months: dict[str, list[dict]] = {}
     conn = connect(db_path)
     try:
+        installed = installed_ids(conn)
+        manifests = [m for m in manifests if m["id"] in installed]
         own: dict[str, str] = {}
         for m in manifests:
             mine = [g for g in fetch_groups(conn, m["id"]) if owner in g["members"]]
@@ -1021,13 +1085,23 @@ def _dispatch(
 ) -> tuple[int, object]:
     if len(parts) == 0:
         _allow(method, "GET", path)
-        return 200, {"plugins": list_manifests(plugins_dir)}
+        manifests = list_manifests(plugins_dir)
+        with immediate(conn):
+            sync_installs(conn, manifests)
+        installed = installed_ids(conn)
+        return 200, {"plugins": [{**m, "installed": m["id"] in installed} for m in manifests]}
     manifest = load_manifest(parts[0], plugins_dir)
     plugin_id = manifest["id"]
     rest = parts[1:]
     if len(rest) == 0:
         _allow(method, "GET", path)
         return 200, manifest
+    if rest == ["install"]:
+        if method not in ("POST", "DELETE"):
+            raise ApiError(405, f"method not allowed: {method} {path}")
+        with immediate(conn):
+            set_installed(conn, plugin_id, method == "POST")
+        return 200, {"id": plugin_id, "installed": method == "POST"}
     if rest[0] != "groups":
         raise ApiError(404, f"not found: {path}")
     if len(rest) == 1:

@@ -2,15 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { type RefObject, useRef } from 'react';
 import type { Group } from 'three';
 
-/** 達成した島の空の演出（SkyFx.tsx）を、達成した月に入る / 出るときに 1 秒かけて出し入れする */
-
-/** LuxuryFx / MuscleFx の props */
-export interface SkyFxProps {
-  /** 達成している月か。切り替えで 1 秒かけてフェードイン・アウトする */
-  active: boolean;
-  /** 画面全体に出るレンズフレアを付けるか。カルーセルの中央の島だけ true */
-  flare: boolean;
-}
+/** 達成した島の空の演出（SkyFx.tsx。プラグインの島の Fx が使う）を、達成した月に入る / 出るときに 1 秒かけて出し入れする */
 
 /** 全体のフェードイン・アウトにかける秒数 */
 const FADE_SECONDS = 1.0;

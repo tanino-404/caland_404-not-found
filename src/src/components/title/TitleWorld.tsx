@@ -31,7 +31,7 @@ export const TitleWorld = ({ visible }: TitleWorldProps) => {
           events={byDate.get(cell.dateKey) ?? NO_EVENTS}
           members={TITLE_MEMBERS}
           highlighted={false}
-          theme="plain"
+          island={null}
         />
       ))}
     </group>

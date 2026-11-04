@@ -6,9 +6,11 @@ import {
   createPluginGroup,
   deletePluginEntry,
   deletePluginGoal,
-  fetchManifests,
   fetchPluginState,
+  fetchPlugins,
+  setPluginInstalled,
 } from '../lib/pluginApi';
+import { loadIslandsFor } from '../lib/islands';
 import type { PluginData, PluginGroup, PluginState, PluginSummary } from '../types/plugins';
 
 export interface NewPluginEntryInput {
@@ -29,14 +31,16 @@ export interface NewPluginGoalInput {
 export interface PluginHandle {
   /** 表示中のプラグインと、島の持ち主のグループの記録・目標。初回読み込みが成功するまで null */
   state: PluginState | null;
-  /** 切り替えられるプラグインの一覧 */
+  /** plugins/ に置いてあるプラグインの一覧（未インストールも含む） */
   plugins: PluginSummary[];
   /** 表示中のプラグイン id（読み込みに失敗していても分かる） */
   selectedId: string;
   /** プラグインの読み込みに失敗したときのメッセージ。地図は止めずパネルに出す。成功時は null */
   error: string | null;
-  /** 表示するプラグインを切り替える */
+  /** 表示するプラグインを切り替える（インストール済みだけ） */
   select: (pluginId: string) => Promise<void>;
+  /** インストール・アンインストールする。表示中のものを外したら、ほかのインストール済みへ切り替える */
+  setInstalled: (pluginId: string, installed: boolean) => Promise<void>;
   /** 表示中プラグインで、自分だけのグループを作る */
   startGroup: () => Promise<void>;
   addEntry: (input: NewPluginEntryInput) => Promise<void>;
@@ -85,14 +89,27 @@ export const usePlugin = (currentUser: string | null, owner: string | null): Plu
   const refresh = async (seen: number) => {
     const who = ownerRef.current;
     try {
-      const manifests = await fetchManifests();
-      const manifest = manifests.find((m) => m.id === selectedRef.current);
-      if (manifest === undefined) {
-        throw new Error(`usePlugin: プラグインが見つかりません: ${selectedRef.current}`);
+      const listed = await fetchPlugins();
+      const installed = listed.filter((p) => p.installed);
+      if (installed.length === 0) {
+        throw new Error('usePlugin: インストール済みのプラグインがありません。設定の「プラグイン」からインストールしてください');
       }
+      // 表示中のものが外されていたら（別の端末でアンインストールした等）、先頭のインストール済みを表示する
+      const shown = installed.find((p) => p.manifest.id === selectedRef.current) ?? installed[0];
+      const manifest = shown.manifest;
+      await loadIslandsFor(manifest);
       const next = who === null ? null : await fetchPluginState(manifest, who);
       if (!alive.current || revision.current !== seen || ownerRef.current !== who) return;
-      const list = manifests.map((m) => ({ id: m.id, name: m.name }));
+      if (manifest.id !== selectedRef.current) {
+        selectedRef.current = manifest.id;
+        setSelectedId(manifest.id);
+      }
+      const list: PluginSummary[] = listed.map((p) => ({
+        id: p.manifest.id,
+        name: p.manifest.name,
+        description: p.manifest.description ?? '',
+        installed: p.installed,
+      }));
       const json = JSON.stringify(list);
       if (json !== listJson.current) {
         listJson.current = json;
@@ -158,13 +175,23 @@ export const usePlugin = (currentUser: string | null, owner: string | null): Plu
   };
 
   const select = (pluginId: string): Promise<void> => {
-    if (!plugins.some((p) => p.id === pluginId)) {
-      throw new Error(`usePlugin.select: プラグインが見つかりません: ${pluginId}`);
+    if (!plugins.some((p) => p.id === pluginId && p.installed)) {
+      throw new Error(`usePlugin.select: インストール済みのプラグインではありません: ${pluginId}`);
     }
     selectedRef.current = pluginId;
     setSelectedId(pluginId);
     applyState(null);
     return afterWrite(async () => undefined);
+  };
+
+  const setInstalled = (pluginId: string, installed: boolean): Promise<void> => {
+    if (!plugins.some((p) => p.id === pluginId)) {
+      throw new Error(`usePlugin.setInstalled: プラグインが見つかりません: ${pluginId}`);
+    }
+    if (!installed && !plugins.some((p) => p.id !== pluginId && p.installed)) {
+      throw new Error('最後のプラグインはアンインストールできません');
+    }
+    return afterWrite(() => setPluginInstalled(pluginId, installed));
   };
 
   const startGroup = (): Promise<void> => {
@@ -210,5 +237,5 @@ export const usePlugin = (currentUser: string | null, owner: string | null): Plu
     return afterWrite(() => deletePluginGoal(pluginId, group.id, goalId, user));
   };
 
-  return { state, plugins, selectedId, error, select, startGroup, addEntry, removeEntry, addGoal, removeGoal };
+  return { state, plugins, selectedId, error, select, setInstalled, startGroup, addEntry, removeEntry, addGoal, removeGoal };
 };

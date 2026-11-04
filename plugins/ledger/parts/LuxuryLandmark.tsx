@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { type Group, MeshStandardMaterial } from 'three';
-import { pixelArtGeometry } from '../models/pixelArt';
+import { pixelArtGeometry } from '@plugin-sdk';
 
 /** 7×10 の $。o は濃い金の縁、g は金、h は照り */
 const DOLLAR_ROWS = [

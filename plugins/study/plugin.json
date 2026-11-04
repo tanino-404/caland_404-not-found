@@ -4,6 +4,10 @@
   "name": "自主勉強",
   "version": "1.0.0",
   "description": "勉強時間と内容を科目ごとに記録し、何のテストに向けた勉強かをタグで残す。テスト当日の点数も記録して振り返れる。期間の勉強時間が目標に届くと、大きな図書館の島になる。",
+  "preinstalled": true,
+  "islands": [
+    "library"
+  ],
   "fields": [
     {
       "key": "kind",

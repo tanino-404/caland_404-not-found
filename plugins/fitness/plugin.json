@@ -4,6 +4,10 @@
   "name": "フィットネス",
   "version": "1.0.0",
   "description": "トレーニングと体重を記録する。期間のトレーニング回数が目標に届くと、島からムキムキの腕が生えてダンベルを上げる。",
+  "preinstalled": true,
+  "islands": [
+    "muscle"
+  ],
   "fields": [
     {
       "key": "training",

@@ -2,6 +2,7 @@ import { MONTH_NAMES_EN, formatDateJa } from '../../lib/calendar';
 import { breakdownByOwner, memberColor, ownerChipBackground } from '../../lib/members';
 import { formatMetricValue, goalMetric } from '../../lib/pluginStatus';
 import { CATEGORIES, CATEGORY_INFO, type CalendarEvent } from '../../types/calendar';
+import type { Island } from '../../types/island';
 import type { PluginManifest, PluginStatus } from '../../types/plugins';
 
 export interface MonthHudProps {
@@ -16,6 +17,8 @@ export interface MonthHudProps {
   /** 表示中プラグインの定義と、この月の目標・進捗。読み込みに失敗したら null */
   plugin: { manifest: PluginManifest; status: PluginStatus } | null;
   pluginError: string | null;
+  /** この月の島。島が凡例（legend）を持っていれば、予定の種類の呼び名と説明をその島のものにする */
+  island: Island | null;
 }
 
 const parseKey = (key: string): [number, number, number] => {
@@ -36,7 +39,9 @@ export const MonthHud = ({
   currentUser,
   plugin,
   pluginError,
+  island,
 }: MonthHudProps) => {
+  const legend = island?.legend ?? null;
   const hovered = hoveredKey ? parseKey(hoveredKey) : null;
   const hoveredEvents = hoveredKey ? (byDate.get(hoveredKey) ?? NO_EVENTS) : NO_EVENTS;
   const breakdown = breakdownByOwner(hoveredEvents);
@@ -93,12 +98,14 @@ export const MonthHud = ({
           {CATEGORIES.map((category) => (
             <li key={category}>
               <span className="chip" style={{ background: CATEGORY_INFO[category].color }} />
-              {CATEGORY_INFO[category].label}
+              {legend === null ? CATEGORY_INFO[category].label : legend.categoryLabels[category]}
             </li>
           ))}
         </ul>
         <p className="hud-hint">
-          ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。貯金目標を達成すると島が黄金郷になる
+          {legend === null
+            ? 'ブロックの数 = 予定の数。ホバーで建物の足元に持ち主の色が出る。クリックで町へ降りる。貯金目標を達成すると島が黄金郷になる'
+            : legend.description}
         </p>
       </aside>
 

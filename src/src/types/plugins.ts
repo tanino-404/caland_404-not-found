@@ -90,7 +90,7 @@ export interface PluginEffect {
   id: string;
   /** 0〜1。到達した中で最大の minProgress のエフェクトを使う */
   minProgress: number;
-  /** 島の土台（lib/effects.ts の EFFECT_THEMES） */
+  /** 島の土台。plain、自分の islands の名前、または「<プラグイン id>/<島の名前>」（lib/islands.ts） */
   theme: string;
   scene?: EffectScene;
 }
@@ -101,6 +101,10 @@ export interface PluginManifest {
   name: string;
   version: string;
   description?: string;
+  /** サーバーを初めて起動したときから導入済みにする */
+  preinstalled?: boolean;
+  /** plugins/<id>/island.tsx が描く島の名前。effects[].theme はこれか plain か「<プラグイン id>/<島の名前>」 */
+  islands?: string[];
   fields: PluginField[];
   metrics: PluginMetric[];
   goal: { metric: string; op: '>=' | '<=' };
@@ -163,7 +167,14 @@ export interface PluginState {
 }
 
 /** 切り替え用の一覧に出す情報 */
-export interface PluginSummary {
+/** プラグインの id と表示名 */
+export interface PluginRef {
   id: string;
   name: string;
+}
+
+export interface PluginSummary extends PluginRef {
+  description: string;
+  /** 設定画面でインストールしたか。インストール済みだけが「管理機能」に出て、島のコードが読み込まれる */
+  installed: boolean;
 }

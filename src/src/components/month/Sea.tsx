@@ -10,7 +10,7 @@ import {
   RingGeometry,
 } from 'three';
 import { SEA_Y } from '../../lib/camera';
-import type { IslandTheme } from '../../types/island';
+import type { Island } from '../../types/island';
 import { BLOCK_COLORS } from '../models/blocks/blockKinds';
 
 /** 波立つ海面の一辺。年ビューの 12 島（横 37 × 奥 24）と俯瞰カメラの視界まで覆う */
@@ -61,7 +61,7 @@ const buildLagoon = (): BufferGeometry => {
   return geometry;
 };
 
-/** 達成した島（黄金郷・マッチョ・知識の島）の海。縁が透ける礁湖にして、外の空と雲海を見せる */
+/** 達成した島（プラグインの島）の海。縁が透ける礁湖にして、外の空と雲海を見せる */
 const Lagoon = () => {
   const geometryRef = useRef<BufferGeometry>(null);
   const lagoon = useMemo(() => buildLagoon(), []);
@@ -117,7 +117,7 @@ const smoothstep = (edge0: number, edge1: number, x: number): number => {
  * 達成した島は礁湖（Lagoon）にする。
  */
 export interface SeaProps {
-  theme: IslandTheme;
+  island: Island | null;
 }
 
 interface WaveBuffers {
@@ -152,7 +152,7 @@ const createWave = (): WaveBuffers => {
   return { geometry, baseX, baseY, gain };
 };
 
-export const Sea = ({ theme }: SeaProps) => (theme === 'plain' ? <WaveSea /> : <Lagoon />);
+export const Sea = ({ island }: SeaProps) => (island === null ? <WaveSea /> : <Lagoon />);
 
 /** いつもの島の海。年ビューの 12 島まで覆う波の面と遠景の板 */
 const WaveSea = () => {

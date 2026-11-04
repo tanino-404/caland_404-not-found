@@ -1,4 +1,4 @@
-import { Voxel } from '../Voxel';
+import { Voxel } from './Voxel';
 import { GoldVoxel } from './GoldVoxel';
 
 export interface PalmProps {

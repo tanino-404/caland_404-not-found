@@ -4,6 +4,7 @@
   "name": "NISA",
   "version": "1.0.0",
   "description": "つみたて投資枠と成長投資枠の買付と、月末の評価損益を記録する。期間の投資額が目標に届くと、島がブルジョワになる。",
+  "preinstalled": true,
   "fields": [
     {
       "key": "kind",
@@ -177,7 +178,7 @@
     {
       "id": "bourgeois",
       "minProgress": 1,
-      "theme": "luxury",
+      "theme": "ledger/luxury",
       "scene": {
         "sprites": [
           {

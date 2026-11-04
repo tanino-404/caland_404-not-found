@@ -794,6 +794,40 @@
   },
   {
    "group": "fishing-home",
+   "date": "2026-11-01",
+   "owners": [
+    "たろう"
+   ],
+   "data": {
+    "species": "aji",
+    "count": 8,
+    "length_cm": 18.4,
+    "weight_g": 1180,
+    "place": "岸和田一文字",
+    "tide": "flood",
+    "time_slot": "dawn",
+    "memo": "朝まづめに群れが回った"
+   }
+  },
+  {
+   "group": "fishing-home",
+   "date": "2026-11-03",
+   "owners": [
+    "はなこ"
+   ],
+   "data": {
+    "species": "saba",
+    "count": 6,
+    "length_cm": 24.5,
+    "weight_g": 1620,
+    "place": "泉佐野食品コンビナート",
+    "tide": "high",
+    "time_slot": "dusk",
+    "memo": "夕まづめに連発"
+   }
+  },
+  {
+   "group": "fishing-home",
    "date": "2026-11-08",
    "owners": [
     "はなこ"

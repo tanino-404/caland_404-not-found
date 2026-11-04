@@ -37,6 +37,7 @@ plugins/
 
 - 記録だけ（島は plain ＋ ボクセルの絵）：`cooking`（自炊）`pets` `game` `nisa`（黄金郷を借りる）
 - 島も描く：`ledger`（黄金郷。`island.css` も）`fitness`（マッチョの島）`study`（知識の島）
+- 島と凡例：`fishing`（漁業の島。`legend` で凡例の呼び名と説明も変える。最初は未インストール）
 - 家計簿 `ledger` だけはサンプルを `server/seed.py` で作る
 
 ## 作り方

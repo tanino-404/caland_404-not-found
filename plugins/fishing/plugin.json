@@ -3,7 +3,10 @@
   "id": "fishing",
   "name": "釣り",
   "version": "1.0.0",
-  "description": "釣果を記録する。期間の釣果数が目標に届くと、島の海に魚があふれる。潮と時間帯も残して、あとで釣れる条件を振り返る。",
+  "description": "釣果を記録する。期間の釣果数が目標に届くと、島が漁業の島に変わる（釣り人の並ぶ桟橋・魚市場・水族館・跳ねる巨大マグロ）。潮と時間帯も残して、あとで釣れる条件を振り返る。",
+  "islands": [
+    "fishing"
+  ],
   "fields": [
     {
       "key": "species",
@@ -206,31 +209,31 @@
       }
     },
     {
-      "id": "school",
+      "id": "harbor",
       "minProgress": 1,
-      "theme": "plain",
+      "theme": "fishing",
       "scene": {
         "horizon": "#bff0ff",
         "sprites": [
           {
             "model": {
               "palette": {
-                "a": "#ff8a3d",
-                "b": "#ffffff",
-                "e": "#1b2a41"
+                "o": "#ff8a3d",
+                "w": "#ffffff",
+                "k": "#1b2a41"
               },
               "layers": [
                 [
-                  "b.aaa.",
-                  "b.aaa."
+                  "..ooo..",
+                  "..ooo.."
                 ],
                 [
-                  "bbaaea",
-                  "bbaaea"
+                  "kowoowo",
+                  "kowoowk"
                 ],
                 [
-                  "b.aaa.",
-                  "b.aaa."
+                  "..ooo..",
+                  "..ooo.."
                 ]
               ]
             },
@@ -238,35 +241,7 @@
             "zone": "sea",
             "motion": "orbit",
             "size": 0.07,
-            "speed": 0.6
-          },
-          {
-            "model": {
-              "palette": {
-                "a": "#7fb6d8",
-                "b": "#5a8fb0",
-                "e": "#1b2a41"
-              },
-              "layers": [
-                [
-                  "b.aaa.",
-                  "b.aaa."
-                ],
-                [
-                  "bbaaea",
-                  "bbaaea"
-                ],
-                [
-                  "b.aaa.",
-                  "b.aaa."
-                ]
-              ]
-            },
-            "count": 16,
-            "zone": "sea",
-            "motion": "orbit",
-            "size": 0.06,
-            "speed": 0.8
+            "speed": 0.7
           },
           {
             "model": {
@@ -299,76 +274,226 @@
           {
             "model": {
               "palette": {
-                "a": "#ffd34a",
-                "b": "#3a8fd0",
-                "e": "#1b2a41"
+                "g": "#4a7a3a",
+                "c": "#6b8f3a",
+                "s": "#8a6a3a",
+                "h": "#9bc06a"
               },
               "layers": [
                 [
-                  "b.aaa.",
-                  "b.aaa."
+                  "g...g.",
+                  ".cccc.",
+                  ".cccch",
+                  ".cccc.",
+                  "g...g."
                 ],
                 [
-                  "bbaaea",
-                  "bbaaea"
-                ],
-                [
-                  "b.aaa.",
-                  "b.aaa."
+                  "......",
+                  "..ss..",
+                  ".ssss.",
+                  "..ss..",
+                  "......"
                 ]
               ]
             },
-            "count": 10,
+            "count": 4,
             "zone": "sea",
             "motion": "orbit",
-            "size": 0.05,
-            "speed": 1.2
+            "size": 0.08,
+            "speed": 0.3
           },
           {
             "model": {
               "palette": {
-                "h": "#8a5a2b",
-                "m": "#5b3a1a",
-                "s": "#fff8e7"
+                "d": "#1d2f6b",
+                "b": "#2f63c9",
+                "s": "#d4dde8",
+                "y": "#ffd23a",
+                "e": "#111111"
               },
               "layers": [
                 [
-                  ".hhhh.",
-                  "hhhhhh",
-                  ".hhhh."
+                  "...ssss...",
+                  "...ssss..."
                 ],
                 [
-                  "h....h",
-                  "h....h",
-                  "h....h"
+                  "d.ssssssss",
+                  "d.ssssssss"
                 ],
                 [
-                  "......",
-                  "...m..",
-                  "......"
+                  "ddbbbbbbbb",
+                  "ddbbbbbbeb"
                 ],
                 [
-                  "......",
-                  "...ms.",
-                  "......"
+                  ".y.dddd...",
+                  ".y.dddd..."
                 ],
                 [
-                  "......",
-                  "...ms.",
-                  "......"
-                ],
-                [
-                  "......",
-                  "...m..",
-                  "......"
+                  "....dd....",
+                  "....dd...."
                 ]
               ]
             },
-            "count": 3,
-            "zone": "sea",
+            "count": 6,
+            "zone": "sky",
             "motion": "orbit",
-            "size": 0.09,
-            "speed": 0.15
+            "size": 0.07,
+            "speed": 0.45
+          },
+          {
+            "model": {
+              "palette": {
+                "y": "#ffd23a",
+                "k": "#1b2a41"
+              },
+              "layers": [
+                [
+                  ".yy.."
+                ],
+                [
+                  "yyyyk"
+                ],
+                [
+                  ".yy.."
+                ],
+                [
+                  "..y.."
+                ]
+              ]
+            },
+            "count": 24,
+            "zone": "sky",
+            "motion": "orbit",
+            "size": 0.05,
+            "speed": 0.9
+          },
+          {
+            "model": {
+              "palette": {
+                "w": "#ffffff",
+                "g": "#b8c2cc",
+                "y": "#ffb020"
+              },
+              "layers": [
+                [
+                  "..g.",
+                  ".gw.",
+                  "wwwy",
+                  ".gw.",
+                  "..g."
+                ]
+              ]
+            },
+            "count": 8,
+            "zone": "sky",
+            "motion": "orbit",
+            "size": 0.06,
+            "speed": 0.6
+          },
+          {
+            "model": {
+              "palette": {
+                "p": "#6b4422",
+                "r": "#e8402e",
+                "w": "#ffffff",
+                "y": "#ffd23a"
+              },
+              "layers": [
+                [
+                  "p....."
+                ],
+                [
+                  "p....."
+                ],
+                [
+                  "p....."
+                ],
+                [
+                  "p....."
+                ],
+                [
+                  "prrrrr"
+                ],
+                [
+                  "pwyywr"
+                ],
+                [
+                  "prrrrr"
+                ],
+                [
+                  "p....."
+                ]
+              ]
+            },
+            "count": 16,
+            "zone": "rooftop",
+            "motion": "bob",
+            "size": 0.04
+          },
+          {
+            "model": {
+              "palette": {
+                "t": "#8b5a2b",
+                "l": "#2f9e4a",
+                "m": "#3ecf6e",
+                "c": "#6b4422"
+              },
+              "layers": [
+                [
+                  ".....",
+                  ".....",
+                  "..t..",
+                  ".....",
+                  "....."
+                ],
+                [
+                  ".....",
+                  ".....",
+                  "..t..",
+                  ".....",
+                  "....."
+                ],
+                [
+                  ".....",
+                  ".....",
+                  "..t..",
+                  ".....",
+                  "....."
+                ],
+                [
+                  ".....",
+                  ".....",
+                  "..t..",
+                  ".....",
+                  "....."
+                ],
+                [
+                  ".....",
+                  "..c..",
+                  ".ctc.",
+                  "..c..",
+                  "....."
+                ],
+                [
+                  "..l..",
+                  "..l..",
+                  "llmll",
+                  "..l..",
+                  "..l.."
+                ],
+                [
+                  ".....",
+                  ".l.l.",
+                  "..m..",
+                  ".l.l.",
+                  "....."
+                ]
+              ]
+            },
+            "count": 6,
+            "zone": "shore",
+            "motion": "bob",
+            "size": 0.06
           }
         ]
       }

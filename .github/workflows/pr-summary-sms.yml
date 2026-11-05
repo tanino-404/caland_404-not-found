@@ -1,0 +1,132 @@
+# CodeRabbit が PR に書いた要約を、Vonage SMS API で開発者へ送る。
+# 宛先・鍵はすべて GitHub Secrets（Settings > Secrets and variables > Actions）。このファイルには参照しか書かない。
+#   NOTIFY_PHONES      宛先。E.164 形式（+81...）をカンマ区切り。空なら何も送らない
+#   VONAGE_API_KEY     Vonage の API キー
+#   VONAGE_API_SECRET  Vonage の API シークレット
+#   VONAGE_FROM        送信元（Vonage で使える番号か名前）
+# fork からの PR では Secrets が渡らず NOTIFY_PHONES が空になるため、送信されない。
+name: PR 要約を SMS で通知
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  notify:
+    # PR へのコメントのうち、CodeRabbit の投稿だけ。PR のコードはチェックアウトも実行もしない
+    if: github.event.issue.pull_request != null && github.event.comment.user.login == 'coderabbitai[bot]'
+    runs-on: ubuntu-latest
+    env:
+      NOTIFY_PHONES: ${{ secrets.NOTIFY_PHONES }}
+      VONAGE_API_KEY: ${{ secrets.VONAGE_API_KEY }}
+      VONAGE_API_SECRET: ${{ secrets.VONAGE_API_SECRET }}
+      VONAGE_FROM: ${{ secrets.VONAGE_FROM }}
+      # PR のタイトルとコメント本文は外部の入力。シェルに埋め込まず、環境変数で Python に渡す
+      PR_TITLE: ${{ github.event.issue.title }}
+      PR_URL: ${{ github.event.issue.html_url }}
+      COMMENT_BODY: ${{ github.event.comment.body }}
+    steps:
+      - name: 通知先が設定されているか確認する
+        id: gate
+        run: |
+          # 空白とカンマだけなら未設定として扱う
+          if [ -z "${NOTIFY_PHONES//[[:space:],]/}" ]; then
+            echo "send=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::NOTIFY_PHONES が未設定のため、SMS は送信しません"
+          else
+            echo "send=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Vonage で SMS を送る
+        if: steps.gate.outputs.send == 'true'
+        run: |
+          python3 - <<'PY'
+          import base64
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          API_URL = "https://rest.nexmo.com/sms/json"
+          TITLE_MAX = 40
+          SUMMARY_MAX = 80  # 日本語（unicode）の SMS は 1 通 70 文字。分割課金を抑えるため短くする
+
+
+          def fail(message: str) -> None:
+              print(f"::error::{message}")
+              sys.exit(1)
+
+
+          missing = [k for k in ("VONAGE_API_KEY", "VONAGE_API_SECRET", "VONAGE_FROM") if os.environ.get(k, "").strip() == ""]
+          if missing:
+              fail(f"NOTIFY_PHONES はあるが {', '.join(missing)} が Secrets にありません")
+
+          phones = [p.strip() for p in os.environ["NOTIFY_PHONES"].split(",") if p.strip() != ""]
+          for p in phones:
+              print(f"::add-mask::{p}")  # 分割した番号もログで伏せる
+              print(f"::add-mask::{p.lstrip('+')}")
+          for i, p in enumerate(phones, 1):
+              if re.fullmatch(r"\+[1-9][0-9]{6,14}", p) is None:
+                  fail(f"NOTIFY_PHONES の {i} 番目が E.164 形式（+81...）ではありません")
+
+
+          def clip(text: str, limit: int) -> str:
+              return text if len(text) <= limit else text[: limit - 1] + "…"
+
+
+          def summarize(body: str) -> str:
+              text = re.sub(r"<!--.*?-->", " ", body, flags=re.S)  # CodeRabbit が埋める HTML コメント
+              text = re.sub(r"<[^>]+>", " ", text)
+              text = re.sub(r"!?\[([^\]]*)\]\([^)]*\)", r"\1", text)  # [表示](URL) は表示だけ残す
+              text = re.sub(r"[#>*`|_-]+", " ", text)
+              text = re.sub(r"\s+", " ", text).strip()
+              return re.sub(r"^Summary by CodeRabbit\s*", "", text)  # 先頭の見出しは字数の無駄
+
+
+          summary = summarize(os.environ["COMMENT_BODY"])
+          if summary == "":
+              fail("CodeRabbit のコメントから要約を取り出せませんでした")
+          message = f"[PR] {clip(os.environ['PR_TITLE'], TITLE_MAX)}\n{clip(summary, SUMMARY_MAX)}\n{os.environ['PR_URL']}"
+
+          credentials = f"{os.environ['VONAGE_API_KEY']}:{os.environ['VONAGE_API_SECRET']}".encode()
+          headers = {
+              "Authorization": "Basic " + base64.b64encode(credentials).decode(),
+              "Content-Type": "application/x-www-form-urlencoded",
+          }
+
+          failed = 0
+          for i, phone in enumerate(phones, 1):
+              data = urllib.parse.urlencode(
+                  {"from": os.environ["VONAGE_FROM"], "to": phone.lstrip("+"), "text": message, "type": "unicode"}
+              ).encode()
+              request = urllib.request.Request(API_URL, data=data, headers=headers, method="POST")
+              try:
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      result = json.load(response)
+              except urllib.error.HTTPError as exc:
+                  print(f"::error::宛先 {i}: HTTP {exc.code}: {exc.read().decode(errors='replace')}")
+                  failed += 1
+                  continue
+              except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+                  print(f"::error::宛先 {i}: {type(exc).__name__}: {exc}")
+                  failed += 1
+                  continue
+              # レスポンスの to は番号そのものなので、status と error-text だけ出す
+              for part in result.get("messages", []):
+                  if part.get("status") != "0":
+                      print(f"::error::宛先 {i}: Vonage status={part.get('status')} error-text={part.get('error-text', '(なし)')}")
+                      failed += 1
+                  else:
+                      print(f"宛先 {i}: 送信しました")
+              if not result.get("messages"):
+                  print(f"::error::宛先 {i}: Vonage のレスポンスに messages がありません: {json.dumps(result)}")
+                  failed += 1
+
+          if failed:
+              fail(f"{failed} 件の送信に失敗しました（上のエラーを確認してください）")
+          PY

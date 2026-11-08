@@ -1,6 +1,4 @@
-# tcp_osaka_2026_404human_not_found
-
-チーム「404human_not_found」の [Tech Challenge Party OSAKA 2026](https://tech-challenge-party.connpass.com/event/398681/) 用リポジトリ。この作品を [ヒーローズ・リーグ 2026](https://heroes-league.net/) のオンラインリーグへ出す。
+# CALAND
 
 ## 予定の混み具合マップ — 毎日が、村になる。
 
